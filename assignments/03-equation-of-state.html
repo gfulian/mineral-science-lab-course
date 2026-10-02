@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Assignment 3 — Equation of state – Mineral Science Laboratory</title>
+<title>Assignment 3 — Geometry optimization and equation of state – Mineral Science Laboratory</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +25,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -74,6 +109,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -86,7 +150,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/00-onboarding.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/03-equation-of-state.html">Assignment 3 — Equation of state</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/00-onboarding.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/03-equation-of-state.html">Assignment 3 — Geometry optimization and equation of state</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -188,7 +252,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/03-equation-of-state.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Assignment 3 — Equation of state</span></a>
+ <span class="menu-text">Assignment 3 — Geometry optimization and equation of state</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -223,7 +287,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../labs/lab03-equation-of-state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Laboratory 3 — From energy to an equation of state</span></a>
+ <span class="menu-text">Laboratory 3 — From equilibrium structure to an equation of state</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -297,17 +361,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#before-the-next-class" id="toc-before-the-next-class" class="nav-link active" data-scroll-target="#before-the-next-class">Before the next class</a></li>
-  <li><a href="#questions-to-think-about" id="toc-questions-to-think-about" class="nav-link" data-scroll-target="#questions-to-think-about">Questions to think about</a></li>
+  <li><a href="#before-the-laboratory" id="toc-before-the-laboratory" class="nav-link active" data-scroll-target="#before-the-laboratory">Before the laboratory</a></li>
+  <li><a href="#use-the-k-point-sampling-you-selected-in-laboratory-2" id="toc-use-the-k-point-sampling-you-selected-in-laboratory-2" class="nav-link" data-scroll-target="#use-the-k-point-sampling-you-selected-in-laboratory-2">Use the k-point sampling you selected in Laboratory 2</a></li>
+  <li><a href="#cluster-resources" id="toc-cluster-resources" class="nav-link" data-scroll-target="#cluster-resources">Cluster resources</a></li>
+  <li><a href="#what-you-will-produce" id="toc-what-you-will-produce" class="nav-link" data-scroll-target="#what-you-will-produce">What you will produce</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/00-onboarding.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/03-equation-of-state.html">Assignment 3 — Equation of state</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/00-onboarding.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/03-equation-of-state.html">Assignment 3 — Geometry optimization and equation of state</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Assignment 3 — Equation of state</h1>
+<h1 class="title">Assignment 3 — Geometry optimization and equation of state</h1>
 </div>
 
 
@@ -324,13 +390,67 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="before-the-next-class" class="level2">
-<h2 class="anchored" data-anchor-id="before-the-next-class">Before the next class</h2>
-<p>TO BE ADDED.</p>
+<p>Laboratory 3 starts from the MgO model used in the previous activity and asks two new questions:</p>
+<blockquote class="blockquote">
+<p><strong>What is the equilibrium geometry predicted by our computational model?</strong></p>
+</blockquote>
+<p>and</p>
+<blockquote class="blockquote">
+<p><strong>How does the energy of that crystal change when we compress or expand it?</strong></p>
+</blockquote>
+<p>The work is divided into two connected parts:</p>
+<ol type="1">
+<li>a full geometry optimization of MgO;</li>
+<li>a static energy–volume equation-of-state calculation.</li>
+</ol>
+<p>The optimized structure from the first part becomes the reference structure for the second.</p>
+<section id="before-the-laboratory" class="level2">
+<h2 class="anchored" data-anchor-id="before-the-laboratory">Before the laboratory</h2>
+<p>Read:</p>
+<ul>
+<li><strong>Laboratory 3 — From equilibrium structure to an equation of state</strong>;</li>
+<li>the updated <strong>CRYSTAL input and output field guide</strong>;</li>
+<li>the <strong>CluMiner</strong> quick reference if you need to review job submission.</li>
+</ul>
+<p>Then update your personal workspace:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">update-course</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>and create the Laboratory 3 working directory:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">start-lab</span> 03</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Open:</p>
+<pre class="text"><code>work/lab03/</code></pre>
+<p>You should find:</p>
+<pre class="text"><code>01-geometry-optimization.ipynb
+02-equation-of-state.ipynb
+inputs/
+outputs/
+reference-results/</code></pre>
 </section>
-<section id="questions-to-think-about" class="level2">
-<h2 class="anchored" data-anchor-id="questions-to-think-about">Questions to think about</h2>
-<p>TO BE ADDED.</p>
+<section id="use-the-k-point-sampling-you-selected-in-laboratory-2" class="level2">
+<h2 class="anchored" data-anchor-id="use-the-k-point-sampling-you-selected-in-laboratory-2">Use the k-point sampling you selected in Laboratory 2</h2>
+<p>The geometry and EOS calculations should use the SHRINK value justified by your Laboratory 2 convergence test.</p>
+<p>The distributed inputs contain a placeholder working value. Replace it if your chosen value is different, but keep that value fixed throughout Laboratory 3.</p>
+</section>
+<section id="cluster-resources" class="level2">
+<h2 class="anchored" data-anchor-id="cluster-resources">Cluster resources</h2>
+<p>Use the same resource request as before:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cluminer-crystal</span> INPUT.d12 <span class="at">--cores-per-node</span> 2 <span class="at">--threads</span> 2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Do not increase the number of cores.</p>
+</section>
+<section id="what-you-will-produce" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-produce">What you will produce</h2>
+<p>At the end of the activity your notebook should contain:</p>
+<ul>
+<li>the optimized MgO lattice parameter and cell volume;</li>
+<li>a comparison between the experimental starting geometry and the static DFT equilibrium geometry;</li>
+<li>an explanation of why the Mg and O fractional coordinates do not move;</li>
+<li>an energy–volume dataset around the optimized structure;</li>
+<li>a third-order Birch–Murnaghan (BM3) fit;</li>
+<li>the fitted <span class="math inline">\(V_0\)</span>, <span class="math inline">\(K_0\)</span> and <span class="math inline">\(K'_0\)</span>;</li>
+<li>an <span class="math inline">\(E(V)\)</span> plot;</li>
+<li>a <span class="math inline">\(P(V)\)</span> plot reconstructed from the fitted energy relation;</li>
+<li>a short interpretation of the bulk modulus.</li>
+</ul>
+<p>The repeated extraction and fitting steps are handled by Quantas so that the scientific work remains focused on interpretation rather than transcription.</p>
 
 
 </section>

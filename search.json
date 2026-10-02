@@ -35,34 +35,56 @@
   {
     "objectID": "assignments/03-equation-of-state.html",
     "href": "assignments/03-equation-of-state.html",
-    "title": "Assignment 3 — Equation of state",
+    "title": "Assignment 3 — Geometry optimization and equation of state",
     "section": "",
-    "text": "TO BE ADDED.",
+    "text": "Laboratory 3 starts from the MgO model used in the previous activity and asks two new questions:\nand\nThe work is divided into two connected parts:\nThe optimized structure from the first part becomes the reference structure for the second.",
     "crumbs": [
       "Assignments",
-      "Assignment 3 — Equation of state"
+      "Assignment 3 — Geometry optimization and equation of state"
     ]
   },
   {
-    "objectID": "assignments/03-equation-of-state.html#before-the-next-class",
-    "href": "assignments/03-equation-of-state.html#before-the-next-class",
-    "title": "Assignment 3 — Equation of state",
-    "section": "",
-    "text": "TO BE ADDED.",
+    "objectID": "assignments/03-equation-of-state.html#before-the-laboratory",
+    "href": "assignments/03-equation-of-state.html#before-the-laboratory",
+    "title": "Assignment 3 — Geometry optimization and equation of state",
+    "section": "Before the laboratory",
+    "text": "Before the laboratory\nRead:\n\nLaboratory 3 — From equilibrium structure to an equation of state;\nthe updated CRYSTAL input and output field guide;\nthe CluMiner quick reference if you need to review job submission.\n\nThen update your personal workspace:\nupdate-course\nand create the Laboratory 3 working directory:\nstart-lab 03\nOpen:\nwork/lab03/\nYou should find:\n01-geometry-optimization.ipynb\n02-equation-of-state.ipynb\ninputs/\noutputs/\nreference-results/",
     "crumbs": [
       "Assignments",
-      "Assignment 3 — Equation of state"
+      "Assignment 3 — Geometry optimization and equation of state"
     ]
   },
   {
-    "objectID": "assignments/03-equation-of-state.html#questions-to-think-about",
-    "href": "assignments/03-equation-of-state.html#questions-to-think-about",
-    "title": "Assignment 3 — Equation of state",
-    "section": "Questions to think about",
-    "text": "Questions to think about\nTO BE ADDED.",
+    "objectID": "assignments/03-equation-of-state.html#use-the-k-point-sampling-you-selected-in-laboratory-2",
+    "href": "assignments/03-equation-of-state.html#use-the-k-point-sampling-you-selected-in-laboratory-2",
+    "title": "Assignment 3 — Geometry optimization and equation of state",
+    "section": "Use the k-point sampling you selected in Laboratory 2",
+    "text": "Use the k-point sampling you selected in Laboratory 2\nThe geometry and EOS calculations should use the SHRINK value justified by your Laboratory 2 convergence test.\nThe distributed inputs contain a placeholder working value. Replace it if your chosen value is different, but keep that value fixed throughout Laboratory 3.",
     "crumbs": [
       "Assignments",
-      "Assignment 3 — Equation of state"
+      "Assignment 3 — Geometry optimization and equation of state"
+    ]
+  },
+  {
+    "objectID": "assignments/03-equation-of-state.html#cluster-resources",
+    "href": "assignments/03-equation-of-state.html#cluster-resources",
+    "title": "Assignment 3 — Geometry optimization and equation of state",
+    "section": "Cluster resources",
+    "text": "Cluster resources\nUse the same resource request as before:\ncluminer-crystal INPUT.d12 --cores-per-node 2 --threads 2\nDo not increase the number of cores.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 3 — Geometry optimization and equation of state"
+    ]
+  },
+  {
+    "objectID": "assignments/03-equation-of-state.html#what-you-will-produce",
+    "href": "assignments/03-equation-of-state.html#what-you-will-produce",
+    "title": "Assignment 3 — Geometry optimization and equation of state",
+    "section": "What you will produce",
+    "text": "What you will produce\nAt the end of the activity your notebook should contain:\n\nthe optimized MgO lattice parameter and cell volume;\na comparison between the experimental starting geometry and the static DFT equilibrium geometry;\nan explanation of why the Mg and O fractional coordinates do not move;\nan energy–volume dataset around the optimized structure;\na third-order Birch–Murnaghan (BM3) fit;\nthe fitted \\(V_0\\), \\(K_0\\) and \\(K'_0\\);\nan \\(E(V)\\) plot;\na \\(P(V)\\) plot reconstructed from the fitted energy relation;\na short interpretation of the bulk modulus.\n\nThe repeated extraction and fitting steps are handled by Quantas so that the scientific work remains focused on interpretation rather than transcription.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 3 — Geometry optimization and equation of state"
     ]
   },
   {
@@ -374,6 +396,501 @@
     ]
   },
   {
+    "objectID": "reference/crystal-geometry-eos.html",
+    "href": "reference/crystal-geometry-eos.html",
+    "title": "CRYSTAL geometry and EOS keywords",
+    "section": "",
+    "text": "This page is a quick reference for the geometry-optimization keywords used in Laboratory 3. For the scientific explanation, read the Laboratory 3 page."
+  },
+  {
+    "objectID": "reference/crystal-geometry-eos.html#full-geometry-optimization",
+    "href": "reference/crystal-geometry-eos.html#full-geometry-optimization",
+    "title": "CRYSTAL geometry and EOS keywords",
+    "section": "Full geometry optimization",
+    "text": "Full geometry optimization\nOPTGEOM\nFULLOPTG\nTOLDEG\n0.0004\nTOLDEX\n0.0001\nTOLDEE\n8\nPRINTFORCES\nEND\nFULLOPTG allows optimization of both cell and symmetry-allowed internal coordinates.\nTOLDEG controls the RMS gradient criterion.\nTOLDEX controls the RMS displacement criterion.\nTOLDEE 8 corresponds to an optimization energy-change threshold of \\(10^{-8}\\) hartree.\nPRINTFORCES requests additional atomic-gradient information."
+  },
+  {
+    "objectID": "reference/crystal-geometry-eos.html#constant-volume-optimization",
+    "href": "reference/crystal-geometry-eos.html#constant-volume-optimization",
+    "title": "CRYSTAL geometry and EOS keywords",
+    "section": "Constant-volume optimization",
+    "text": "Constant-volume optimization\nFor an EOS point:\nOPTGEOM\nCVOLOPT\nTOLDEG\n0.0004\nTOLDEX\n0.0001\nTOLDEE\n8\nEND\nCVOLOPT keeps the volume fixed while relaxing any other structural degrees of freedom allowed by symmetry."
+  },
+  {
+    "objectID": "reference/crystal-geometry-eos.html#why-the-two-calculations-are-different",
+    "href": "reference/crystal-geometry-eos.html#why-the-two-calculations-are-different",
+    "title": "CRYSTAL geometry and EOS keywords",
+    "section": "Why the two calculations are different",
+    "text": "Why the two calculations are different\nA free geometry optimization asks:\n\nWhat volume and structure minimize the energy?\n\nA constant-volume optimization asks:\n\nAt this specified volume, what structure has the lowest energy?\n\nThe second question is the one required for an energy–volume EOS dataset."
+  },
+  {
+    "objectID": "reference/crystal-geometry-eos.html#official-reference",
+    "href": "reference/crystal-geometry-eos.html#official-reference",
+    "title": "CRYSTAL geometry and EOS keywords",
+    "section": "Official reference",
+    "text": "Official reference\nCRYSTAL documentation:\nhttps://www.crystal.unito.it/documentation.html"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Computational Mineralogy Laboratory",
+    "section": "",
+    "text": "This website contains the instructions and supporting material for the computational laboratory activities of the Mineral Science course.\nThe laboratory environment is intentionally split into three parts:\nYou do not need to install the scientific Python environment on your own computer. The notebook work is carried out in a personal GitHub Codespace.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#laboratory-path",
+    "href": "index.html#laboratory-path",
+    "title": "Computational Mineralogy Laboratory",
+    "section": "Laboratory path",
+    "text": "Laboratory path\nThe practical work will progressively connect crystal structures, energetic models, physical properties and mineral thermodynamics:\n\ncrystal structures, CIF files and symmetry;\nfirst-principles energy and geometry optimization;\nenergy-volume data and equations of state;\nvibrations, phonons and thermodynamic properties.\n\nShort scientific questions are answered directly in the laboratory notebooks. The notebooks are part of your personal workspace and should be saved and synchronized regularly.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "labs/lab04-vibrations-thermodynamics.html",
+    "href": "labs/lab04-vibrations-thermodynamics.html",
+    "title": "Laboratory 4 — From vibrations to thermodynamics",
+    "section": "",
+    "text": "TO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 4 — From vibrations to thermodynamics"
+    ]
+  },
+  {
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#scientific-question",
+    "href": "labs/lab04-vibrations-thermodynamics.html#scientific-question",
+    "title": "Laboratory 4 — From vibrations to thermodynamics",
+    "section": "",
+    "text": "TO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 4 — From vibrations to thermodynamics"
+    ]
+  },
+  {
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#before-the-laboratory",
+    "href": "labs/lab04-vibrations-thermodynamics.html#before-the-laboratory",
+    "title": "Laboratory 4 — From vibrations to thermodynamics",
+    "section": "Before the laboratory",
+    "text": "Before the laboratory\nTO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 4 — From vibrations to thermodynamics"
+    ]
+  },
+  {
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#tasks",
+    "href": "labs/lab04-vibrations-thermodynamics.html#tasks",
+    "title": "Laboratory 4 — From vibrations to thermodynamics",
+    "section": "Tasks",
+    "text": "Tasks\nTO BE DEVELOPED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 4 — From vibrations to thermodynamics"
+    ]
+  },
+  {
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#questions",
+    "href": "labs/lab04-vibrations-thermodynamics.html#questions",
+    "title": "Laboratory 4 — From vibrations to thermodynamics",
+    "section": "Questions",
+    "text": "Questions\nQuestions are answered directly in your personal notebook.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 4 — From vibrations to thermodynamics"
+    ]
+  },
+  {
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#what-to-save",
+    "href": "labs/lab04-vibrations-thermodynamics.html#what-to-save",
+    "title": "Laboratory 4 — From vibrations to thermodynamics",
+    "section": "What to save",
+    "text": "What to save\nTO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 4 — From vibrations to thermodynamics"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html",
+    "href": "labs/lab03-equation-of-state.html",
+    "title": "Laboratory 3 — From equilibrium structure to an equation of state",
+    "section": "",
+    "text": "The structure used in an electronic-structure calculation usually comes from experiment. That is an excellent place to begin, but it is not automatically the equilibrium structure of the computational model.\nThis distinction is easy to overlook. A CIF describes a structure observed under particular experimental conditions. The static DFT calculation used in this laboratory describes a different idealized situation: the electronic ground-state energy of a periodic crystal within a chosen functional and basis set, without thermal expansion and without vibrational free-energy contributions.\nLaboratory 3 therefore begins by asking:\nOnce that minimum has been found, we deliberately move away from it and ask:\nThe answer leads directly to an equation of state and to one of the most important mechanical properties of a mineral: the bulk modulus.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From equilibrium structure to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html#why-optimize-an-experimental-structure",
+    "href": "labs/lab03-equation-of-state.html#why-optimize-an-experimental-structure",
+    "title": "Laboratory 3 — From equilibrium structure to an equation of state",
+    "section": "Why optimize an experimental structure?",
+    "text": "Why optimize an experimental structure?\nSuppose that an experimental CIF gives a cell parameter \\(a_\\mathrm{exp}\\) and a set of atomic coordinates. If we evaluate the DFT energy at that geometry, we obtain a perfectly valid energy for that particular configuration. But the geometry is not guaranteed to minimize the energy of our computational model.\nSeveral reasons contribute to this.\nFirst, an experimental lattice parameter is normally measured at a finite temperature, often close to ambient conditions. Thermal expansion is therefore already present in the observation. Our present calculation is a static electronic-structure calculation. It does not yet contain the vibrational free energy responsible for finite-temperature expansion, and it does not include zero-point vibrational effects unless they are added explicitly later.\nSecond, the chosen density functional and basis set define an approximate energy surface. Even at exactly \\(0\\) K and zero external pressure, their predicted equilibrium geometry need not coincide perfectly with experiment.\nThe purpose of geometry optimization is therefore not to “correct” the experiment. It is to find the structure that is internally consistent with the computational model we have chosen.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From equilibrium structure to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html#forces-stress-and-the-minimum-energy-structure",
+    "href": "labs/lab03-equation-of-state.html#forces-stress-and-the-minimum-energy-structure",
+    "title": "Laboratory 3 — From equilibrium structure to an equation of state",
+    "section": "Forces, stress and the minimum-energy structure",
+    "text": "Forces, stress and the minimum-energy structure\nFor a periodic crystal, geometry may involve both:\n\ninternal degrees of freedom, describing atomic positions within the cell;\ncell degrees of freedom, describing lattice parameters and cell shape.\n\nAt equilibrium, the gradient of the energy with respect to every allowed degree of freedom should vanish within the selected numerical tolerances.\nAtomic forces are related to derivatives of the energy with respect to atomic coordinates:\n\\[\n\\mathbf{F}_i =\n-\\frac{\\partial E}{\\partial \\mathbf{r}_i}.\n\\]\nThe stress tensor plays the corresponding role for deformation of the unit cell. If no external pressure or stress is applied, the equilibrium cell is the one for which the residual internal stress vanishes within the numerical accuracy of the calculation.\nThis distinction matters particularly for MgO.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From equilibrium structure to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html#why-mgo-is-an-unusually-clean-example",
+    "href": "labs/lab03-equation-of-state.html#why-mgo-is-an-unusually-clean-example",
+    "title": "Laboratory 3 — From equilibrium structure to an equation of state",
+    "section": "Why MgO is an unusually clean example",
+    "text": "Why MgO is an unusually clean example\nPericlase has the rocksalt structure, space group \\(Fm\\bar{3}m\\). Mg and O occupy special symmetry positions. Their fractional coordinates are fixed by the space-group symmetry.\nThis has an interesting consequence: the atomic forces may already vanish by symmetry even when the lattice parameter is not the equilibrium one.\nThe structure can therefore require a geometry optimization without any atomic coordinate moving at all. What changes is the unit cell, driven by its residual stress.\nThis is a useful reminder that\nzero atomic forces\ndoes not necessarily mean\nfully optimized periodic crystal.\nThe cell itself may still be away from equilibrium.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From equilibrium structure to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html#full-geometry-optimization-in-crystal",
+    "href": "labs/lab03-equation-of-state.html#full-geometry-optimization-in-crystal",
+    "title": "Laboratory 3 — From equilibrium structure to an equation of state",
+    "section": "Full geometry optimization in CRYSTAL",
+    "text": "Full geometry optimization in CRYSTAL\nCRYSTAL performs geometry optimization through the OPTGEOM block. In this laboratory we use:\nOPTGEOM\nFULLOPTG\n...\nEND\nFULLOPTG allows optimization of both the cell and the internal coordinates that are permitted by symmetry.\nThe optimization is stopped when numerical criteria on the gradient, displacement and energy change are satisfied.\nFor the course calculation we use:\nTOLDEG = 0.0004\nTOLDEX = 0.0001\nTOLDEE = 10^-8\nThe first two are criteria on the RMS gradient and RMS displacement, respectively; TOLDEE controls the energy difference between optimization steps.\nThese are numerical stopping conditions. They do not define the physical model and they do not make the DFT approximation itself more accurate.\nThe CRYSTAL23 manual documents FULLOPTG, CVOLOPT, TOLDEG, TOLDEX and TOLDEE in the OPTGEOM input block:\nhttps://www.crystal.unito.it/documentation.html",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From equilibrium structure to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html#which-cell-is-crystal-printing",
+    "href": "labs/lab03-equation-of-state.html#which-cell-is-crystal-printing",
+    "title": "Laboratory 3 — From equilibrium structure to an equation of state",
+    "section": "Which cell is CRYSTAL printing?",
+    "text": "Which cell is CRYSTAL printing?\nMgO provides another useful crystallographic trap.\nThe familiar crystallographic description is a conventional cubic face-centred cell with one cubic lattice parameter \\(a\\).\nA primitive cell of the same FCC lattice can instead be described by three equal vectors separated by \\(60^\\circ\\). Its numerical cell parameters therefore look very different even though it represents exactly the same infinite crystal.\nCRYSTAL may print different cell representations in different parts of an output. When a cell no longer “looks cubic”, do not immediately conclude that the cubic symmetry has been lost. First identify whether you are looking at a primitive or crystallographic representation.\nThat distinction will return when Quantas normalizes energy–volume data.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From equilibrium structure to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html#from-one-equilibrium-point-to-a-compression-curve",
+    "href": "labs/lab03-equation-of-state.html#from-one-equilibrium-point-to-a-compression-curve",
+    "title": "Laboratory 3 — From equilibrium structure to an equation of state",
+    "section": "From one equilibrium point to a compression curve",
+    "text": "From one equilibrium point to a compression curve\nOnce the static equilibrium geometry is known, we can investigate how the crystal responds to changes in volume.\nExperimentally, high-pressure mineral physics often approaches this problem using X-ray diffraction in a diamond-anvil cell. Pressure is applied to the sample and the evolution of its lattice parameters and volume is measured.\nA static electronic-structure calculation can approach the same constitutive behaviour from a complementary direction. Instead of physically applying a pressure, we calculate a set of structures at selected volumes and evaluate their energies.\nThis produces an energy–volume path:\n\\[\nE(V).\n\\]\nThe pressure associated with that path is obtained from the derivative\n\\[\nP(V) =\n-\\frac{dE}{dV}.\n\\]\nEquivalently,\n\\[\nE(V)-E(V_\\mathrm{ref})\n=\n-\\int_{V_\\mathrm{ref}}^{V} P(V')\\,dV'.\n\\]\nThis is why an energy–volume calculation contains the information needed to reconstruct a static pressure–volume relation.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From equilibrium structure to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html#what-is-an-equation-of-state",
+    "href": "labs/lab03-equation-of-state.html#what-is-an-equation-of-state",
+    "title": "Laboratory 3 — From equilibrium structure to an equation of state",
+    "section": "What is an equation of state?",
+    "text": "What is an equation of state?\nIn thermodynamics, an equation of state is a mathematical relation between state variables. For a solid under compression we are especially interested in the relation between pressure and volume.\nIn the present static calculation, the EOS is parameterized by fitting the computed \\(E(V)\\) data. The fit provides a smooth representation of the energy surface and therefore, through \\(P=-dE/dV\\), a smooth pressure–volume relation.\nWe will use a third-order Birch–Murnaghan equation of state (BM3).\nThe purpose here is not to derive the finite-strain formalism. The important point is what the fitted parameters mean:\n\n\\(E_0\\): minimum static energy;\n\\(V_0\\): equilibrium volume;\n\\(K_0\\): bulk modulus at equilibrium;\n\\(K'_0\\): first pressure derivative of the bulk modulus.\n\nThe fitted \\(V_0\\) should be close to the volume obtained from the direct geometry optimization. If it is not, that discrepancy is something to investigate.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From equilibrium structure to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html#bulk-modulus-how-difficult-is-the-crystal-to-compress",
+    "href": "labs/lab03-equation-of-state.html#bulk-modulus-how-difficult-is-the-crystal-to-compress",
+    "title": "Laboratory 3 — From equilibrium structure to an equation of state",
+    "section": "Bulk modulus: how difficult is the crystal to compress?",
+    "text": "Bulk modulus: how difficult is the crystal to compress?\nThe isothermal bulk modulus is defined as\n\\[\nK =\n-V\\left(\\frac{\\partial P}{\\partial V}\\right)_T.\n\\]\nAt the equilibrium volume,\n\\[\nK_0 =\n-V_0\n\\left(\\frac{\\partial P}{\\partial V}\\right)_{V_0}.\n\\]\nA large bulk modulus means that a large pressure change is required to produce a given fractional change in volume: the material is relatively incompressible. A smaller bulk modulus corresponds to a more compressible material.\nIn the present calculation \\(K_0\\) is a static bulk modulus derived from the DFT energy surface. Temperature-dependent experimental values need not be identical.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From equilibrium structure to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html#why-constant-volume-optimization",
+    "href": "labs/lab03-equation-of-state.html#why-constant-volume-optimization",
+    "title": "Laboratory 3 — From equilibrium structure to an equation of state",
+    "section": "Why constant-volume optimization?",
+    "text": "Why constant-volume optimization?\nTo construct an EOS we need the minimum energy at each selected volume.\nIf we simply changed the volume and then performed another completely free FULLOPTG calculation, every point would attempt to return to the same equilibrium volume. We would destroy the independent variable of the experiment.\nCRYSTAL therefore provides:\nCVOLOPT\nfor full geometry optimization at constant volume.\nThe logic is:\nchoose V\n   ↓\nkeep V fixed\n   ↓\nrelax all structural degrees of freedom\nthat remain allowed\n   ↓\nobtain the minimum E compatible with V\nFor a lower-symmetry mineral this may involve genuine changes in cell shape and internal coordinates.\nFor cubic MgO the situation is particularly simple. At fixed volume the cubic symmetry fixes the cell shape, and the Mg and O coordinates are fixed by their special positions. Almost no structural freedom remains. A constant-volume optimization may therefore converge essentially immediately.\nThat apparently trivial result is itself instructive:\n\nsymmetry determines which structural degrees of freedom exist.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From equilibrium structure to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html#choosing-the-volume-series",
+    "href": "labs/lab03-equation-of-state.html#choosing-the-volume-series",
+    "title": "Laboratory 3 — From equilibrium structure to an equation of state",
+    "section": "Choosing the volume series",
+    "text": "Choosing the volume series\nThe reference volume is the volume of the optimized static structure, \\(V_0\\).\nWe use the factors\n\\[\n\\frac{V}{V_0}\n=\n0.91,\\;\n0.94,\\;\n0.97,\\;\n1.00,\\;\n1.03,\\;\n1.06,\\;\n1.09.\n\\]\nFor a cubic crystal,\n\\[\nV=a^3.\n\\]\nTherefore the lattice parameter cannot be scaled by the same numerical factor as the volume. For a target volume factor \\(f\\),\n\\[\na(f)=a_0 f^{1/3}.\n\\]\nThis cube-root relation matters. Setting \\(a=0.91a_0\\) would not give \\(V=0.91V_0\\); it would give\n\\[\nV=(0.91)^3V_0 \\approx 0.754V_0,\n\\]\nwhich is a much stronger compression.\nThe notebook calculates the correct target lattice parameters for you.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From equilibrium structure to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html#the-role-of-quantas",
+    "href": "labs/lab03-equation-of-state.html#the-role-of-quantas",
+    "title": "Laboratory 3 — From equilibrium structure to an equation of state",
+    "section": "The role of Quantas",
+    "text": "The role of Quantas\nThe EOS analysis is performed with Quantas 2.0.\nQuantas can read a list of CRYSTAL outputs, normalize their structural and energetic information consistently, generate an energy–volume dataset and fit an integrated EOS. For this laboratory we ask it to express the results in the conventional crystallographic cell, which makes the fitted cubic lattice parameter directly comparable with the MgO cell used in the course.\nThe Quantas energy–volume workflow reconstructs pressure from the fitted energy relation using\n\\[\nP(V)=-\\frac{dE}{dV}.\n\\]\nThe current MgO energy–volume tutorial in the Quantas documentation uses the same type of seven-point CRYSTAL dataset and a BM3 fit:\nhttps://quantas.readthedocs.io/en/2.0.0-beta/tutorials/eos_ev.html\nThe software performs the repetitive numerical work. Your task is to decide whether the data and fitted parameters make physical sense.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From equilibrium structure to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html#the-complete-workflow",
+    "href": "labs/lab03-equation-of-state.html#the-complete-workflow",
+    "title": "Laboratory 3 — From equilibrium structure to an equation of state",
+    "section": "The complete workflow",
+    "text": "The complete workflow\nThe activity follows one continuous chain:\nexperimental MgO structure\n        ↓\nfull static geometry optimization\n        ↓\nDFT equilibrium structure\n        ↓\nchoose V/V0 values\n        ↓\nconstant-volume calculations\n        ↓\nE(V) dataset\n        ↓\nBM3 fit\n        ↓\nV0, K0, K'0\n        ↓\nP(V) and interpretation\nThis is the first laboratory in which a sequence of electronic-structure calculations becomes a macroscopic mineral property.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From equilibrium structure to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html",
+    "href": "labs/lab01-crystal-structure.html",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "",
+    "text": "A crystal structure is often first encountered as a picture: coloured spheres, polyhedra, chains, layers or frameworks. The picture is useful, but it is not the structure itself. A crystallographic model is a compact mathematical description of a periodic arrangement. In this laboratory we will start from that description and reconstruct the structure step by step.\nThe practical question is simple:\nThis is the first computational activity because it establishes a workflow that will return throughout the course: a structural model is read from data, analysed, visualized, checked against symmetry, and eventually used as the starting point for calculations of energy and physical properties.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#the-cif-as-a-crystallographic-description",
+    "href": "labs/lab01-crystal-structure.html#the-cif-as-a-crystallographic-description",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "The CIF as a crystallographic description",
+    "text": "The CIF as a crystallographic description\nThe Crystallographic Information File (CIF) is a structured text format. For the present exercise, the most important information is the unit cell, the space group, the atomic sites, their fractional coordinates and their occupancies.\nThe fractional coordinate \\((x,y,z)\\) does not give a distance in ångström. Instead, it gives a position relative to the three direct-lattice vectors \\(\\mathbf{a}\\), \\(\\mathbf{b}\\), and \\(\\mathbf{c}\\):\n\\[\n\\mathbf{r} = x\\mathbf{a} + y\\mathbf{b} + z\\mathbf{c}.\n\\]\nThis is why the same fractional coordinates can describe geometrically different Cartesian positions when the cell parameters change.\nA CIF normally does not need to list every atom that appears in a conventional unit cell. It can store only the crystallographically independent sites. The remaining sites follow from the symmetry of the space group.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#asymmetric-unit-and-unit-cell",
+    "href": "labs/lab01-crystal-structure.html#asymmetric-unit-and-unit-cell",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Asymmetric unit and unit cell",
+    "text": "Asymmetric unit and unit cell\nThe asymmetric unit is the smallest part of the structure from which the contents of the unit cell can be generated by applying the appropriate space-group operations. The unit cell, in turn, generates the infinite periodic crystal by translation.\nThis distinction is easy to lose when looking only at a structure drawing. MgO provides a particularly clean example. Only one Mg site and one O site are needed in its crystallographic description, but applying the symmetry and centring operations generates the complete contents of the conventional cubic cell.\nIn the notebook we therefore inspect the structure twice: first as the list of sites written in the CIF, and then as the symmetry-expanded unit cell. The difference between these lists is itself part of the crystallographic information.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#two-complementary-symmetry-tools",
+    "href": "labs/lab01-crystal-structure.html#two-complementary-symmetry-tools",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Two complementary symmetry tools",
+    "text": "Two complementary symmetry tools\nWe use Gemmi and spglib for different reasons.\nGemmi is used to read the CIF as a crystallographic document. It understands the unit cell, space-group symbols, symmetry operations and atomic sites. In other words, it can tell us what crystallographic information the file claims to contain.\nspglib approaches the problem from another direction. We give it lattice vectors, atomic coordinates and atomic species. It then searches numerically for operations that map the structure onto itself. This requires a tolerance, because coordinates in real structure files are finite-precision numbers and experimental structures are never mathematical abstractions with infinitely exact coordinates.\nThe comparison is useful:\n\\[\n\\text{symmetry stated in the CIF}\n\\quad\\longleftrightarrow\\quad\n\\text{symmetry implied by the numerical structure}.\n\\]\nAgreement is a consistency check. Disagreement is not something to hide by changing parameters until the desired answer appears. It is a result that must be understood: the structure may be distorted, the tolerance may be inappropriate, the CIF may use a non-standard setting, or the structural model may contain disorder or partial occupancies.\nFor this first exercise we use ordered structures with full occupancies so that the symmetry analysis remains unambiguous.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#symmetry-operations-in-coordinate-form",
+    "href": "labs/lab01-crystal-structure.html#symmetry-operations-in-coordinate-form",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Symmetry operations in coordinate form",
+    "text": "Symmetry operations in coordinate form\nA space-group operation can be written as a transformation of fractional coordinates. The identity is\n\\[\n(x,y,z)\\rightarrow(x,y,z),\n\\]\nwhereas an operation written, for example, as\n-y,x,z\nmaps\n\\[\n(x,y,z)\\rightarrow(-y,x,z).\n\\]\nTranslations may appear as fractional additions such as \\(1/2\\). Rather than printing every operation of a high-symmetry space group without context, the notebook first shows a compact set of Hall-derived operations and the lattice centring translations, and then lets you inspect part of the full operation list.\nThe software can describe the matrix and translational parts of an operation, but interpreting an operation geometrically remains a crystallographic task. In particular, the presence of a translational component is what distinguishes operations such as screw axes and glide planes from their purely point-symmetry counterparts.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#wyckoff-positions",
+    "href": "labs/lab01-crystal-structure.html#wyckoff-positions",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Wyckoff positions",
+    "text": "Wyckoff positions\nThe atoms of a crystal can also be organized into Wyckoff positions. A Wyckoff position identifies an orbit of symmetrically equivalent points in a given space group.\nThree pieces of information are especially useful:\n\nthe multiplicity, which gives the number of equivalent sites in the conventional unit cell;\nthe Wyckoff letter, which distinguishes inequivalent orbits;\nthe site symmetry, which describes the subgroup of operations that leaves a particular site invariant.\n\nA multiplicity is therefore not the number of independent atoms that had to be entered in the CIF. Quite the opposite: several atoms in the conventional cell may all be generated from one crystallographically independent site.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#visualization-is-inspection-not-proof",
+    "href": "labs/lab01-crystal-structure.html#visualization-is-inspection-not-proof",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Visualization is inspection, not proof",
+    "text": "Visualization is inspection, not proof\nThe notebooks use py3Dmol to display the CIF interactively. You can rotate the structure, zoom, draw the unit-cell box and replicate the cell to make periodicity easier to see.\nThe default representation uses spheres without automatically inferred bonds. This choice is deliberate. A line drawn between two atoms by a visualization program is based on a graphical or distance criterion; it is not itself a crystallographic observable and should not silently determine how we interpret bonding in a mineral.\nThe viewer is therefore an aid to scientific inspection. The quantitative description still comes from the crystallographic data and symmetry analysis.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#laboratory-workflow",
+    "href": "labs/lab01-crystal-structure.html#laboratory-workflow",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Laboratory workflow",
+    "text": "Laboratory workflow\nThe activity has two parts.\nFirst, we work together on MgO (periclase):\n01-guided-mgo.ipynb\nMgO is useful because the rocksalt structure is simple enough that the relationship between asymmetric unit, face-centred cell, symmetry and Wyckoff multiplicity remains visible.\nYou will then receive a second CIF and repeat the same reasoning independently in:\n02-assigned-structure.ipynb\nPlace the assigned CIF directly inside:\nwork/lab01/\nand change only the filename requested in the notebook.\nThe questions are intentionally short. They ask you to interpret the structure, not to reproduce Python code.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#what-to-save",
+    "href": "labs/lab01-crystal-structure.html#what-to-save",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "What to save",
+    "text": "What to save\nAt the end of the laboratory your private repository should contain:\n\nthe completed guided MgO notebook;\nthe completed assigned-structure notebook;\nthe CIF supplied for your individual activity.\n\nUse the usual end-of-session sequence:\nsave → commit → Sync Changes → verify on GitHub → stop Codespace",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html",
+    "href": "labs/lab02-energy-geometry.html",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "",
+    "text": "In the first laboratory a CIF was enough to describe where the atoms are and how symmetry generates a periodic crystal. We now ask a different question:\nThis sounds like a request for a single number. It is not. A first-principles calculation contains both a physical model and a set of numerical approximations. Understanding the difference between them is one of the most important habits in computational mineralogy.\nWe will again use MgO. This is deliberate. Periclase is structurally simple, small enough that calculations are fast, and still a genuine periodic ionic solid. We can therefore concentrate on the logic of the calculation rather than on the complexity of the mineral.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#a-map-of-the-calculation",
+    "href": "labs/lab02-energy-geometry.html#a-map-of-the-calculation",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "A map of the calculation",
+    "text": "A map of the calculation\nThe calculation can be viewed as a sequence:\ncrystal structure\n      ↓\nelectronic-structure model\n      ├── basis set\n      └── exchange-correlation functional\n      ↓\nnumerical choices\n      ├── reciprocal-space sampling\n      ├── integral thresholds\n      └── SCF convergence threshold\n      ↓\nself-consistent solution\n      ↓\ntotal energy\n      ↓\nnumerical convergence test\nThe distinction between the two middle levels is essential.\nModel accuracy asks whether the chosen physical approximation is suitable for the scientific problem. A different exchange-correlation functional, for example, defines a different approximation to the electronic problem.\nNumerical convergence asks whether the chosen model has been solved accurately enough. Increasing the number of k-points does not change PBE into a better density functional; it reduces one numerical error within a PBE calculation.\nA calculation can therefore be tightly converged and still disagree with experiment because the physical model is incomplete. Conversely, a sophisticated physical model can give poor results if its numerical parameters are not converged.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#density-functional-theory-without-the-machinery",
+    "href": "labs/lab02-energy-geometry.html#density-functional-theory-without-the-machinery",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Density functional theory, without the machinery",
+    "text": "Density functional theory, without the machinery\nThe electrons in a mineral require a quantum-mechanical description. Solving the full interacting many-electron problem directly is impractical for the systems of interest here. Density functional theory (DFT) reformulates the problem around the electron density and leads to a practical set of Kohn–Sham equations that are solved iteratively.\nThe part of the energy associated with exchange and correlation is not known exactly for general systems and must be approximated by an exchange-correlation functional.\nA useful qualitative organization is often called Jacob’s ladder:\n\n\n\nLevel\nTypical family\nGeneral idea\n\n\n\n\n1\nLDA\ndepends on the local density\n\n\n2\nGGA\nadds information on density gradients\n\n\n3\nmeta-GGA\nincludes additional semilocal information\n\n\n4\nhybrid\nmixes part of exact Hartree–Fock exchange\n\n\n\nGoing upward generally changes both the mathematical model and the computational cost. It does not mean that a higher rung is automatically better for every material and every property.\nIn this laboratory the functional is PBE, a GGA functional. The functional is fixed: it is not part of today’s convergence experiment.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#the-basis-set-the-language-used-for-the-orbitals",
+    "href": "labs/lab02-energy-geometry.html#the-basis-set-the-language-used-for-the-orbitals",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "The basis set: the language used for the orbitals",
+    "text": "The basis set: the language used for the orbitals\nCRYSTAL represents crystalline orbitals using localized Gaussian basis functions centred on atoms. A basis set is therefore the numerical language used to represent the electronic wavefunctions.\nA larger and more flexible basis can represent the electronic structure more accurately, but generally increases computational cost and may introduce its own numerical difficulties.\nFor this laboratory we use the internally available POB-TZVP-REV2 basis set. It is already selected for you. You should be able to recognize the basis-set section of the input, but you are not being asked to optimize the basis set.\n\n\n\n\n\n\nNoteFixed does not mean universally optimal\n\n\n\nPBE and POB-TZVP-REV2 are kept fixed so that we can isolate one numerical question. Their use here does not establish that this combination is the best possible model for every MgO property.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#the-self-consistent-field-cycle",
+    "href": "labs/lab02-energy-geometry.html#the-self-consistent-field-cycle",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "The self-consistent field cycle",
+    "text": "The self-consistent field cycle\nThe Kohn–Sham equations depend on the electron density, but the density is also obtained from their solution. CRYSTAL therefore solves the problem self-consistently:\n\nstart from an initial electron density;\nconstruct the Kohn–Sham matrix;\nsolve for the electronic states;\nbuild a new density;\ncompare the new solution with the previous one;\nrepeat until the chosen convergence criterion is satisfied.\n\nThis is the SCF cycle.\nCRYSTAL prints the total energy during the iterations. A successful calculation eventually contains a line of the form:\nSCF ENDED - CONVERGENCE ON ENERGY\nThe analysis tools used in this laboratory deliberately require this convergence marker. The last printed energy of an interrupted or unconverged calculation is not accepted as a valid result.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#why-a-periodic-solid-needs-k-points",
+    "href": "labs/lab02-energy-geometry.html#why-a-periodic-solid-needs-k-points",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Why a periodic solid needs k-points",
+    "text": "Why a periodic solid needs k-points\nThe electronic states of a periodic crystal are described in reciprocal space. In principle, quantities involving the electronic structure require integration over the Brillouin zone. Numerically, this integral is replaced by a finite set of k-points.\nCRYSTAL uses the SHRINK keyword to construct a commensurate Monkhorst–Pack-type grid. For the cubic MgO calculation used here, a value \\(IS\\) corresponds to a nominal sampling based on reciprocal-lattice increments\n\\[\n\\frac{\\mathbf{b}_1}{IS},\\qquad\n\\frac{\\mathbf{b}_2}{IS},\\qquad\n\\frac{\\mathbf{b}_3}{IS}.\n\\]\nIt is therefore convenient to think of the sequence as increasingly dense nominal \\(IS\\times IS\\times IS\\) grids.\nThis does not mean that CRYSTAL diagonalizes the Kohn–Sham matrix at \\(IS^3\\) independent points. Crystal symmetry reduces the sampling to the irreducible Brillouin zone (IBZ), and the output reports the actual number of irreducible k-points used.\nIncreasing SHRINK therefore changes two things that we can observe directly:\n\nthe numerical approximation to Brillouin-zone integration;\nthe computational work required by the calculation.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#our-computational-experiment",
+    "href": "labs/lab02-energy-geometry.html#our-computational-experiment",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Our computational experiment",
+    "text": "Our computational experiment\nA good convergence test behaves like a controlled experiment. We keep everything fixed except the parameter being investigated.\nFor this laboratory:\n\n\n\nQuantity\nChoice\n\n\n\n\nCrystal\nMgO, fixed geometry\n\n\nSpace group\n\\(Fm\\bar{3}m\\)\n\n\nDFT functional\nPBE\n\n\nBasis set\nPOB-TZVP-REV2\n\n\nIntegral thresholds\nfixed\n\n\nSCF energy threshold\nfixed\n\n\nHardware request\n2 physical cores\n\n\nMPI/OpenMP layout\n1 MPI rank × 2 threads\n\n\nVariable\nSHRINK = 2,3,\\ldots,9\n\n\n\nThe first calculation, SHRINK = 2, is performed together. You then copy the input, change only the shrinking factor and submit the remaining calculations.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#from-an-input-file-to-a-calculation",
+    "href": "labs/lab02-energy-geometry.html#from-an-input-file-to-a-calculation",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "From an input file to a calculation",
+    "text": "From an input file to a calculation\nA simplified CRYSTAL input can be mentally divided into four parts:\nSTRUCTURE\n    lattice / space group / atomic positions\n\nBASIS SET\n    numerical representation of atomic orbitals\n\nHAMILTONIAN\n    DFT and exchange-correlation functional\n\nNUMERICAL CONTROL\n    integral thresholds\n    SCF threshold\n    SHRINK\nYou do not need to memorize CRYSTAL keywords. The important skill is to recognize which scientific or numerical choice each block controls.\nThe official CRYSTAL documentation is available at:\nhttps://www.crystal.unito.it/documentation.html\nThe manual is the authoritative reference when you later need a keyword that is not explained in this course.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#running-the-calculation-on-cluminer",
+    "href": "labs/lab02-energy-geometry.html#running-the-calculation-on-cluminer",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Running the calculation on CluMiner",
+    "text": "Running the calculation on CluMiner\nCRYSTAL is licensed software and is run on the university cluster, not inside Codespaces.\nFor this laboratory the standard submission command is:\ncluminer-crystal mgo_shrink2.d12 --cores-per-node 2 --threads 2\nThe same resource request must be used for every calculation in the convergence series. With these settings the launcher uses one MPI rank with two OpenMP threads.\nKeeping the hardware request fixed is important: if the computational resources changed from one calculation to another, timing comparisons would be much less informative.\nThe scientific output is returned with the input basename, for example:\nmgo_shrink2.d12  →  mgo_shrink2.out\nCopy the resulting .out files back into:\nwork/lab02/outputs/",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#reading-the-result",
+    "href": "labs/lab02-energy-geometry.html#reading-the-result",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Reading the result",
+    "text": "Reading the result\nWe will inspect one output manually before using the parser.\nThe output reports:\n\nthe Monkhorst shrinking factors;\nthe number of k-points in the irreducible Brillouin zone;\nthe sequence of SCF cycles;\nthe final converged total energy;\nelapsed and CPU time;\nthe normal termination of the calculation.\n\nThis manual inspection matters. Automated parsing should save us from repetitive transcription, not hide the origin of the data.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#energy-convergence",
+    "href": "labs/lab02-energy-geometry.html#energy-convergence",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Energy convergence",
+    "text": "Energy convergence\nFor a sequence ordered by increasing SHRINK, the notebook calculates the change relative to the preceding sampling:\n\\[\n\\Delta E_i = E_i-E_{i-1}.\n\\]\nBecause the sign is not important for the convergence criterion, we will normally inspect\n\\[\n|\\Delta E_i|.\n\\]\nThe same value is expressed in hartree and in kJ mol\\(^{-1}\\) of MgO.\nFor this CRYSTAL model the primitive computational cell contains one MgO formula unit, so the conversion can be interpreted directly per mole of MgO:\n\\[\n1\\ E_\\mathrm{h} \\approx 2625.5\\ \\mathrm{kJ\\,mol^{-1}}.\n\\]\nThe notebook calculates the conversion from physical constants rather than asking you to perform it manually.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#convergence-is-a-decision-not-a-magic-number",
+    "href": "labs/lab02-energy-geometry.html#convergence-is-a-decision-not-a-magic-number",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Convergence is a decision, not a magic number",
+    "text": "Convergence is a decision, not a magic number\nThe densest calculation is not automatically the best practical choice.\nAs SHRINK increases, the energy should become progressively less sensitive to further refinement, while computational cost generally increases. Your task is to choose a sampling that is sufficiently converged for the purpose of the subsequent calculations without paying for unnecessary numerical precision.\nValues such as \\(0.1\\) or \\(0.01\\) kJ mol\\(^{-1}\\) can be useful scales when looking at the table, but they are not universal laws. The necessary precision depends on the scientific question. Resolving a very small phase-energy difference may require a tighter criterion than obtaining a preliminary equilibrium structure.\nThe final question of the laboratory is therefore not:\n\nWhat is the largest SHRINK value?\n\nbut:\n\nWhich SHRINK value would you carry forward, and why is its balance between numerical stability and computational cost adequate?\n\nThat decision will matter in the next activity, when the geometry of MgO is allowed to change.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
     "objectID": "reference/github-codespaces.html",
     "href": "reference/github-codespaces.html",
     "title": "GitHub Codespaces — Quick reference",
@@ -525,389 +1042,6 @@
     "crumbs": [
       "Reference",
       "GitHub Codespaces — Quick reference"
-    ]
-  },
-  {
-    "objectID": "labs/lab02-energy-geometry.html",
-    "href": "labs/lab02-energy-geometry.html",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "",
-    "text": "In the first laboratory a CIF was enough to describe where the atoms are and how symmetry generates a periodic crystal. We now ask a different question:\nThis sounds like a request for a single number. It is not. A first-principles calculation contains both a physical model and a set of numerical approximations. Understanding the difference between them is one of the most important habits in computational mineralogy.\nWe will again use MgO. This is deliberate. Periclase is structurally simple, small enough that calculations are fast, and still a genuine periodic ionic solid. We can therefore concentrate on the logic of the calculation rather than on the complexity of the mineral.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 2 — From structure to energy"
-    ]
-  },
-  {
-    "objectID": "labs/lab02-energy-geometry.html#a-map-of-the-calculation",
-    "href": "labs/lab02-energy-geometry.html#a-map-of-the-calculation",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "A map of the calculation",
-    "text": "A map of the calculation\nThe calculation can be viewed as a sequence:\ncrystal structure\n      ↓\nelectronic-structure model\n      ├── basis set\n      └── exchange-correlation functional\n      ↓\nnumerical choices\n      ├── reciprocal-space sampling\n      ├── integral thresholds\n      └── SCF convergence threshold\n      ↓\nself-consistent solution\n      ↓\ntotal energy\n      ↓\nnumerical convergence test\nThe distinction between the two middle levels is essential.\nModel accuracy asks whether the chosen physical approximation is suitable for the scientific problem. A different exchange-correlation functional, for example, defines a different approximation to the electronic problem.\nNumerical convergence asks whether the chosen model has been solved accurately enough. Increasing the number of k-points does not change PBE into a better density functional; it reduces one numerical error within a PBE calculation.\nA calculation can therefore be tightly converged and still disagree with experiment because the physical model is incomplete. Conversely, a sophisticated physical model can give poor results if its numerical parameters are not converged.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 2 — From structure to energy"
-    ]
-  },
-  {
-    "objectID": "labs/lab02-energy-geometry.html#density-functional-theory-without-the-machinery",
-    "href": "labs/lab02-energy-geometry.html#density-functional-theory-without-the-machinery",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "Density functional theory, without the machinery",
-    "text": "Density functional theory, without the machinery\nThe electrons in a mineral require a quantum-mechanical description. Solving the full interacting many-electron problem directly is impractical for the systems of interest here. Density functional theory (DFT) reformulates the problem around the electron density and leads to a practical set of Kohn–Sham equations that are solved iteratively.\nThe part of the energy associated with exchange and correlation is not known exactly for general systems and must be approximated by an exchange-correlation functional.\nA useful qualitative organization is often called Jacob’s ladder:\n\n\n\nLevel\nTypical family\nGeneral idea\n\n\n\n\n1\nLDA\ndepends on the local density\n\n\n2\nGGA\nadds information on density gradients\n\n\n3\nmeta-GGA\nincludes additional semilocal information\n\n\n4\nhybrid\nmixes part of exact Hartree–Fock exchange\n\n\n\nGoing upward generally changes both the mathematical model and the computational cost. It does not mean that a higher rung is automatically better for every material and every property.\nIn this laboratory the functional is PBE, a GGA functional. The functional is fixed: it is not part of today’s convergence experiment.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 2 — From structure to energy"
-    ]
-  },
-  {
-    "objectID": "labs/lab02-energy-geometry.html#the-basis-set-the-language-used-for-the-orbitals",
-    "href": "labs/lab02-energy-geometry.html#the-basis-set-the-language-used-for-the-orbitals",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "The basis set: the language used for the orbitals",
-    "text": "The basis set: the language used for the orbitals\nCRYSTAL represents crystalline orbitals using localized Gaussian basis functions centred on atoms. A basis set is therefore the numerical language used to represent the electronic wavefunctions.\nA larger and more flexible basis can represent the electronic structure more accurately, but generally increases computational cost and may introduce its own numerical difficulties.\nFor this laboratory we use the internally available POB-TZVP-REV2 basis set. It is already selected for you. You should be able to recognize the basis-set section of the input, but you are not being asked to optimize the basis set.\n\n\n\n\n\n\nNoteFixed does not mean universally optimal\n\n\n\nPBE and POB-TZVP-REV2 are kept fixed so that we can isolate one numerical question. Their use here does not establish that this combination is the best possible model for every MgO property.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 2 — From structure to energy"
-    ]
-  },
-  {
-    "objectID": "labs/lab02-energy-geometry.html#the-self-consistent-field-cycle",
-    "href": "labs/lab02-energy-geometry.html#the-self-consistent-field-cycle",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "The self-consistent field cycle",
-    "text": "The self-consistent field cycle\nThe Kohn–Sham equations depend on the electron density, but the density is also obtained from their solution. CRYSTAL therefore solves the problem self-consistently:\n\nstart from an initial electron density;\nconstruct the Kohn–Sham matrix;\nsolve for the electronic states;\nbuild a new density;\ncompare the new solution with the previous one;\nrepeat until the chosen convergence criterion is satisfied.\n\nThis is the SCF cycle.\nCRYSTAL prints the total energy during the iterations. A successful calculation eventually contains a line of the form:\nSCF ENDED - CONVERGENCE ON ENERGY\nThe analysis tools used in this laboratory deliberately require this convergence marker. The last printed energy of an interrupted or unconverged calculation is not accepted as a valid result.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 2 — From structure to energy"
-    ]
-  },
-  {
-    "objectID": "labs/lab02-energy-geometry.html#why-a-periodic-solid-needs-k-points",
-    "href": "labs/lab02-energy-geometry.html#why-a-periodic-solid-needs-k-points",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "Why a periodic solid needs k-points",
-    "text": "Why a periodic solid needs k-points\nThe electronic states of a periodic crystal are described in reciprocal space. In principle, quantities involving the electronic structure require integration over the Brillouin zone. Numerically, this integral is replaced by a finite set of k-points.\nCRYSTAL uses the SHRINK keyword to construct a commensurate Monkhorst–Pack-type grid. For the cubic MgO calculation used here, a value \\(IS\\) corresponds to a nominal sampling based on reciprocal-lattice increments\n\\[\n\\frac{\\mathbf{b}_1}{IS},\\qquad\n\\frac{\\mathbf{b}_2}{IS},\\qquad\n\\frac{\\mathbf{b}_3}{IS}.\n\\]\nIt is therefore convenient to think of the sequence as increasingly dense nominal \\(IS\\times IS\\times IS\\) grids.\nThis does not mean that CRYSTAL diagonalizes the Kohn–Sham matrix at \\(IS^3\\) independent points. Crystal symmetry reduces the sampling to the irreducible Brillouin zone (IBZ), and the output reports the actual number of irreducible k-points used.\nIncreasing SHRINK therefore changes two things that we can observe directly:\n\nthe numerical approximation to Brillouin-zone integration;\nthe computational work required by the calculation.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 2 — From structure to energy"
-    ]
-  },
-  {
-    "objectID": "labs/lab02-energy-geometry.html#our-computational-experiment",
-    "href": "labs/lab02-energy-geometry.html#our-computational-experiment",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "Our computational experiment",
-    "text": "Our computational experiment\nA good convergence test behaves like a controlled experiment. We keep everything fixed except the parameter being investigated.\nFor this laboratory:\n\n\n\nQuantity\nChoice\n\n\n\n\nCrystal\nMgO, fixed geometry\n\n\nSpace group\n\\(Fm\\bar{3}m\\)\n\n\nDFT functional\nPBE\n\n\nBasis set\nPOB-TZVP-REV2\n\n\nIntegral thresholds\nfixed\n\n\nSCF energy threshold\nfixed\n\n\nHardware request\n2 physical cores\n\n\nMPI/OpenMP layout\n1 MPI rank × 2 threads\n\n\nVariable\nSHRINK = 2,3,\\ldots,9\n\n\n\nThe first calculation, SHRINK = 2, is performed together. You then copy the input, change only the shrinking factor and submit the remaining calculations.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 2 — From structure to energy"
-    ]
-  },
-  {
-    "objectID": "labs/lab02-energy-geometry.html#from-an-input-file-to-a-calculation",
-    "href": "labs/lab02-energy-geometry.html#from-an-input-file-to-a-calculation",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "From an input file to a calculation",
-    "text": "From an input file to a calculation\nA simplified CRYSTAL input can be mentally divided into four parts:\nSTRUCTURE\n    lattice / space group / atomic positions\n\nBASIS SET\n    numerical representation of atomic orbitals\n\nHAMILTONIAN\n    DFT and exchange-correlation functional\n\nNUMERICAL CONTROL\n    integral thresholds\n    SCF threshold\n    SHRINK\nYou do not need to memorize CRYSTAL keywords. The important skill is to recognize which scientific or numerical choice each block controls.\nThe official CRYSTAL documentation is available at:\nhttps://www.crystal.unito.it/documentation.html\nThe manual is the authoritative reference when you later need a keyword that is not explained in this course.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 2 — From structure to energy"
-    ]
-  },
-  {
-    "objectID": "labs/lab02-energy-geometry.html#running-the-calculation-on-cluminer",
-    "href": "labs/lab02-energy-geometry.html#running-the-calculation-on-cluminer",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "Running the calculation on CluMiner",
-    "text": "Running the calculation on CluMiner\nCRYSTAL is licensed software and is run on the university cluster, not inside Codespaces.\nFor this laboratory the standard submission command is:\ncluminer-crystal mgo_shrink2.d12 --cores-per-node 2 --threads 2\nThe same resource request must be used for every calculation in the convergence series. With these settings the launcher uses one MPI rank with two OpenMP threads.\nKeeping the hardware request fixed is important: if the computational resources changed from one calculation to another, timing comparisons would be much less informative.\nThe scientific output is returned with the input basename, for example:\nmgo_shrink2.d12  →  mgo_shrink2.out\nCopy the resulting .out files back into:\nwork/lab02/outputs/",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 2 — From structure to energy"
-    ]
-  },
-  {
-    "objectID": "labs/lab02-energy-geometry.html#reading-the-result",
-    "href": "labs/lab02-energy-geometry.html#reading-the-result",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "Reading the result",
-    "text": "Reading the result\nWe will inspect one output manually before using the parser.\nThe output reports:\n\nthe Monkhorst shrinking factors;\nthe number of k-points in the irreducible Brillouin zone;\nthe sequence of SCF cycles;\nthe final converged total energy;\nelapsed and CPU time;\nthe normal termination of the calculation.\n\nThis manual inspection matters. Automated parsing should save us from repetitive transcription, not hide the origin of the data.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 2 — From structure to energy"
-    ]
-  },
-  {
-    "objectID": "labs/lab02-energy-geometry.html#energy-convergence",
-    "href": "labs/lab02-energy-geometry.html#energy-convergence",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "Energy convergence",
-    "text": "Energy convergence\nFor a sequence ordered by increasing SHRINK, the notebook calculates the change relative to the preceding sampling:\n\\[\n\\Delta E_i = E_i-E_{i-1}.\n\\]\nBecause the sign is not important for the convergence criterion, we will normally inspect\n\\[\n|\\Delta E_i|.\n\\]\nThe same value is expressed in hartree and in kJ mol\\(^{-1}\\) of MgO.\nFor this CRYSTAL model the primitive computational cell contains one MgO formula unit, so the conversion can be interpreted directly per mole of MgO:\n\\[\n1\\ E_\\mathrm{h} \\approx 2625.5\\ \\mathrm{kJ\\,mol^{-1}}.\n\\]\nThe notebook calculates the conversion from physical constants rather than asking you to perform it manually.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 2 — From structure to energy"
-    ]
-  },
-  {
-    "objectID": "labs/lab02-energy-geometry.html#convergence-is-a-decision-not-a-magic-number",
-    "href": "labs/lab02-energy-geometry.html#convergence-is-a-decision-not-a-magic-number",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "Convergence is a decision, not a magic number",
-    "text": "Convergence is a decision, not a magic number\nThe densest calculation is not automatically the best practical choice.\nAs SHRINK increases, the energy should become progressively less sensitive to further refinement, while computational cost generally increases. Your task is to choose a sampling that is sufficiently converged for the purpose of the subsequent calculations without paying for unnecessary numerical precision.\nValues such as \\(0.1\\) or \\(0.01\\) kJ mol\\(^{-1}\\) can be useful scales when looking at the table, but they are not universal laws. The necessary precision depends on the scientific question. Resolving a very small phase-energy difference may require a tighter criterion than obtaining a preliminary equilibrium structure.\nThe final question of the laboratory is therefore not:\n\nWhat is the largest SHRINK value?\n\nbut:\n\nWhich SHRINK value would you carry forward, and why is its balance between numerical stability and computational cost adequate?\n\nThat decision will matter in the next activity, when the geometry of MgO is allowed to change.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 2 — From structure to energy"
-    ]
-  },
-  {
-    "objectID": "labs/lab01-crystal-structure.html",
-    "href": "labs/lab01-crystal-structure.html",
-    "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "",
-    "text": "A crystal structure is often first encountered as a picture: coloured spheres, polyhedra, chains, layers or frameworks. The picture is useful, but it is not the structure itself. A crystallographic model is a compact mathematical description of a periodic arrangement. In this laboratory we will start from that description and reconstruct the structure step by step.\nThe practical question is simple:\nThis is the first computational activity because it establishes a workflow that will return throughout the course: a structural model is read from data, analysed, visualized, checked against symmetry, and eventually used as the starting point for calculations of energy and physical properties.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
-    ]
-  },
-  {
-    "objectID": "labs/lab01-crystal-structure.html#the-cif-as-a-crystallographic-description",
-    "href": "labs/lab01-crystal-structure.html#the-cif-as-a-crystallographic-description",
-    "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "The CIF as a crystallographic description",
-    "text": "The CIF as a crystallographic description\nThe Crystallographic Information File (CIF) is a structured text format. For the present exercise, the most important information is the unit cell, the space group, the atomic sites, their fractional coordinates and their occupancies.\nThe fractional coordinate \\((x,y,z)\\) does not give a distance in ångström. Instead, it gives a position relative to the three direct-lattice vectors \\(\\mathbf{a}\\), \\(\\mathbf{b}\\), and \\(\\mathbf{c}\\):\n\\[\n\\mathbf{r} = x\\mathbf{a} + y\\mathbf{b} + z\\mathbf{c}.\n\\]\nThis is why the same fractional coordinates can describe geometrically different Cartesian positions when the cell parameters change.\nA CIF normally does not need to list every atom that appears in a conventional unit cell. It can store only the crystallographically independent sites. The remaining sites follow from the symmetry of the space group.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
-    ]
-  },
-  {
-    "objectID": "labs/lab01-crystal-structure.html#asymmetric-unit-and-unit-cell",
-    "href": "labs/lab01-crystal-structure.html#asymmetric-unit-and-unit-cell",
-    "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "Asymmetric unit and unit cell",
-    "text": "Asymmetric unit and unit cell\nThe asymmetric unit is the smallest part of the structure from which the contents of the unit cell can be generated by applying the appropriate space-group operations. The unit cell, in turn, generates the infinite periodic crystal by translation.\nThis distinction is easy to lose when looking only at a structure drawing. MgO provides a particularly clean example. Only one Mg site and one O site are needed in its crystallographic description, but applying the symmetry and centring operations generates the complete contents of the conventional cubic cell.\nIn the notebook we therefore inspect the structure twice: first as the list of sites written in the CIF, and then as the symmetry-expanded unit cell. The difference between these lists is itself part of the crystallographic information.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
-    ]
-  },
-  {
-    "objectID": "labs/lab01-crystal-structure.html#two-complementary-symmetry-tools",
-    "href": "labs/lab01-crystal-structure.html#two-complementary-symmetry-tools",
-    "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "Two complementary symmetry tools",
-    "text": "Two complementary symmetry tools\nWe use Gemmi and spglib for different reasons.\nGemmi is used to read the CIF as a crystallographic document. It understands the unit cell, space-group symbols, symmetry operations and atomic sites. In other words, it can tell us what crystallographic information the file claims to contain.\nspglib approaches the problem from another direction. We give it lattice vectors, atomic coordinates and atomic species. It then searches numerically for operations that map the structure onto itself. This requires a tolerance, because coordinates in real structure files are finite-precision numbers and experimental structures are never mathematical abstractions with infinitely exact coordinates.\nThe comparison is useful:\n\\[\n\\text{symmetry stated in the CIF}\n\\quad\\longleftrightarrow\\quad\n\\text{symmetry implied by the numerical structure}.\n\\]\nAgreement is a consistency check. Disagreement is not something to hide by changing parameters until the desired answer appears. It is a result that must be understood: the structure may be distorted, the tolerance may be inappropriate, the CIF may use a non-standard setting, or the structural model may contain disorder or partial occupancies.\nFor this first exercise we use ordered structures with full occupancies so that the symmetry analysis remains unambiguous.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
-    ]
-  },
-  {
-    "objectID": "labs/lab01-crystal-structure.html#symmetry-operations-in-coordinate-form",
-    "href": "labs/lab01-crystal-structure.html#symmetry-operations-in-coordinate-form",
-    "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "Symmetry operations in coordinate form",
-    "text": "Symmetry operations in coordinate form\nA space-group operation can be written as a transformation of fractional coordinates. The identity is\n\\[\n(x,y,z)\\rightarrow(x,y,z),\n\\]\nwhereas an operation written, for example, as\n-y,x,z\nmaps\n\\[\n(x,y,z)\\rightarrow(-y,x,z).\n\\]\nTranslations may appear as fractional additions such as \\(1/2\\). Rather than printing every operation of a high-symmetry space group without context, the notebook first shows a compact set of Hall-derived operations and the lattice centring translations, and then lets you inspect part of the full operation list.\nThe software can describe the matrix and translational parts of an operation, but interpreting an operation geometrically remains a crystallographic task. In particular, the presence of a translational component is what distinguishes operations such as screw axes and glide planes from their purely point-symmetry counterparts.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
-    ]
-  },
-  {
-    "objectID": "labs/lab01-crystal-structure.html#wyckoff-positions",
-    "href": "labs/lab01-crystal-structure.html#wyckoff-positions",
-    "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "Wyckoff positions",
-    "text": "Wyckoff positions\nThe atoms of a crystal can also be organized into Wyckoff positions. A Wyckoff position identifies an orbit of symmetrically equivalent points in a given space group.\nThree pieces of information are especially useful:\n\nthe multiplicity, which gives the number of equivalent sites in the conventional unit cell;\nthe Wyckoff letter, which distinguishes inequivalent orbits;\nthe site symmetry, which describes the subgroup of operations that leaves a particular site invariant.\n\nA multiplicity is therefore not the number of independent atoms that had to be entered in the CIF. Quite the opposite: several atoms in the conventional cell may all be generated from one crystallographically independent site.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
-    ]
-  },
-  {
-    "objectID": "labs/lab01-crystal-structure.html#visualization-is-inspection-not-proof",
-    "href": "labs/lab01-crystal-structure.html#visualization-is-inspection-not-proof",
-    "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "Visualization is inspection, not proof",
-    "text": "Visualization is inspection, not proof\nThe notebooks use py3Dmol to display the CIF interactively. You can rotate the structure, zoom, draw the unit-cell box and replicate the cell to make periodicity easier to see.\nThe default representation uses spheres without automatically inferred bonds. This choice is deliberate. A line drawn between two atoms by a visualization program is based on a graphical or distance criterion; it is not itself a crystallographic observable and should not silently determine how we interpret bonding in a mineral.\nThe viewer is therefore an aid to scientific inspection. The quantitative description still comes from the crystallographic data and symmetry analysis.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
-    ]
-  },
-  {
-    "objectID": "labs/lab01-crystal-structure.html#laboratory-workflow",
-    "href": "labs/lab01-crystal-structure.html#laboratory-workflow",
-    "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "Laboratory workflow",
-    "text": "Laboratory workflow\nThe activity has two parts.\nFirst, we work together on MgO (periclase):\n01-guided-mgo.ipynb\nMgO is useful because the rocksalt structure is simple enough that the relationship between asymmetric unit, face-centred cell, symmetry and Wyckoff multiplicity remains visible.\nYou will then receive a second CIF and repeat the same reasoning independently in:\n02-assigned-structure.ipynb\nPlace the assigned CIF directly inside:\nwork/lab01/\nand change only the filename requested in the notebook.\nThe questions are intentionally short. They ask you to interpret the structure, not to reproduce Python code.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
-    ]
-  },
-  {
-    "objectID": "labs/lab01-crystal-structure.html#what-to-save",
-    "href": "labs/lab01-crystal-structure.html#what-to-save",
-    "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "What to save",
-    "text": "What to save\nAt the end of the laboratory your private repository should contain:\n\nthe completed guided MgO notebook;\nthe completed assigned-structure notebook;\nthe CIF supplied for your individual activity.\n\nUse the usual end-of-session sequence:\nsave → commit → Sync Changes → verify on GitHub → stop Codespace",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
-    ]
-  },
-  {
-    "objectID": "labs/lab03-equation-of-state.html",
-    "href": "labs/lab03-equation-of-state.html",
-    "title": "Laboratory 3 — From energy to an equation of state",
-    "section": "",
-    "text": "TO BE DEFINED.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 3 — From energy to an equation of state"
-    ]
-  },
-  {
-    "objectID": "labs/lab03-equation-of-state.html#scientific-question",
-    "href": "labs/lab03-equation-of-state.html#scientific-question",
-    "title": "Laboratory 3 — From energy to an equation of state",
-    "section": "",
-    "text": "TO BE DEFINED.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 3 — From energy to an equation of state"
-    ]
-  },
-  {
-    "objectID": "labs/lab03-equation-of-state.html#before-the-laboratory",
-    "href": "labs/lab03-equation-of-state.html#before-the-laboratory",
-    "title": "Laboratory 3 — From energy to an equation of state",
-    "section": "Before the laboratory",
-    "text": "Before the laboratory\nTO BE DEFINED.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 3 — From energy to an equation of state"
-    ]
-  },
-  {
-    "objectID": "labs/lab03-equation-of-state.html#tasks",
-    "href": "labs/lab03-equation-of-state.html#tasks",
-    "title": "Laboratory 3 — From energy to an equation of state",
-    "section": "Tasks",
-    "text": "Tasks\nTO BE DEVELOPED.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 3 — From energy to an equation of state"
-    ]
-  },
-  {
-    "objectID": "labs/lab03-equation-of-state.html#questions",
-    "href": "labs/lab03-equation-of-state.html#questions",
-    "title": "Laboratory 3 — From energy to an equation of state",
-    "section": "Questions",
-    "text": "Questions\nQuestions are answered directly in your personal notebook.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 3 — From energy to an equation of state"
-    ]
-  },
-  {
-    "objectID": "labs/lab03-equation-of-state.html#what-to-save",
-    "href": "labs/lab03-equation-of-state.html#what-to-save",
-    "title": "Laboratory 3 — From energy to an equation of state",
-    "section": "What to save",
-    "text": "What to save\nTO BE DEFINED.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 3 — From energy to an equation of state"
-    ]
-  },
-  {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html",
-    "href": "labs/lab04-vibrations-thermodynamics.html",
-    "title": "Laboratory 4 — From vibrations to thermodynamics",
-    "section": "",
-    "text": "TO BE DEFINED.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 4 — From vibrations to thermodynamics"
-    ]
-  },
-  {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html#scientific-question",
-    "href": "labs/lab04-vibrations-thermodynamics.html#scientific-question",
-    "title": "Laboratory 4 — From vibrations to thermodynamics",
-    "section": "",
-    "text": "TO BE DEFINED.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 4 — From vibrations to thermodynamics"
-    ]
-  },
-  {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html#before-the-laboratory",
-    "href": "labs/lab04-vibrations-thermodynamics.html#before-the-laboratory",
-    "title": "Laboratory 4 — From vibrations to thermodynamics",
-    "section": "Before the laboratory",
-    "text": "Before the laboratory\nTO BE DEFINED.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 4 — From vibrations to thermodynamics"
-    ]
-  },
-  {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html#tasks",
-    "href": "labs/lab04-vibrations-thermodynamics.html#tasks",
-    "title": "Laboratory 4 — From vibrations to thermodynamics",
-    "section": "Tasks",
-    "text": "Tasks\nTO BE DEVELOPED.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 4 — From vibrations to thermodynamics"
-    ]
-  },
-  {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html#questions",
-    "href": "labs/lab04-vibrations-thermodynamics.html#questions",
-    "title": "Laboratory 4 — From vibrations to thermodynamics",
-    "section": "Questions",
-    "text": "Questions\nQuestions are answered directly in your personal notebook.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 4 — From vibrations to thermodynamics"
-    ]
-  },
-  {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html#what-to-save",
-    "href": "labs/lab04-vibrations-thermodynamics.html#what-to-save",
-    "title": "Laboratory 4 — From vibrations to thermodynamics",
-    "section": "What to save",
-    "text": "What to save\nTO BE DEFINED.",
-    "crumbs": [
-      "Laboratories",
-      "Laboratory 4 — From vibrations to thermodynamics"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Computational Mineralogy Laboratory",
-    "section": "",
-    "text": "This website contains the instructions and supporting material for the computational laboratory activities of the Mineral Science course.\nThe laboratory environment is intentionally split into three parts:\nYou do not need to install the scientific Python environment on your own computer. The notebook work is carried out in a personal GitHub Codespace.",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "index.html#laboratory-path",
-    "href": "index.html#laboratory-path",
-    "title": "Computational Mineralogy Laboratory",
-    "section": "Laboratory path",
-    "text": "Laboratory path\nThe practical work will progressively connect crystal structures, energetic models, physical properties and mineral thermodynamics:\n\ncrystal structures, CIF files and symmetry;\nfirst-principles energy and geometry optimization;\nenergy-volume data and equations of state;\nvibrations, phonons and thermodynamic properties.\n\nShort scientific questions are answered directly in the laboratory notebooks. The notebooks are part of your personal workspace and should be saved and synchronized regularly.",
-    "crumbs": [
-      "Home"
     ]
   },
   {

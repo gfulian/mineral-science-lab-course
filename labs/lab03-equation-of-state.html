@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Laboratory 3 — From energy to an equation of state – Mineral Science Laboratory</title>
+<title>Laboratory 3 — From equilibrium structure to an equation of state – Mineral Science Laboratory</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -74,6 +74,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -86,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/lab01-crystal-structure.html">Laboratories</a></li><li class="breadcrumb-item"><a href="../labs/lab03-equation-of-state.html">Laboratory 3 — From energy to an equation of state</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/lab01-crystal-structure.html">Laboratories</a></li><li class="breadcrumb-item"><a href="../labs/lab03-equation-of-state.html">Laboratory 3 — From equilibrium structure to an equation of state</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -188,7 +217,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/03-equation-of-state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Assignment 3 — Equation of state</span></a>
+ <span class="menu-text">Assignment 3 — Geometry optimization and equation of state</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -223,7 +252,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../labs/lab03-equation-of-state.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Laboratory 3 — From energy to an equation of state</span></a>
+ <span class="menu-text">Laboratory 3 — From equilibrium structure to an equation of state</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -297,20 +326,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#scientific-question" id="toc-scientific-question" class="nav-link active" data-scroll-target="#scientific-question">Scientific question</a></li>
-  <li><a href="#before-the-laboratory" id="toc-before-the-laboratory" class="nav-link" data-scroll-target="#before-the-laboratory">Before the laboratory</a></li>
-  <li><a href="#tasks" id="toc-tasks" class="nav-link" data-scroll-target="#tasks">Tasks</a></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
-  <li><a href="#what-to-save" id="toc-what-to-save" class="nav-link" data-scroll-target="#what-to-save">What to save</a></li>
+  <li><a href="#why-optimize-an-experimental-structure" id="toc-why-optimize-an-experimental-structure" class="nav-link active" data-scroll-target="#why-optimize-an-experimental-structure">Why optimize an experimental structure?</a></li>
+  <li><a href="#forces-stress-and-the-minimum-energy-structure" id="toc-forces-stress-and-the-minimum-energy-structure" class="nav-link" data-scroll-target="#forces-stress-and-the-minimum-energy-structure">Forces, stress and the minimum-energy structure</a></li>
+  <li><a href="#why-mgo-is-an-unusually-clean-example" id="toc-why-mgo-is-an-unusually-clean-example" class="nav-link" data-scroll-target="#why-mgo-is-an-unusually-clean-example">Why MgO is an unusually clean example</a></li>
+  <li><a href="#full-geometry-optimization-in-crystal" id="toc-full-geometry-optimization-in-crystal" class="nav-link" data-scroll-target="#full-geometry-optimization-in-crystal">Full geometry optimization in CRYSTAL</a></li>
+  <li><a href="#which-cell-is-crystal-printing" id="toc-which-cell-is-crystal-printing" class="nav-link" data-scroll-target="#which-cell-is-crystal-printing">Which cell is CRYSTAL printing?</a></li>
+  <li><a href="#from-one-equilibrium-point-to-a-compression-curve" id="toc-from-one-equilibrium-point-to-a-compression-curve" class="nav-link" data-scroll-target="#from-one-equilibrium-point-to-a-compression-curve">From one equilibrium point to a compression curve</a></li>
+  <li><a href="#what-is-an-equation-of-state" id="toc-what-is-an-equation-of-state" class="nav-link" data-scroll-target="#what-is-an-equation-of-state">What is an equation of state?</a></li>
+  <li><a href="#bulk-modulus-how-difficult-is-the-crystal-to-compress" id="toc-bulk-modulus-how-difficult-is-the-crystal-to-compress" class="nav-link" data-scroll-target="#bulk-modulus-how-difficult-is-the-crystal-to-compress">Bulk modulus: how difficult is the crystal to compress?</a></li>
+  <li><a href="#why-constant-volume-optimization" id="toc-why-constant-volume-optimization" class="nav-link" data-scroll-target="#why-constant-volume-optimization">Why constant-volume optimization?</a></li>
+  <li><a href="#choosing-the-volume-series" id="toc-choosing-the-volume-series" class="nav-link" data-scroll-target="#choosing-the-volume-series">Choosing the volume series</a></li>
+  <li><a href="#the-role-of-quantas" id="toc-the-role-of-quantas" class="nav-link" data-scroll-target="#the-role-of-quantas">The role of Quantas</a></li>
+  <li><a href="#the-complete-workflow" id="toc-the-complete-workflow" class="nav-link" data-scroll-target="#the-complete-workflow">The complete workflow</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/lab01-crystal-structure.html">Laboratories</a></li><li class="breadcrumb-item"><a href="../labs/lab03-equation-of-state.html">Laboratory 3 — From energy to an equation of state</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/lab01-crystal-structure.html">Laboratories</a></li><li class="breadcrumb-item"><a href="../labs/lab03-equation-of-state.html">Laboratory 3 — From equilibrium structure to an equation of state</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Laboratory 3 — From energy to an equation of state</h1>
+<h1 class="title">Laboratory 3 — From equilibrium structure to an equation of state</h1>
 </div>
 
 
@@ -327,25 +363,216 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="scientific-question" class="level2">
-<h2 class="anchored" data-anchor-id="scientific-question">Scientific question</h2>
-<p>TO BE DEFINED.</p>
+<p>The structure used in an electronic-structure calculation usually comes from experiment. That is an excellent place to begin, but it is not automatically the equilibrium structure of the computational model.</p>
+<p>This distinction is easy to overlook. A CIF describes a structure observed under particular experimental conditions. The static DFT calculation used in this laboratory describes a different idealized situation: the electronic ground-state energy of a periodic crystal within a chosen functional and basis set, without thermal expansion and without vibrational free-energy contributions.</p>
+<p>Laboratory 3 therefore begins by asking:</p>
+<blockquote class="blockquote">
+<p><strong>Where is the minimum of the energy surface defined by our DFT model?</strong></p>
+</blockquote>
+<p>Once that minimum has been found, we deliberately move away from it and ask:</p>
+<blockquote class="blockquote">
+<p><strong>How costly is it, in energy, to compress or expand the crystal?</strong></p>
+</blockquote>
+<p>The answer leads directly to an <strong>equation of state</strong> and to one of the most important mechanical properties of a mineral: the bulk modulus.</p>
+<section id="why-optimize-an-experimental-structure" class="level2">
+<h2 class="anchored" data-anchor-id="why-optimize-an-experimental-structure">Why optimize an experimental structure?</h2>
+<p>Suppose that an experimental CIF gives a cell parameter <span class="math inline">\(a_\mathrm{exp}\)</span> and a set of atomic coordinates. If we evaluate the DFT energy at that geometry, we obtain a perfectly valid energy for that particular configuration. But the geometry is not guaranteed to minimize the energy of our computational model.</p>
+<p>Several reasons contribute to this.</p>
+<p>First, an experimental lattice parameter is normally measured at a finite temperature, often close to ambient conditions. Thermal expansion is therefore already present in the observation. Our present calculation is a <strong>static</strong> electronic-structure calculation. It does not yet contain the vibrational free energy responsible for finite-temperature expansion, and it does not include zero-point vibrational effects unless they are added explicitly later.</p>
+<p>Second, the chosen density functional and basis set define an approximate energy surface. Even at exactly <span class="math inline">\(0\)</span> K and zero external pressure, their predicted equilibrium geometry need not coincide perfectly with experiment.</p>
+<p>The purpose of geometry optimization is therefore not to “correct” the experiment. It is to find the structure that is internally consistent with the computational model we have chosen.</p>
 </section>
-<section id="before-the-laboratory" class="level2">
-<h2 class="anchored" data-anchor-id="before-the-laboratory">Before the laboratory</h2>
-<p>TO BE DEFINED.</p>
+<section id="forces-stress-and-the-minimum-energy-structure" class="level2">
+<h2 class="anchored" data-anchor-id="forces-stress-and-the-minimum-energy-structure">Forces, stress and the minimum-energy structure</h2>
+<p>For a periodic crystal, geometry may involve both:</p>
+<ul>
+<li><strong>internal degrees of freedom</strong>, describing atomic positions within the cell;</li>
+<li><strong>cell degrees of freedom</strong>, describing lattice parameters and cell shape.</li>
+</ul>
+<p>At equilibrium, the gradient of the energy with respect to every <em>allowed</em> degree of freedom should vanish within the selected numerical tolerances.</p>
+<p>Atomic forces are related to derivatives of the energy with respect to atomic coordinates:</p>
+<p><span class="math display">\[
+\mathbf{F}_i =
+-\frac{\partial E}{\partial \mathbf{r}_i}.
+\]</span></p>
+<p>The stress tensor plays the corresponding role for deformation of the unit cell. If no external pressure or stress is applied, the equilibrium cell is the one for which the residual internal stress vanishes within the numerical accuracy of the calculation.</p>
+<p>This distinction matters particularly for MgO.</p>
 </section>
-<section id="tasks" class="level2">
-<h2 class="anchored" data-anchor-id="tasks">Tasks</h2>
-<p>TO BE DEVELOPED.</p>
+<section id="why-mgo-is-an-unusually-clean-example" class="level2">
+<h2 class="anchored" data-anchor-id="why-mgo-is-an-unusually-clean-example">Why MgO is an unusually clean example</h2>
+<p>Periclase has the rocksalt structure, space group <span class="math inline">\(Fm\bar{3}m\)</span>. Mg and O occupy special symmetry positions. Their fractional coordinates are fixed by the space-group symmetry.</p>
+<p>This has an interesting consequence: the atomic forces may already vanish by symmetry even when the lattice parameter is not the equilibrium one.</p>
+<p>The structure can therefore require a geometry optimization <strong>without any atomic coordinate moving at all</strong>. What changes is the unit cell, driven by its residual stress.</p>
+<p>This is a useful reminder that</p>
+<pre class="text"><code>zero atomic forces</code></pre>
+<p>does not necessarily mean</p>
+<pre class="text"><code>fully optimized periodic crystal.</code></pre>
+<p>The cell itself may still be away from equilibrium.</p>
 </section>
-<section id="questions" class="level2">
-<h2 class="anchored" data-anchor-id="questions">Questions</h2>
-<p>Questions are answered directly in your personal notebook.</p>
+<section id="full-geometry-optimization-in-crystal" class="level2">
+<h2 class="anchored" data-anchor-id="full-geometry-optimization-in-crystal">Full geometry optimization in CRYSTAL</h2>
+<p>CRYSTAL performs geometry optimization through the <code>OPTGEOM</code> block. In this laboratory we use:</p>
+<pre class="text"><code>OPTGEOM
+FULLOPTG
+...
+END</code></pre>
+<p><code>FULLOPTG</code> allows optimization of both the cell and the internal coordinates that are permitted by symmetry.</p>
+<p>The optimization is stopped when numerical criteria on the gradient, displacement and energy change are satisfied.</p>
+<p>For the course calculation we use:</p>
+<pre class="text"><code>TOLDEG = 0.0004
+TOLDEX = 0.0001
+TOLDEE = 10^-8</code></pre>
+<p>The first two are criteria on the RMS gradient and RMS displacement, respectively; <code>TOLDEE</code> controls the energy difference between optimization steps.</p>
+<p>These are numerical stopping conditions. They do not define the physical model and they do not make the DFT approximation itself more accurate.</p>
+<p>The CRYSTAL23 manual documents <code>FULLOPTG</code>, <code>CVOLOPT</code>, <code>TOLDEG</code>, <code>TOLDEX</code> and <code>TOLDEE</code> in the <code>OPTGEOM</code> input block:</p>
+<p><a href="https://www.crystal.unito.it/documentation.html" class="uri">https://www.crystal.unito.it/documentation.html</a></p>
 </section>
-<section id="what-to-save" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-save">What to save</h2>
-<p>TO BE DEFINED.</p>
+<section id="which-cell-is-crystal-printing" class="level2">
+<h2 class="anchored" data-anchor-id="which-cell-is-crystal-printing">Which cell is CRYSTAL printing?</h2>
+<p>MgO provides another useful crystallographic trap.</p>
+<p>The familiar crystallographic description is a <strong>conventional cubic face-centred cell</strong> with one cubic lattice parameter <span class="math inline">\(a\)</span>.</p>
+<p>A primitive cell of the same FCC lattice can instead be described by three equal vectors separated by <span class="math inline">\(60^\circ\)</span>. Its numerical cell parameters therefore look very different even though it represents exactly the same infinite crystal.</p>
+<p>CRYSTAL may print different cell representations in different parts of an output. When a cell no longer “looks cubic”, do not immediately conclude that the cubic symmetry has been lost. First identify whether you are looking at a primitive or crystallographic representation.</p>
+<p>That distinction will return when Quantas normalizes energy–volume data.</p>
+</section>
+<section id="from-one-equilibrium-point-to-a-compression-curve" class="level2">
+<h2 class="anchored" data-anchor-id="from-one-equilibrium-point-to-a-compression-curve">From one equilibrium point to a compression curve</h2>
+<p>Once the static equilibrium geometry is known, we can investigate how the crystal responds to changes in volume.</p>
+<p>Experimentally, high-pressure mineral physics often approaches this problem using <strong>X-ray diffraction in a diamond-anvil cell</strong>. Pressure is applied to the sample and the evolution of its lattice parameters and volume is measured.</p>
+<p>A static electronic-structure calculation can approach the same constitutive behaviour from a complementary direction. Instead of physically applying a pressure, we calculate a set of structures at selected volumes and evaluate their energies.</p>
+<p>This produces an energy–volume path:</p>
+<p><span class="math display">\[
+E(V).
+\]</span></p>
+<p>The pressure associated with that path is obtained from the derivative</p>
+<p><span class="math display">\[
+P(V) =
+-\frac{dE}{dV}.
+\]</span></p>
+<p>Equivalently,</p>
+<p><span class="math display">\[
+E(V)-E(V_\mathrm{ref})
+=
+-\int_{V_\mathrm{ref}}^{V} P(V')\,dV'.
+\]</span></p>
+<p>This is why an energy–volume calculation contains the information needed to reconstruct a static pressure–volume relation.</p>
+</section>
+<section id="what-is-an-equation-of-state" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-an-equation-of-state">What is an equation of state?</h2>
+<p>In thermodynamics, an <strong>equation of state</strong> is a mathematical relation between state variables. For a solid under compression we are especially interested in the relation between pressure and volume.</p>
+<p>In the present static calculation, the EOS is parameterized by fitting the computed <span class="math inline">\(E(V)\)</span> data. The fit provides a smooth representation of the energy surface and therefore, through <span class="math inline">\(P=-dE/dV\)</span>, a smooth pressure–volume relation.</p>
+<p>We will use a <strong>third-order Birch–Murnaghan equation of state (BM3)</strong>.</p>
+<p>The purpose here is not to derive the finite-strain formalism. The important point is what the fitted parameters mean:</p>
+<ul>
+<li><span class="math inline">\(E_0\)</span>: minimum static energy;</li>
+<li><span class="math inline">\(V_0\)</span>: equilibrium volume;</li>
+<li><span class="math inline">\(K_0\)</span>: bulk modulus at equilibrium;</li>
+<li><span class="math inline">\(K'_0\)</span>: first pressure derivative of the bulk modulus.</li>
+</ul>
+<p>The fitted <span class="math inline">\(V_0\)</span> should be close to the volume obtained from the direct geometry optimization. If it is not, that discrepancy is something to investigate.</p>
+</section>
+<section id="bulk-modulus-how-difficult-is-the-crystal-to-compress" class="level2">
+<h2 class="anchored" data-anchor-id="bulk-modulus-how-difficult-is-the-crystal-to-compress">Bulk modulus: how difficult is the crystal to compress?</h2>
+<p>The isothermal bulk modulus is defined as</p>
+<p><span class="math display">\[
+K =
+-V\left(\frac{\partial P}{\partial V}\right)_T.
+\]</span></p>
+<p>At the equilibrium volume,</p>
+<p><span class="math display">\[
+K_0 =
+-V_0
+\left(\frac{\partial P}{\partial V}\right)_{V_0}.
+\]</span></p>
+<p>A large bulk modulus means that a large pressure change is required to produce a given fractional change in volume: the material is relatively incompressible. A smaller bulk modulus corresponds to a more compressible material.</p>
+<p>In the present calculation <span class="math inline">\(K_0\)</span> is a <strong>static</strong> bulk modulus derived from the DFT energy surface. Temperature-dependent experimental values need not be identical.</p>
+</section>
+<section id="why-constant-volume-optimization" class="level2">
+<h2 class="anchored" data-anchor-id="why-constant-volume-optimization">Why constant-volume optimization?</h2>
+<p>To construct an EOS we need the minimum energy <em>at each selected volume</em>.</p>
+<p>If we simply changed the volume and then performed another completely free <code>FULLOPTG</code> calculation, every point would attempt to return to the same equilibrium volume. We would destroy the independent variable of the experiment.</p>
+<p>CRYSTAL therefore provides:</p>
+<pre class="text"><code>CVOLOPT</code></pre>
+<p>for full geometry optimization <strong>at constant volume</strong>.</p>
+<p>The logic is:</p>
+<pre class="text"><code>choose V
+   ↓
+keep V fixed
+   ↓
+relax all structural degrees of freedom
+that remain allowed
+   ↓
+obtain the minimum E compatible with V</code></pre>
+<p>For a lower-symmetry mineral this may involve genuine changes in cell shape and internal coordinates.</p>
+<p>For cubic MgO the situation is particularly simple. At fixed volume the cubic symmetry fixes the cell shape, and the Mg and O coordinates are fixed by their special positions. Almost no structural freedom remains. A constant-volume optimization may therefore converge essentially immediately.</p>
+<p>That apparently trivial result is itself instructive:</p>
+<blockquote class="blockquote">
+<p><strong>symmetry determines which structural degrees of freedom exist.</strong></p>
+</blockquote>
+</section>
+<section id="choosing-the-volume-series" class="level2">
+<h2 class="anchored" data-anchor-id="choosing-the-volume-series">Choosing the volume series</h2>
+<p>The reference volume is the volume of the optimized static structure, <span class="math inline">\(V_0\)</span>.</p>
+<p>We use the factors</p>
+<p><span class="math display">\[
+\frac{V}{V_0}
+=
+0.91,\;
+0.94,\;
+0.97,\;
+1.00,\;
+1.03,\;
+1.06,\;
+1.09.
+\]</span></p>
+<p>For a cubic crystal,</p>
+<p><span class="math display">\[
+V=a^3.
+\]</span></p>
+<p>Therefore the lattice parameter cannot be scaled by the same numerical factor as the volume. For a target volume factor <span class="math inline">\(f\)</span>,</p>
+<p><span class="math display">\[
+a(f)=a_0 f^{1/3}.
+\]</span></p>
+<p>This cube-root relation matters. Setting <span class="math inline">\(a=0.91a_0\)</span> would not give <span class="math inline">\(V=0.91V_0\)</span>; it would give</p>
+<p><span class="math display">\[
+V=(0.91)^3V_0 \approx 0.754V_0,
+\]</span></p>
+<p>which is a much stronger compression.</p>
+<p>The notebook calculates the correct target lattice parameters for you.</p>
+</section>
+<section id="the-role-of-quantas" class="level2">
+<h2 class="anchored" data-anchor-id="the-role-of-quantas">The role of Quantas</h2>
+<p>The EOS analysis is performed with <strong>Quantas 2.0</strong>.</p>
+<p>Quantas can read a list of CRYSTAL outputs, normalize their structural and energetic information consistently, generate an energy–volume dataset and fit an integrated EOS. For this laboratory we ask it to express the results in the <strong>conventional crystallographic cell</strong>, which makes the fitted cubic lattice parameter directly comparable with the MgO cell used in the course.</p>
+<p>The Quantas energy–volume workflow reconstructs pressure from the fitted energy relation using</p>
+<p><span class="math display">\[
+P(V)=-\frac{dE}{dV}.
+\]</span></p>
+<p>The current MgO energy–volume tutorial in the Quantas documentation uses the same type of seven-point CRYSTAL dataset and a BM3 fit:</p>
+<p><a href="https://quantas.readthedocs.io/en/2.0.0-beta/tutorials/eos_ev.html" class="uri">https://quantas.readthedocs.io/en/2.0.0-beta/tutorials/eos_ev.html</a></p>
+<p>The software performs the repetitive numerical work. Your task is to decide whether the data and fitted parameters make physical sense.</p>
+</section>
+<section id="the-complete-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="the-complete-workflow">The complete workflow</h2>
+<p>The activity follows one continuous chain:</p>
+<pre class="text"><code>experimental MgO structure
+        ↓
+full static geometry optimization
+        ↓
+DFT equilibrium structure
+        ↓
+choose V/V0 values
+        ↓
+constant-volume calculations
+        ↓
+E(V) dataset
+        ↓
+BM3 fit
+        ↓
+V0, K0, K'0
+        ↓
+P(V) and interpretation</code></pre>
+<p>This is the first laboratory in which a sequence of electronic-structure calculations becomes a macroscopic mineral property.</p>
 
 
 </section>
