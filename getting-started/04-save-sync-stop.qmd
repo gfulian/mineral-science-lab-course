@@ -1,0 +1,18 @@
+---
+title: "Save, sync and stop"
+---
+
+::: {.callout-important}
+## Always stop your Codespace when you finish
+Closing the browser tab is not the same as stopping the Codespace.
+:::
+
+Before leaving:
+
+1. Save all notebooks and files.
+2. Commit your changes.
+3. Sync them with GitHub.
+4. Verify the repository on GitHub.
+5. Stop the Codespace.
+
+Your GitHub repository is the permanent copy of your work.

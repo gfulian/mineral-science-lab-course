@@ -1,0 +1,11 @@
+---
+title: "Working in Codespaces"
+---
+Inside the workspace:
+
+```text
+course/   instructor-provided material: do not edit
+work/     your notebooks, results, figures and answers
+```
+
+Never work directly inside `course/`.

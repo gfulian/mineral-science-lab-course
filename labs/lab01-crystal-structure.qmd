@@ -1,0 +1,22 @@
+---
+title: "Laboratory 1 — From CIF to crystal structure"
+---
+## Scientific question
+
+TO BE DEFINED.
+
+## Before the laboratory
+
+TO BE DEFINED.
+
+## Tasks
+
+TO BE DEVELOPED.
+
+## Questions
+
+Questions are answered directly in your personal notebook.
+
+## What to save
+
+TO BE DEFINED.

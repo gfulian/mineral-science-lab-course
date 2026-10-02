@@ -1,0 +1,10 @@
+---
+title: "How the laboratory works"
+---
+The laboratory uses three separate tools:
+
+1. this course website for instructions;
+2. a personal GitHub repository opened in Codespaces for notebook work;
+3. the CluMiner cluster for CRYSTAL calculations.
+
+Your personal work must always be performed in the `work/` directory.

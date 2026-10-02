@@ -1,0 +1,17 @@
+---
+title: "Update course material"
+---
+Before starting newly released material:
+
+```bash
+update-course
+```
+
+Then create your personal working copy, for example:
+
+```bash
+start-lab 01
+```
+
+The update command modifies only instructor-controlled course material and does
+not touch your `work/` directory.

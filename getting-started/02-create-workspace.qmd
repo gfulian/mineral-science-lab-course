@@ -1,0 +1,13 @@
+---
+title: "Create your personal workspace"
+---
+> **Workspace template:** TO BE LINKED
+
+1. Create a GitHub account.
+2. Open the workspace template repository.
+3. Select **Use this template** → **Create a new repository**.
+4. Create your repository as **Private**.
+5. Open **Code** → **Codespaces** → **Create codespace on main**.
+6. Wait for the environment to finish its first initialization.
+
+The first initialization can take a few minutes.

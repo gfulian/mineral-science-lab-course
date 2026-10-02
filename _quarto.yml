@@ -1,0 +1,51 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Mineral Science Laboratory"
+  sidebar:
+    style: docked
+    search: true
+    contents:
+      - href: index.qmd
+        text: Home
+      - section: "Getting started"
+        contents:
+          - getting-started/01-overview.qmd
+          - getting-started/02-create-workspace.qmd
+          - getting-started/03-working-in-codespaces.qmd
+          - getting-started/04-save-sync-stop.qmd
+          - getting-started/05-update-course-material.qmd
+      - section: "Assignments"
+        contents:
+          - assignments/00-onboarding.qmd
+          - assignments/01-crystal-structure.qmd
+          - assignments/02-first-principles.qmd
+          - assignments/03-equation-of-state.qmd
+          - assignments/04-vibrations-thermodynamics.qmd
+      - section: "Laboratories"
+        contents:
+          - labs/lab01-crystal-structure.qmd
+          - labs/lab02-energy-geometry.qmd
+          - labs/lab03-equation-of-state.qmd
+          - labs/lab04-vibrations-thermodynamics.qmd
+      - section: "Reference"
+        contents:
+          - reference/linux-essentials.qmd
+          - reference/jupyter-essentials.qmd
+          - reference/github-codespaces.qmd
+          - reference/ssh-file-transfer.qmd
+          - reference/cluminer.qmd
+          - reference/crystal-input-output.qmd
+          - reference/troubleshooting.qmd
+
+format:
+  html:
+    toc: true
+    number-sections: false
+    code-copy: true
+    code-overflow: wrap
+
+execute:
+  freeze: auto
