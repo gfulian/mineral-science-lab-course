@@ -1,4 +1,122 @@
 ---
 title: "CRYSTAL input and output field guide"
 ---
-TO BE DEVELOPED.
+
+CRYSTAL input files can become complex, but the first Mineral Science
+calculation needs only a small subset of that language.
+
+The objective is **not** to memorize keywords. It is to recognize which part of
+the scientific model a keyword controls.
+
+## The input blocks used in Laboratory 2
+
+A useful mental map is:
+
+```text
+STRUCTURE
+    periodicity
+    space group
+    cell parameters
+    independent atoms
+
+BASIS SET
+    Gaussian basis used for the atomic orbitals
+
+DFT
+    exchange-correlation functional
+
+NUMERICAL CONTROL
+    integral thresholds
+    SCF energy convergence
+    reciprocal-space sampling
+```
+
+The distributed MgO input uses:
+
+```text
+BASISSET
+POB-TZVP-REV2
+```
+
+and:
+
+```text
+DFT
+PBE
+END
+```
+
+The reciprocal-space sampling is controlled by:
+
+```text
+SHRINK
+2 2
+```
+
+In Laboratory 2, only the two values following `SHRINK` are changed.
+
+## What to recognize in the output
+
+### Sampling
+
+CRYSTAL prints a line similar to:
+
+```text
+SHRINK. FACT.(MONKH.) ... NUMBER OF K POINTS IN THE IBZ ...
+```
+
+This gives both the Monkhorst sampling and the number of k-points that remain
+after symmetry reduction to the irreducible Brillouin zone.
+
+### SCF cycles
+
+During the self-consistent field procedure CRYSTAL prints lines beginning with:
+
+```text
+CYC
+```
+
+These contain the current total energy and the change with respect to the
+previous cycle.
+
+### Successful SCF convergence
+
+For this laboratory the parser requires a line containing:
+
+```text
+SCF ENDED - CONVERGENCE ON ENERGY
+```
+
+The final energy printed on that line is the value analysed in the notebook.
+
+### Timing
+
+Near the end of a normal calculation, CRYSTAL reports:
+
+```text
+END ... TELAPSE ... TCPU ...
+```
+
+`TELAPSE` is the wall-clock time experienced by the calculation.
+
+`TCPU` is accumulated CPU time. With parallel execution, CPU time and elapsed
+time are not expected to be identical.
+
+### Normal termination
+
+A complete run ends with a termination marker. The course parser checks this
+as well as SCF convergence.
+
+## If an output is incomplete
+
+Do not copy the last visible energy into your results table.
+
+An interrupted calculation may contain several perfectly plausible SCF energy
+values without having reached the requested convergence. Keep the output and
+inspect the error rather than treating it as a result.
+
+## Official documentation
+
+The current CRYSTAL documentation and user manual are available at:
+
+<https://www.crystal.unito.it/documentation.html>

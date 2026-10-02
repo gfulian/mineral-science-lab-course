@@ -1,4 +1,113 @@
 ---
-title: "CluMiner"
+title: "CluMiner — Laboratory quick reference"
 ---
-TO BE DEVELOPED.
+
+CluMiner is used in this course for calculations that cannot or should not run
+inside GitHub Codespaces. In particular, **CRYSTAL23 runs on CluMiner**.
+
+This page contains only the operations needed by students. Cluster
+administration, Slurm configuration and MPI topology are outside the scope of
+Mineral Science.
+
+## Connect
+
+Use the access method provided during the course. Once connected, create a
+working directory for the activity and keep each laboratory organised.
+
+Example:
+
+```bash
+mkdir -p ~/mineral-science/lab02
+cd ~/mineral-science/lab02
+```
+
+## Transfer an input
+
+Copy the `.d12` input prepared in your Codespace to this directory using the
+file-transfer method demonstrated during the laboratory (SFTP/SCP or
+MobaXterm).
+
+Confirm that the file is present:
+
+```bash
+ls
+```
+
+## Submit a CRYSTAL calculation
+
+For Laboratory 2 use exactly:
+
+```bash
+cluminer-crystal INPUT.d12 --cores-per-node 2 --threads 2
+```
+
+For example:
+
+```bash
+cluminer-crystal mgo_shrink2.d12 --cores-per-node 2 --threads 2
+```
+
+The resource choice corresponds to:
+
+```text
+1 node
+2 physical CPU cores
+1 MPI rank
+2 OpenMP threads
+```
+
+Do not request more cores for course calculations unless instructed.
+
+## What the launcher does
+
+The launcher prepares a Slurm job, stages the calculation to node-local scratch,
+runs CRYSTAL and returns the persistent results to your working directory.
+
+For an input called:
+
+```text
+mgo_shrink2.d12
+```
+
+the scientific text output is:
+
+```text
+mgo_shrink2.out
+```
+
+The calculation itself therefore does not run in your home directory.
+
+## Check the result
+
+After the job has completed:
+
+```bash
+ls
+```
+
+and check that the expected `.out` file is present.
+
+A valid scientific result must not be assumed simply because an output file
+exists. Laboratory 2 checks explicitly for SCF convergence and normal program
+termination.
+
+## Transfer the output back
+
+Copy the `.out` file to the corresponding directory in your Codespace:
+
+```text
+work/lab02/outputs/
+```
+
+The analysis notebook reads the files from there.
+
+## Resource rule for this course
+
+All calculations in the Laboratory 2 convergence series use the same:
+
+```bash
+--cores-per-node 2 --threads 2
+```
+
+Keeping the hardware request constant makes the timing comparison meaningful
+and avoids consuming unnecessary cluster resources.

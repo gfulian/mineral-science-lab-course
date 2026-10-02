@@ -1,10 +1,86 @@
 ---
-title: "Assignment 2 — Energy and geometry"
+title: "Assignment 2 — From structure to energy"
 ---
-## Before the next class
 
-TO BE ADDED.
+In Laboratory 2 we will perform our first electronic-structure calculations
+with **CRYSTAL23**. We will continue to use MgO (periclase), so that the
+structure remains simple while we concentrate on a new question:
 
-## Questions to think about
+> **When can we trust a calculated energy numerically?**
 
-TO BE ADDED.
+You are not expected to learn electronic-structure theory or the CRYSTAL input
+language in full. The aim is to understand the logic of a first-principles
+calculation, recognize the important parts of an input and output file, and
+perform a controlled convergence test.
+
+## Before the laboratory
+
+Read:
+
+- **Laboratory 2 — From structure to energy**;
+- the short **CRYSTAL input and output field guide**;
+- the **CluMiner** quick reference.
+
+Then update your personal workspace:
+
+```bash
+update-course
+```
+
+and create the Laboratory 2 working directory:
+
+```bash
+start-lab 02
+```
+
+Open:
+
+```text
+work/lab02/
+```
+
+You should find:
+
+```text
+01-first-scf.ipynb
+02-kpoint-convergence.ipynb
+inputs/
+outputs/
+reference-results/
+```
+
+The first notebook is guided. The second contains the convergence activity and
+your answers.
+
+::: {.callout-important}
+## Keep the numerical experiment controlled
+
+During the convergence test you will change **only the SHRINK factor**.
+
+The MgO structure, basis set, exchange-correlation functional, integral
+thresholds, SCF convergence threshold and computational resources must remain
+unchanged.
+:::
+
+## Calculation resources
+
+For every CRYSTAL calculation in this laboratory use:
+
+```bash
+cluminer-crystal INPUT.d12 --cores-per-node 2 --threads 2
+```
+
+This corresponds to one MPI rank using two OpenMP threads on two physical CPU
+cores. Do not request more resources unless instructed.
+
+## What you will produce
+
+By the end of the activity you should have:
+
+- CRYSTAL outputs for SHRINK values 2–9;
+- a table containing the reciprocal-space sampling, total energy and timings;
+- energy-difference values in both hartree and kJ mol$^{-1}$;
+- convergence and computational-cost plots;
+- a justified choice of the SHRINK value to use in subsequent MgO calculations.
+
+No separate report is required. Your answers remain in the notebook.
