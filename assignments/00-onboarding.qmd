@@ -1,10 +1,38 @@
 ---
 title: "Assignment 0 — Before the first laboratory"
 ---
-## Before the next class
 
-TO BE ADDED.
+Complete this short setup before the first computational laboratory. Its purpose
+is simply to verify that your personal environment works before class.
 
-## Questions to think about
+## Preparation
 
-TO BE ADDED.
+Read the five pages under **Getting Started** in order.
+
+Then complete the following checks in your own private workspace repository.
+
+- Your repository was created with **Use this template → Create a new repository**.
+- Your repository visibility is **Private**.
+- Your Codespace opens successfully.
+- The first environment initialization reaches `Environment ready.`.
+- The Python environment passes:
+
+  ```bash
+  python -c "import gemmi, spglib, numpy, scipy, pandas, matplotlib; print('Environment OK')"
+  ```
+
+- Both `update-course` and `start-lab` are available.
+- You can edit and save `work/SMOKE_TEST.md`.
+- You can commit and synchronize that change with GitHub.
+- You can see the updated file in your repository on github.com.
+- You can stop the Codespace and reopen the same Codespace successfully.
+
+::: {.callout-note}
+## No scientific work is required yet
+
+This onboarding task only checks the working environment. The first
+mineral-science notebook will be introduced during Laboratory 1.
+:::
+
+If any step fails, keep the exact error message and report it before the
+laboratory session.

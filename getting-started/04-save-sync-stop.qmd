@@ -2,17 +2,109 @@
 title: "Save, sync and stop"
 ---
 
-::: {.callout-important}
-## Always stop your Codespace when you finish
-Closing the browser tab is not the same as stopping the Codespace.
+Saving a notebook and saving your work to GitHub are **not the same operation**.
+
+This distinction is important.
+
+| Operation | What it does | Where the work exists |
+|---|---|---|
+| **Save** | Writes the current file in the Codespace | Remote Codespace disk |
+| **Commit** | Records a named snapshot of repository changes | Git history inside the Codespace |
+| **Sync Changes** | Sends your commits to GitHub | Your permanent GitHub repository |
+
+Your GitHub repository is the safety copy that should survive beyond the
+lifetime of an individual Codespace.
+
+## Save your files
+
+Save notebooks and other edited files normally with **File → Save** or
+`Ctrl+S` (`Cmd+S` on macOS).
+
+A saved file is safe when a Codespace is merely stopped and restarted, but it
+has not yet been transferred to your GitHub repository.
+
+## Commit your work
+
+Open **Source Control** using the branch-shaped icon in the left activity bar.
+
+You will see the files that have changed.
+
+1. Stage the relevant files using the **+** button.
+2. Enter a short but meaningful commit message, for example:
+
+   ```text
+   Complete Lab 1 symmetry analysis
+   ```
+
+3. Select **Commit**.
+
+For routine laboratory work it is acceptable to stage all files that belong to
+the current activity.
+
+::: {.callout-warning}
+## If you see "Publish Branch"
+
+Your personal workspace should already be connected to a GitHub repository.
+
+If Source Control asks you to **Publish Branch** instead of allowing you to
+synchronize normally, you may have opened a Codespace directly from the
+template rather than from your personal repository. Stop and ask the instructor
+before continuing.
 :::
 
-Before leaving:
+## Synchronize with GitHub
 
-1. Save all notebooks and files.
-2. Commit your changes.
-3. Sync them with GitHub.
-4. Verify the repository on GitHub.
-5. Stop the Codespace.
+After committing, select **Sync Changes**.
 
-Your GitHub repository is the permanent copy of your work.
+If GitHub asks you to confirm the synchronization, accept the operation.
+
+Then open your repository on GitHub in a normal browser tab and verify that your
+latest notebook or file is visible there.
+
+This simple check is especially useful during the first laboratory.
+
+## Stop the Codespace
+
+::: {.callout-important}
+## Closing the browser tab does not stop the Codespace
+
+Always stop the Codespace explicitly when you finish working.
+:::
+
+The most reliable method is:
+
+1. open <https://github.com/codespaces>;
+2. locate your Mineral Science Codespace;
+3. select the **...** menu;
+4. select **Stop codespace**.
+
+You can also stop it from inside Visual Studio Code:
+
+1. press `Ctrl+Shift+P` on Windows/Linux or `Cmd+Shift+P` on macOS;
+2. search for **Codespaces: Stop Current Codespace**;
+3. select the command.
+
+Stopping a Codespace ends the running virtual machine while preserving saved
+files for the next session. It also avoids unnecessary compute usage.
+
+Do **not** delete your Codespace as part of the normal workflow. Delete it only
+when explicitly instructed or when you are certain that all required work has
+already been synchronized to GitHub.
+
+## End-of-session routine
+
+Use the same sequence every time:
+
+```text
+SAVE
+  ↓
+COMMIT
+  ↓
+SYNC CHANGES
+  ↓
+VERIFY ON GITHUB
+  ↓
+STOP CODESPACE
+```
+
+Continue with **[Update course material](05-update-course-material.qmd)**.

@@ -1,4 +1,151 @@
 ---
-title: "GitHub Codespaces"
+title: "GitHub Codespaces — Quick reference"
 ---
-TO BE DEVELOPED.
+
+This page collects the routine Codespaces operations used during the Mineral
+Science laboratory.
+
+## Open or resume the workspace
+
+Open your private workspace repository and select:
+
+**Code → Codespaces**
+
+If an existing Codespace is listed, reopen it rather than creating a new one.
+
+You can also manage all your Codespaces at:
+
+<https://github.com/codespaces>
+
+## Recommended resource settings
+
+For this course, a **2-core** Codespace is sufficient.
+
+If you need to check or change the current machine, open
+<https://github.com/codespaces>, select the **...** menu for the Codespace and
+choose **Change machine type**.
+
+A **15-minute idle timeout** is recommended in your GitHub
+**Settings → Codespaces**. This is a safety measure; you should still stop the
+Codespace manually when finished.
+
+## First launch is slower
+
+Creating a Codespace for the first time requires GitHub to create the virtual
+machine, configure the development container and install the scientific Python
+environment.
+
+Wait for:
+
+```text
+Environment ready.
+```
+
+Restarting the same stopped Codespace is normally much faster.
+
+## Upload a file
+
+Drag a local file into the required folder in the Explorer.
+
+For course work, upload files into the appropriate directory under `work/`
+unless the laboratory instructions explicitly state otherwise.
+
+## Download a file
+
+Right-click the file in the Explorer and select **Download**.
+
+## Open a terminal
+
+Use:
+
+**Terminal → New Terminal**
+
+Useful checks include:
+
+```bash
+pwd
+ls
+python --version
+```
+
+## Update distributed material
+
+```bash
+update-course
+```
+
+## Start a laboratory
+
+```bash
+start-lab 01
+```
+
+Replace `01` with the laboratory number.
+
+## Save work to GitHub
+
+Use the Source Control panel:
+
+```text
+stage → commit → Sync Changes
+```
+
+Remember that saving a notebook does not automatically send it to GitHub.
+
+## Stop the Codespace
+
+Preferred browser method:
+
+<https://github.com/codespaces>
+
+then:
+
+**... → Stop codespace**
+
+Alternative from inside the Codespace:
+
+**Command Palette → Codespaces: Stop Current Codespace**
+
+Closing the browser tab alone does not stop the Codespace.
+
+## Delete a Codespace
+
+Deleting a Codespace is **not** part of the normal end-of-session workflow.
+
+Only delete it after confirming that all work you need has been committed and
+synchronized to GitHub.
+
+## Common problems
+
+### The first launch appears to be doing nothing
+
+Wait for the setup terminal to finish. Package installation during the first
+creation can take several minutes.
+
+### Python cannot import a course package
+
+Make sure the initial setup has completed. If the problem remains, keep the
+complete error message and contact the instructor rather than installing
+different package versions manually.
+
+### `update-course` reports an error
+
+Do not delete or overwrite `work/`. Save and synchronize your current work, then
+report the exact terminal message.
+
+### Source Control says `Publish Branch`
+
+Check that you created a private repository from the template **before**
+creating the Codespace. A Codespace opened directly from the template is not
+the intended course workflow.
+
+### The Codespace is still running after I closed the tab
+
+This is expected. Closing the web editor does not stop the remote machine.
+Open <https://github.com/codespaces> and stop it explicitly.
+
+## Official documentation
+
+GitHub maintains current documentation at:
+
+<https://docs.github.com/en/codespaces>

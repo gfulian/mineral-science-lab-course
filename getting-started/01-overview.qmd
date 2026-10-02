@@ -1,10 +1,71 @@
 ---
 title: "How the laboratory works"
 ---
-The laboratory uses three separate tools:
 
-1. this course website for instructions;
-2. a personal GitHub repository opened in Codespaces for notebook work;
-3. the CluMiner cluster for CRYSTAL calculations.
+The computational laboratory uses a browser-based working environment so that
+all students can use the same scientific software without installing and
+configuring Python packages locally.
 
-Your personal work must always be performed in the `work/` directory.
+The working environment has three separate components.
+
+| Component | What it contains | What you do there |
+|---|---|---|
+| **Course website** | Instructions, assignments, laboratory guides and reference pages | Read the material and follow the laboratory workflow |
+| **Personal GitHub workspace** | Notebooks, data, figures, answers and your own results | Work in GitHub Codespaces and save your progress |
+| **CluMiner** | Licensed and computationally expensive software | Run CRYSTAL calculations when instructed |
+
+The course website and your workspace are deliberately separate. You should
+**not duplicate this website repository**. Instead, you will create your own
+private repository from the dedicated Mineral Science workspace template.
+
+## Your personal workspace
+
+Your workspace repository contains two directories with very different roles:
+
+```text
+course/
+work/
+```
+
+`course/` contains material distributed by the teacher. It may be updated
+during the course.
+
+`work/` contains **your work**: notebooks, answers, uploaded data, figures and
+processed results.
+
+::: {.callout-important}
+## One rule prevents most problems
+
+**Do not edit files directly inside `course/`. Work inside `work/`.**
+:::
+
+When a new laboratory is released, the usual workflow is:
+
+```text
+update-course
+      ↓
+start-lab NN
+      ↓
+work/labNN/
+      ↓
+save → commit → sync
+      ↓
+stop Codespace
+```
+
+You do not need to understand Git internals to use this workflow. The necessary
+operations are introduced in the following pages.
+
+## What you need on your own computer
+
+You need:
+
+- a modern web browser;
+- a <a href="https://github.com/" target=_blakc>GitHub</a> account;
+- an internet connection;
+- later in the course, an SSH/SFTP client for access to CluMiner.
+
+Everything, from Python environment, Jupyter notebooks, and other tools are provided inside
+the Codespace.
+
+Continue with **[Create your personal workspace](02-create-workspace.qmd)**.

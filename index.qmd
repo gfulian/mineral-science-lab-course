@@ -3,19 +3,37 @@ title: "Computational Mineralogy Laboratory"
 ---
 
 This website contains the instructions and supporting material for the
-computational laboratory activities of the Mineral Science course.
+computational laboratory activities of the **Mineral Science** course.
 
-During the laboratory you will work in your own GitHub Codespaces environment.
+The laboratory environment is intentionally split into three parts:
 
-- **This website** contains instructions, assignments and reference material.
-- **Your personal workspace repository** contains notebooks, data and your own work.
-- **CluMiner** is used separately when CRYSTAL calculations are required.
+| Resource | Purpose |
+|---|---|
+| **This course website** | Instructions, assignments, laboratory guides and reference material |
+| **Your GitHub workspace** | Your notebooks, files, figures, results and answers |
+| **CluMiner** | CRYSTAL calculations when required by a laboratory |
+
+You do **not** need to install the scientific Python environment on your own
+computer. The notebook work is carried out in a personal GitHub Codespace.
+
+::: {.callout-important}
+## New to the laboratory?
+
+Start with **[How the laboratory works](getting-started/01-overview.qmd)** and
+complete the Getting Started pages in order **before the first laboratory
+session**.
+:::
 
 ## Laboratory path
 
-1. Crystal structures, CIF files and symmetry
-2. First-principles energy and geometry optimization
-3. Energy-volume data and equations of state
-4. Vibrations, phonons and thermodynamic properties
+The practical work will progressively connect crystal structures, energetic
+models, physical properties and mineral thermodynamics:
 
-Short questions are answered directly inside the laboratory notebooks.
+1. crystal structures, CIF files and symmetry;
+2. first-principles energy and geometry optimization;
+3. energy-volume data and equations of state;
+4. vibrations, phonons and thermodynamic properties.
+
+Short scientific questions are answered directly in the laboratory notebooks.
+The notebooks are part of your personal workspace and should be saved and
+synchronized regularly.

@@ -1,11 +1,103 @@
 ---
 title: "Working in Codespaces"
 ---
-Inside the workspace:
+
+A GitHub Codespace is a remote Linux computer that you control through a
+browser-based Visual Studio Code interface. The interface contains many tools,
+but only a small subset is needed for this course.
+
+## The four areas you will use
+
+**Explorer**  
+The file icon in the left activity bar. Use it to open notebooks and files and
+to navigate between `course/` and `work/`.
+
+**Notebook editor**  
+Opening an `.ipynb` file displays a Jupyter notebook. Run cells with the
+triangular **Run** button or with `Shift+Enter`. If you are asked to select a
+kernel, choose the Python environment provided by the Codespace.
+
+**Terminal**  
+Open it with **Terminal → New Terminal**. Course commands such as
+`update-course` and `start-lab` are run here.
+
+**Source Control**  
+The branch-shaped icon in the left activity bar. Use it to commit your work and
+synchronize it with GitHub.
+
+## Reopening your existing Codespace
+
+After the first session, do **not** create a new Codespace every time.
+
+You can reopen the existing one from either:
+
+- your personal workspace repository → **Code → Codespaces**; or
+- <https://github.com/codespaces>.
+
+Starting an existing stopped Codespace is normally much faster than creating a
+new one.
+
+## Where to work
+
+The workspace follows a simple rule:
 
 ```text
-course/   instructor-provided material: do not edit
-work/     your notebooks, results, figures and answers
+course/   instructor-controlled material
+work/     your personal work
 ```
 
-Never work directly inside `course/`.
+Your notebooks and answers belong under directories such as:
+
+```text
+work/lab01/
+work/lab02/
+```
+
+Do not use `course/` as a working directory. New or corrected course material
+may replace files there.
+
+## Uploading a local file
+
+Some laboratories may ask you to upload a CIF file or a CRYSTAL output from
+your own computer.
+
+Navigate to the appropriate directory under `work/` in the Explorer and drag
+the local file into the Explorer. Check that the file appears in the intended
+directory before continuing.
+
+## Downloading a file
+
+To copy a result from the Codespace to your computer, right-click the file in
+the Explorer and select **Download**.
+
+## A few useful terminal commands
+
+You only need a very small amount of Linux for the notebook part of the course:
+
+```bash
+pwd
+```
+
+shows the current directory.
+
+```bash
+ls
+```
+
+lists files and directories.
+
+```bash
+cd work/lab01
+```
+
+moves into a directory.
+
+```bash
+cd ..
+```
+
+moves one level upward.
+
+These are simply tools used to inspect and analyse mineral-science data.
+
+Continue with **[Save, sync and stop](04-save-sync-stop.qmd)**.

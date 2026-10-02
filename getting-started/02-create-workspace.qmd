@@ -1,13 +1,123 @@
 ---
 title: "Create your personal workspace"
 ---
-> **Workspace template:** TO BE LINKED
 
-1. Create a GitHub account.
-2. Open the workspace template repository.
-3. Select **Use this template** → **Create a new repository**.
-4. Create your repository as **Private**.
-5. Open **Code** → **Codespaces** → **Create codespace on main**.
-6. Wait for the environment to finish its first initialization.
+You only need to perform the complete procedure on this page once.
 
-The first initialization can take a few minutes.
+## 1. Sign in to GitHub
+
+Open [GitHub](https://github.com/) and sign in with your personal account. If
+you do not already have an account, create one before continuing.
+
+### Recommended Codespaces setting
+
+Before creating your first Codespace, open your GitHub account settings and
+select **Codespaces**.
+
+Set the **Default idle timeout** to **15 minutes**.
+
+This is a course recommendation. It limits unnecessary use of your Codespaces
+allowance if you forget to stop a session manually. You should still stop the
+Codespace explicitly whenever you finish working.
+
+## 2. Open the workspace template
+
+Open the course workspace repository:
+
+<https://github.com/gfulian/mineral-science-lab-workspace>
+
+::: {.callout-warning}
+## Do not fork the repository
+
+Do **not** use **Fork** and do **not** select **Open in a codespace** directly
+from the template.
+
+You must first create your own repository from the template. This ensures that
+your work is permanently connected to your own GitHub repository.
+:::
+
+## 3. Create your private repository
+
+On the workspace template page:
+
+1. Select **Use this template**.
+2. Select **Create a new repository**.
+3. Set **Owner** to your personal GitHub account.
+4. Give the repository a recognizable name, for example
+   `mineral-science-lab-yourname`.
+5. Select **Private** visibility.
+6. Leave **Include all branches** disabled.
+7. Select **Create repository from template**.
+
+You now have your own independent copy of the laboratory workspace.
+
+Keep this repository private unless the instructor explicitly asks you to
+change its visibility.
+
+## 4. Create the Codespace
+
+From **your new private repository**:
+
+1. Select the green **Code** button.
+2. Open the **Codespaces** tab.
+3. Select **Create codespace on main**.
+
+If GitHub offers a choice of machine type, select the **2-core** machine. The
+laboratory notebook work does not require a larger machine.
+
+The first initialization can take a few minutes. This is normal: GitHub is
+creating the remote Linux environment and the course setup is installing the
+required scientific Python packages.
+
+::: {.callout-note}
+## Wait for the setup to finish
+
+During the first launch, a terminal may display package installation messages.
+Wait until the setup reports:
+
+```text
+Environment ready.
+```
+
+before starting to work.
+:::
+
+## 5. Check the environment
+
+Open a terminal inside the Codespace using **Terminal → New Terminal** and run:
+
+```bash
+python -c "import gemmi, spglib, numpy, scipy, pandas, matplotlib; print('Environment OK')"
+```
+
+The final line should be:
+
+```text
+Environment OK
+```
+
+Then check that the two course commands are available:
+
+```bash
+command -v update-course
+command -v start-lab
+```
+
+Both commands should return a path.
+
+You can also inspect the top-level directories:
+
+```bash
+ls
+```
+
+You should see, among other files:
+
+```text
+course
+work
+```
+
+If these checks succeed, your laboratory environment is ready.
+
+Continue with **[Working in Codespaces](03-working-in-codespaces.qmd)**.

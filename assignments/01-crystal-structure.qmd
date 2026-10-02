@@ -1,10 +1,67 @@
 ---
 title: "Assignment 1 — Crystal structures and CIF files"
 ---
-## Before the next class
 
-TO BE ADDED.
+This first laboratory connects the crystallographic language used in the course
+with an actual structure file. Before the session, review the ideas of unit
+cell, fractional coordinates, asymmetric unit, symmetry-equivalent positions
+and space group.
 
-## Questions to think about
+You are **not** expected to write Python code. The notebooks provide the code
+needed to inspect the structure. Your task is to understand what the
+calculation is doing and to interpret the crystallographic information that it
+returns.
 
-TO BE ADDED.
+## Before the laboratory
+
+Open your existing Mineral Science Codespace and update the distributed course
+material:
+
+```bash
+update-course
+```
+
+Then create your working copy of Laboratory 1:
+
+```bash
+start-lab 01
+```
+
+Open:
+
+```text
+work/lab01/
+```
+
+You should find:
+
+```text
+01-guided-mgo.ipynb
+02-assigned-structure.ipynb
+data/MgO.cif
+```
+
+The first notebook is completed together during the laboratory using MgO
+(periclase). The second notebook is an individual activity based on a CIF
+assigned by the instructor.
+
+::: {.callout-important}
+## Work only in `work/lab01/`
+
+Do not edit the original files under `course/labs/lab01/`.
+:::
+
+## What you should be able to explain afterwards
+
+By the end of the activity you should be able to explain:
+
+- what information a CIF contains;
+- the difference between the asymmetric unit and the complete unit cell;
+- how symmetry operations generate equivalent atomic positions;
+- what a Wyckoff position and its multiplicity represent;
+- why a numerical symmetry search requires a tolerance;
+- why visualizing a structure is useful for inspection but does not replace a
+  crystallographic analysis.
+
+Your answers are written directly in the notebooks. No separate report is
+required.

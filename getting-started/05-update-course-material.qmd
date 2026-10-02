@@ -1,17 +1,102 @@
 ---
 title: "Update course material"
 ---
-Before starting newly released material:
+
+The laboratory workspace is distributed at the beginning of the course, but
+new notebooks, data files, reference results or corrections may be released
+later.
+
+You do **not** need to create a new repository when this happens.
+
+The workspace provides the command:
 
 ```bash
 update-course
 ```
 
-Then create your personal working copy, for example:
+which retrieves the current instructor version of the material stored under
+`course/`.
+
+Your personal `work/` directory is not replaced by this operation.
+
+## Before starting a newly released laboratory
+
+Open the terminal in your existing Codespace and run:
+
+```bash
+update-course
+```
+
+Read the message printed by the command.
+
+If the material is already current, no further update is required.
+
+If new files have been retrieved, you may see them listed as changes in Source
+Control. This is expected: they are now part of your personal repository copy
+of the current course material.
+
+## Create your personal working copy
+
+When you start a laboratory for the first time, use:
+
+```bash
+start-lab NN
+```
+
+where `NN` is the two-digit laboratory number.
+
+For example:
 
 ```bash
 start-lab 01
 ```
 
-The update command modifies only instructor-controlled course material and does
-not touch your `work/` directory.
+creates the working material for Laboratory 1 under:
+
+```text
+work/lab01/
+```
+
+Open and edit the files in `work/lab01/`, not the source material under
+`course/labs/lab01/`.
+
+Running `start-lab` again does not overwrite files that already exist in your
+personal working directory.
+
+## Typical start-of-laboratory workflow
+
+For Laboratory 2, for example:
+
+```bash
+update-course
+start-lab 02
+```
+
+Then open:
+
+```text
+work/lab02/
+```
+
+and begin the activity.
+
+::: {.callout-important}
+## Protect your own work
+
+The update mechanism is designed around the separation:
+
+```text
+course/  → distributed material
+work/    → student work
+```
+
+Do not store your answers or edited notebooks inside `course/`.
+:::
+
+## If an update reports an error
+
+Do not try to repair Git history or remove files at random.
+
+Save your current work, synchronize it with GitHub if possible, and show the
+error message to the instructor. Most update problems can be resolved without
+losing anything in `work/`.
