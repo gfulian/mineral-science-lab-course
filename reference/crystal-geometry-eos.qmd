@@ -1,0 +1,70 @@
+---
+title: "CRYSTAL geometry and EOS keywords"
+---
+
+This page is a quick reference for the geometry-optimization keywords used in
+Laboratory 3. For the scientific explanation, read the Laboratory 3 page.
+
+## Full geometry optimization
+
+```text
+OPTGEOM
+FULLOPTG
+TOLDEG
+0.0004
+TOLDEX
+0.0001
+TOLDEE
+8
+PRINTFORCES
+END
+```
+
+`FULLOPTG` allows optimization of both cell and symmetry-allowed internal
+coordinates.
+
+`TOLDEG` controls the RMS gradient criterion.
+
+`TOLDEX` controls the RMS displacement criterion.
+
+`TOLDEE 8` corresponds to an optimization energy-change threshold of
+$10^{-8}$ hartree.
+
+`PRINTFORCES` requests additional atomic-gradient information.
+
+## Constant-volume optimization
+
+For an EOS point:
+
+```text
+OPTGEOM
+CVOLOPT
+TOLDEG
+0.0004
+TOLDEX
+0.0001
+TOLDEE
+8
+END
+```
+
+`CVOLOPT` keeps the volume fixed while relaxing any other structural degrees of
+freedom allowed by symmetry.
+
+## Why the two calculations are different
+
+A free geometry optimization asks:
+
+> What volume and structure minimize the energy?
+
+A constant-volume optimization asks:
+
+> At this *specified* volume, what structure has the lowest energy?
+
+The second question is the one required for an energy–volume EOS dataset.
+
+## Official reference
+
+CRYSTAL documentation:
+
+<https://www.crystal.unito.it/documentation.html>

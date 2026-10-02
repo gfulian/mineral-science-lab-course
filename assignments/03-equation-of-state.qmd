@@ -1,10 +1,92 @@
 ---
-title: "Assignment 3 — Equation of state"
+title: "Assignment 3 — Geometry optimization and equation of state"
 ---
-## Before the next class
 
-TO BE ADDED.
+Laboratory 3 starts from the MgO model used in the previous activity and asks
+two new questions:
 
-## Questions to think about
+> **What is the equilibrium geometry predicted by our computational model?**
 
-TO BE ADDED.
+and
+
+> **How does the energy of that crystal change when we compress or expand it?**
+
+The work is divided into two connected parts:
+
+1. a full geometry optimization of MgO;
+2. a static energy–volume equation-of-state calculation.
+
+The optimized structure from the first part becomes the reference structure for
+the second.
+
+## Before the laboratory
+
+Read:
+
+- **Laboratory 3 — From equilibrium structure to an equation of state**;
+- the updated **CRYSTAL input and output field guide**;
+- the **CluMiner** quick reference if you need to review job submission.
+
+Then update your personal workspace:
+
+```bash
+update-course
+```
+
+and create the Laboratory 3 working directory:
+
+```bash
+start-lab 03
+```
+
+Open:
+
+```text
+work/lab03/
+```
+
+You should find:
+
+```text
+01-geometry-optimization.ipynb
+02-equation-of-state.ipynb
+inputs/
+outputs/
+reference-results/
+```
+
+## Use the k-point sampling you selected in Laboratory 2
+
+The geometry and EOS calculations should use the SHRINK value justified by your
+Laboratory 2 convergence test.
+
+The distributed inputs contain a placeholder working value. Replace it if your
+chosen value is different, but keep that value fixed throughout Laboratory 3.
+
+## Cluster resources
+
+Use the same resource request as before:
+
+```bash
+cluminer-crystal INPUT.d12 --cores-per-node 2 --threads 2
+```
+
+Do not increase the number of cores.
+
+## What you will produce
+
+At the end of the activity your notebook should contain:
+
+- the optimized MgO lattice parameter and cell volume;
+- a comparison between the experimental starting geometry and the static DFT
+  equilibrium geometry;
+- an explanation of why the Mg and O fractional coordinates do not move;
+- an energy–volume dataset around the optimized structure;
+- a third-order Birch–Murnaghan (BM3) fit;
+- the fitted $V_0$, $K_0$ and $K'_0$;
+- an $E(V)$ plot;
+- a $P(V)$ plot reconstructed from the fitted energy relation;
+- a short interpretation of the bulk modulus.
+
+The repeated extraction and fitting steps are handled by Quantas so that the
+scientific work remains focused on interpretation rather than transcription.

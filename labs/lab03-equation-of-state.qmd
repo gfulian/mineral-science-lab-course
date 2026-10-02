@@ -1,22 +1,381 @@
 ---
-title: "Laboratory 3 — From energy to an equation of state"
+title: "Laboratory 3 — From equilibrium structure to an equation of state"
 ---
-## Scientific question
 
-TO BE DEFINED.
+The structure used in an electronic-structure calculation usually comes from
+experiment. That is an excellent place to begin, but it is not automatically
+the equilibrium structure of the computational model.
 
-## Before the laboratory
+This distinction is easy to overlook. A CIF describes a structure observed
+under particular experimental conditions. The static DFT calculation used in
+this laboratory describes a different idealized situation: the electronic
+ground-state energy of a periodic crystal within a chosen functional and basis
+set, without thermal expansion and without vibrational free-energy
+contributions.
 
-TO BE DEFINED.
+Laboratory 3 therefore begins by asking:
 
-## Tasks
+> **Where is the minimum of the energy surface defined by our DFT model?**
 
-TO BE DEVELOPED.
+Once that minimum has been found, we deliberately move away from it and ask:
 
-## Questions
+> **How costly is it, in energy, to compress or expand the crystal?**
 
-Questions are answered directly in your personal notebook.
+The answer leads directly to an **equation of state** and to one of the most
+important mechanical properties of a mineral: the bulk modulus.
 
-## What to save
+## Why optimize an experimental structure?
 
-TO BE DEFINED.
+Suppose that an experimental CIF gives a cell parameter $a_\mathrm{exp}$ and a
+set of atomic coordinates. If we evaluate the DFT energy at that geometry, we
+obtain a perfectly valid energy for that particular configuration. But the
+geometry is not guaranteed to minimize the energy of our computational model.
+
+Several reasons contribute to this.
+
+First, an experimental lattice parameter is normally measured at a finite
+temperature, often close to ambient conditions. Thermal expansion is therefore
+already present in the observation. Our present calculation is a **static**
+electronic-structure calculation. It does not yet contain the vibrational free
+energy responsible for finite-temperature expansion, and it does not include
+zero-point vibrational effects unless they are added explicitly later.
+
+Second, the chosen density functional and basis set define an approximate
+energy surface. Even at exactly $0$ K and zero external pressure, their
+predicted equilibrium geometry need not coincide perfectly with experiment.
+
+The purpose of geometry optimization is therefore not to "correct" the
+experiment. It is to find the structure that is internally consistent with the
+computational model we have chosen.
+
+## Forces, stress and the minimum-energy structure
+
+For a periodic crystal, geometry may involve both:
+
+- **internal degrees of freedom**, describing atomic positions within the cell;
+- **cell degrees of freedom**, describing lattice parameters and cell shape.
+
+At equilibrium, the gradient of the energy with respect to every *allowed*
+degree of freedom should vanish within the selected numerical tolerances.
+
+Atomic forces are related to derivatives of the energy with respect to atomic
+coordinates:
+
+$$
+\mathbf{F}_i =
+-\frac{\partial E}{\partial \mathbf{r}_i}.
+$$
+
+The stress tensor plays the corresponding role for deformation of the unit
+cell. If no external pressure or stress is applied, the equilibrium cell is the
+one for which the residual internal stress vanishes within the numerical
+accuracy of the calculation.
+
+This distinction matters particularly for MgO.
+
+## Why MgO is an unusually clean example
+
+Periclase has the rocksalt structure, space group $Fm\bar{3}m$. Mg and O occupy
+special symmetry positions. Their fractional coordinates are fixed by the
+space-group symmetry.
+
+This has an interesting consequence: the atomic forces may already vanish by
+symmetry even when the lattice parameter is not the equilibrium one.
+
+The structure can therefore require a geometry optimization **without any
+atomic coordinate moving at all**. What changes is the unit cell, driven by its
+residual stress.
+
+This is a useful reminder that
+
+```text
+zero atomic forces
+```
+
+does not necessarily mean
+
+```text
+fully optimized periodic crystal.
+```
+
+The cell itself may still be away from equilibrium.
+
+## Full geometry optimization in CRYSTAL
+
+CRYSTAL performs geometry optimization through the `OPTGEOM` block. In this
+laboratory we use:
+
+```text
+OPTGEOM
+FULLOPTG
+...
+END
+```
+
+`FULLOPTG` allows optimization of both the cell and the internal coordinates
+that are permitted by symmetry.
+
+The optimization is stopped when numerical criteria on the gradient,
+displacement and energy change are satisfied.
+
+For the course calculation we use:
+
+```text
+TOLDEG = 0.0004
+TOLDEX = 0.0001
+TOLDEE = 10^-8
+```
+
+The first two are criteria on the RMS gradient and RMS displacement,
+respectively; `TOLDEE` controls the energy difference between optimization
+steps.
+
+These are numerical stopping conditions. They do not define the physical model
+and they do not make the DFT approximation itself more accurate.
+
+The CRYSTAL23 manual documents `FULLOPTG`, `CVOLOPT`, `TOLDEG`, `TOLDEX` and
+`TOLDEE` in the `OPTGEOM` input block:
+
+<https://www.crystal.unito.it/documentation.html>
+
+## Which cell is CRYSTAL printing?
+
+MgO provides another useful crystallographic trap.
+
+The familiar crystallographic description is a **conventional cubic
+face-centred cell** with one cubic lattice parameter $a$.
+
+A primitive cell of the same FCC lattice can instead be described by three
+equal vectors separated by $60^\circ$. Its numerical cell parameters therefore
+look very different even though it represents exactly the same infinite
+crystal.
+
+CRYSTAL may print different cell representations in different parts of an
+output. When a cell no longer "looks cubic", do not immediately conclude that
+the cubic symmetry has been lost. First identify whether you are looking at a
+primitive or crystallographic representation.
+
+That distinction will return when Quantas normalizes energy–volume data.
+
+## From one equilibrium point to a compression curve
+
+Once the static equilibrium geometry is known, we can investigate how the
+crystal responds to changes in volume.
+
+Experimentally, high-pressure mineral physics often approaches this problem
+using **X-ray diffraction in a diamond-anvil cell**. Pressure is applied to the
+sample and the evolution of its lattice parameters and volume is measured.
+
+A static electronic-structure calculation can approach the same constitutive
+behaviour from a complementary direction. Instead of physically applying a
+pressure, we calculate a set of structures at selected volumes and evaluate
+their energies.
+
+This produces an energy–volume path:
+
+$$
+E(V).
+$$
+
+The pressure associated with that path is obtained from the derivative
+
+$$
+P(V) =
+-\frac{dE}{dV}.
+$$
+
+Equivalently,
+
+$$
+E(V)-E(V_\mathrm{ref})
+=
+-\int_{V_\mathrm{ref}}^{V} P(V')\,dV'.
+$$
+
+This is why an energy–volume calculation contains the information needed to
+reconstruct a static pressure–volume relation.
+
+## What is an equation of state?
+
+In thermodynamics, an **equation of state** is a mathematical relation between
+state variables. For a solid under compression we are especially interested in
+the relation between pressure and volume.
+
+In the present static calculation, the EOS is parameterized by fitting the
+computed $E(V)$ data. The fit provides a smooth representation of the energy
+surface and therefore, through $P=-dE/dV$, a smooth pressure–volume relation.
+
+We will use a **third-order Birch–Murnaghan equation of state (BM3)**.
+
+The purpose here is not to derive the finite-strain formalism. The important
+point is what the fitted parameters mean:
+
+- $E_0$: minimum static energy;
+- $V_0$: equilibrium volume;
+- $K_0$: bulk modulus at equilibrium;
+- $K'_0$: first pressure derivative of the bulk modulus.
+
+The fitted $V_0$ should be close to the volume obtained from the direct geometry
+optimization. If it is not, that discrepancy is something to investigate.
+
+## Bulk modulus: how difficult is the crystal to compress?
+
+The isothermal bulk modulus is defined as
+
+$$
+K =
+-V\left(\frac{\partial P}{\partial V}\right)_T.
+$$
+
+At the equilibrium volume,
+
+$$
+K_0 =
+-V_0
+\left(\frac{\partial P}{\partial V}\right)_{V_0}.
+$$
+
+A large bulk modulus means that a large pressure change is required to produce
+a given fractional change in volume: the material is relatively
+incompressible. A smaller bulk modulus corresponds to a more compressible
+material.
+
+In the present calculation $K_0$ is a **static** bulk modulus derived from the
+DFT energy surface. Temperature-dependent experimental values need not be
+identical.
+
+## Why constant-volume optimization?
+
+To construct an EOS we need the minimum energy *at each selected volume*.
+
+If we simply changed the volume and then performed another completely free
+`FULLOPTG` calculation, every point would attempt to return to the same
+equilibrium volume. We would destroy the independent variable of the
+experiment.
+
+CRYSTAL therefore provides:
+
+```text
+CVOLOPT
+```
+
+for full geometry optimization **at constant volume**.
+
+The logic is:
+
+```text
+choose V
+   ↓
+keep V fixed
+   ↓
+relax all structural degrees of freedom
+that remain allowed
+   ↓
+obtain the minimum E compatible with V
+```
+
+For a lower-symmetry mineral this may involve genuine changes in cell shape and
+internal coordinates.
+
+For cubic MgO the situation is particularly simple. At fixed volume the cubic
+symmetry fixes the cell shape, and the Mg and O coordinates are fixed by their
+special positions. Almost no structural freedom remains. A constant-volume
+optimization may therefore converge essentially immediately.
+
+That apparently trivial result is itself instructive:
+
+> **symmetry determines which structural degrees of freedom exist.**
+
+## Choosing the volume series
+
+The reference volume is the volume of the optimized static structure, $V_0$.
+
+We use the factors
+
+$$
+\frac{V}{V_0}
+=
+0.91,\;
+0.94,\;
+0.97,\;
+1.00,\;
+1.03,\;
+1.06,\;
+1.09.
+$$
+
+For a cubic crystal,
+
+$$
+V=a^3.
+$$
+
+Therefore the lattice parameter cannot be scaled by the same numerical factor
+as the volume. For a target volume factor $f$,
+
+$$
+a(f)=a_0 f^{1/3}.
+$$
+
+This cube-root relation matters. Setting $a=0.91a_0$ would not give
+$V=0.91V_0$; it would give
+
+$$
+V=(0.91)^3V_0 \approx 0.754V_0,
+$$
+
+which is a much stronger compression.
+
+The notebook calculates the correct target lattice parameters for you.
+
+## The role of Quantas
+
+The EOS analysis is performed with **Quantas 2.0**.
+
+Quantas can read a list of CRYSTAL outputs, normalize their structural and
+energetic information consistently, generate an energy–volume dataset and fit
+an integrated EOS. For this laboratory we ask it to express the results in the
+**conventional crystallographic cell**, which makes the fitted cubic lattice
+parameter directly comparable with the MgO cell used in the course.
+
+The Quantas energy–volume workflow reconstructs pressure from the fitted energy
+relation using
+
+$$
+P(V)=-\frac{dE}{dV}.
+$$
+
+The current MgO energy–volume tutorial in the Quantas documentation uses the
+same type of seven-point CRYSTAL dataset and a BM3 fit:
+
+<https://quantas.readthedocs.io/en/2.0.0-beta/tutorials/eos_ev.html>
+
+The software performs the repetitive numerical work. Your task is to decide
+whether the data and fitted parameters make physical sense.
+
+## The complete workflow
+
+The activity follows one continuous chain:
+
+```text
+experimental MgO structure
+        ↓
+full static geometry optimization
+        ↓
+DFT equilibrium structure
+        ↓
+choose V/V0 values
+        ↓
+constant-volume calculations
+        ↓
+E(V) dataset
+        ↓
+BM3 fit
+        ↓
+V0, K0, K'0
+        ↓
+P(V) and interpretation
+```
+
+This is the first laboratory in which a sequence of electronic-structure
+calculations becomes a macroscopic mineral property.
