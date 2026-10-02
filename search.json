@@ -233,12 +233,89 @@
   {
     "objectID": "reference/cluminer.html",
     "href": "reference/cluminer.html",
-    "title": "CluMiner",
+    "title": "CluMiner — Laboratory quick reference",
     "section": "",
-    "text": "TO BE DEVELOPED.",
+    "text": "CluMiner is used in this course for calculations that cannot or should not run inside GitHub Codespaces. In particular, CRYSTAL23 runs on CluMiner.\nThis page contains only the operations needed by students. Cluster administration, Slurm configuration and MPI topology are outside the scope of Mineral Science.",
     "crumbs": [
       "Reference",
-      "CluMiner"
+      "CluMiner — Laboratory quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/cluminer.html#connect",
+    "href": "reference/cluminer.html#connect",
+    "title": "CluMiner — Laboratory quick reference",
+    "section": "Connect",
+    "text": "Connect\nUse the access method provided during the course. Once connected, create a working directory for the activity and keep each laboratory organised.\nExample:\nmkdir -p ~/mineral-science/lab02\ncd ~/mineral-science/lab02",
+    "crumbs": [
+      "Reference",
+      "CluMiner — Laboratory quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/cluminer.html#transfer-an-input",
+    "href": "reference/cluminer.html#transfer-an-input",
+    "title": "CluMiner — Laboratory quick reference",
+    "section": "Transfer an input",
+    "text": "Transfer an input\nCopy the .d12 input prepared in your Codespace to this directory using the file-transfer method demonstrated during the laboratory (SFTP/SCP or MobaXterm).\nConfirm that the file is present:\nls",
+    "crumbs": [
+      "Reference",
+      "CluMiner — Laboratory quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/cluminer.html#submit-a-crystal-calculation",
+    "href": "reference/cluminer.html#submit-a-crystal-calculation",
+    "title": "CluMiner — Laboratory quick reference",
+    "section": "Submit a CRYSTAL calculation",
+    "text": "Submit a CRYSTAL calculation\nFor Laboratory 2 use exactly:\ncluminer-crystal INPUT.d12 --cores-per-node 2 --threads 2\nFor example:\ncluminer-crystal mgo_shrink2.d12 --cores-per-node 2 --threads 2\nThe resource choice corresponds to:\n1 node\n2 physical CPU cores\n1 MPI rank\n2 OpenMP threads\nDo not request more cores for course calculations unless instructed.",
+    "crumbs": [
+      "Reference",
+      "CluMiner — Laboratory quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/cluminer.html#what-the-launcher-does",
+    "href": "reference/cluminer.html#what-the-launcher-does",
+    "title": "CluMiner — Laboratory quick reference",
+    "section": "What the launcher does",
+    "text": "What the launcher does\nThe launcher prepares a Slurm job, stages the calculation to node-local scratch, runs CRYSTAL and returns the persistent results to your working directory.\nFor an input called:\nmgo_shrink2.d12\nthe scientific text output is:\nmgo_shrink2.out\nThe calculation itself therefore does not run in your home directory.",
+    "crumbs": [
+      "Reference",
+      "CluMiner — Laboratory quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/cluminer.html#check-the-result",
+    "href": "reference/cluminer.html#check-the-result",
+    "title": "CluMiner — Laboratory quick reference",
+    "section": "Check the result",
+    "text": "Check the result\nAfter the job has completed:\nls\nand check that the expected .out file is present.\nA valid scientific result must not be assumed simply because an output file exists. Laboratory 2 checks explicitly for SCF convergence and normal program termination.",
+    "crumbs": [
+      "Reference",
+      "CluMiner — Laboratory quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/cluminer.html#transfer-the-output-back",
+    "href": "reference/cluminer.html#transfer-the-output-back",
+    "title": "CluMiner — Laboratory quick reference",
+    "section": "Transfer the output back",
+    "text": "Transfer the output back\nCopy the .out file to the corresponding directory in your Codespace:\nwork/lab02/outputs/\nThe analysis notebook reads the files from there.",
+    "crumbs": [
+      "Reference",
+      "CluMiner — Laboratory quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/cluminer.html#resource-rule-for-this-course",
+    "href": "reference/cluminer.html#resource-rule-for-this-course",
+    "title": "CluMiner — Laboratory quick reference",
+    "section": "Resource rule for this course",
+    "text": "Resource rule for this course\nAll calculations in the Laboratory 2 convergence series use the same:\n--cores-per-node 2 --threads 2\nKeeping the hardware request constant makes the timing comparison meaningful and avoids consuming unnecessary cluster resources.",
+    "crumbs": [
+      "Reference",
+      "CluMiner — Laboratory quick reference"
     ]
   },
   {
@@ -246,7 +323,51 @@
     "href": "reference/crystal-input-output.html",
     "title": "CRYSTAL input and output field guide",
     "section": "",
-    "text": "TO BE DEVELOPED.",
+    "text": "CRYSTAL input files can become complex, but the first Mineral Science calculation needs only a small subset of that language.\nThe objective is not to memorize keywords. It is to recognize which part of the scientific model a keyword controls.",
+    "crumbs": [
+      "Reference",
+      "CRYSTAL input and output field guide"
+    ]
+  },
+  {
+    "objectID": "reference/crystal-input-output.html#the-input-blocks-used-in-laboratory-2",
+    "href": "reference/crystal-input-output.html#the-input-blocks-used-in-laboratory-2",
+    "title": "CRYSTAL input and output field guide",
+    "section": "The input blocks used in Laboratory 2",
+    "text": "The input blocks used in Laboratory 2\nA useful mental map is:\nSTRUCTURE\n    periodicity\n    space group\n    cell parameters\n    independent atoms\n\nBASIS SET\n    Gaussian basis used for the atomic orbitals\n\nDFT\n    exchange-correlation functional\n\nNUMERICAL CONTROL\n    integral thresholds\n    SCF energy convergence\n    reciprocal-space sampling\nThe distributed MgO input uses:\nBASISSET\nPOB-TZVP-REV2\nand:\nDFT\nPBE\nEND\nThe reciprocal-space sampling is controlled by:\nSHRINK\n2 2\nIn Laboratory 2, only the two values following SHRINK are changed.",
+    "crumbs": [
+      "Reference",
+      "CRYSTAL input and output field guide"
+    ]
+  },
+  {
+    "objectID": "reference/crystal-input-output.html#what-to-recognize-in-the-output",
+    "href": "reference/crystal-input-output.html#what-to-recognize-in-the-output",
+    "title": "CRYSTAL input and output field guide",
+    "section": "What to recognize in the output",
+    "text": "What to recognize in the output\n\nSampling\nCRYSTAL prints a line similar to:\nSHRINK. FACT.(MONKH.) ... NUMBER OF K POINTS IN THE IBZ ...\nThis gives both the Monkhorst sampling and the number of k-points that remain after symmetry reduction to the irreducible Brillouin zone.\n\n\nSCF cycles\nDuring the self-consistent field procedure CRYSTAL prints lines beginning with:\nCYC\nThese contain the current total energy and the change with respect to the previous cycle.\n\n\nSuccessful SCF convergence\nFor this laboratory the parser requires a line containing:\nSCF ENDED - CONVERGENCE ON ENERGY\nThe final energy printed on that line is the value analysed in the notebook.\n\n\nTiming\nNear the end of a normal calculation, CRYSTAL reports:\nEND ... TELAPSE ... TCPU ...\nTELAPSE is the wall-clock time experienced by the calculation.\nTCPU is accumulated CPU time. With parallel execution, CPU time and elapsed time are not expected to be identical.\n\n\nNormal termination\nA complete run ends with a termination marker. The course parser checks this as well as SCF convergence.",
+    "crumbs": [
+      "Reference",
+      "CRYSTAL input and output field guide"
+    ]
+  },
+  {
+    "objectID": "reference/crystal-input-output.html#if-an-output-is-incomplete",
+    "href": "reference/crystal-input-output.html#if-an-output-is-incomplete",
+    "title": "CRYSTAL input and output field guide",
+    "section": "If an output is incomplete",
+    "text": "If an output is incomplete\nDo not copy the last visible energy into your results table.\nAn interrupted calculation may contain several perfectly plausible SCF energy values without having reached the requested convergence. Keep the output and inspect the error rather than treating it as a result.",
+    "crumbs": [
+      "Reference",
+      "CRYSTAL input and output field guide"
+    ]
+  },
+  {
+    "objectID": "reference/crystal-input-output.html#official-documentation",
+    "href": "reference/crystal-input-output.html#official-documentation",
+    "title": "CRYSTAL input and output field guide",
+    "section": "Official documentation",
+    "text": "Official documentation\nThe current CRYSTAL documentation and user manual are available at:\nhttps://www.crystal.unito.it/documentation.html",
     "crumbs": [
       "Reference",
       "CRYSTAL input and output field guide"
@@ -411,62 +532,128 @@
     "href": "labs/lab02-energy-geometry.html",
     "title": "Laboratory 2 — From structure to energy",
     "section": "",
-    "text": "TO BE DEFINED.",
+    "text": "In the first laboratory a CIF was enough to describe where the atoms are and how symmetry generates a periodic crystal. We now ask a different question:\nThis sounds like a request for a single number. It is not. A first-principles calculation contains both a physical model and a set of numerical approximations. Understanding the difference between them is one of the most important habits in computational mineralogy.\nWe will again use MgO. This is deliberate. Periclase is structurally simple, small enough that calculations are fast, and still a genuine periodic ionic solid. We can therefore concentrate on the logic of the calculation rather than on the complexity of the mineral.",
     "crumbs": [
       "Laboratories",
       "Laboratory 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "labs/lab02-energy-geometry.html#scientific-question",
-    "href": "labs/lab02-energy-geometry.html#scientific-question",
+    "objectID": "labs/lab02-energy-geometry.html#a-map-of-the-calculation",
+    "href": "labs/lab02-energy-geometry.html#a-map-of-the-calculation",
     "title": "Laboratory 2 — From structure to energy",
-    "section": "",
-    "text": "TO BE DEFINED.",
+    "section": "A map of the calculation",
+    "text": "A map of the calculation\nThe calculation can be viewed as a sequence:\ncrystal structure\n      ↓\nelectronic-structure model\n      ├── basis set\n      └── exchange-correlation functional\n      ↓\nnumerical choices\n      ├── reciprocal-space sampling\n      ├── integral thresholds\n      └── SCF convergence threshold\n      ↓\nself-consistent solution\n      ↓\ntotal energy\n      ↓\nnumerical convergence test\nThe distinction between the two middle levels is essential.\nModel accuracy asks whether the chosen physical approximation is suitable for the scientific problem. A different exchange-correlation functional, for example, defines a different approximation to the electronic problem.\nNumerical convergence asks whether the chosen model has been solved accurately enough. Increasing the number of k-points does not change PBE into a better density functional; it reduces one numerical error within a PBE calculation.\nA calculation can therefore be tightly converged and still disagree with experiment because the physical model is incomplete. Conversely, a sophisticated physical model can give poor results if its numerical parameters are not converged.",
     "crumbs": [
       "Laboratories",
       "Laboratory 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "labs/lab02-energy-geometry.html#before-the-laboratory",
-    "href": "labs/lab02-energy-geometry.html#before-the-laboratory",
+    "objectID": "labs/lab02-energy-geometry.html#density-functional-theory-without-the-machinery",
+    "href": "labs/lab02-energy-geometry.html#density-functional-theory-without-the-machinery",
     "title": "Laboratory 2 — From structure to energy",
-    "section": "Before the laboratory",
-    "text": "Before the laboratory\nTO BE DEFINED.",
+    "section": "Density functional theory, without the machinery",
+    "text": "Density functional theory, without the machinery\nThe electrons in a mineral require a quantum-mechanical description. Solving the full interacting many-electron problem directly is impractical for the systems of interest here. Density functional theory (DFT) reformulates the problem around the electron density and leads to a practical set of Kohn–Sham equations that are solved iteratively.\nThe part of the energy associated with exchange and correlation is not known exactly for general systems and must be approximated by an exchange-correlation functional.\nA useful qualitative organization is often called Jacob’s ladder:\n\n\n\nLevel\nTypical family\nGeneral idea\n\n\n\n\n1\nLDA\ndepends on the local density\n\n\n2\nGGA\nadds information on density gradients\n\n\n3\nmeta-GGA\nincludes additional semilocal information\n\n\n4\nhybrid\nmixes part of exact Hartree–Fock exchange\n\n\n\nGoing upward generally changes both the mathematical model and the computational cost. It does not mean that a higher rung is automatically better for every material and every property.\nIn this laboratory the functional is PBE, a GGA functional. The functional is fixed: it is not part of today’s convergence experiment.",
     "crumbs": [
       "Laboratories",
       "Laboratory 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "labs/lab02-energy-geometry.html#tasks",
-    "href": "labs/lab02-energy-geometry.html#tasks",
+    "objectID": "labs/lab02-energy-geometry.html#the-basis-set-the-language-used-for-the-orbitals",
+    "href": "labs/lab02-energy-geometry.html#the-basis-set-the-language-used-for-the-orbitals",
     "title": "Laboratory 2 — From structure to energy",
-    "section": "Tasks",
-    "text": "Tasks\nTO BE DEVELOPED.",
+    "section": "The basis set: the language used for the orbitals",
+    "text": "The basis set: the language used for the orbitals\nCRYSTAL represents crystalline orbitals using localized Gaussian basis functions centred on atoms. A basis set is therefore the numerical language used to represent the electronic wavefunctions.\nA larger and more flexible basis can represent the electronic structure more accurately, but generally increases computational cost and may introduce its own numerical difficulties.\nFor this laboratory we use the internally available POB-TZVP-REV2 basis set. It is already selected for you. You should be able to recognize the basis-set section of the input, but you are not being asked to optimize the basis set.\n\n\n\n\n\n\nNoteFixed does not mean universally optimal\n\n\n\nPBE and POB-TZVP-REV2 are kept fixed so that we can isolate one numerical question. Their use here does not establish that this combination is the best possible model for every MgO property.",
     "crumbs": [
       "Laboratories",
       "Laboratory 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "labs/lab02-energy-geometry.html#questions",
-    "href": "labs/lab02-energy-geometry.html#questions",
+    "objectID": "labs/lab02-energy-geometry.html#the-self-consistent-field-cycle",
+    "href": "labs/lab02-energy-geometry.html#the-self-consistent-field-cycle",
     "title": "Laboratory 2 — From structure to energy",
-    "section": "Questions",
-    "text": "Questions\nQuestions are answered directly in your personal notebook.",
+    "section": "The self-consistent field cycle",
+    "text": "The self-consistent field cycle\nThe Kohn–Sham equations depend on the electron density, but the density is also obtained from their solution. CRYSTAL therefore solves the problem self-consistently:\n\nstart from an initial electron density;\nconstruct the Kohn–Sham matrix;\nsolve for the electronic states;\nbuild a new density;\ncompare the new solution with the previous one;\nrepeat until the chosen convergence criterion is satisfied.\n\nThis is the SCF cycle.\nCRYSTAL prints the total energy during the iterations. A successful calculation eventually contains a line of the form:\nSCF ENDED - CONVERGENCE ON ENERGY\nThe analysis tools used in this laboratory deliberately require this convergence marker. The last printed energy of an interrupted or unconverged calculation is not accepted as a valid result.",
     "crumbs": [
       "Laboratories",
       "Laboratory 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "labs/lab02-energy-geometry.html#what-to-save",
-    "href": "labs/lab02-energy-geometry.html#what-to-save",
+    "objectID": "labs/lab02-energy-geometry.html#why-a-periodic-solid-needs-k-points",
+    "href": "labs/lab02-energy-geometry.html#why-a-periodic-solid-needs-k-points",
     "title": "Laboratory 2 — From structure to energy",
-    "section": "What to save",
-    "text": "What to save\nTO BE DEFINED.",
+    "section": "Why a periodic solid needs k-points",
+    "text": "Why a periodic solid needs k-points\nThe electronic states of a periodic crystal are described in reciprocal space. In principle, quantities involving the electronic structure require integration over the Brillouin zone. Numerically, this integral is replaced by a finite set of k-points.\nCRYSTAL uses the SHRINK keyword to construct a commensurate Monkhorst–Pack-type grid. For the cubic MgO calculation used here, a value \\(IS\\) corresponds to a nominal sampling based on reciprocal-lattice increments\n\\[\n\\frac{\\mathbf{b}_1}{IS},\\qquad\n\\frac{\\mathbf{b}_2}{IS},\\qquad\n\\frac{\\mathbf{b}_3}{IS}.\n\\]\nIt is therefore convenient to think of the sequence as increasingly dense nominal \\(IS\\times IS\\times IS\\) grids.\nThis does not mean that CRYSTAL diagonalizes the Kohn–Sham matrix at \\(IS^3\\) independent points. Crystal symmetry reduces the sampling to the irreducible Brillouin zone (IBZ), and the output reports the actual number of irreducible k-points used.\nIncreasing SHRINK therefore changes two things that we can observe directly:\n\nthe numerical approximation to Brillouin-zone integration;\nthe computational work required by the calculation.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#our-computational-experiment",
+    "href": "labs/lab02-energy-geometry.html#our-computational-experiment",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Our computational experiment",
+    "text": "Our computational experiment\nA good convergence test behaves like a controlled experiment. We keep everything fixed except the parameter being investigated.\nFor this laboratory:\n\n\n\nQuantity\nChoice\n\n\n\n\nCrystal\nMgO, fixed geometry\n\n\nSpace group\n\\(Fm\\bar{3}m\\)\n\n\nDFT functional\nPBE\n\n\nBasis set\nPOB-TZVP-REV2\n\n\nIntegral thresholds\nfixed\n\n\nSCF energy threshold\nfixed\n\n\nHardware request\n2 physical cores\n\n\nMPI/OpenMP layout\n1 MPI rank × 2 threads\n\n\nVariable\nSHRINK = 2,3,\\ldots,9\n\n\n\nThe first calculation, SHRINK = 2, is performed together. You then copy the input, change only the shrinking factor and submit the remaining calculations.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#from-an-input-file-to-a-calculation",
+    "href": "labs/lab02-energy-geometry.html#from-an-input-file-to-a-calculation",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "From an input file to a calculation",
+    "text": "From an input file to a calculation\nA simplified CRYSTAL input can be mentally divided into four parts:\nSTRUCTURE\n    lattice / space group / atomic positions\n\nBASIS SET\n    numerical representation of atomic orbitals\n\nHAMILTONIAN\n    DFT and exchange-correlation functional\n\nNUMERICAL CONTROL\n    integral thresholds\n    SCF threshold\n    SHRINK\nYou do not need to memorize CRYSTAL keywords. The important skill is to recognize which scientific or numerical choice each block controls.\nThe official CRYSTAL documentation is available at:\nhttps://www.crystal.unito.it/documentation.html\nThe manual is the authoritative reference when you later need a keyword that is not explained in this course.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#running-the-calculation-on-cluminer",
+    "href": "labs/lab02-energy-geometry.html#running-the-calculation-on-cluminer",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Running the calculation on CluMiner",
+    "text": "Running the calculation on CluMiner\nCRYSTAL is licensed software and is run on the university cluster, not inside Codespaces.\nFor this laboratory the standard submission command is:\ncluminer-crystal mgo_shrink2.d12 --cores-per-node 2 --threads 2\nThe same resource request must be used for every calculation in the convergence series. With these settings the launcher uses one MPI rank with two OpenMP threads.\nKeeping the hardware request fixed is important: if the computational resources changed from one calculation to another, timing comparisons would be much less informative.\nThe scientific output is returned with the input basename, for example:\nmgo_shrink2.d12  →  mgo_shrink2.out\nCopy the resulting .out files back into:\nwork/lab02/outputs/",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#reading-the-result",
+    "href": "labs/lab02-energy-geometry.html#reading-the-result",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Reading the result",
+    "text": "Reading the result\nWe will inspect one output manually before using the parser.\nThe output reports:\n\nthe Monkhorst shrinking factors;\nthe number of k-points in the irreducible Brillouin zone;\nthe sequence of SCF cycles;\nthe final converged total energy;\nelapsed and CPU time;\nthe normal termination of the calculation.\n\nThis manual inspection matters. Automated parsing should save us from repetitive transcription, not hide the origin of the data.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#energy-convergence",
+    "href": "labs/lab02-energy-geometry.html#energy-convergence",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Energy convergence",
+    "text": "Energy convergence\nFor a sequence ordered by increasing SHRINK, the notebook calculates the change relative to the preceding sampling:\n\\[\n\\Delta E_i = E_i-E_{i-1}.\n\\]\nBecause the sign is not important for the convergence criterion, we will normally inspect\n\\[\n|\\Delta E_i|.\n\\]\nThe same value is expressed in hartree and in kJ mol\\(^{-1}\\) of MgO.\nFor this CRYSTAL model the primitive computational cell contains one MgO formula unit, so the conversion can be interpreted directly per mole of MgO:\n\\[\n1\\ E_\\mathrm{h} \\approx 2625.5\\ \\mathrm{kJ\\,mol^{-1}}.\n\\]\nThe notebook calculates the conversion from physical constants rather than asking you to perform it manually.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#convergence-is-a-decision-not-a-magic-number",
+    "href": "labs/lab02-energy-geometry.html#convergence-is-a-decision-not-a-magic-number",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Convergence is a decision, not a magic number",
+    "text": "Convergence is a decision, not a magic number\nThe densest calculation is not automatically the best practical choice.\nAs SHRINK increases, the energy should become progressively less sensitive to further refinement, while computational cost generally increases. Your task is to choose a sampling that is sufficiently converged for the purpose of the subsequent calculations without paying for unnecessary numerical precision.\nValues such as \\(0.1\\) or \\(0.01\\) kJ mol\\(^{-1}\\) can be useful scales when looking at the table, but they are not universal laws. The necessary precision depends on the scientific question. Resolving a very small phase-energy difference may require a tighter criterion than obtaining a preliminary equilibrium structure.\nThe final question of the laboratory is therefore not:\n\nWhat is the largest SHRINK value?\n\nbut:\n\nWhich SHRINK value would you carry forward, and why is its balance between numerical stability and computational cost adequate?\n\nThat decision will matter in the next activity, when the geometry of MgO is allowed to change.",
     "crumbs": [
       "Laboratories",
       "Laboratory 2 — From structure to energy"
@@ -935,34 +1122,45 @@
   {
     "objectID": "assignments/02-first-principles.html",
     "href": "assignments/02-first-principles.html",
-    "title": "Assignment 2 — Energy and geometry",
+    "title": "Assignment 2 — From structure to energy",
     "section": "",
-    "text": "TO BE ADDED.",
+    "text": "In Laboratory 2 we will perform our first electronic-structure calculations with CRYSTAL23. We will continue to use MgO (periclase), so that the structure remains simple while we concentrate on a new question:\nYou are not expected to learn electronic-structure theory or the CRYSTAL input language in full. The aim is to understand the logic of a first-principles calculation, recognize the important parts of an input and output file, and perform a controlled convergence test.",
     "crumbs": [
       "Assignments",
-      "Assignment 2 — Energy and geometry"
+      "Assignment 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "assignments/02-first-principles.html#before-the-next-class",
-    "href": "assignments/02-first-principles.html#before-the-next-class",
-    "title": "Assignment 2 — Energy and geometry",
-    "section": "",
-    "text": "TO BE ADDED.",
+    "objectID": "assignments/02-first-principles.html#before-the-laboratory",
+    "href": "assignments/02-first-principles.html#before-the-laboratory",
+    "title": "Assignment 2 — From structure to energy",
+    "section": "Before the laboratory",
+    "text": "Before the laboratory\nRead:\n\nLaboratory 2 — From structure to energy;\nthe short CRYSTAL input and output field guide;\nthe CluMiner quick reference.\n\nThen update your personal workspace:\nupdate-course\nand create the Laboratory 2 working directory:\nstart-lab 02\nOpen:\nwork/lab02/\nYou should find:\n01-first-scf.ipynb\n02-kpoint-convergence.ipynb\ninputs/\noutputs/\nreference-results/\nThe first notebook is guided. The second contains the convergence activity and your answers.\n\n\n\n\n\n\nImportantKeep the numerical experiment controlled\n\n\n\nDuring the convergence test you will change only the SHRINK factor.\nThe MgO structure, basis set, exchange-correlation functional, integral thresholds, SCF convergence threshold and computational resources must remain unchanged.",
     "crumbs": [
       "Assignments",
-      "Assignment 2 — Energy and geometry"
+      "Assignment 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "assignments/02-first-principles.html#questions-to-think-about",
-    "href": "assignments/02-first-principles.html#questions-to-think-about",
-    "title": "Assignment 2 — Energy and geometry",
-    "section": "Questions to think about",
-    "text": "Questions to think about\nTO BE ADDED.",
+    "objectID": "assignments/02-first-principles.html#calculation-resources",
+    "href": "assignments/02-first-principles.html#calculation-resources",
+    "title": "Assignment 2 — From structure to energy",
+    "section": "Calculation resources",
+    "text": "Calculation resources\nFor every CRYSTAL calculation in this laboratory use:\ncluminer-crystal INPUT.d12 --cores-per-node 2 --threads 2\nThis corresponds to one MPI rank using two OpenMP threads on two physical CPU cores. Do not request more resources unless instructed.",
     "crumbs": [
       "Assignments",
-      "Assignment 2 — Energy and geometry"
+      "Assignment 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "assignments/02-first-principles.html#what-you-will-produce",
+    "href": "assignments/02-first-principles.html#what-you-will-produce",
+    "title": "Assignment 2 — From structure to energy",
+    "section": "What you will produce",
+    "text": "What you will produce\nBy the end of the activity you should have:\n\nCRYSTAL outputs for SHRINK values 2–9;\na table containing the reciprocal-space sampling, total energy and timings;\nenergy-difference values in both hartree and kJ mol\\(^{-1}\\);\nconvergence and computational-cost plots;\na justified choice of the SHRINK value to use in subsequent MgO calculations.\n\nNo separate report is required. Your answers remain in the notebook.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 2 — From structure to energy"
     ]
   },
   {

@@ -182,7 +182,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/02-first-principles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Assignment 2 — Energy and geometry</span></a>
+ <span class="menu-text">Assignment 2 — From structure to energy</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -270,7 +270,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/cluminer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">CluMiner</span></a>
+ <span class="menu-text">CluMiner — Laboratory quick reference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -292,8 +292,24 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-input-blocks-used-in-laboratory-2" id="toc-the-input-blocks-used-in-laboratory-2" class="nav-link active" data-scroll-target="#the-input-blocks-used-in-laboratory-2">The input blocks used in Laboratory 2</a></li>
+  <li><a href="#what-to-recognize-in-the-output" id="toc-what-to-recognize-in-the-output" class="nav-link" data-scroll-target="#what-to-recognize-in-the-output">What to recognize in the output</a>
+  <ul class="collapse">
+  <li><a href="#sampling" id="toc-sampling" class="nav-link" data-scroll-target="#sampling">Sampling</a></li>
+  <li><a href="#scf-cycles" id="toc-scf-cycles" class="nav-link" data-scroll-target="#scf-cycles">SCF cycles</a></li>
+  <li><a href="#successful-scf-convergence" id="toc-successful-scf-convergence" class="nav-link" data-scroll-target="#successful-scf-convergence">Successful SCF convergence</a></li>
+  <li><a href="#timing" id="toc-timing" class="nav-link" data-scroll-target="#timing">Timing</a></li>
+  <li><a href="#normal-termination" id="toc-normal-termination" class="nav-link" data-scroll-target="#normal-termination">Normal termination</a></li>
+  </ul></li>
+  <li><a href="#if-an-output-is-incomplete" id="toc-if-an-output-is-incomplete" class="nav-link" data-scroll-target="#if-an-output-is-incomplete">If an output is incomplete</a></li>
+  <li><a href="#official-documentation" id="toc-official-documentation" class="nav-link" data-scroll-target="#official-documentation">Official documentation</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -317,9 +333,83 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>TO BE DEVELOPED.</p>
+<p>CRYSTAL input files can become complex, but the first Mineral Science calculation needs only a small subset of that language.</p>
+<p>The objective is <strong>not</strong> to memorize keywords. It is to recognize which part of the scientific model a keyword controls.</p>
+<section id="the-input-blocks-used-in-laboratory-2" class="level2">
+<h2 class="anchored" data-anchor-id="the-input-blocks-used-in-laboratory-2">The input blocks used in Laboratory 2</h2>
+<p>A useful mental map is:</p>
+<pre class="text"><code>STRUCTURE
+    periodicity
+    space group
+    cell parameters
+    independent atoms
+
+BASIS SET
+    Gaussian basis used for the atomic orbitals
+
+DFT
+    exchange-correlation functional
+
+NUMERICAL CONTROL
+    integral thresholds
+    SCF energy convergence
+    reciprocal-space sampling</code></pre>
+<p>The distributed MgO input uses:</p>
+<pre class="text"><code>BASISSET
+POB-TZVP-REV2</code></pre>
+<p>and:</p>
+<pre class="text"><code>DFT
+PBE
+END</code></pre>
+<p>The reciprocal-space sampling is controlled by:</p>
+<pre class="text"><code>SHRINK
+2 2</code></pre>
+<p>In Laboratory 2, only the two values following <code>SHRINK</code> are changed.</p>
+</section>
+<section id="what-to-recognize-in-the-output" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-recognize-in-the-output">What to recognize in the output</h2>
+<section id="sampling" class="level3">
+<h3 class="anchored" data-anchor-id="sampling">Sampling</h3>
+<p>CRYSTAL prints a line similar to:</p>
+<pre class="text"><code>SHRINK. FACT.(MONKH.) ... NUMBER OF K POINTS IN THE IBZ ...</code></pre>
+<p>This gives both the Monkhorst sampling and the number of k-points that remain after symmetry reduction to the irreducible Brillouin zone.</p>
+</section>
+<section id="scf-cycles" class="level3">
+<h3 class="anchored" data-anchor-id="scf-cycles">SCF cycles</h3>
+<p>During the self-consistent field procedure CRYSTAL prints lines beginning with:</p>
+<pre class="text"><code>CYC</code></pre>
+<p>These contain the current total energy and the change with respect to the previous cycle.</p>
+</section>
+<section id="successful-scf-convergence" class="level3">
+<h3 class="anchored" data-anchor-id="successful-scf-convergence">Successful SCF convergence</h3>
+<p>For this laboratory the parser requires a line containing:</p>
+<pre class="text"><code>SCF ENDED - CONVERGENCE ON ENERGY</code></pre>
+<p>The final energy printed on that line is the value analysed in the notebook.</p>
+</section>
+<section id="timing" class="level3">
+<h3 class="anchored" data-anchor-id="timing">Timing</h3>
+<p>Near the end of a normal calculation, CRYSTAL reports:</p>
+<pre class="text"><code>END ... TELAPSE ... TCPU ...</code></pre>
+<p><code>TELAPSE</code> is the wall-clock time experienced by the calculation.</p>
+<p><code>TCPU</code> is accumulated CPU time. With parallel execution, CPU time and elapsed time are not expected to be identical.</p>
+</section>
+<section id="normal-termination" class="level3">
+<h3 class="anchored" data-anchor-id="normal-termination">Normal termination</h3>
+<p>A complete run ends with a termination marker. The course parser checks this as well as SCF convergence.</p>
+</section>
+</section>
+<section id="if-an-output-is-incomplete" class="level2">
+<h2 class="anchored" data-anchor-id="if-an-output-is-incomplete">If an output is incomplete</h2>
+<p>Do not copy the last visible energy into your results table.</p>
+<p>An interrupted calculation may contain several perfectly plausible SCF energy values without having reached the requested convergence. Keep the output and inspect the error rather than treating it as a result.</p>
+</section>
+<section id="official-documentation" class="level2">
+<h2 class="anchored" data-anchor-id="official-documentation">Official documentation</h2>
+<p>The current CRYSTAL documentation and user manual are available at:</p>
+<p><a href="https://www.crystal.unito.it/documentation.html" class="uri">https://www.crystal.unito.it/documentation.html</a></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

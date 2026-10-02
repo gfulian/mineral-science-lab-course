@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -74,6 +109,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -182,7 +246,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/02-first-principles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Assignment 2 — Energy and geometry</span></a>
+ <span class="menu-text">Assignment 2 — From structure to energy</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -270,7 +334,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/cluminer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">CluMiner</span></a>
+ <span class="menu-text">CluMiner — Laboratory quick reference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -297,11 +361,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#scientific-question" id="toc-scientific-question" class="nav-link active" data-scroll-target="#scientific-question">Scientific question</a></li>
-  <li><a href="#before-the-laboratory" id="toc-before-the-laboratory" class="nav-link" data-scroll-target="#before-the-laboratory">Before the laboratory</a></li>
-  <li><a href="#tasks" id="toc-tasks" class="nav-link" data-scroll-target="#tasks">Tasks</a></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
-  <li><a href="#what-to-save" id="toc-what-to-save" class="nav-link" data-scroll-target="#what-to-save">What to save</a></li>
+  <li><a href="#a-map-of-the-calculation" id="toc-a-map-of-the-calculation" class="nav-link active" data-scroll-target="#a-map-of-the-calculation">A map of the calculation</a></li>
+  <li><a href="#density-functional-theory-without-the-machinery" id="toc-density-functional-theory-without-the-machinery" class="nav-link" data-scroll-target="#density-functional-theory-without-the-machinery">Density functional theory, without the machinery</a></li>
+  <li><a href="#the-basis-set-the-language-used-for-the-orbitals" id="toc-the-basis-set-the-language-used-for-the-orbitals" class="nav-link" data-scroll-target="#the-basis-set-the-language-used-for-the-orbitals">The basis set: the language used for the orbitals</a></li>
+  <li><a href="#the-self-consistent-field-cycle" id="toc-the-self-consistent-field-cycle" class="nav-link" data-scroll-target="#the-self-consistent-field-cycle">The self-consistent field cycle</a></li>
+  <li><a href="#why-a-periodic-solid-needs-k-points" id="toc-why-a-periodic-solid-needs-k-points" class="nav-link" data-scroll-target="#why-a-periodic-solid-needs-k-points">Why a periodic solid needs k-points</a></li>
+  <li><a href="#our-computational-experiment" id="toc-our-computational-experiment" class="nav-link" data-scroll-target="#our-computational-experiment">Our computational experiment</a></li>
+  <li><a href="#from-an-input-file-to-a-calculation" id="toc-from-an-input-file-to-a-calculation" class="nav-link" data-scroll-target="#from-an-input-file-to-a-calculation">From an input file to a calculation</a></li>
+  <li><a href="#running-the-calculation-on-cluminer" id="toc-running-the-calculation-on-cluminer" class="nav-link" data-scroll-target="#running-the-calculation-on-cluminer">Running the calculation on CluMiner</a></li>
+  <li><a href="#reading-the-result" id="toc-reading-the-result" class="nav-link" data-scroll-target="#reading-the-result">Reading the result</a></li>
+  <li><a href="#energy-convergence" id="toc-energy-convergence" class="nav-link" data-scroll-target="#energy-convergence">Energy convergence</a></li>
+  <li><a href="#convergence-is-a-decision-not-a-magic-number" id="toc-convergence-is-a-decision-not-a-magic-number" class="nav-link" data-scroll-target="#convergence-is-a-decision-not-a-magic-number">Convergence is a decision, not a magic number</a></li>
   </ul>
 </nav>
     </div>
@@ -327,25 +397,257 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="scientific-question" class="level2">
-<h2 class="anchored" data-anchor-id="scientific-question">Scientific question</h2>
-<p>TO BE DEFINED.</p>
+<p>In the first laboratory a CIF was enough to describe <em>where the atoms are</em> and how symmetry generates a periodic crystal. We now ask a different question:</p>
+<blockquote class="blockquote">
+<p><strong>Given a crystal structure, how can we calculate its energy?</strong></p>
+</blockquote>
+<p>This sounds like a request for a single number. It is not. A first-principles calculation contains both a <strong>physical model</strong> and a set of <strong>numerical approximations</strong>. Understanding the difference between them is one of the most important habits in computational mineralogy.</p>
+<p>We will again use MgO. This is deliberate. Periclase is structurally simple, small enough that calculations are fast, and still a genuine periodic ionic solid. We can therefore concentrate on the logic of the calculation rather than on the complexity of the mineral.</p>
+<section id="a-map-of-the-calculation" class="level2">
+<h2 class="anchored" data-anchor-id="a-map-of-the-calculation">A map of the calculation</h2>
+<p>The calculation can be viewed as a sequence:</p>
+<pre class="text"><code>crystal structure
+      ↓
+electronic-structure model
+      ├── basis set
+      └── exchange-correlation functional
+      ↓
+numerical choices
+      ├── reciprocal-space sampling
+      ├── integral thresholds
+      └── SCF convergence threshold
+      ↓
+self-consistent solution
+      ↓
+total energy
+      ↓
+numerical convergence test</code></pre>
+<p>The distinction between the two middle levels is essential.</p>
+<p><strong>Model accuracy</strong> asks whether the chosen physical approximation is suitable for the scientific problem. A different exchange-correlation functional, for example, defines a different approximation to the electronic problem.</p>
+<p><strong>Numerical convergence</strong> asks whether the chosen model has been solved accurately enough. Increasing the number of k-points does not change PBE into a better density functional; it reduces one numerical error within a PBE calculation.</p>
+<p>A calculation can therefore be tightly converged and still disagree with experiment because the physical model is incomplete. Conversely, a sophisticated physical model can give poor results if its numerical parameters are not converged.</p>
 </section>
-<section id="before-the-laboratory" class="level2">
-<h2 class="anchored" data-anchor-id="before-the-laboratory">Before the laboratory</h2>
-<p>TO BE DEFINED.</p>
+<section id="density-functional-theory-without-the-machinery" class="level2">
+<h2 class="anchored" data-anchor-id="density-functional-theory-without-the-machinery">Density functional theory, without the machinery</h2>
+<p>The electrons in a mineral require a quantum-mechanical description. Solving the full interacting many-electron problem directly is impractical for the systems of interest here. Density functional theory (DFT) reformulates the problem around the electron density and leads to a practical set of Kohn–Sham equations that are solved iteratively.</p>
+<p>The part of the energy associated with exchange and correlation is not known exactly for general systems and must be approximated by an <strong>exchange-correlation functional</strong>.</p>
+<p>A useful qualitative organization is often called <strong>Jacob’s ladder</strong>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Level</th>
+<th>Typical family</th>
+<th>General idea</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>LDA</td>
+<td>depends on the local density</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>GGA</td>
+<td>adds information on density gradients</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>meta-GGA</td>
+<td>includes additional semilocal information</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>hybrid</td>
+<td>mixes part of exact Hartree–Fock exchange</td>
+</tr>
+</tbody>
+</table>
+<p>Going upward generally changes both the mathematical model and the computational cost. It does <strong>not</strong> mean that a higher rung is automatically better for every material and every property.</p>
+<p>In this laboratory the functional is <strong>PBE</strong>, a GGA functional. The functional is fixed: it is not part of today’s convergence experiment.</p>
 </section>
-<section id="tasks" class="level2">
-<h2 class="anchored" data-anchor-id="tasks">Tasks</h2>
-<p>TO BE DEVELOPED.</p>
+<section id="the-basis-set-the-language-used-for-the-orbitals" class="level2">
+<h2 class="anchored" data-anchor-id="the-basis-set-the-language-used-for-the-orbitals">The basis set: the language used for the orbitals</h2>
+<p>CRYSTAL represents crystalline orbitals using localized Gaussian basis functions centred on atoms. A <strong>basis set</strong> is therefore the numerical language used to represent the electronic wavefunctions.</p>
+<p>A larger and more flexible basis can represent the electronic structure more accurately, but generally increases computational cost and may introduce its own numerical difficulties.</p>
+<p>For this laboratory we use the internally available <strong>POB-TZVP-REV2</strong> basis set. It is already selected for you. You should be able to recognize the basis-set section of the input, but you are not being asked to optimize the basis set.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Fixed does not mean universally optimal
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>PBE and POB-TZVP-REV2 are kept fixed so that we can isolate one numerical question. Their use here does not establish that this combination is the best possible model for every MgO property.</p>
+</div>
+</div>
 </section>
-<section id="questions" class="level2">
-<h2 class="anchored" data-anchor-id="questions">Questions</h2>
-<p>Questions are answered directly in your personal notebook.</p>
+<section id="the-self-consistent-field-cycle" class="level2">
+<h2 class="anchored" data-anchor-id="the-self-consistent-field-cycle">The self-consistent field cycle</h2>
+<p>The Kohn–Sham equations depend on the electron density, but the density is also obtained from their solution. CRYSTAL therefore solves the problem self-consistently:</p>
+<ol type="1">
+<li>start from an initial electron density;</li>
+<li>construct the Kohn–Sham matrix;</li>
+<li>solve for the electronic states;</li>
+<li>build a new density;</li>
+<li>compare the new solution with the previous one;</li>
+<li>repeat until the chosen convergence criterion is satisfied.</li>
+</ol>
+<p>This is the <strong>SCF cycle</strong>.</p>
+<p>CRYSTAL prints the total energy during the iterations. A successful calculation eventually contains a line of the form:</p>
+<pre class="text"><code>SCF ENDED - CONVERGENCE ON ENERGY</code></pre>
+<p>The analysis tools used in this laboratory deliberately require this convergence marker. The last printed energy of an interrupted or unconverged calculation is <strong>not</strong> accepted as a valid result.</p>
 </section>
-<section id="what-to-save" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-save">What to save</h2>
-<p>TO BE DEFINED.</p>
+<section id="why-a-periodic-solid-needs-k-points" class="level2">
+<h2 class="anchored" data-anchor-id="why-a-periodic-solid-needs-k-points">Why a periodic solid needs k-points</h2>
+<p>The electronic states of a periodic crystal are described in reciprocal space. In principle, quantities involving the electronic structure require integration over the Brillouin zone. Numerically, this integral is replaced by a finite set of <strong>k-points</strong>.</p>
+<p>CRYSTAL uses the <code>SHRINK</code> keyword to construct a commensurate Monkhorst–Pack-type grid. For the cubic MgO calculation used here, a value <span class="math inline">\(IS\)</span> corresponds to a nominal sampling based on reciprocal-lattice increments</p>
+<p><span class="math display">\[
+\frac{\mathbf{b}_1}{IS},\qquad
+\frac{\mathbf{b}_2}{IS},\qquad
+\frac{\mathbf{b}_3}{IS}.
+\]</span></p>
+<p>It is therefore convenient to think of the sequence as increasingly dense nominal <span class="math inline">\(IS\times IS\times IS\)</span> grids.</p>
+<p>This does <strong>not</strong> mean that CRYSTAL diagonalizes the Kohn–Sham matrix at <span class="math inline">\(IS^3\)</span> independent points. Crystal symmetry reduces the sampling to the <strong>irreducible Brillouin zone (IBZ)</strong>, and the output reports the actual number of irreducible k-points used.</p>
+<p>Increasing <code>SHRINK</code> therefore changes two things that we can observe directly:</p>
+<ul>
+<li>the numerical approximation to Brillouin-zone integration;</li>
+<li>the computational work required by the calculation.</li>
+</ul>
+</section>
+<section id="our-computational-experiment" class="level2">
+<h2 class="anchored" data-anchor-id="our-computational-experiment">Our computational experiment</h2>
+<p>A good convergence test behaves like a controlled experiment. We keep everything fixed except the parameter being investigated.</p>
+<p>For this laboratory:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th>Choice</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Crystal</td>
+<td>MgO, fixed geometry</td>
+</tr>
+<tr class="even">
+<td>Space group</td>
+<td><span class="math inline">\(Fm\bar{3}m\)</span></td>
+</tr>
+<tr class="odd">
+<td>DFT functional</td>
+<td>PBE</td>
+</tr>
+<tr class="even">
+<td>Basis set</td>
+<td>POB-TZVP-REV2</td>
+</tr>
+<tr class="odd">
+<td>Integral thresholds</td>
+<td>fixed</td>
+</tr>
+<tr class="even">
+<td>SCF energy threshold</td>
+<td>fixed</td>
+</tr>
+<tr class="odd">
+<td>Hardware request</td>
+<td>2 physical cores</td>
+</tr>
+<tr class="even">
+<td>MPI/OpenMP layout</td>
+<td>1 MPI rank × 2 threads</td>
+</tr>
+<tr class="odd">
+<td>Variable</td>
+<td><code>SHRINK = 2,3,\ldots,9</code></td>
+</tr>
+</tbody>
+</table>
+<p>The first calculation, <code>SHRINK = 2</code>, is performed together. You then copy the input, change <strong>only</strong> the shrinking factor and submit the remaining calculations.</p>
+</section>
+<section id="from-an-input-file-to-a-calculation" class="level2">
+<h2 class="anchored" data-anchor-id="from-an-input-file-to-a-calculation">From an input file to a calculation</h2>
+<p>A simplified CRYSTAL input can be mentally divided into four parts:</p>
+<pre class="text"><code>STRUCTURE
+    lattice / space group / atomic positions
+
+BASIS SET
+    numerical representation of atomic orbitals
+
+HAMILTONIAN
+    DFT and exchange-correlation functional
+
+NUMERICAL CONTROL
+    integral thresholds
+    SCF threshold
+    SHRINK</code></pre>
+<p>You do not need to memorize CRYSTAL keywords. The important skill is to recognize which scientific or numerical choice each block controls.</p>
+<p>The official CRYSTAL documentation is available at:</p>
+<p><a href="https://www.crystal.unito.it/documentation.html" class="uri">https://www.crystal.unito.it/documentation.html</a></p>
+<p>The manual is the authoritative reference when you later need a keyword that is not explained in this course.</p>
+</section>
+<section id="running-the-calculation-on-cluminer" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-calculation-on-cluminer">Running the calculation on CluMiner</h2>
+<p>CRYSTAL is licensed software and is run on the university cluster, not inside Codespaces.</p>
+<p>For this laboratory the standard submission command is:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cluminer-crystal</span> mgo_shrink2.d12 <span class="at">--cores-per-node</span> 2 <span class="at">--threads</span> 2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The same resource request must be used for every calculation in the convergence series. With these settings the launcher uses one MPI rank with two OpenMP threads.</p>
+<p>Keeping the hardware request fixed is important: if the computational resources changed from one calculation to another, timing comparisons would be much less informative.</p>
+<p>The scientific output is returned with the input basename, for example:</p>
+<pre class="text"><code>mgo_shrink2.d12  →  mgo_shrink2.out</code></pre>
+<p>Copy the resulting <code>.out</code> files back into:</p>
+<pre class="text"><code>work/lab02/outputs/</code></pre>
+</section>
+<section id="reading-the-result" class="level2">
+<h2 class="anchored" data-anchor-id="reading-the-result">Reading the result</h2>
+<p>We will inspect one output manually before using the parser.</p>
+<p>The output reports:</p>
+<ul>
+<li>the Monkhorst shrinking factors;</li>
+<li>the number of k-points in the irreducible Brillouin zone;</li>
+<li>the sequence of SCF cycles;</li>
+<li>the final converged total energy;</li>
+<li>elapsed and CPU time;</li>
+<li>the normal termination of the calculation.</li>
+</ul>
+<p>This manual inspection matters. Automated parsing should save us from repetitive transcription, not hide the origin of the data.</p>
+</section>
+<section id="energy-convergence" class="level2">
+<h2 class="anchored" data-anchor-id="energy-convergence">Energy convergence</h2>
+<p>For a sequence ordered by increasing <code>SHRINK</code>, the notebook calculates the change relative to the preceding sampling:</p>
+<p><span class="math display">\[
+\Delta E_i = E_i-E_{i-1}.
+\]</span></p>
+<p>Because the sign is not important for the convergence criterion, we will normally inspect</p>
+<p><span class="math display">\[
+|\Delta E_i|.
+\]</span></p>
+<p>The same value is expressed in hartree and in kJ mol<span class="math inline">\(^{-1}\)</span> of MgO.</p>
+<p>For this CRYSTAL model the primitive computational cell contains one MgO formula unit, so the conversion can be interpreted directly per mole of MgO:</p>
+<p><span class="math display">\[
+1\ E_\mathrm{h} \approx 2625.5\ \mathrm{kJ\,mol^{-1}}.
+\]</span></p>
+<p>The notebook calculates the conversion from physical constants rather than asking you to perform it manually.</p>
+</section>
+<section id="convergence-is-a-decision-not-a-magic-number" class="level2">
+<h2 class="anchored" data-anchor-id="convergence-is-a-decision-not-a-magic-number">Convergence is a decision, not a magic number</h2>
+<p>The densest calculation is not automatically the best practical choice.</p>
+<p>As <code>SHRINK</code> increases, the energy should become progressively less sensitive to further refinement, while computational cost generally increases. Your task is to choose a sampling that is sufficiently converged <strong>for the purpose of the subsequent calculations</strong> without paying for unnecessary numerical precision.</p>
+<p>Values such as <span class="math inline">\(0.1\)</span> or <span class="math inline">\(0.01\)</span> kJ mol<span class="math inline">\(^{-1}\)</span> can be useful scales when looking at the table, but they are not universal laws. The necessary precision depends on the scientific question. Resolving a very small phase-energy difference may require a tighter criterion than obtaining a preliminary equilibrium structure.</p>
+<p>The final question of the laboratory is therefore not:</p>
+<blockquote class="blockquote">
+<p><em>What is the largest SHRINK value?</em></p>
+</blockquote>
+<p>but:</p>
+<blockquote class="blockquote">
+<p><strong>Which SHRINK value would you carry forward, and why is its balance between numerical stability and computational cost adequate?</strong></p>
+</blockquote>
+<p>That decision will matter in the next activity, when the geometry of MgO is allowed to change.</p>
 
 
 </section>
