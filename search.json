@@ -1,0 +1,583 @@
+[
+  {
+    "objectID": "reference/troubleshooting.html",
+    "href": "reference/troubleshooting.html",
+    "title": "Troubleshooting",
+    "section": "",
+    "text": "TO BE DEVELOPED.",
+    "crumbs": [
+      "Reference",
+      "Troubleshooting"
+    ]
+  },
+  {
+    "objectID": "reference/linux-essentials.html",
+    "href": "reference/linux-essentials.html",
+    "title": "Linux essentials",
+    "section": "",
+    "text": "TO BE DEVELOPED.",
+    "crumbs": [
+      "Reference",
+      "Linux essentials"
+    ]
+  },
+  {
+    "objectID": "reference/github-codespaces.html",
+    "href": "reference/github-codespaces.html",
+    "title": "GitHub Codespaces",
+    "section": "",
+    "text": "TO BE DEVELOPED.",
+    "crumbs": [
+      "Reference",
+      "GitHub Codespaces"
+    ]
+  },
+  {
+    "objectID": "reference/cluminer.html",
+    "href": "reference/cluminer.html",
+    "title": "CluMiner",
+    "section": "",
+    "text": "TO BE DEVELOPED.",
+    "crumbs": [
+      "Reference",
+      "CluMiner"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html",
+    "href": "labs/lab03-equation-of-state.html",
+    "title": "Laboratory 3 — From energy to an equation of state",
+    "section": "",
+    "text": "TO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From energy to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html#scientific-question",
+    "href": "labs/lab03-equation-of-state.html#scientific-question",
+    "title": "Laboratory 3 — From energy to an equation of state",
+    "section": "",
+    "text": "TO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From energy to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html#before-the-laboratory",
+    "href": "labs/lab03-equation-of-state.html#before-the-laboratory",
+    "title": "Laboratory 3 — From energy to an equation of state",
+    "section": "Before the laboratory",
+    "text": "Before the laboratory\nTO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From energy to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html#tasks",
+    "href": "labs/lab03-equation-of-state.html#tasks",
+    "title": "Laboratory 3 — From energy to an equation of state",
+    "section": "Tasks",
+    "text": "Tasks\nTO BE DEVELOPED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From energy to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html#questions",
+    "href": "labs/lab03-equation-of-state.html#questions",
+    "title": "Laboratory 3 — From energy to an equation of state",
+    "section": "Questions",
+    "text": "Questions\nQuestions are answered directly in your personal notebook.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From energy to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab03-equation-of-state.html#what-to-save",
+    "href": "labs/lab03-equation-of-state.html#what-to-save",
+    "title": "Laboratory 3 — From energy to an equation of state",
+    "section": "What to save",
+    "text": "What to save\nTO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 3 — From energy to an equation of state"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html",
+    "href": "labs/lab01-crystal-structure.html",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "",
+    "text": "TO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#scientific-question",
+    "href": "labs/lab01-crystal-structure.html#scientific-question",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "",
+    "text": "TO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#before-the-laboratory",
+    "href": "labs/lab01-crystal-structure.html#before-the-laboratory",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Before the laboratory",
+    "text": "Before the laboratory\nTO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#tasks",
+    "href": "labs/lab01-crystal-structure.html#tasks",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Tasks",
+    "text": "Tasks\nTO BE DEVELOPED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#questions",
+    "href": "labs/lab01-crystal-structure.html#questions",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Questions",
+    "text": "Questions\nQuestions are answered directly in your personal notebook.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#what-to-save",
+    "href": "labs/lab01-crystal-structure.html#what-to-save",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "What to save",
+    "text": "What to save\nTO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "getting-started/05-update-course-material.html",
+    "href": "getting-started/05-update-course-material.html",
+    "title": "Update course material",
+    "section": "",
+    "text": "Before starting newly released material:\nupdate-course\nThen create your personal working copy, for example:\nstart-lab 01\nThe update command modifies only instructor-controlled course material and does not touch your work/ directory.",
+    "crumbs": [
+      "Getting started",
+      "Update course material"
+    ]
+  },
+  {
+    "objectID": "getting-started/03-working-in-codespaces.html",
+    "href": "getting-started/03-working-in-codespaces.html",
+    "title": "Working in Codespaces",
+    "section": "",
+    "text": "Inside the workspace:\ncourse/   instructor-provided material: do not edit\nwork/     your notebooks, results, figures and answers\nNever work directly inside course/.",
+    "crumbs": [
+      "Getting started",
+      "Working in Codespaces"
+    ]
+  },
+  {
+    "objectID": "getting-started/01-overview.html",
+    "href": "getting-started/01-overview.html",
+    "title": "How the laboratory works",
+    "section": "",
+    "text": "The laboratory uses three separate tools:\n\nthis course website for instructions;\na personal GitHub repository opened in Codespaces for notebook work;\nthe CluMiner cluster for CRYSTAL calculations.\n\nYour personal work must always be performed in the work/ directory.",
+    "crumbs": [
+      "Getting started",
+      "How the laboratory works"
+    ]
+  },
+  {
+    "objectID": "assignments/03-equation-of-state.html",
+    "href": "assignments/03-equation-of-state.html",
+    "title": "Assignment 3 — Equation of state",
+    "section": "",
+    "text": "TO BE ADDED.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 3 — Equation of state"
+    ]
+  },
+  {
+    "objectID": "assignments/03-equation-of-state.html#before-the-next-class",
+    "href": "assignments/03-equation-of-state.html#before-the-next-class",
+    "title": "Assignment 3 — Equation of state",
+    "section": "",
+    "text": "TO BE ADDED.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 3 — Equation of state"
+    ]
+  },
+  {
+    "objectID": "assignments/03-equation-of-state.html#questions-to-think-about",
+    "href": "assignments/03-equation-of-state.html#questions-to-think-about",
+    "title": "Assignment 3 — Equation of state",
+    "section": "Questions to think about",
+    "text": "Questions to think about\nTO BE ADDED.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 3 — Equation of state"
+    ]
+  },
+  {
+    "objectID": "assignments/01-crystal-structure.html",
+    "href": "assignments/01-crystal-structure.html",
+    "title": "Assignment 1 — Crystal structures and CIF files",
+    "section": "",
+    "text": "TO BE ADDED.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 1 — Crystal structures and CIF files"
+    ]
+  },
+  {
+    "objectID": "assignments/01-crystal-structure.html#before-the-next-class",
+    "href": "assignments/01-crystal-structure.html#before-the-next-class",
+    "title": "Assignment 1 — Crystal structures and CIF files",
+    "section": "",
+    "text": "TO BE ADDED.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 1 — Crystal structures and CIF files"
+    ]
+  },
+  {
+    "objectID": "assignments/01-crystal-structure.html#questions-to-think-about",
+    "href": "assignments/01-crystal-structure.html#questions-to-think-about",
+    "title": "Assignment 1 — Crystal structures and CIF files",
+    "section": "Questions to think about",
+    "text": "Questions to think about\nTO BE ADDED.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 1 — Crystal structures and CIF files"
+    ]
+  },
+  {
+    "objectID": "assignments/00-onboarding.html",
+    "href": "assignments/00-onboarding.html",
+    "title": "Assignment 0 — Before the first laboratory",
+    "section": "",
+    "text": "TO BE ADDED.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 0 — Before the first laboratory"
+    ]
+  },
+  {
+    "objectID": "assignments/00-onboarding.html#before-the-next-class",
+    "href": "assignments/00-onboarding.html#before-the-next-class",
+    "title": "Assignment 0 — Before the first laboratory",
+    "section": "",
+    "text": "TO BE ADDED.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 0 — Before the first laboratory"
+    ]
+  },
+  {
+    "objectID": "assignments/00-onboarding.html#questions-to-think-about",
+    "href": "assignments/00-onboarding.html#questions-to-think-about",
+    "title": "Assignment 0 — Before the first laboratory",
+    "section": "Questions to think about",
+    "text": "Questions to think about\nTO BE ADDED.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 0 — Before the first laboratory"
+    ]
+  },
+  {
+    "objectID": "assignments/02-first-principles.html",
+    "href": "assignments/02-first-principles.html",
+    "title": "Assignment 2 — Energy and geometry",
+    "section": "",
+    "text": "TO BE ADDED.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 2 — Energy and geometry"
+    ]
+  },
+  {
+    "objectID": "assignments/02-first-principles.html#before-the-next-class",
+    "href": "assignments/02-first-principles.html#before-the-next-class",
+    "title": "Assignment 2 — Energy and geometry",
+    "section": "",
+    "text": "TO BE ADDED.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 2 — Energy and geometry"
+    ]
+  },
+  {
+    "objectID": "assignments/02-first-principles.html#questions-to-think-about",
+    "href": "assignments/02-first-principles.html#questions-to-think-about",
+    "title": "Assignment 2 — Energy and geometry",
+    "section": "Questions to think about",
+    "text": "Questions to think about\nTO BE ADDED.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 2 — Energy and geometry"
+    ]
+  },
+  {
+    "objectID": "assignments/04-vibrations-thermodynamics.html",
+    "href": "assignments/04-vibrations-thermodynamics.html",
+    "title": "Assignment 4 — Vibrations and thermodynamics",
+    "section": "",
+    "text": "TO BE ADDED.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 4 — Vibrations and thermodynamics"
+    ]
+  },
+  {
+    "objectID": "assignments/04-vibrations-thermodynamics.html#before-the-next-class",
+    "href": "assignments/04-vibrations-thermodynamics.html#before-the-next-class",
+    "title": "Assignment 4 — Vibrations and thermodynamics",
+    "section": "",
+    "text": "TO BE ADDED.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 4 — Vibrations and thermodynamics"
+    ]
+  },
+  {
+    "objectID": "assignments/04-vibrations-thermodynamics.html#questions-to-think-about",
+    "href": "assignments/04-vibrations-thermodynamics.html#questions-to-think-about",
+    "title": "Assignment 4 — Vibrations and thermodynamics",
+    "section": "Questions to think about",
+    "text": "Questions to think about\nTO BE ADDED.",
+    "crumbs": [
+      "Assignments",
+      "Assignment 4 — Vibrations and thermodynamics"
+    ]
+  },
+  {
+    "objectID": "getting-started/02-create-workspace.html",
+    "href": "getting-started/02-create-workspace.html",
+    "title": "Create your personal workspace",
+    "section": "",
+    "text": "Workspace template: TO BE LINKED\n\n\nCreate a GitHub account.\nOpen the workspace template repository.\nSelect Use this template → Create a new repository.\nCreate your repository as Private.\nOpen Code → Codespaces → Create codespace on main.\nWait for the environment to finish its first initialization.\n\nThe first initialization can take a few minutes.",
+    "crumbs": [
+      "Getting started",
+      "Create your personal workspace"
+    ]
+  },
+  {
+    "objectID": "getting-started/04-save-sync-stop.html",
+    "href": "getting-started/04-save-sync-stop.html",
+    "title": "Save, sync and stop",
+    "section": "",
+    "text": "ImportantAlways stop your Codespace when you finish\n\n\n\nClosing the browser tab is not the same as stopping the Codespace.\n\n\nBefore leaving:\n\nSave all notebooks and files.\nCommit your changes.\nSync them with GitHub.\nVerify the repository on GitHub.\nStop the Codespace.\n\nYour GitHub repository is the permanent copy of your work.",
+    "crumbs": [
+      "Getting started",
+      "Save, sync and stop"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Computational Mineralogy Laboratory",
+    "section": "",
+    "text": "This website contains the instructions and supporting material for the computational laboratory activities of the Mineral Science course.\nDuring the laboratory you will work in your own GitHub Codespaces environment.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#laboratory-path",
+    "href": "index.html#laboratory-path",
+    "title": "Computational Mineralogy Laboratory",
+    "section": "Laboratory path",
+    "text": "Laboratory path\n\nCrystal structures, CIF files and symmetry\nFirst-principles energy and geometry optimization\nEnergy-volume data and equations of state\nVibrations, phonons and thermodynamic properties\n\nShort questions are answered directly inside the laboratory notebooks.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html",
+    "href": "labs/lab02-energy-geometry.html",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "",
+    "text": "TO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#scientific-question",
+    "href": "labs/lab02-energy-geometry.html#scientific-question",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "",
+    "text": "TO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#before-the-laboratory",
+    "href": "labs/lab02-energy-geometry.html#before-the-laboratory",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Before the laboratory",
+    "text": "Before the laboratory\nTO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#tasks",
+    "href": "labs/lab02-energy-geometry.html#tasks",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Tasks",
+    "text": "Tasks\nTO BE DEVELOPED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#questions",
+    "href": "labs/lab02-energy-geometry.html#questions",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Questions",
+    "text": "Questions\nQuestions are answered directly in your personal notebook.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab02-energy-geometry.html#what-to-save",
+    "href": "labs/lab02-energy-geometry.html#what-to-save",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "What to save",
+    "text": "What to save\nTO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 2 — From structure to energy"
+    ]
+  },
+  {
+    "objectID": "labs/lab04-vibrations-thermodynamics.html",
+    "href": "labs/lab04-vibrations-thermodynamics.html",
+    "title": "Laboratory 4 — From vibrations to thermodynamics",
+    "section": "",
+    "text": "TO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 4 — From vibrations to thermodynamics"
+    ]
+  },
+  {
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#scientific-question",
+    "href": "labs/lab04-vibrations-thermodynamics.html#scientific-question",
+    "title": "Laboratory 4 — From vibrations to thermodynamics",
+    "section": "",
+    "text": "TO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 4 — From vibrations to thermodynamics"
+    ]
+  },
+  {
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#before-the-laboratory",
+    "href": "labs/lab04-vibrations-thermodynamics.html#before-the-laboratory",
+    "title": "Laboratory 4 — From vibrations to thermodynamics",
+    "section": "Before the laboratory",
+    "text": "Before the laboratory\nTO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 4 — From vibrations to thermodynamics"
+    ]
+  },
+  {
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#tasks",
+    "href": "labs/lab04-vibrations-thermodynamics.html#tasks",
+    "title": "Laboratory 4 — From vibrations to thermodynamics",
+    "section": "Tasks",
+    "text": "Tasks\nTO BE DEVELOPED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 4 — From vibrations to thermodynamics"
+    ]
+  },
+  {
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#questions",
+    "href": "labs/lab04-vibrations-thermodynamics.html#questions",
+    "title": "Laboratory 4 — From vibrations to thermodynamics",
+    "section": "Questions",
+    "text": "Questions\nQuestions are answered directly in your personal notebook.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 4 — From vibrations to thermodynamics"
+    ]
+  },
+  {
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#what-to-save",
+    "href": "labs/lab04-vibrations-thermodynamics.html#what-to-save",
+    "title": "Laboratory 4 — From vibrations to thermodynamics",
+    "section": "What to save",
+    "text": "What to save\nTO BE DEFINED.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 4 — From vibrations to thermodynamics"
+    ]
+  },
+  {
+    "objectID": "reference/crystal-input-output.html",
+    "href": "reference/crystal-input-output.html",
+    "title": "CRYSTAL input and output field guide",
+    "section": "",
+    "text": "TO BE DEVELOPED.",
+    "crumbs": [
+      "Reference",
+      "CRYSTAL input and output field guide"
+    ]
+  },
+  {
+    "objectID": "reference/jupyter-essentials.html",
+    "href": "reference/jupyter-essentials.html",
+    "title": "Jupyter essentials",
+    "section": "",
+    "text": "TO BE DEVELOPED.",
+    "crumbs": [
+      "Reference",
+      "Jupyter essentials"
+    ]
+  },
+  {
+    "objectID": "reference/ssh-file-transfer.html",
+    "href": "reference/ssh-file-transfer.html",
+    "title": "SSH and file transfer",
+    "section": "",
+    "text": "TO BE DEVELOPED.",
+    "crumbs": [
+      "Reference",
+      "SSH and file transfer"
+    ]
+  }
+]
