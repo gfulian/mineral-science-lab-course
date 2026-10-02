@@ -1,7 +1,9 @@
 # Mineral Science Laboratory
 
 This repository contains the student-facing material for the computational
-laboratory activities of the **Mineral Science** course.
+laboratory activities of the 
+<a href="https://www.unibo.it/en/study/course-units-transferable-skills-moocs/course-unit-catalogue/course-unit/2026/523129" target="_blank">**Mineral Science**</a> 
+course.
 
 The material is intended for students enrolled in the Master's Degree Programme
 in **Raw Materials Exploration and Sustainability (RAMES)** at the University of
