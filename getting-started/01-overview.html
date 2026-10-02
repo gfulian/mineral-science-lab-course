@@ -258,7 +258,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/github-codespaces.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GitHub Codespaces</span></a>
+ <span class="menu-text">GitHub Codespaces — Quick reference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -292,8 +292,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#your-personal-workspace" id="toc-your-personal-workspace" class="nav-link active" data-scroll-target="#your-personal-workspace">Your personal workspace</a></li>
+  <li><a href="#what-you-need-on-your-own-computer" id="toc-what-you-need-on-your-own-computer" class="nav-link" data-scroll-target="#what-you-need-on-your-own-computer">What you need on your own computer</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -317,15 +324,86 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The laboratory uses three separate tools:</p>
-<ol type="1">
-<li>this course website for instructions;</li>
-<li>a personal GitHub repository opened in Codespaces for notebook work;</li>
-<li>the CluMiner cluster for CRYSTAL calculations.</li>
-</ol>
-<p>Your personal work must always be performed in the <code>work/</code> directory.</p>
+<p>The computational laboratory uses a browser-based working environment so that all students can use the same scientific software without installing and configuring Python packages locally.</p>
+<p>The working environment has three separate components.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>What it contains</th>
+<th>What you do there</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Course website</strong></td>
+<td>Instructions, assignments, laboratory guides and reference pages</td>
+<td>Read the material and follow the laboratory workflow</td>
+</tr>
+<tr class="even">
+<td><strong>Personal GitHub workspace</strong></td>
+<td>Notebooks, data, figures, answers and your own results</td>
+<td>Work in GitHub Codespaces and save your progress</td>
+</tr>
+<tr class="odd">
+<td><strong>CluMiner</strong></td>
+<td>Licensed and computationally expensive software</td>
+<td>Run CRYSTAL calculations when instructed</td>
+</tr>
+</tbody>
+</table>
+<p>The course website and your workspace are deliberately separate. You should <strong>not duplicate this website repository</strong>. Instead, you will create your own private repository from the dedicated Mineral Science workspace template.</p>
+<section id="your-personal-workspace" class="level2">
+<h2 class="anchored" data-anchor-id="your-personal-workspace">Your personal workspace</h2>
+<p>Your workspace repository contains two directories with very different roles:</p>
+<pre class="text"><code>course/
+work/</code></pre>
+<p><code>course/</code> contains material distributed by the teacher. It may be updated during the course.</p>
+<p><code>work/</code> contains <strong>your work</strong>: notebooks, answers, uploaded data, figures and processed results.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>One rule prevents most problems
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Do not edit files directly inside <code>course/</code>. Work inside <code>work/</code>.</strong></p>
+</div>
+</div>
+<p>When a new laboratory is released, the usual workflow is:</p>
+<pre class="text"><code>update-course
+      ↓
+start-lab NN
+      ↓
+work/labNN/
+      ↓
+save → commit → sync
+      ↓
+stop Codespace</code></pre>
+<p>You do not need to understand Git internals to use this workflow. The necessary operations are introduced in the following pages.</p>
+</section>
+<section id="what-you-need-on-your-own-computer" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-need-on-your-own-computer">What you need on your own computer</h2>
+<p>You need:</p>
+<ul>
+<li>a modern web browser;</li>
+<li>a <a href="https://github.com/" target="_blakc">GitHub</a> account;</li>
+<li>an internet connection;</li>
+<li>later in the course, an SSH/SFTP client for access to CluMiner.</li>
+</ul>
+<p>Everything, from Python environment, Jupyter notebooks, and other tools are provided inside the Codespace.</p>
+<p>Continue with <strong><a href="../getting-started/02-create-workspace.html">Create your personal workspace</a></strong>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

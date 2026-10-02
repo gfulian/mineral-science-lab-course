@@ -4,29 +4,29 @@
     "href": "assignments/01-crystal-structure.html",
     "title": "Assignment 1 — Crystal structures and CIF files",
     "section": "",
-    "text": "TO BE ADDED.",
+    "text": "This first laboratory connects the crystallographic language used in the course with an actual structure file. Before the session, review the ideas of unit cell, fractional coordinates, asymmetric unit, symmetry-equivalent positions and space group.\nYou are not expected to write Python code. The notebooks provide the code needed to inspect the structure. Your task is to understand what the calculation is doing and to interpret the crystallographic information that it returns.",
     "crumbs": [
       "Assignments",
       "Assignment 1 — Crystal structures and CIF files"
     ]
   },
   {
-    "objectID": "assignments/01-crystal-structure.html#before-the-next-class",
-    "href": "assignments/01-crystal-structure.html#before-the-next-class",
+    "objectID": "assignments/01-crystal-structure.html#before-the-laboratory",
+    "href": "assignments/01-crystal-structure.html#before-the-laboratory",
     "title": "Assignment 1 — Crystal structures and CIF files",
-    "section": "",
-    "text": "TO BE ADDED.",
+    "section": "Before the laboratory",
+    "text": "Before the laboratory\nOpen your existing Mineral Science Codespace and update the distributed course material:\nupdate-course\nThen create your working copy of Laboratory 1:\nstart-lab 01\nOpen:\nwork/lab01/\nYou should find:\n01-guided-mgo.ipynb\n02-assigned-structure.ipynb\ndata/MgO.cif\nThe first notebook is completed together during the laboratory using MgO (periclase). The second notebook is an individual activity based on a CIF assigned by the instructor.\n\n\n\n\n\n\nImportantWork only in work/lab01/\n\n\n\nDo not edit the original files under course/labs/lab01/.",
     "crumbs": [
       "Assignments",
       "Assignment 1 — Crystal structures and CIF files"
     ]
   },
   {
-    "objectID": "assignments/01-crystal-structure.html#questions-to-think-about",
-    "href": "assignments/01-crystal-structure.html#questions-to-think-about",
+    "objectID": "assignments/01-crystal-structure.html#what-you-should-be-able-to-explain-afterwards",
+    "href": "assignments/01-crystal-structure.html#what-you-should-be-able-to-explain-afterwards",
     "title": "Assignment 1 — Crystal structures and CIF files",
-    "section": "Questions to think about",
-    "text": "Questions to think about\nTO BE ADDED.",
+    "section": "What you should be able to explain afterwards",
+    "text": "What you should be able to explain afterwards\nBy the end of the activity you should be able to explain:\n\nwhat information a CIF contains;\nthe difference between the asymmetric unit and the complete unit cell;\nhow symmetry operations generate equivalent atomic positions;\nwhat a Wyckoff position and its multiplicity represent;\nwhy a numerical symmetry search requires a tolerance;\nwhy visualizing a structure is useful for inspection but does not replace a crystallographic analysis.\n\nYour answers are written directly in the notebooks. No separate report is required.",
     "crumbs": [
       "Assignments",
       "Assignment 1 — Crystal structures and CIF files"
@@ -103,7 +103,51 @@
     "href": "getting-started/05-update-course-material.html",
     "title": "Update course material",
     "section": "",
-    "text": "Before starting newly released material:\nupdate-course\nThen create your personal working copy, for example:\nstart-lab 01\nThe update command modifies only instructor-controlled course material and does not touch your work/ directory.",
+    "text": "The laboratory workspace is distributed at the beginning of the course, but new notebooks, data files, reference results or corrections may be released later.\nYou do not need to create a new repository when this happens.\nThe workspace provides the command:\nwhich retrieves the current instructor version of the material stored under course/.\nYour personal work/ directory is not replaced by this operation.",
+    "crumbs": [
+      "Getting started",
+      "Update course material"
+    ]
+  },
+  {
+    "objectID": "getting-started/05-update-course-material.html#before-starting-a-newly-released-laboratory",
+    "href": "getting-started/05-update-course-material.html#before-starting-a-newly-released-laboratory",
+    "title": "Update course material",
+    "section": "Before starting a newly released laboratory",
+    "text": "Before starting a newly released laboratory\nOpen the terminal in your existing Codespace and run:\nupdate-course\nRead the message printed by the command.\nIf the material is already current, no further update is required.\nIf new files have been retrieved, you may see them listed as changes in Source Control. This is expected: they are now part of your personal repository copy of the current course material.",
+    "crumbs": [
+      "Getting started",
+      "Update course material"
+    ]
+  },
+  {
+    "objectID": "getting-started/05-update-course-material.html#create-your-personal-working-copy",
+    "href": "getting-started/05-update-course-material.html#create-your-personal-working-copy",
+    "title": "Update course material",
+    "section": "Create your personal working copy",
+    "text": "Create your personal working copy\nWhen you start a laboratory for the first time, use:\nstart-lab NN\nwhere NN is the two-digit laboratory number.\nFor example:\nstart-lab 01\ncreates the working material for Laboratory 1 under:\nwork/lab01/\nOpen and edit the files in work/lab01/, not the source material under course/labs/lab01/.\nRunning start-lab again does not overwrite files that already exist in your personal working directory.",
+    "crumbs": [
+      "Getting started",
+      "Update course material"
+    ]
+  },
+  {
+    "objectID": "getting-started/05-update-course-material.html#typical-start-of-laboratory-workflow",
+    "href": "getting-started/05-update-course-material.html#typical-start-of-laboratory-workflow",
+    "title": "Update course material",
+    "section": "Typical start-of-laboratory workflow",
+    "text": "Typical start-of-laboratory workflow\nFor Laboratory 2, for example:\nupdate-course\nstart-lab 02\nThen open:\nwork/lab02/\nand begin the activity.\n\n\n\n\n\n\nImportantProtect your own work\n\n\n\nThe update mechanism is designed around the separation:\ncourse/  → distributed material\nwork/    → student work\nDo not store your answers or edited notebooks inside course/.",
+    "crumbs": [
+      "Getting started",
+      "Update course material"
+    ]
+  },
+  {
+    "objectID": "getting-started/05-update-course-material.html#if-an-update-reports-an-error",
+    "href": "getting-started/05-update-course-material.html#if-an-update-reports-an-error",
+    "title": "Update course material",
+    "section": "If an update reports an error",
+    "text": "If an update reports an error\nDo not try to repair Git history or remove files at random.\nSave your current work, synchronize it with GitHub if possible, and show the error message to the instructor. Most update problems can be resolved without losing anything in work/.",
     "crumbs": [
       "Getting started",
       "Update course material"
@@ -114,7 +158,62 @@
     "href": "getting-started/02-create-workspace.html",
     "title": "Create your personal workspace",
     "section": "",
-    "text": "Workspace template: TO BE LINKED\n\n\nCreate a GitHub account.\nOpen the workspace template repository.\nSelect Use this template → Create a new repository.\nCreate your repository as Private.\nOpen Code → Codespaces → Create codespace on main.\nWait for the environment to finish its first initialization.\n\nThe first initialization can take a few minutes.",
+    "text": "You only need to perform the complete procedure on this page once.",
+    "crumbs": [
+      "Getting started",
+      "Create your personal workspace"
+    ]
+  },
+  {
+    "objectID": "getting-started/02-create-workspace.html#sign-in-to-github",
+    "href": "getting-started/02-create-workspace.html#sign-in-to-github",
+    "title": "Create your personal workspace",
+    "section": "1. Sign in to GitHub",
+    "text": "1. Sign in to GitHub\nOpen GitHub and sign in with your personal account. If you do not already have an account, create one before continuing.\n\nRecommended Codespaces setting\nBefore creating your first Codespace, open your GitHub account settings and select Codespaces.\nSet the Default idle timeout to 15 minutes.\nThis is a course recommendation. It limits unnecessary use of your Codespaces allowance if you forget to stop a session manually. You should still stop the Codespace explicitly whenever you finish working.",
+    "crumbs": [
+      "Getting started",
+      "Create your personal workspace"
+    ]
+  },
+  {
+    "objectID": "getting-started/02-create-workspace.html#open-the-workspace-template",
+    "href": "getting-started/02-create-workspace.html#open-the-workspace-template",
+    "title": "Create your personal workspace",
+    "section": "2. Open the workspace template",
+    "text": "2. Open the workspace template\nOpen the course workspace repository:\nhttps://github.com/gfulian/mineral-science-lab-workspace\n\n\n\n\n\n\nWarningDo not fork the repository\n\n\n\nDo not use Fork and do not select Open in a codespace directly from the template.\nYou must first create your own repository from the template. This ensures that your work is permanently connected to your own GitHub repository.",
+    "crumbs": [
+      "Getting started",
+      "Create your personal workspace"
+    ]
+  },
+  {
+    "objectID": "getting-started/02-create-workspace.html#create-your-private-repository",
+    "href": "getting-started/02-create-workspace.html#create-your-private-repository",
+    "title": "Create your personal workspace",
+    "section": "3. Create your private repository",
+    "text": "3. Create your private repository\nOn the workspace template page:\n\nSelect Use this template.\nSelect Create a new repository.\nSet Owner to your personal GitHub account.\nGive the repository a recognizable name, for example mineral-science-lab-yourname.\nSelect Private visibility.\nLeave Include all branches disabled.\nSelect Create repository from template.\n\nYou now have your own independent copy of the laboratory workspace.\nKeep this repository private unless the instructor explicitly asks you to change its visibility.",
+    "crumbs": [
+      "Getting started",
+      "Create your personal workspace"
+    ]
+  },
+  {
+    "objectID": "getting-started/02-create-workspace.html#create-the-codespace",
+    "href": "getting-started/02-create-workspace.html#create-the-codespace",
+    "title": "Create your personal workspace",
+    "section": "4. Create the Codespace",
+    "text": "4. Create the Codespace\nFrom your new private repository:\n\nSelect the green Code button.\nOpen the Codespaces tab.\nSelect Create codespace on main.\n\nIf GitHub offers a choice of machine type, select the 2-core machine. The laboratory notebook work does not require a larger machine.\nThe first initialization can take a few minutes. This is normal: GitHub is creating the remote Linux environment and the course setup is installing the required scientific Python packages.\n\n\n\n\n\n\nNoteWait for the setup to finish\n\n\n\nDuring the first launch, a terminal may display package installation messages. Wait until the setup reports:\nEnvironment ready.\nbefore starting to work.",
+    "crumbs": [
+      "Getting started",
+      "Create your personal workspace"
+    ]
+  },
+  {
+    "objectID": "getting-started/02-create-workspace.html#check-the-environment",
+    "href": "getting-started/02-create-workspace.html#check-the-environment",
+    "title": "Create your personal workspace",
+    "section": "5. Check the environment",
+    "text": "5. Check the environment\nOpen a terminal inside the Codespace using Terminal → New Terminal and run:\npython -c \"import gemmi, spglib, numpy, scipy, pandas, matplotlib; print('Environment OK')\"\nThe final line should be:\nEnvironment OK\nThen check that the two course commands are available:\ncommand -v update-course\ncommand -v start-lab\nBoth commands should return a path.\nYou can also inspect the top-level directories:\nls\nYou should see, among other files:\ncourse\nwork\nIf these checks succeed, your laboratory environment is ready.\nContinue with Working in Codespaces.",
     "crumbs": [
       "Getting started",
       "Create your personal workspace"
@@ -156,12 +255,155 @@
   {
     "objectID": "reference/github-codespaces.html",
     "href": "reference/github-codespaces.html",
-    "title": "GitHub Codespaces",
+    "title": "GitHub Codespaces — Quick reference",
     "section": "",
-    "text": "TO BE DEVELOPED.",
+    "text": "This page collects the routine Codespaces operations used during the Mineral Science laboratory.",
     "crumbs": [
       "Reference",
-      "GitHub Codespaces"
+      "GitHub Codespaces — Quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/github-codespaces.html#open-or-resume-the-workspace",
+    "href": "reference/github-codespaces.html#open-or-resume-the-workspace",
+    "title": "GitHub Codespaces — Quick reference",
+    "section": "Open or resume the workspace",
+    "text": "Open or resume the workspace\nOpen your private workspace repository and select:\nCode → Codespaces\nIf an existing Codespace is listed, reopen it rather than creating a new one.\nYou can also manage all your Codespaces at:\nhttps://github.com/codespaces",
+    "crumbs": [
+      "Reference",
+      "GitHub Codespaces — Quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/github-codespaces.html#recommended-resource-settings",
+    "href": "reference/github-codespaces.html#recommended-resource-settings",
+    "title": "GitHub Codespaces — Quick reference",
+    "section": "Recommended resource settings",
+    "text": "Recommended resource settings\nFor this course, a 2-core Codespace is sufficient.\nIf you need to check or change the current machine, open https://github.com/codespaces, select the … menu for the Codespace and choose Change machine type.\nA 15-minute idle timeout is recommended in your GitHub Settings → Codespaces. This is a safety measure; you should still stop the Codespace manually when finished.",
+    "crumbs": [
+      "Reference",
+      "GitHub Codespaces — Quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/github-codespaces.html#first-launch-is-slower",
+    "href": "reference/github-codespaces.html#first-launch-is-slower",
+    "title": "GitHub Codespaces — Quick reference",
+    "section": "First launch is slower",
+    "text": "First launch is slower\nCreating a Codespace for the first time requires GitHub to create the virtual machine, configure the development container and install the scientific Python environment.\nWait for:\nEnvironment ready.\nRestarting the same stopped Codespace is normally much faster.",
+    "crumbs": [
+      "Reference",
+      "GitHub Codespaces — Quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/github-codespaces.html#upload-a-file",
+    "href": "reference/github-codespaces.html#upload-a-file",
+    "title": "GitHub Codespaces — Quick reference",
+    "section": "Upload a file",
+    "text": "Upload a file\nDrag a local file into the required folder in the Explorer.\nFor course work, upload files into the appropriate directory under work/ unless the laboratory instructions explicitly state otherwise.",
+    "crumbs": [
+      "Reference",
+      "GitHub Codespaces — Quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/github-codespaces.html#download-a-file",
+    "href": "reference/github-codespaces.html#download-a-file",
+    "title": "GitHub Codespaces — Quick reference",
+    "section": "Download a file",
+    "text": "Download a file\nRight-click the file in the Explorer and select Download.",
+    "crumbs": [
+      "Reference",
+      "GitHub Codespaces — Quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/github-codespaces.html#open-a-terminal",
+    "href": "reference/github-codespaces.html#open-a-terminal",
+    "title": "GitHub Codespaces — Quick reference",
+    "section": "Open a terminal",
+    "text": "Open a terminal\nUse:\nTerminal → New Terminal\nUseful checks include:\npwd\nls\npython --version",
+    "crumbs": [
+      "Reference",
+      "GitHub Codespaces — Quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/github-codespaces.html#update-distributed-material",
+    "href": "reference/github-codespaces.html#update-distributed-material",
+    "title": "GitHub Codespaces — Quick reference",
+    "section": "Update distributed material",
+    "text": "Update distributed material\nupdate-course",
+    "crumbs": [
+      "Reference",
+      "GitHub Codespaces — Quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/github-codespaces.html#start-a-laboratory",
+    "href": "reference/github-codespaces.html#start-a-laboratory",
+    "title": "GitHub Codespaces — Quick reference",
+    "section": "Start a laboratory",
+    "text": "Start a laboratory\nstart-lab 01\nReplace 01 with the laboratory number.",
+    "crumbs": [
+      "Reference",
+      "GitHub Codespaces — Quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/github-codespaces.html#save-work-to-github",
+    "href": "reference/github-codespaces.html#save-work-to-github",
+    "title": "GitHub Codespaces — Quick reference",
+    "section": "Save work to GitHub",
+    "text": "Save work to GitHub\nUse the Source Control panel:\nstage → commit → Sync Changes\nRemember that saving a notebook does not automatically send it to GitHub.",
+    "crumbs": [
+      "Reference",
+      "GitHub Codespaces — Quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/github-codespaces.html#stop-the-codespace",
+    "href": "reference/github-codespaces.html#stop-the-codespace",
+    "title": "GitHub Codespaces — Quick reference",
+    "section": "Stop the Codespace",
+    "text": "Stop the Codespace\nPreferred browser method:\nhttps://github.com/codespaces\nthen:\n… → Stop codespace\nAlternative from inside the Codespace:\nCommand Palette → Codespaces: Stop Current Codespace\nClosing the browser tab alone does not stop the Codespace.",
+    "crumbs": [
+      "Reference",
+      "GitHub Codespaces — Quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/github-codespaces.html#delete-a-codespace",
+    "href": "reference/github-codespaces.html#delete-a-codespace",
+    "title": "GitHub Codespaces — Quick reference",
+    "section": "Delete a Codespace",
+    "text": "Delete a Codespace\nDeleting a Codespace is not part of the normal end-of-session workflow.\nOnly delete it after confirming that all work you need has been committed and synchronized to GitHub.",
+    "crumbs": [
+      "Reference",
+      "GitHub Codespaces — Quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/github-codespaces.html#common-problems",
+    "href": "reference/github-codespaces.html#common-problems",
+    "title": "GitHub Codespaces — Quick reference",
+    "section": "Common problems",
+    "text": "Common problems\n\nThe first launch appears to be doing nothing\nWait for the setup terminal to finish. Package installation during the first creation can take several minutes.\n\n\nPython cannot import a course package\nMake sure the initial setup has completed. If the problem remains, keep the complete error message and contact the instructor rather than installing different package versions manually.\n\n\nupdate-course reports an error\nDo not delete or overwrite work/. Save and synchronize your current work, then report the exact terminal message.\n\n\nSource Control says Publish Branch\nCheck that you created a private repository from the template before creating the Codespace. A Codespace opened directly from the template is not the intended course workflow.\n\n\nThe Codespace is still running after I closed the tab\nThis is expected. Closing the web editor does not stop the remote machine. Open https://github.com/codespaces and stop it explicitly.",
+    "crumbs": [
+      "Reference",
+      "GitHub Codespaces — Quick reference"
+    ]
+  },
+  {
+    "objectID": "reference/github-codespaces.html#official-documentation",
+    "href": "reference/github-codespaces.html#official-documentation",
+    "title": "GitHub Codespaces — Quick reference",
+    "section": "Official documentation",
+    "text": "Official documentation\nGitHub maintains current documentation at:\nhttps://docs.github.com/en/codespaces",
+    "crumbs": [
+      "Reference",
+      "GitHub Codespaces — Quick reference"
     ]
   },
   {
@@ -235,51 +477,84 @@
     "href": "labs/lab01-crystal-structure.html",
     "title": "Laboratory 1 — From CIF to crystal structure",
     "section": "",
-    "text": "TO BE DEFINED.",
+    "text": "A crystal structure is often first encountered as a picture: coloured spheres, polyhedra, chains, layers or frameworks. The picture is useful, but it is not the structure itself. A crystallographic model is a compact mathematical description of a periodic arrangement. In this laboratory we will start from that description and reconstruct the structure step by step.\nThe practical question is simple:\nThis is the first computational activity because it establishes a workflow that will return throughout the course: a structural model is read from data, analysed, visualized, checked against symmetry, and eventually used as the starting point for calculations of energy and physical properties.",
     "crumbs": [
       "Laboratories",
       "Laboratory 1 — From CIF to crystal structure"
     ]
   },
   {
-    "objectID": "labs/lab01-crystal-structure.html#scientific-question",
-    "href": "labs/lab01-crystal-structure.html#scientific-question",
+    "objectID": "labs/lab01-crystal-structure.html#the-cif-as-a-crystallographic-description",
+    "href": "labs/lab01-crystal-structure.html#the-cif-as-a-crystallographic-description",
     "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "",
-    "text": "TO BE DEFINED.",
+    "section": "The CIF as a crystallographic description",
+    "text": "The CIF as a crystallographic description\nThe Crystallographic Information File (CIF) is a structured text format. For the present exercise, the most important information is the unit cell, the space group, the atomic sites, their fractional coordinates and their occupancies.\nThe fractional coordinate \\((x,y,z)\\) does not give a distance in ångström. Instead, it gives a position relative to the three direct-lattice vectors \\(\\mathbf{a}\\), \\(\\mathbf{b}\\), and \\(\\mathbf{c}\\):\n\\[\n\\mathbf{r} = x\\mathbf{a} + y\\mathbf{b} + z\\mathbf{c}.\n\\]\nThis is why the same fractional coordinates can describe geometrically different Cartesian positions when the cell parameters change.\nA CIF normally does not need to list every atom that appears in a conventional unit cell. It can store only the crystallographically independent sites. The remaining sites follow from the symmetry of the space group.",
     "crumbs": [
       "Laboratories",
       "Laboratory 1 — From CIF to crystal structure"
     ]
   },
   {
-    "objectID": "labs/lab01-crystal-structure.html#before-the-laboratory",
-    "href": "labs/lab01-crystal-structure.html#before-the-laboratory",
+    "objectID": "labs/lab01-crystal-structure.html#asymmetric-unit-and-unit-cell",
+    "href": "labs/lab01-crystal-structure.html#asymmetric-unit-and-unit-cell",
     "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "Before the laboratory",
-    "text": "Before the laboratory\nTO BE DEFINED.",
+    "section": "Asymmetric unit and unit cell",
+    "text": "Asymmetric unit and unit cell\nThe asymmetric unit is the smallest part of the structure from which the contents of the unit cell can be generated by applying the appropriate space-group operations. The unit cell, in turn, generates the infinite periodic crystal by translation.\nThis distinction is easy to lose when looking only at a structure drawing. MgO provides a particularly clean example. Only one Mg site and one O site are needed in its crystallographic description, but applying the symmetry and centring operations generates the complete contents of the conventional cubic cell.\nIn the notebook we therefore inspect the structure twice: first as the list of sites written in the CIF, and then as the symmetry-expanded unit cell. The difference between these lists is itself part of the crystallographic information.",
     "crumbs": [
       "Laboratories",
       "Laboratory 1 — From CIF to crystal structure"
     ]
   },
   {
-    "objectID": "labs/lab01-crystal-structure.html#tasks",
-    "href": "labs/lab01-crystal-structure.html#tasks",
+    "objectID": "labs/lab01-crystal-structure.html#two-complementary-symmetry-tools",
+    "href": "labs/lab01-crystal-structure.html#two-complementary-symmetry-tools",
     "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "Tasks",
-    "text": "Tasks\nTO BE DEVELOPED.",
+    "section": "Two complementary symmetry tools",
+    "text": "Two complementary symmetry tools\nWe use Gemmi and spglib for different reasons.\nGemmi is used to read the CIF as a crystallographic document. It understands the unit cell, space-group symbols, symmetry operations and atomic sites. In other words, it can tell us what crystallographic information the file claims to contain.\nspglib approaches the problem from another direction. We give it lattice vectors, atomic coordinates and atomic species. It then searches numerically for operations that map the structure onto itself. This requires a tolerance, because coordinates in real structure files are finite-precision numbers and experimental structures are never mathematical abstractions with infinitely exact coordinates.\nThe comparison is useful:\n\\[\n\\text{symmetry stated in the CIF}\n\\quad\\longleftrightarrow\\quad\n\\text{symmetry implied by the numerical structure}.\n\\]\nAgreement is a consistency check. Disagreement is not something to hide by changing parameters until the desired answer appears. It is a result that must be understood: the structure may be distorted, the tolerance may be inappropriate, the CIF may use a non-standard setting, or the structural model may contain disorder or partial occupancies.\nFor this first exercise we use ordered structures with full occupancies so that the symmetry analysis remains unambiguous.",
     "crumbs": [
       "Laboratories",
       "Laboratory 1 — From CIF to crystal structure"
     ]
   },
   {
-    "objectID": "labs/lab01-crystal-structure.html#questions",
-    "href": "labs/lab01-crystal-structure.html#questions",
+    "objectID": "labs/lab01-crystal-structure.html#symmetry-operations-in-coordinate-form",
+    "href": "labs/lab01-crystal-structure.html#symmetry-operations-in-coordinate-form",
     "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "Questions",
-    "text": "Questions\nQuestions are answered directly in your personal notebook.",
+    "section": "Symmetry operations in coordinate form",
+    "text": "Symmetry operations in coordinate form\nA space-group operation can be written as a transformation of fractional coordinates. The identity is\n\\[\n(x,y,z)\\rightarrow(x,y,z),\n\\]\nwhereas an operation written, for example, as\n-y,x,z\nmaps\n\\[\n(x,y,z)\\rightarrow(-y,x,z).\n\\]\nTranslations may appear as fractional additions such as \\(1/2\\). Rather than printing every operation of a high-symmetry space group without context, the notebook first shows a compact set of Hall-derived operations and the lattice centring translations, and then lets you inspect part of the full operation list.\nThe software can describe the matrix and translational parts of an operation, but interpreting an operation geometrically remains a crystallographic task. In particular, the presence of a translational component is what distinguishes operations such as screw axes and glide planes from their purely point-symmetry counterparts.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#wyckoff-positions",
+    "href": "labs/lab01-crystal-structure.html#wyckoff-positions",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Wyckoff positions",
+    "text": "Wyckoff positions\nThe atoms of a crystal can also be organized into Wyckoff positions. A Wyckoff position identifies an orbit of symmetrically equivalent points in a given space group.\nThree pieces of information are especially useful:\n\nthe multiplicity, which gives the number of equivalent sites in the conventional unit cell;\nthe Wyckoff letter, which distinguishes inequivalent orbits;\nthe site symmetry, which describes the subgroup of operations that leaves a particular site invariant.\n\nA multiplicity is therefore not the number of independent atoms that had to be entered in the CIF. Quite the opposite: several atoms in the conventional cell may all be generated from one crystallographically independent site.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#visualization-is-inspection-not-proof",
+    "href": "labs/lab01-crystal-structure.html#visualization-is-inspection-not-proof",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Visualization is inspection, not proof",
+    "text": "Visualization is inspection, not proof\nThe notebooks use py3Dmol to display the CIF interactively. You can rotate the structure, zoom, draw the unit-cell box and replicate the cell to make periodicity easier to see.\nThe default representation uses spheres without automatically inferred bonds. This choice is deliberate. A line drawn between two atoms by a visualization program is based on a graphical or distance criterion; it is not itself a crystallographic observable and should not silently determine how we interpret bonding in a mineral.\nThe viewer is therefore an aid to scientific inspection. The quantitative description still comes from the crystallographic data and symmetry analysis.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#laboratory-workflow",
+    "href": "labs/lab01-crystal-structure.html#laboratory-workflow",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Laboratory workflow",
+    "text": "Laboratory workflow\nThe activity has two parts.\nFirst, we work together on MgO (periclase):\n01-guided-mgo.ipynb\nMgO is useful because the rocksalt structure is simple enough that the relationship between asymmetric unit, face-centred cell, symmetry and Wyckoff multiplicity remains visible.\nYou will then receive a second CIF and repeat the same reasoning independently in:\n02-assigned-structure.ipynb\nPlace the assigned CIF directly inside:\nwork/lab01/\nand change only the filename requested in the notebook.\nThe questions are intentionally short. They ask you to interpret the structure, not to reproduce Python code.",
     "crumbs": [
       "Laboratories",
       "Laboratory 1 — From CIF to crystal structure"
@@ -290,7 +565,7 @@
     "href": "labs/lab01-crystal-structure.html#what-to-save",
     "title": "Laboratory 1 — From CIF to crystal structure",
     "section": "What to save",
-    "text": "What to save\nTO BE DEFINED.",
+    "text": "What to save\nAt the end of the laboratory your private repository should contain:\n\nthe completed guided MgO notebook;\nthe completed assigned-structure notebook;\nthe CIF supplied for your individual activity.\n\nUse the usual end-of-session sequence:\nsave → commit → Sync Changes → verify on GitHub → stop Codespace",
     "crumbs": [
       "Laboratories",
       "Laboratory 1 — From CIF to crystal structure"
@@ -433,7 +708,7 @@
     "href": "index.html",
     "title": "Computational Mineralogy Laboratory",
     "section": "",
-    "text": "This website contains the instructions and supporting material for the computational laboratory activities of the Mineral Science course.\nDuring the laboratory you will work in your own GitHub Codespaces environment.",
+    "text": "This website contains the instructions and supporting material for the computational laboratory activities of the Mineral Science course.\nThe laboratory environment is intentionally split into three parts:\nYou do not need to install the scientific Python environment on your own computer. The notebook work is carried out in a personal GitHub Codespace.",
     "crumbs": [
       "Home"
     ]
@@ -443,7 +718,7 @@
     "href": "index.html#laboratory-path",
     "title": "Computational Mineralogy Laboratory",
     "section": "Laboratory path",
-    "text": "Laboratory path\n\nCrystal structures, CIF files and symmetry\nFirst-principles energy and geometry optimization\nEnergy-volume data and equations of state\nVibrations, phonons and thermodynamic properties\n\nShort questions are answered directly inside the laboratory notebooks.",
+    "text": "Laboratory path\nThe practical work will progressively connect crystal structures, energetic models, physical properties and mineral thermodynamics:\n\ncrystal structures, CIF files and symmetry;\nfirst-principles energy and geometry optimization;\nenergy-volume data and equations of state;\nvibrations, phonons and thermodynamic properties.\n\nShort scientific questions are answered directly in the laboratory notebooks. The notebooks are part of your personal workspace and should be saved and synchronized regularly.",
     "crumbs": [
       "Home"
     ]
@@ -486,7 +761,62 @@
     "href": "getting-started/04-save-sync-stop.html",
     "title": "Save, sync and stop",
     "section": "",
-    "text": "ImportantAlways stop your Codespace when you finish\n\n\n\nClosing the browser tab is not the same as stopping the Codespace.\n\n\nBefore leaving:\n\nSave all notebooks and files.\nCommit your changes.\nSync them with GitHub.\nVerify the repository on GitHub.\nStop the Codespace.\n\nYour GitHub repository is the permanent copy of your work.",
+    "text": "Saving a notebook and saving your work to GitHub are not the same operation.\nThis distinction is important.\nYour GitHub repository is the safety copy that should survive beyond the lifetime of an individual Codespace.",
+    "crumbs": [
+      "Getting started",
+      "Save, sync and stop"
+    ]
+  },
+  {
+    "objectID": "getting-started/04-save-sync-stop.html#save-your-files",
+    "href": "getting-started/04-save-sync-stop.html#save-your-files",
+    "title": "Save, sync and stop",
+    "section": "Save your files",
+    "text": "Save your files\nSave notebooks and other edited files normally with File → Save or Ctrl+S (Cmd+S on macOS).\nA saved file is safe when a Codespace is merely stopped and restarted, but it has not yet been transferred to your GitHub repository.",
+    "crumbs": [
+      "Getting started",
+      "Save, sync and stop"
+    ]
+  },
+  {
+    "objectID": "getting-started/04-save-sync-stop.html#commit-your-work",
+    "href": "getting-started/04-save-sync-stop.html#commit-your-work",
+    "title": "Save, sync and stop",
+    "section": "Commit your work",
+    "text": "Commit your work\nOpen Source Control using the branch-shaped icon in the left activity bar.\nYou will see the files that have changed.\n\nStage the relevant files using the + button.\nEnter a short but meaningful commit message, for example:\nComplete Lab 1 symmetry analysis\nSelect Commit.\n\nFor routine laboratory work it is acceptable to stage all files that belong to the current activity.\n\n\n\n\n\n\nWarningIf you see “Publish Branch”\n\n\n\nYour personal workspace should already be connected to a GitHub repository.\nIf Source Control asks you to Publish Branch instead of allowing you to synchronize normally, you may have opened a Codespace directly from the template rather than from your personal repository. Stop and ask the instructor before continuing.",
+    "crumbs": [
+      "Getting started",
+      "Save, sync and stop"
+    ]
+  },
+  {
+    "objectID": "getting-started/04-save-sync-stop.html#synchronize-with-github",
+    "href": "getting-started/04-save-sync-stop.html#synchronize-with-github",
+    "title": "Save, sync and stop",
+    "section": "Synchronize with GitHub",
+    "text": "Synchronize with GitHub\nAfter committing, select Sync Changes.\nIf GitHub asks you to confirm the synchronization, accept the operation.\nThen open your repository on GitHub in a normal browser tab and verify that your latest notebook or file is visible there.\nThis simple check is especially useful during the first laboratory.",
+    "crumbs": [
+      "Getting started",
+      "Save, sync and stop"
+    ]
+  },
+  {
+    "objectID": "getting-started/04-save-sync-stop.html#stop-the-codespace",
+    "href": "getting-started/04-save-sync-stop.html#stop-the-codespace",
+    "title": "Save, sync and stop",
+    "section": "Stop the Codespace",
+    "text": "Stop the Codespace\n\n\n\n\n\n\nImportantClosing the browser tab does not stop the Codespace\n\n\n\nAlways stop the Codespace explicitly when you finish working.\n\n\nThe most reliable method is:\n\nopen https://github.com/codespaces;\nlocate your Mineral Science Codespace;\nselect the … menu;\nselect Stop codespace.\n\nYou can also stop it from inside Visual Studio Code:\n\npress Ctrl+Shift+P on Windows/Linux or Cmd+Shift+P on macOS;\nsearch for Codespaces: Stop Current Codespace;\nselect the command.\n\nStopping a Codespace ends the running virtual machine while preserving saved files for the next session. It also avoids unnecessary compute usage.\nDo not delete your Codespace as part of the normal workflow. Delete it only when explicitly instructed or when you are certain that all required work has already been synchronized to GitHub.",
+    "crumbs": [
+      "Getting started",
+      "Save, sync and stop"
+    ]
+  },
+  {
+    "objectID": "getting-started/04-save-sync-stop.html#end-of-session-routine",
+    "href": "getting-started/04-save-sync-stop.html#end-of-session-routine",
+    "title": "Save, sync and stop",
+    "section": "End-of-session routine",
+    "text": "End-of-session routine\nUse the same sequence every time:\nSAVE\n  ↓\nCOMMIT\n  ↓\nSYNC CHANGES\n  ↓\nVERIFY ON GITHUB\n  ↓\nSTOP CODESPACE\nContinue with Update course material.",
     "crumbs": [
       "Getting started",
       "Save, sync and stop"
@@ -497,7 +827,73 @@
     "href": "getting-started/03-working-in-codespaces.html",
     "title": "Working in Codespaces",
     "section": "",
-    "text": "Inside the workspace:\ncourse/   instructor-provided material: do not edit\nwork/     your notebooks, results, figures and answers\nNever work directly inside course/.",
+    "text": "A GitHub Codespace is a remote Linux computer that you control through a browser-based Visual Studio Code interface. The interface contains many tools, but only a small subset is needed for this course.",
+    "crumbs": [
+      "Getting started",
+      "Working in Codespaces"
+    ]
+  },
+  {
+    "objectID": "getting-started/03-working-in-codespaces.html#the-four-areas-you-will-use",
+    "href": "getting-started/03-working-in-codespaces.html#the-four-areas-you-will-use",
+    "title": "Working in Codespaces",
+    "section": "The four areas you will use",
+    "text": "The four areas you will use\nExplorer\nThe file icon in the left activity bar. Use it to open notebooks and files and to navigate between course/ and work/.\nNotebook editor\nOpening an .ipynb file displays a Jupyter notebook. Run cells with the triangular Run button or with Shift+Enter. If you are asked to select a kernel, choose the Python environment provided by the Codespace.\nTerminal\nOpen it with Terminal → New Terminal. Course commands such as update-course and start-lab are run here.\nSource Control\nThe branch-shaped icon in the left activity bar. Use it to commit your work and synchronize it with GitHub.",
+    "crumbs": [
+      "Getting started",
+      "Working in Codespaces"
+    ]
+  },
+  {
+    "objectID": "getting-started/03-working-in-codespaces.html#reopening-your-existing-codespace",
+    "href": "getting-started/03-working-in-codespaces.html#reopening-your-existing-codespace",
+    "title": "Working in Codespaces",
+    "section": "Reopening your existing Codespace",
+    "text": "Reopening your existing Codespace\nAfter the first session, do not create a new Codespace every time.\nYou can reopen the existing one from either:\n\nyour personal workspace repository → Code → Codespaces; or\nhttps://github.com/codespaces.\n\nStarting an existing stopped Codespace is normally much faster than creating a new one.",
+    "crumbs": [
+      "Getting started",
+      "Working in Codespaces"
+    ]
+  },
+  {
+    "objectID": "getting-started/03-working-in-codespaces.html#where-to-work",
+    "href": "getting-started/03-working-in-codespaces.html#where-to-work",
+    "title": "Working in Codespaces",
+    "section": "Where to work",
+    "text": "Where to work\nThe workspace follows a simple rule:\ncourse/   instructor-controlled material\nwork/     your personal work\nYour notebooks and answers belong under directories such as:\nwork/lab01/\nwork/lab02/\nDo not use course/ as a working directory. New or corrected course material may replace files there.",
+    "crumbs": [
+      "Getting started",
+      "Working in Codespaces"
+    ]
+  },
+  {
+    "objectID": "getting-started/03-working-in-codespaces.html#uploading-a-local-file",
+    "href": "getting-started/03-working-in-codespaces.html#uploading-a-local-file",
+    "title": "Working in Codespaces",
+    "section": "Uploading a local file",
+    "text": "Uploading a local file\nSome laboratories may ask you to upload a CIF file or a CRYSTAL output from your own computer.\nNavigate to the appropriate directory under work/ in the Explorer and drag the local file into the Explorer. Check that the file appears in the intended directory before continuing.",
+    "crumbs": [
+      "Getting started",
+      "Working in Codespaces"
+    ]
+  },
+  {
+    "objectID": "getting-started/03-working-in-codespaces.html#downloading-a-file",
+    "href": "getting-started/03-working-in-codespaces.html#downloading-a-file",
+    "title": "Working in Codespaces",
+    "section": "Downloading a file",
+    "text": "Downloading a file\nTo copy a result from the Codespace to your computer, right-click the file in the Explorer and select Download.",
+    "crumbs": [
+      "Getting started",
+      "Working in Codespaces"
+    ]
+  },
+  {
+    "objectID": "getting-started/03-working-in-codespaces.html#a-few-useful-terminal-commands",
+    "href": "getting-started/03-working-in-codespaces.html#a-few-useful-terminal-commands",
+    "title": "Working in Codespaces",
+    "section": "A few useful terminal commands",
+    "text": "A few useful terminal commands\nYou only need a very small amount of Linux for the notebook part of the course:\npwd\nshows the current directory.\nls\nlists files and directories.\ncd work/lab01\nmoves into a directory.\ncd ..\nmoves one level upward.\nThese are simply tools used to inspect and analyse mineral-science data.\nContinue with Save, sync and stop.",
     "crumbs": [
       "Getting started",
       "Working in Codespaces"
@@ -508,7 +904,29 @@
     "href": "getting-started/01-overview.html",
     "title": "How the laboratory works",
     "section": "",
-    "text": "The laboratory uses three separate tools:\n\nthis course website for instructions;\na personal GitHub repository opened in Codespaces for notebook work;\nthe CluMiner cluster for CRYSTAL calculations.\n\nYour personal work must always be performed in the work/ directory.",
+    "text": "The computational laboratory uses a browser-based working environment so that all students can use the same scientific software without installing and configuring Python packages locally.\nThe working environment has three separate components.\nThe course website and your workspace are deliberately separate. You should not duplicate this website repository. Instead, you will create your own private repository from the dedicated Mineral Science workspace template.",
+    "crumbs": [
+      "Getting started",
+      "How the laboratory works"
+    ]
+  },
+  {
+    "objectID": "getting-started/01-overview.html#your-personal-workspace",
+    "href": "getting-started/01-overview.html#your-personal-workspace",
+    "title": "How the laboratory works",
+    "section": "Your personal workspace",
+    "text": "Your personal workspace\nYour workspace repository contains two directories with very different roles:\ncourse/\nwork/\ncourse/ contains material distributed by the teacher. It may be updated during the course.\nwork/ contains your work: notebooks, answers, uploaded data, figures and processed results.\n\n\n\n\n\n\nImportantOne rule prevents most problems\n\n\n\nDo not edit files directly inside course/. Work inside work/.\n\n\nWhen a new laboratory is released, the usual workflow is:\nupdate-course\n      ↓\nstart-lab NN\n      ↓\nwork/labNN/\n      ↓\nsave → commit → sync\n      ↓\nstop Codespace\nYou do not need to understand Git internals to use this workflow. The necessary operations are introduced in the following pages.",
+    "crumbs": [
+      "Getting started",
+      "How the laboratory works"
+    ]
+  },
+  {
+    "objectID": "getting-started/01-overview.html#what-you-need-on-your-own-computer",
+    "href": "getting-started/01-overview.html#what-you-need-on-your-own-computer",
+    "title": "How the laboratory works",
+    "section": "What you need on your own computer",
+    "text": "What you need on your own computer\nYou need:\n\na modern web browser;\na GitHub account;\nan internet connection;\nlater in the course, an SSH/SFTP client for access to CluMiner.\n\nEverything, from Python environment, Jupyter notebooks, and other tools are provided inside the Codespace.\nContinue with Create your personal workspace.",
     "crumbs": [
       "Getting started",
       "How the laboratory works"
@@ -552,29 +970,18 @@
     "href": "assignments/00-onboarding.html",
     "title": "Assignment 0 — Before the first laboratory",
     "section": "",
-    "text": "TO BE ADDED.",
+    "text": "Complete this short setup before the first computational laboratory. Its purpose is simply to verify that your personal environment works before class.",
     "crumbs": [
       "Assignments",
       "Assignment 0 — Before the first laboratory"
     ]
   },
   {
-    "objectID": "assignments/00-onboarding.html#before-the-next-class",
-    "href": "assignments/00-onboarding.html#before-the-next-class",
+    "objectID": "assignments/00-onboarding.html#preparation",
+    "href": "assignments/00-onboarding.html#preparation",
     "title": "Assignment 0 — Before the first laboratory",
-    "section": "",
-    "text": "TO BE ADDED.",
-    "crumbs": [
-      "Assignments",
-      "Assignment 0 — Before the first laboratory"
-    ]
-  },
-  {
-    "objectID": "assignments/00-onboarding.html#questions-to-think-about",
-    "href": "assignments/00-onboarding.html#questions-to-think-about",
-    "title": "Assignment 0 — Before the first laboratory",
-    "section": "Questions to think about",
-    "text": "Questions to think about\nTO BE ADDED.",
+    "section": "Preparation",
+    "text": "Preparation\nRead the five pages under Getting Started in order.\nThen complete the following checks in your own private workspace repository.\n\nYour repository was created with Use this template → Create a new repository.\nYour repository visibility is Private.\nYour Codespace opens successfully.\nThe first environment initialization reaches Environment ready..\nThe Python environment passes:\npython -c \"import gemmi, spglib, numpy, scipy, pandas, matplotlib; print('Environment OK')\"\nBoth update-course and start-lab are available.\nYou can edit and save work/SMOKE_TEST.md.\nYou can commit and synchronize that change with GitHub.\nYou can see the updated file in your repository on github.com.\nYou can stop the Codespace and reopen the same Codespace successfully.\n\n\n\n\n\n\n\nNoteNo scientific work is required yet\n\n\n\nThis onboarding task only checks the working environment. The first mineral-science notebook will be introduced during Laboratory 1.\n\n\nIf any step fails, keep the exact error message and report it before the laboratory session.",
     "crumbs": [
       "Assignments",
       "Assignment 0 — Before the first laboratory"

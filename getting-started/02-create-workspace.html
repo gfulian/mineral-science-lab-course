@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -258,7 +293,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/github-codespaces.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GitHub Codespaces</span></a>
+ <span class="menu-text">GitHub Codespaces — Quick reference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -292,8 +327,21 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sign-in-to-github" id="toc-sign-in-to-github" class="nav-link active" data-scroll-target="#sign-in-to-github">1. Sign in to GitHub</a>
+  <ul class="collapse">
+  <li><a href="#recommended-codespaces-setting" id="toc-recommended-codespaces-setting" class="nav-link" data-scroll-target="#recommended-codespaces-setting">Recommended Codespaces setting</a></li>
+  </ul></li>
+  <li><a href="#open-the-workspace-template" id="toc-open-the-workspace-template" class="nav-link" data-scroll-target="#open-the-workspace-template">2. Open the workspace template</a></li>
+  <li><a href="#create-your-private-repository" id="toc-create-your-private-repository" class="nav-link" data-scroll-target="#create-your-private-repository">3. Create your private repository</a></li>
+  <li><a href="#create-the-codespace" id="toc-create-the-codespace" class="nav-link" data-scroll-target="#create-the-codespace">4. Create the Codespace</a></li>
+  <li><a href="#check-the-environment" id="toc-check-the-environment" class="nav-link" data-scroll-target="#check-the-environment">5. Check the environment</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -317,20 +365,97 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<blockquote class="blockquote">
-<p><strong>Workspace template:</strong> TO BE LINKED</p>
-</blockquote>
+<p>You only need to perform the complete procedure on this page once.</p>
+<section id="sign-in-to-github" class="level2">
+<h2 class="anchored" data-anchor-id="sign-in-to-github">1. Sign in to GitHub</h2>
+<p>Open <a href="https://github.com/">GitHub</a> and sign in with your personal account. If you do not already have an account, create one before continuing.</p>
+<section id="recommended-codespaces-setting" class="level3">
+<h3 class="anchored" data-anchor-id="recommended-codespaces-setting">Recommended Codespaces setting</h3>
+<p>Before creating your first Codespace, open your GitHub account settings and select <strong>Codespaces</strong>.</p>
+<p>Set the <strong>Default idle timeout</strong> to <strong>15 minutes</strong>.</p>
+<p>This is a course recommendation. It limits unnecessary use of your Codespaces allowance if you forget to stop a session manually. You should still stop the Codespace explicitly whenever you finish working.</p>
+</section>
+</section>
+<section id="open-the-workspace-template" class="level2">
+<h2 class="anchored" data-anchor-id="open-the-workspace-template">2. Open the workspace template</h2>
+<p>Open the course workspace repository:</p>
+<p><a href="https://github.com/gfulian/mineral-science-lab-workspace" class="uri">https://github.com/gfulian/mineral-science-lab-workspace</a></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Do not fork the repository
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Do <strong>not</strong> use <strong>Fork</strong> and do <strong>not</strong> select <strong>Open in a codespace</strong> directly from the template.</p>
+<p>You must first create your own repository from the template. This ensures that your work is permanently connected to your own GitHub repository.</p>
+</div>
+</div>
+</section>
+<section id="create-your-private-repository" class="level2">
+<h2 class="anchored" data-anchor-id="create-your-private-repository">3. Create your private repository</h2>
+<p>On the workspace template page:</p>
 <ol type="1">
-<li>Create a GitHub account.</li>
-<li>Open the workspace template repository.</li>
-<li>Select <strong>Use this template</strong> → <strong>Create a new repository</strong>.</li>
-<li>Create your repository as <strong>Private</strong>.</li>
-<li>Open <strong>Code</strong> → <strong>Codespaces</strong> → <strong>Create codespace on main</strong>.</li>
-<li>Wait for the environment to finish its first initialization.</li>
+<li>Select <strong>Use this template</strong>.</li>
+<li>Select <strong>Create a new repository</strong>.</li>
+<li>Set <strong>Owner</strong> to your personal GitHub account.</li>
+<li>Give the repository a recognizable name, for example <code>mineral-science-lab-yourname</code>.</li>
+<li>Select <strong>Private</strong> visibility.</li>
+<li>Leave <strong>Include all branches</strong> disabled.</li>
+<li>Select <strong>Create repository from template</strong>.</li>
 </ol>
-<p>The first initialization can take a few minutes.</p>
+<p>You now have your own independent copy of the laboratory workspace.</p>
+<p>Keep this repository private unless the instructor explicitly asks you to change its visibility.</p>
+</section>
+<section id="create-the-codespace" class="level2">
+<h2 class="anchored" data-anchor-id="create-the-codespace">4. Create the Codespace</h2>
+<p>From <strong>your new private repository</strong>:</p>
+<ol type="1">
+<li>Select the green <strong>Code</strong> button.</li>
+<li>Open the <strong>Codespaces</strong> tab.</li>
+<li>Select <strong>Create codespace on main</strong>.</li>
+</ol>
+<p>If GitHub offers a choice of machine type, select the <strong>2-core</strong> machine. The laboratory notebook work does not require a larger machine.</p>
+<p>The first initialization can take a few minutes. This is normal: GitHub is creating the remote Linux environment and the course setup is installing the required scientific Python packages.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Wait for the setup to finish
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>During the first launch, a terminal may display package installation messages. Wait until the setup reports:</p>
+<pre class="text"><code>Environment ready.</code></pre>
+<p>before starting to work.</p>
+</div>
+</div>
+</section>
+<section id="check-the-environment" class="level2">
+<h2 class="anchored" data-anchor-id="check-the-environment">5. Check the environment</h2>
+<p>Open a terminal inside the Codespace using <strong>Terminal → New Terminal</strong> and run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import gemmi, spglib, numpy, scipy, pandas, matplotlib; print('Environment OK')"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The final line should be:</p>
+<pre class="text"><code>Environment OK</code></pre>
+<p>Then check that the two course commands are available:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="at">-v</span> update-course</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="at">-v</span> start-lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Both commands should return a path.</p>
+<p>You can also inspect the top-level directories:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You should see, among other files:</p>
+<pre class="text"><code>course
+work</code></pre>
+<p>If these checks succeed, your laboratory environment is ready.</p>
+<p>Continue with <strong><a href="../getting-started/03-working-in-codespaces.html">Working in Codespaces</a></strong>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

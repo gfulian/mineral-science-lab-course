@@ -74,6 +74,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -258,7 +287,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/github-codespaces.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GitHub Codespaces</span></a>
+ <span class="menu-text">GitHub Codespaces — Quick reference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -297,10 +326,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#scientific-question" id="toc-scientific-question" class="nav-link active" data-scroll-target="#scientific-question">Scientific question</a></li>
-  <li><a href="#before-the-laboratory" id="toc-before-the-laboratory" class="nav-link" data-scroll-target="#before-the-laboratory">Before the laboratory</a></li>
-  <li><a href="#tasks" id="toc-tasks" class="nav-link" data-scroll-target="#tasks">Tasks</a></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
+  <li><a href="#the-cif-as-a-crystallographic-description" id="toc-the-cif-as-a-crystallographic-description" class="nav-link active" data-scroll-target="#the-cif-as-a-crystallographic-description">The CIF as a crystallographic description</a></li>
+  <li><a href="#asymmetric-unit-and-unit-cell" id="toc-asymmetric-unit-and-unit-cell" class="nav-link" data-scroll-target="#asymmetric-unit-and-unit-cell">Asymmetric unit and unit cell</a></li>
+  <li><a href="#two-complementary-symmetry-tools" id="toc-two-complementary-symmetry-tools" class="nav-link" data-scroll-target="#two-complementary-symmetry-tools">Two complementary symmetry tools</a></li>
+  <li><a href="#symmetry-operations-in-coordinate-form" id="toc-symmetry-operations-in-coordinate-form" class="nav-link" data-scroll-target="#symmetry-operations-in-coordinate-form">Symmetry operations in coordinate form</a></li>
+  <li><a href="#wyckoff-positions" id="toc-wyckoff-positions" class="nav-link" data-scroll-target="#wyckoff-positions">Wyckoff positions</a></li>
+  <li><a href="#visualization-is-inspection-not-proof" id="toc-visualization-is-inspection-not-proof" class="nav-link" data-scroll-target="#visualization-is-inspection-not-proof">Visualization is inspection, not proof</a></li>
+  <li><a href="#laboratory-workflow" id="toc-laboratory-workflow" class="nav-link" data-scroll-target="#laboratory-workflow">Laboratory workflow</a></li>
   <li><a href="#what-to-save" id="toc-what-to-save" class="nav-link" data-scroll-target="#what-to-save">What to save</a></li>
   </ul>
 </nav>
@@ -327,25 +359,97 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="scientific-question" class="level2">
-<h2 class="anchored" data-anchor-id="scientific-question">Scientific question</h2>
-<p>TO BE DEFINED.</p>
+<p>A crystal structure is often first encountered as a picture: coloured spheres, polyhedra, chains, layers or frameworks. The picture is useful, but it is not the structure itself. A crystallographic model is a compact mathematical description of a periodic arrangement. In this laboratory we will start from that description and reconstruct the structure step by step.</p>
+<p>The practical question is simple:</p>
+<blockquote class="blockquote">
+<p><strong>How does the information stored in a CIF become the periodic crystal that we draw and interpret?</strong></p>
+</blockquote>
+<p>This is the first computational activity because it establishes a workflow that will return throughout the course: a structural model is read from data, analysed, visualized, checked against symmetry, and eventually used as the starting point for calculations of energy and physical properties.</p>
+<section id="the-cif-as-a-crystallographic-description" class="level2">
+<h2 class="anchored" data-anchor-id="the-cif-as-a-crystallographic-description">The CIF as a crystallographic description</h2>
+<p>The <strong>Crystallographic Information File (CIF)</strong> is a structured text format. For the present exercise, the most important information is the unit cell, the space group, the atomic sites, their fractional coordinates and their occupancies.</p>
+<p>The fractional coordinate <span class="math inline">\((x,y,z)\)</span> does not give a distance in ångström. Instead, it gives a position relative to the three direct-lattice vectors <span class="math inline">\(\mathbf{a}\)</span>, <span class="math inline">\(\mathbf{b}\)</span>, and <span class="math inline">\(\mathbf{c}\)</span>:</p>
+<p><span class="math display">\[
+\mathbf{r} = x\mathbf{a} + y\mathbf{b} + z\mathbf{c}.
+\]</span></p>
+<p>This is why the same fractional coordinates can describe geometrically different Cartesian positions when the cell parameters change.</p>
+<p>A CIF normally does not need to list every atom that appears in a conventional unit cell. It can store only the crystallographically independent sites. The remaining sites follow from the symmetry of the space group.</p>
 </section>
-<section id="before-the-laboratory" class="level2">
-<h2 class="anchored" data-anchor-id="before-the-laboratory">Before the laboratory</h2>
-<p>TO BE DEFINED.</p>
+<section id="asymmetric-unit-and-unit-cell" class="level2">
+<h2 class="anchored" data-anchor-id="asymmetric-unit-and-unit-cell">Asymmetric unit and unit cell</h2>
+<p>The <strong>asymmetric unit</strong> is the smallest part of the structure from which the contents of the unit cell can be generated by applying the appropriate space-group operations. The <strong>unit cell</strong>, in turn, generates the infinite periodic crystal by translation.</p>
+<p>This distinction is easy to lose when looking only at a structure drawing. MgO provides a particularly clean example. Only one Mg site and one O site are needed in its crystallographic description, but applying the symmetry and centring operations generates the complete contents of the conventional cubic cell.</p>
+<p>In the notebook we therefore inspect the structure twice: first as the list of sites written in the CIF, and then as the symmetry-expanded unit cell. The difference between these lists is itself part of the crystallographic information.</p>
 </section>
-<section id="tasks" class="level2">
-<h2 class="anchored" data-anchor-id="tasks">Tasks</h2>
-<p>TO BE DEVELOPED.</p>
+<section id="two-complementary-symmetry-tools" class="level2">
+<h2 class="anchored" data-anchor-id="two-complementary-symmetry-tools">Two complementary symmetry tools</h2>
+<p>We use <strong>Gemmi</strong> and <strong>spglib</strong> for different reasons.</p>
+<p>Gemmi is used to read the CIF as a crystallographic document. It understands the unit cell, space-group symbols, symmetry operations and atomic sites. In other words, it can tell us what crystallographic information the file claims to contain.</p>
+<p>spglib approaches the problem from another direction. We give it lattice vectors, atomic coordinates and atomic species. It then searches numerically for operations that map the structure onto itself. This requires a tolerance, because coordinates in real structure files are finite-precision numbers and experimental structures are never mathematical abstractions with infinitely exact coordinates.</p>
+<p>The comparison is useful:</p>
+<p><span class="math display">\[
+\text{symmetry stated in the CIF}
+\quad\longleftrightarrow\quad
+\text{symmetry implied by the numerical structure}.
+\]</span></p>
+<p>Agreement is a consistency check. Disagreement is not something to hide by changing parameters until the desired answer appears. It is a result that must be understood: the structure may be distorted, the tolerance may be inappropriate, the CIF may use a non-standard setting, or the structural model may contain disorder or partial occupancies.</p>
+<p>For this first exercise we use ordered structures with full occupancies so that the symmetry analysis remains unambiguous.</p>
 </section>
-<section id="questions" class="level2">
-<h2 class="anchored" data-anchor-id="questions">Questions</h2>
-<p>Questions are answered directly in your personal notebook.</p>
+<section id="symmetry-operations-in-coordinate-form" class="level2">
+<h2 class="anchored" data-anchor-id="symmetry-operations-in-coordinate-form">Symmetry operations in coordinate form</h2>
+<p>A space-group operation can be written as a transformation of fractional coordinates. The identity is</p>
+<p><span class="math display">\[
+(x,y,z)\rightarrow(x,y,z),
+\]</span></p>
+<p>whereas an operation written, for example, as</p>
+<pre class="text"><code>-y,x,z</code></pre>
+<p>maps</p>
+<p><span class="math display">\[
+(x,y,z)\rightarrow(-y,x,z).
+\]</span></p>
+<p>Translations may appear as fractional additions such as <span class="math inline">\(1/2\)</span>. Rather than printing every operation of a high-symmetry space group without context, the notebook first shows a compact set of Hall-derived operations and the lattice centring translations, and then lets you inspect part of the full operation list.</p>
+<p>The software can describe the matrix and translational parts of an operation, but interpreting an operation geometrically remains a crystallographic task. In particular, the presence of a translational component is what distinguishes operations such as screw axes and glide planes from their purely point-symmetry counterparts.</p>
+</section>
+<section id="wyckoff-positions" class="level2">
+<h2 class="anchored" data-anchor-id="wyckoff-positions">Wyckoff positions</h2>
+<p>The atoms of a crystal can also be organized into <strong>Wyckoff positions</strong>. A Wyckoff position identifies an orbit of symmetrically equivalent points in a given space group.</p>
+<p>Three pieces of information are especially useful:</p>
+<ul>
+<li>the <strong>multiplicity</strong>, which gives the number of equivalent sites in the conventional unit cell;</li>
+<li>the <strong>Wyckoff letter</strong>, which distinguishes inequivalent orbits;</li>
+<li>the <strong>site symmetry</strong>, which describes the subgroup of operations that leaves a particular site invariant.</li>
+</ul>
+<p>A multiplicity is therefore not the number of independent atoms that had to be entered in the CIF. Quite the opposite: several atoms in the conventional cell may all be generated from one crystallographically independent site.</p>
+</section>
+<section id="visualization-is-inspection-not-proof" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-is-inspection-not-proof">Visualization is inspection, not proof</h2>
+<p>The notebooks use <strong>py3Dmol</strong> to display the CIF interactively. You can rotate the structure, zoom, draw the unit-cell box and replicate the cell to make periodicity easier to see.</p>
+<p>The default representation uses spheres without automatically inferred bonds. This choice is deliberate. A line drawn between two atoms by a visualization program is based on a graphical or distance criterion; it is not itself a crystallographic observable and should not silently determine how we interpret bonding in a mineral.</p>
+<p>The viewer is therefore an aid to scientific inspection. The quantitative description still comes from the crystallographic data and symmetry analysis.</p>
+</section>
+<section id="laboratory-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="laboratory-workflow">Laboratory workflow</h2>
+<p>The activity has two parts.</p>
+<p>First, we work together on <strong>MgO (periclase)</strong>:</p>
+<pre class="text"><code>01-guided-mgo.ipynb</code></pre>
+<p>MgO is useful because the rocksalt structure is simple enough that the relationship between asymmetric unit, face-centred cell, symmetry and Wyckoff multiplicity remains visible.</p>
+<p>You will then receive a second CIF and repeat the same reasoning independently in:</p>
+<pre class="text"><code>02-assigned-structure.ipynb</code></pre>
+<p>Place the assigned CIF directly inside:</p>
+<pre class="text"><code>work/lab01/</code></pre>
+<p>and change only the filename requested in the notebook.</p>
+<p>The questions are intentionally short. They ask you to interpret the structure, not to reproduce Python code.</p>
 </section>
 <section id="what-to-save" class="level2">
 <h2 class="anchored" data-anchor-id="what-to-save">What to save</h2>
-<p>TO BE DEFINED.</p>
+<p>At the end of the laboratory your private repository should contain:</p>
+<ul>
+<li>the completed guided MgO notebook;</li>
+<li>the completed assigned-structure notebook;</li>
+<li>the CIF supplied for your individual activity.</li>
+</ul>
+<p>Use the usual end-of-session sequence:</p>
+<pre class="text"><code>save → commit → Sync Changes → verify on GitHub → stop Codespace</code></pre>
 
 
 </section>

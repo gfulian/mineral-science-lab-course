@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -258,7 +293,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/github-codespaces.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GitHub Codespaces</span></a>
+ <span class="menu-text">GitHub Codespaces — Quick reference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -297,8 +332,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#before-the-next-class" id="toc-before-the-next-class" class="nav-link active" data-scroll-target="#before-the-next-class">Before the next class</a></li>
-  <li><a href="#questions-to-think-about" id="toc-questions-to-think-about" class="nav-link" data-scroll-target="#questions-to-think-about">Questions to think about</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link active" data-scroll-target="#preparation">Preparation</a></li>
   </ul>
 </nav>
     </div>
@@ -324,13 +358,38 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="before-the-next-class" class="level2">
-<h2 class="anchored" data-anchor-id="before-the-next-class">Before the next class</h2>
-<p>TO BE ADDED.</p>
-</section>
-<section id="questions-to-think-about" class="level2">
-<h2 class="anchored" data-anchor-id="questions-to-think-about">Questions to think about</h2>
-<p>TO BE ADDED.</p>
+<p>Complete this short setup before the first computational laboratory. Its purpose is simply to verify that your personal environment works before class.</p>
+<section id="preparation" class="level2">
+<h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
+<p>Read the five pages under <strong>Getting Started</strong> in order.</p>
+<p>Then complete the following checks in your own private workspace repository.</p>
+<ul>
+<li><p>Your repository was created with <strong>Use this template → Create a new repository</strong>.</p></li>
+<li><p>Your repository visibility is <strong>Private</strong>.</p></li>
+<li><p>Your Codespace opens successfully.</p></li>
+<li><p>The first environment initialization reaches <code>Environment ready.</code>.</p></li>
+<li><p>The Python environment passes:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import gemmi, spglib, numpy, scipy, pandas, matplotlib; print('Environment OK')"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Both <code>update-course</code> and <code>start-lab</code> are available.</p></li>
+<li><p>You can edit and save <code>work/SMOKE_TEST.md</code>.</p></li>
+<li><p>You can commit and synchronize that change with GitHub.</p></li>
+<li><p>You can see the updated file in your repository on github.com.</p></li>
+<li><p>You can stop the Codespace and reopen the same Codespace successfully.</p></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>No scientific work is required yet
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This onboarding task only checks the working environment. The first mineral-science notebook will be introduced during Laboratory 1.</p>
+</div>
+</div>
+<p>If any step fails, keep the exact error message and report it before the laboratory session.</p>
 
 
 </section>

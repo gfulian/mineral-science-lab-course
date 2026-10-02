@@ -293,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/github-codespaces.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GitHub Codespaces</span></a>
+ <span class="menu-text">GitHub Codespaces — Quick reference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -327,8 +327,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#before-starting-a-newly-released-laboratory" id="toc-before-starting-a-newly-released-laboratory" class="nav-link active" data-scroll-target="#before-starting-a-newly-released-laboratory">Before starting a newly released laboratory</a></li>
+  <li><a href="#create-your-personal-working-copy" id="toc-create-your-personal-working-copy" class="nav-link" data-scroll-target="#create-your-personal-working-copy">Create your personal working copy</a></li>
+  <li><a href="#typical-start-of-laboratory-workflow" id="toc-typical-start-of-laboratory-workflow" class="nav-link" data-scroll-target="#typical-start-of-laboratory-workflow">Typical start-of-laboratory workflow</a></li>
+  <li><a href="#if-an-update-reports-an-error" id="toc-if-an-update-reports-an-error" class="nav-link" data-scroll-target="#if-an-update-reports-an-error">If an update reports an error</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -352,13 +361,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Before starting newly released material:</p>
+<p>The laboratory workspace is distributed at the beginning of the course, but new notebooks, data files, reference results or corrections may be released later.</p>
+<p>You do <strong>not</strong> need to create a new repository when this happens.</p>
+<p>The workspace provides the command:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">update-course</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Then create your personal working copy, for example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">start-lab</span> 01</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The update command modifies only instructor-controlled course material and does not touch your <code>work/</code> directory.</p>
+<p>which retrieves the current instructor version of the material stored under <code>course/</code>.</p>
+<p>Your personal <code>work/</code> directory is not replaced by this operation.</p>
+<section id="before-starting-a-newly-released-laboratory" class="level2">
+<h2 class="anchored" data-anchor-id="before-starting-a-newly-released-laboratory">Before starting a newly released laboratory</h2>
+<p>Open the terminal in your existing Codespace and run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">update-course</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Read the message printed by the command.</p>
+<p>If the material is already current, no further update is required.</p>
+<p>If new files have been retrieved, you may see them listed as changes in Source Control. This is expected: they are now part of your personal repository copy of the current course material.</p>
+</section>
+<section id="create-your-personal-working-copy" class="level2">
+<h2 class="anchored" data-anchor-id="create-your-personal-working-copy">Create your personal working copy</h2>
+<p>When you start a laboratory for the first time, use:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">start-lab</span> NN</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>where <code>NN</code> is the two-digit laboratory number.</p>
+<p>For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">start-lab</span> 01</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>creates the working material for Laboratory 1 under:</p>
+<pre class="text"><code>work/lab01/</code></pre>
+<p>Open and edit the files in <code>work/lab01/</code>, not the source material under <code>course/labs/lab01/</code>.</p>
+<p>Running <code>start-lab</code> again does not overwrite files that already exist in your personal working directory.</p>
+</section>
+<section id="typical-start-of-laboratory-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="typical-start-of-laboratory-workflow">Typical start-of-laboratory workflow</h2>
+<p>For Laboratory 2, for example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">update-course</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">start-lab</span> 02</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then open:</p>
+<pre class="text"><code>work/lab02/</code></pre>
+<p>and begin the activity.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Protect your own work
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The update mechanism is designed around the separation:</p>
+<pre class="text"><code>course/  → distributed material
+work/    → student work</code></pre>
+<p>Do not store your answers or edited notebooks inside <code>course/</code>.</p>
+</div>
+</div>
+</section>
+<section id="if-an-update-reports-an-error" class="level2">
+<h2 class="anchored" data-anchor-id="if-an-update-reports-an-error">If an update reports an error</h2>
+<p>Do not try to repair Git history or remove files at random.</p>
+<p>Save your current work, synchronize it with GitHub if possible, and show the error message to the instructor. Most update problems can be resolved without losing anything in <code>work/</code>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

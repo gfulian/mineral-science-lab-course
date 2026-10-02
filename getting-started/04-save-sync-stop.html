@@ -258,7 +258,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/github-codespaces.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GitHub Codespaces</span></a>
+ <span class="menu-text">GitHub Codespaces — Quick reference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -292,8 +292,18 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#save-your-files" id="toc-save-your-files" class="nav-link active" data-scroll-target="#save-your-files">Save your files</a></li>
+  <li><a href="#commit-your-work" id="toc-commit-your-work" class="nav-link" data-scroll-target="#commit-your-work">Commit your work</a></li>
+  <li><a href="#synchronize-with-github" id="toc-synchronize-with-github" class="nav-link" data-scroll-target="#synchronize-with-github">Synchronize with GitHub</a></li>
+  <li><a href="#stop-the-codespace" id="toc-stop-the-codespace" class="nav-link" data-scroll-target="#stop-the-codespace">Stop the Codespace</a></li>
+  <li><a href="#end-of-session-routine" id="toc-end-of-session-routine" class="nav-link" data-scroll-target="#end-of-session-routine">End-of-session routine</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -317,30 +327,125 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Saving a notebook and saving your work to GitHub are <strong>not the same operation</strong>.</p>
+<p>This distinction is important.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th>What it does</th>
+<th>Where the work exists</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Save</strong></td>
+<td>Writes the current file in the Codespace</td>
+<td>Remote Codespace disk</td>
+</tr>
+<tr class="even">
+<td><strong>Commit</strong></td>
+<td>Records a named snapshot of repository changes</td>
+<td>Git history inside the Codespace</td>
+</tr>
+<tr class="odd">
+<td><strong>Sync Changes</strong></td>
+<td>Sends your commits to GitHub</td>
+<td>Your permanent GitHub repository</td>
+</tr>
+</tbody>
+</table>
+<p>Your GitHub repository is the safety copy that should survive beyond the lifetime of an individual Codespace.</p>
+<section id="save-your-files" class="level2">
+<h2 class="anchored" data-anchor-id="save-your-files">Save your files</h2>
+<p>Save notebooks and other edited files normally with <strong>File → Save</strong> or <code>Ctrl+S</code> (<code>Cmd+S</code> on macOS).</p>
+<p>A saved file is safe when a Codespace is merely stopped and restarted, but it has not yet been transferred to your GitHub repository.</p>
+</section>
+<section id="commit-your-work" class="level2">
+<h2 class="anchored" data-anchor-id="commit-your-work">Commit your work</h2>
+<p>Open <strong>Source Control</strong> using the branch-shaped icon in the left activity bar.</p>
+<p>You will see the files that have changed.</p>
+<ol type="1">
+<li><p>Stage the relevant files using the <strong>+</strong> button.</p></li>
+<li><p>Enter a short but meaningful commit message, for example:</p>
+<pre class="text"><code>Complete Lab 1 symmetry analysis</code></pre></li>
+<li><p>Select <strong>Commit</strong>.</p></li>
+</ol>
+<p>For routine laboratory work it is acceptable to stage all files that belong to the current activity.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>If you see “Publish Branch”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your personal workspace should already be connected to a GitHub repository.</p>
+<p>If Source Control asks you to <strong>Publish Branch</strong> instead of allowing you to synchronize normally, you may have opened a Codespace directly from the template rather than from your personal repository. Stop and ask the instructor before continuing.</p>
+</div>
+</div>
+</section>
+<section id="synchronize-with-github" class="level2">
+<h2 class="anchored" data-anchor-id="synchronize-with-github">Synchronize with GitHub</h2>
+<p>After committing, select <strong>Sync Changes</strong>.</p>
+<p>If GitHub asks you to confirm the synchronization, accept the operation.</p>
+<p>Then open your repository on GitHub in a normal browser tab and verify that your latest notebook or file is visible there.</p>
+<p>This simple check is especially useful during the first laboratory.</p>
+</section>
+<section id="stop-the-codespace" class="level2">
+<h2 class="anchored" data-anchor-id="stop-the-codespace">Stop the Codespace</h2>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Always stop your Codespace when you finish
+<span class="screen-reader-only">Important</span>Closing the browser tab does not stop the Codespace
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Closing the browser tab is not the same as stopping the Codespace.</p>
+<p>Always stop the Codespace explicitly when you finish working.</p>
 </div>
 </div>
-<p>Before leaving:</p>
+<p>The most reliable method is:</p>
 <ol type="1">
-<li>Save all notebooks and files.</li>
-<li>Commit your changes.</li>
-<li>Sync them with GitHub.</li>
-<li>Verify the repository on GitHub.</li>
-<li>Stop the Codespace.</li>
+<li>open <a href="https://github.com/codespaces" class="uri">https://github.com/codespaces</a>;</li>
+<li>locate your Mineral Science Codespace;</li>
+<li>select the <strong>…</strong> menu;</li>
+<li>select <strong>Stop codespace</strong>.</li>
 </ol>
-<p>Your GitHub repository is the permanent copy of your work.</p>
+<p>You can also stop it from inside Visual Studio Code:</p>
+<ol type="1">
+<li>press <code>Ctrl+Shift+P</code> on Windows/Linux or <code>Cmd+Shift+P</code> on macOS;</li>
+<li>search for <strong>Codespaces: Stop Current Codespace</strong>;</li>
+<li>select the command.</li>
+</ol>
+<p>Stopping a Codespace ends the running virtual machine while preserving saved files for the next session. It also avoids unnecessary compute usage.</p>
+<p>Do <strong>not</strong> delete your Codespace as part of the normal workflow. Delete it only when explicitly instructed or when you are certain that all required work has already been synchronized to GitHub.</p>
+</section>
+<section id="end-of-session-routine" class="level2">
+<h2 class="anchored" data-anchor-id="end-of-session-routine">End-of-session routine</h2>
+<p>Use the same sequence every time:</p>
+<pre class="text"><code>SAVE
+  ↓
+COMMIT
+  ↓
+SYNC CHANGES
+  ↓
+VERIFY ON GITHUB
+  ↓
+STOP CODESPACE</code></pre>
+<p>Continue with <strong><a href="../getting-started/05-update-course-material.html">Update course material</a></strong>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

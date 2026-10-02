@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>GitHub Codespaces – Mineral Science Laboratory</title>
+<title>GitHub Codespaces — Quick reference – Mineral Science Laboratory</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +25,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -86,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/linux-essentials.html">Reference</a></li><li class="breadcrumb-item"><a href="../reference/github-codespaces.html">GitHub Codespaces</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/linux-essentials.html">Reference</a></li><li class="breadcrumb-item"><a href="../reference/github-codespaces.html">GitHub Codespaces — Quick reference</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -258,7 +293,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/github-codespaces.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">GitHub Codespaces</span></a>
+ <span class="menu-text">GitHub Codespaces — Quick reference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -292,15 +327,40 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#open-or-resume-the-workspace" id="toc-open-or-resume-the-workspace" class="nav-link active" data-scroll-target="#open-or-resume-the-workspace">Open or resume the workspace</a></li>
+  <li><a href="#recommended-resource-settings" id="toc-recommended-resource-settings" class="nav-link" data-scroll-target="#recommended-resource-settings">Recommended resource settings</a></li>
+  <li><a href="#first-launch-is-slower" id="toc-first-launch-is-slower" class="nav-link" data-scroll-target="#first-launch-is-slower">First launch is slower</a></li>
+  <li><a href="#upload-a-file" id="toc-upload-a-file" class="nav-link" data-scroll-target="#upload-a-file">Upload a file</a></li>
+  <li><a href="#download-a-file" id="toc-download-a-file" class="nav-link" data-scroll-target="#download-a-file">Download a file</a></li>
+  <li><a href="#open-a-terminal" id="toc-open-a-terminal" class="nav-link" data-scroll-target="#open-a-terminal">Open a terminal</a></li>
+  <li><a href="#update-distributed-material" id="toc-update-distributed-material" class="nav-link" data-scroll-target="#update-distributed-material">Update distributed material</a></li>
+  <li><a href="#start-a-laboratory" id="toc-start-a-laboratory" class="nav-link" data-scroll-target="#start-a-laboratory">Start a laboratory</a></li>
+  <li><a href="#save-work-to-github" id="toc-save-work-to-github" class="nav-link" data-scroll-target="#save-work-to-github">Save work to GitHub</a></li>
+  <li><a href="#stop-the-codespace" id="toc-stop-the-codespace" class="nav-link" data-scroll-target="#stop-the-codespace">Stop the Codespace</a></li>
+  <li><a href="#delete-a-codespace" id="toc-delete-a-codespace" class="nav-link" data-scroll-target="#delete-a-codespace">Delete a Codespace</a></li>
+  <li><a href="#common-problems" id="toc-common-problems" class="nav-link" data-scroll-target="#common-problems">Common problems</a>
+  <ul class="collapse">
+  <li><a href="#the-first-launch-appears-to-be-doing-nothing" id="toc-the-first-launch-appears-to-be-doing-nothing" class="nav-link" data-scroll-target="#the-first-launch-appears-to-be-doing-nothing">The first launch appears to be doing nothing</a></li>
+  <li><a href="#python-cannot-import-a-course-package" id="toc-python-cannot-import-a-course-package" class="nav-link" data-scroll-target="#python-cannot-import-a-course-package">Python cannot import a course package</a></li>
+  <li><a href="#update-course-reports-an-error" id="toc-update-course-reports-an-error" class="nav-link" data-scroll-target="#update-course-reports-an-error"><code>update-course</code> reports an error</a></li>
+  <li><a href="#source-control-says-publish-branch" id="toc-source-control-says-publish-branch" class="nav-link" data-scroll-target="#source-control-says-publish-branch">Source Control says <code>Publish Branch</code></a></li>
+  <li><a href="#the-codespace-is-still-running-after-i-closed-the-tab" id="toc-the-codespace-is-still-running-after-i-closed-the-tab" class="nav-link" data-scroll-target="#the-codespace-is-still-running-after-i-closed-the-tab">The Codespace is still running after I closed the tab</a></li>
+  </ul></li>
+  <li><a href="#official-documentation" id="toc-official-documentation" class="nav-link" data-scroll-target="#official-documentation">Official documentation</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/linux-essentials.html">Reference</a></li><li class="breadcrumb-item"><a href="../reference/github-codespaces.html">GitHub Codespaces</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/linux-essentials.html">Reference</a></li><li class="breadcrumb-item"><a href="../reference/github-codespaces.html">GitHub Codespaces — Quick reference</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">GitHub Codespaces</h1>
+<h1 class="title">GitHub Codespaces — Quick reference</h1>
 </div>
 
 
@@ -317,9 +377,106 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>TO BE DEVELOPED.</p>
+<p>This page collects the routine Codespaces operations used during the Mineral Science laboratory.</p>
+<section id="open-or-resume-the-workspace" class="level2">
+<h2 class="anchored" data-anchor-id="open-or-resume-the-workspace">Open or resume the workspace</h2>
+<p>Open your private workspace repository and select:</p>
+<p><strong>Code → Codespaces</strong></p>
+<p>If an existing Codespace is listed, reopen it rather than creating a new one.</p>
+<p>You can also manage all your Codespaces at:</p>
+<p><a href="https://github.com/codespaces" class="uri">https://github.com/codespaces</a></p>
+</section>
+<section id="recommended-resource-settings" class="level2">
+<h2 class="anchored" data-anchor-id="recommended-resource-settings">Recommended resource settings</h2>
+<p>For this course, a <strong>2-core</strong> Codespace is sufficient.</p>
+<p>If you need to check or change the current machine, open <a href="https://github.com/codespaces" class="uri">https://github.com/codespaces</a>, select the <strong>…</strong> menu for the Codespace and choose <strong>Change machine type</strong>.</p>
+<p>A <strong>15-minute idle timeout</strong> is recommended in your GitHub <strong>Settings → Codespaces</strong>. This is a safety measure; you should still stop the Codespace manually when finished.</p>
+</section>
+<section id="first-launch-is-slower" class="level2">
+<h2 class="anchored" data-anchor-id="first-launch-is-slower">First launch is slower</h2>
+<p>Creating a Codespace for the first time requires GitHub to create the virtual machine, configure the development container and install the scientific Python environment.</p>
+<p>Wait for:</p>
+<pre class="text"><code>Environment ready.</code></pre>
+<p>Restarting the same stopped Codespace is normally much faster.</p>
+</section>
+<section id="upload-a-file" class="level2">
+<h2 class="anchored" data-anchor-id="upload-a-file">Upload a file</h2>
+<p>Drag a local file into the required folder in the Explorer.</p>
+<p>For course work, upload files into the appropriate directory under <code>work/</code> unless the laboratory instructions explicitly state otherwise.</p>
+</section>
+<section id="download-a-file" class="level2">
+<h2 class="anchored" data-anchor-id="download-a-file">Download a file</h2>
+<p>Right-click the file in the Explorer and select <strong>Download</strong>.</p>
+</section>
+<section id="open-a-terminal" class="level2">
+<h2 class="anchored" data-anchor-id="open-a-terminal">Open a terminal</h2>
+<p>Use:</p>
+<p><strong>Terminal → New Terminal</strong></p>
+<p>Useful checks include:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="update-distributed-material" class="level2">
+<h2 class="anchored" data-anchor-id="update-distributed-material">Update distributed material</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">update-course</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="start-a-laboratory" class="level2">
+<h2 class="anchored" data-anchor-id="start-a-laboratory">Start a laboratory</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">start-lab</span> 01</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Replace <code>01</code> with the laboratory number.</p>
+</section>
+<section id="save-work-to-github" class="level2">
+<h2 class="anchored" data-anchor-id="save-work-to-github">Save work to GitHub</h2>
+<p>Use the Source Control panel:</p>
+<pre class="text"><code>stage → commit → Sync Changes</code></pre>
+<p>Remember that saving a notebook does not automatically send it to GitHub.</p>
+</section>
+<section id="stop-the-codespace" class="level2">
+<h2 class="anchored" data-anchor-id="stop-the-codespace">Stop the Codespace</h2>
+<p>Preferred browser method:</p>
+<p><a href="https://github.com/codespaces" class="uri">https://github.com/codespaces</a></p>
+<p>then:</p>
+<p><strong>… → Stop codespace</strong></p>
+<p>Alternative from inside the Codespace:</p>
+<p><strong>Command Palette → Codespaces: Stop Current Codespace</strong></p>
+<p>Closing the browser tab alone does not stop the Codespace.</p>
+</section>
+<section id="delete-a-codespace" class="level2">
+<h2 class="anchored" data-anchor-id="delete-a-codespace">Delete a Codespace</h2>
+<p>Deleting a Codespace is <strong>not</strong> part of the normal end-of-session workflow.</p>
+<p>Only delete it after confirming that all work you need has been committed and synchronized to GitHub.</p>
+</section>
+<section id="common-problems" class="level2">
+<h2 class="anchored" data-anchor-id="common-problems">Common problems</h2>
+<section id="the-first-launch-appears-to-be-doing-nothing" class="level3">
+<h3 class="anchored" data-anchor-id="the-first-launch-appears-to-be-doing-nothing">The first launch appears to be doing nothing</h3>
+<p>Wait for the setup terminal to finish. Package installation during the first creation can take several minutes.</p>
+</section>
+<section id="python-cannot-import-a-course-package" class="level3">
+<h3 class="anchored" data-anchor-id="python-cannot-import-a-course-package">Python cannot import a course package</h3>
+<p>Make sure the initial setup has completed. If the problem remains, keep the complete error message and contact the instructor rather than installing different package versions manually.</p>
+</section>
+<section id="update-course-reports-an-error" class="level3">
+<h3 class="anchored" data-anchor-id="update-course-reports-an-error"><code>update-course</code> reports an error</h3>
+<p>Do not delete or overwrite <code>work/</code>. Save and synchronize your current work, then report the exact terminal message.</p>
+</section>
+<section id="source-control-says-publish-branch" class="level3">
+<h3 class="anchored" data-anchor-id="source-control-says-publish-branch">Source Control says <code>Publish Branch</code></h3>
+<p>Check that you created a private repository from the template <strong>before</strong> creating the Codespace. A Codespace opened directly from the template is not the intended course workflow.</p>
+</section>
+<section id="the-codespace-is-still-running-after-i-closed-the-tab" class="level3">
+<h3 class="anchored" data-anchor-id="the-codespace-is-still-running-after-i-closed-the-tab">The Codespace is still running after I closed the tab</h3>
+<p>This is expected. Closing the web editor does not stop the remote machine. Open <a href="https://github.com/codespaces" class="uri">https://github.com/codespaces</a> and stop it explicitly.</p>
+</section>
+</section>
+<section id="official-documentation" class="level2">
+<h2 class="anchored" data-anchor-id="official-documentation">Official documentation</h2>
+<p>GitHub maintains current documentation at:</p>
+<p><a href="https://docs.github.com/en/codespaces" class="uri">https://docs.github.com/en/codespaces</a></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
