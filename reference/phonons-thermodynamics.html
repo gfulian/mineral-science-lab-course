@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Working in Codespaces – Mineral Science Laboratory</title>
+<title>Phonons and Quantas — Quick reference – Mineral Science Laboratory</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -109,6 +109,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -121,7 +150,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../getting-started/01-overview.html">Getting started</a></li><li class="breadcrumb-item"><a href="../getting-started/03-working-in-codespaces.html">Working in Codespaces</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Mineral Science Laboratory
+      </li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -175,7 +206,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../getting-started/03-working-in-codespaces.html" class="sidebar-item-text sidebar-link active">
+  <a href="../getting-started/03-working-in-codespaces.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Working in Codespaces</span></a>
   </div>
 </li>
@@ -332,21 +363,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-four-areas-you-will-use" id="toc-the-four-areas-you-will-use" class="nav-link active" data-scroll-target="#the-four-areas-you-will-use">The four areas you will use</a></li>
-  <li><a href="#reopening-your-existing-codespace" id="toc-reopening-your-existing-codespace" class="nav-link" data-scroll-target="#reopening-your-existing-codespace">Reopening your existing Codespace</a></li>
-  <li><a href="#where-to-work" id="toc-where-to-work" class="nav-link" data-scroll-target="#where-to-work">Where to work</a></li>
-  <li><a href="#uploading-a-local-file" id="toc-uploading-a-local-file" class="nav-link" data-scroll-target="#uploading-a-local-file">Uploading a local file</a></li>
-  <li><a href="#downloading-a-file" id="toc-downloading-a-file" class="nav-link" data-scroll-target="#downloading-a-file">Downloading a file</a></li>
-  <li><a href="#a-few-useful-terminal-commands" id="toc-a-few-useful-terminal-commands" class="nav-link" data-scroll-target="#a-few-useful-terminal-commands">A few useful terminal commands</a></li>
+  <li><a href="#γ-point-frequencies-in-crystal" id="toc-γ-point-frequencies-in-crystal" class="nav-link active" data-scroll-target="#γ-point-frequencies-in-crystal">Γ-point frequencies in CRYSTAL</a></li>
+  <li><a href="#phonon-dispersion-with-an-isotropic-supercell" id="toc-phonon-dispersion-with-an-isotropic-supercell" class="nav-link" data-scroll-target="#phonon-dispersion-with-an-isotropic-supercell">Phonon dispersion with an isotropic supercell</a></li>
+  <li><a href="#convert-a-crystal-phonon-output-for-quantas" id="toc-convert-a-crystal-phonon-output-for-quantas" class="nav-link" data-scroll-target="#convert-a-crystal-phonon-output-for-quantas">Convert a CRYSTAL phonon output for Quantas</a></li>
+  <li><a href="#q-point-weights" id="toc-q-point-weights" class="nav-link" data-scroll-target="#q-point-weights">q-point weights</a></li>
+  <li><a href="#run-harmonic-thermodynamics" id="toc-run-harmonic-thermodynamics" class="nav-link" data-scroll-target="#run-harmonic-thermodynamics">Run harmonic thermodynamics</a></li>
+  <li><a href="#remember-the-thermodynamic-comparison" id="toc-remember-the-thermodynamic-comparison" class="nav-link" data-scroll-target="#remember-the-thermodynamic-comparison">Remember the thermodynamic comparison</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../getting-started/01-overview.html">Getting started</a></li><li class="breadcrumb-item"><a href="../getting-started/03-working-in-codespaces.html">Working in Codespaces</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Working in Codespaces</h1>
+<h1 class="title">Phonons and Quantas — Quick reference</h1>
 </div>
 
 
@@ -363,60 +394,80 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>A GitHub Codespace is a remote Linux computer that you control through a browser-based Visual Studio Code interface. The interface contains many tools, but only a small subset is needed for this course.</p>
-<section id="the-four-areas-you-will-use" class="level2">
-<h2 class="anchored" data-anchor-id="the-four-areas-you-will-use">The four areas you will use</h2>
-<p><strong>Explorer</strong><br>
-The file icon in the left activity bar. Use it to open notebooks and files and to navigate between <code>course/</code> and <code>work/</code>.</p>
-<p><strong>Notebook editor</strong><br>
-Opening an <code>.ipynb</code> file displays a Jupyter notebook. Run cells with the triangular <strong>Run</strong> button or with <code>Shift+Enter</code>. If you are asked to select a kernel, choose the Python environment provided by the Codespace.</p>
-<p><strong>Terminal</strong><br>
-Open it with <strong>Terminal → New Terminal</strong>. Course commands such as <code>update-course</code> and <code>start-lab</code> are run here.</p>
-<p><strong>Source Control</strong><br>
-The branch-shaped icon in the left activity bar. Use it to commit your work and synchronize it with GitHub.</p>
+<p>This page collects the commands and concepts used during Laboratory 4. Read the Laboratory 4 page first for the scientific explanation.</p>
+<section id="γ-point-frequencies-in-crystal" class="level2">
+<h2 class="anchored" data-anchor-id="γ-point-frequencies-in-crystal">Γ-point frequencies in CRYSTAL</h2>
+<p>A harmonic frequency calculation is requested with:</p>
+<pre class="text"><code>FREQCALC
+NOOPTGEOM
+NOINTENS
+ENDFREQ</code></pre>
+<p>The geometry must already be optimized.</p>
+<p><code>NOINTENS</code> keeps the calculation focused on frequencies. IR/Raman intensities are not required for the thermodynamic exercise.</p>
 </section>
-<section id="reopening-your-existing-codespace" class="level2">
-<h2 class="anchored" data-anchor-id="reopening-your-existing-codespace">Reopening your existing Codespace</h2>
-<p>After the first session, do <strong>not</strong> create a new Codespace every time.</p>
-<p>You can reopen the existing one from either:</p>
-<ul>
-<li>your personal workspace repository → <strong>Code → Codespaces</strong>; or</li>
-<li><a href="https://github.com/codespaces" class="uri">https://github.com/codespaces</a>.</li>
-</ul>
-<p>Starting an existing stopped Codespace is normally much faster than creating a new one.</p>
+<section id="phonon-dispersion-with-an-isotropic-supercell" class="level2">
+<h2 class="anchored" data-anchor-id="phonon-dispersion-with-an-isotropic-supercell">Phonon dispersion with an isotropic supercell</h2>
+<p>For a <span class="math inline">\(2\times2\times2\)</span> direct-space sampling:</p>
+<pre class="text"><code>SCELPHONO
+2 0 0
+0 2 0
+0 0 2
+FREQCALC
+DISPERSI
+NOOPTGEOM
+NOINTENS
+ENDFREQ</code></pre>
+<p><code>SCELPHONO</code> is specifically designed for phonon-dispersion calculations. Do not replace it with an ordinary <code>SUPERCELL</code>.</p>
+<p>CRYSTAL documentation:</p>
+<p><a href="https://www.crystal.unito.it/documentation.html" class="uri">https://www.crystal.unito.it/documentation.html</a></p>
+<p>CRYSTAL phonon-dispersion tutorial:</p>
+<p><a href="https://tutorials.crystalsolutions.eu/tutorial.html?td=dispersion&amp;tf=dispersion-ht" class="uri">https://tutorials.crystalsolutions.eu/tutorial.html?td=dispersion&amp;tf=dispersion-ht</a></p>
 </section>
-<section id="where-to-work" class="level2">
-<h2 class="anchored" data-anchor-id="where-to-work">Where to work</h2>
-<p>The workspace follows a simple rule:</p>
-<pre class="text"><code>course/   instructor-controlled material
-work/     your personal work</code></pre>
-<p>Your notebooks and answers belong under directories such as:</p>
-<pre class="text"><code>work/lab01/
-work/lab02/</code></pre>
-<p>Do not use <code>course/</code> as a working directory. New or corrected course material may replace files there.</p>
+<section id="convert-a-crystal-phonon-output-for-quantas" class="level2">
+<h2 class="anchored" data-anchor-id="convert-a-crystal-phonon-output-for-quantas">Convert a CRYSTAL phonon output for Quantas</h2>
+<p>Python API:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> quantas.api <span class="im">import</span> ha</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ha.create_input(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mgo_gamma.out"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mgo_gamma.yaml"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    interface<span class="op">=</span><span class="st">"crystal"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    jobname<span class="op">=</span><span class="st">"MgO Gamma phonons"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    formula_units<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Command-line equivalent:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quantas</span> ha inpgen mgo_gamma.out <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--interface</span> crystal <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--output</span> mgo_gamma.yaml <span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--jobname</span> <span class="st">"MgO Gamma phonons"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="uploading-a-local-file" class="level2">
-<h2 class="anchored" data-anchor-id="uploading-a-local-file">Uploading a local file</h2>
-<p>Some laboratories may ask you to upload a CIF file or a CRYSTAL output from your own computer.</p>
-<p>Navigate to the appropriate directory under <code>work/</code> in the Explorer and drag the local file into the Explorer. Check that the file appears in the intended directory before continuing.</p>
+<section id="q-point-weights" class="level2">
+<h2 class="anchored" data-anchor-id="q-point-weights">q-point weights</h2>
+<p>A full uniform mesh may use equal weights.</p>
+<p>A symmetry-reduced mesh must use the correct multiplicities of the irreducible q-points.</p>
+<p>Quantas normalizes weights by their sum and deliberately does not infer multiplicities from q-point coordinates during the HA calculation.</p>
+<p>The laboratory helper:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>irreducible_qpoint_table(<span class="st">"mgo_2x2x2.yaml"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>uses spglib and the structural information stored in the normalized Quantas input to summarize symmetry-equivalent points.</p>
 </section>
-<section id="downloading-a-file" class="level2">
-<h2 class="anchored" data-anchor-id="downloading-a-file">Downloading a file</h2>
-<p>To copy a result from the Codespace to your computer, right-click the file in the Explorer and select <strong>Download</strong>.</p>
+<section id="run-harmonic-thermodynamics" class="level2">
+<h2 class="anchored" data-anchor-id="run-harmonic-thermodynamics">Run harmonic thermodynamics</h2>
+<p>The course helper uses the public Quantas HA API and returns heat-capacity curves in molar units:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mineral_science_tools.phonons <span class="im">import</span> ha_cv_curve</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> ha_cv_curve(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mgo_2x2x2.yaml"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    temperature_max<span class="op">=</span><span class="fl">1200.0</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    temperature_step<span class="op">=</span><span class="fl">10.0</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Quantas HA API:</p>
+<p><a href="https://quantas.readthedocs.io/en/2.0.0-beta/api/ha.html" class="uri">https://quantas.readthedocs.io/en/2.0.0-beta/api/ha.html</a></p>
 </section>
-<section id="a-few-useful-terminal-commands" class="level2">
-<h2 class="anchored" data-anchor-id="a-few-useful-terminal-commands">A few useful terminal commands</h2>
-<p>You only need a very small amount of Linux for the notebook part of the course:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>shows the current directory.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>lists files and directories.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> work/lab01</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>moves into a directory.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>moves one level upward.</p>
-<p>These are simply tools used to inspect and analyse mineral-science data.</p>
-<p>Continue with <strong><a href="../getting-started/04-save-sync-stop.html">Save, sync and stop</a></strong>.</p>
+<section id="remember-the-thermodynamic-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="remember-the-thermodynamic-comparison">Remember the thermodynamic comparison</h2>
+<p>The harmonic calculation produces <span class="math inline">\(C_V\)</span>.</p>
+<p>The experimental reference plotted in Laboratory 4 is approximately <span class="math inline">\(C_P\)</span>.</p>
+<p>The difference between them is part of the scientific interpretation, not a plotting error.</p>
 
 
 </section>

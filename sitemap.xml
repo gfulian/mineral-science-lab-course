@@ -2,94 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://gfulian.github.io/mineral-science-lab-course/assignments/01-crystal-structure.html</loc>
-    <lastmod>2026-10-02T19:26:39.255Z</lastmod>
+    <lastmod>2026-10-03T13:58:27.308Z</lastmod>
   </url>
   <url>
     <loc>https://gfulian.github.io/mineral-science-lab-course/assignments/03-equation-of-state.html</loc>
-    <lastmod>2026-10-02T19:26:39.255Z</lastmod>
+    <lastmod>2026-10-03T13:58:27.308Z</lastmod>
   </url>
   <url>
     <loc>https://gfulian.github.io/mineral-science-lab-course/assignments/04-vibrations-thermodynamics.html</loc>
-    <lastmod>2026-10-02T19:26:39.255Z</lastmod>
+    <lastmod>2026-10-03T13:58:27.308Z</lastmod>
   </url>
   <url>
     <loc>https://gfulian.github.io/mineral-science-lab-course/getting-started/05-update-course-material.html</loc>
-    <lastmod>2026-10-02T19:26:39.255Z</lastmod>
+    <lastmod>2026-10-03T13:58:27.308Z</lastmod>
   </url>
   <url>
     <loc>https://gfulian.github.io/mineral-science-lab-course/getting-started/02-create-workspace.html</loc>
-    <lastmod>2026-10-02T19:26:39.255Z</lastmod>
+    <lastmod>2026-10-03T13:58:27.308Z</lastmod>
   </url>
   <url>
     <loc>https://gfulian.github.io/mineral-science-lab-course/reference/jupyter-essentials.html</loc>
-    <lastmod>2026-10-02T19:26:39.256Z</lastmod>
+    <lastmod>2026-10-03T13:58:27.309Z</lastmod>
   </url>
   <url>
     <loc>https://gfulian.github.io/mineral-science-lab-course/reference/cluminer.html</loc>
-    <lastmod>2026-10-02T19:26:39.256Z</lastmod>
+    <lastmod>2026-10-03T13:58:27.309Z</lastmod>
   </url>
   <url>
     <loc>https://gfulian.github.io/mineral-science-lab-course/reference/crystal-input-output.html</loc>
-    <lastmod>2026-10-02T19:26:39.256Z</lastmod>
+    <lastmod>2026-10-03T13:58:27.309Z</lastmod>
   </url>
   <url>
-    <loc>https://gfulian.github.io/mineral-science-lab-course/reference/crystal-geometry-eos.html</loc>
-    <lastmod>2026-10-02T19:26:39.256Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gfulian.github.io/mineral-science-lab-course/index.html</loc>
-    <lastmod>2026-10-02T19:26:39.255Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gfulian.github.io/mineral-science-lab-course/labs/lab04-vibrations-thermodynamics.html</loc>
-    <lastmod>2026-10-02T19:26:39.256Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gfulian.github.io/mineral-science-lab-course/labs/lab03-equation-of-state.html</loc>
-    <lastmod>2026-10-02T19:26:39.256Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gfulian.github.io/mineral-science-lab-course/labs/lab01-crystal-structure.html</loc>
-    <lastmod>2026-10-02T19:26:39.255Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gfulian.github.io/mineral-science-lab-course/labs/lab02-energy-geometry.html</loc>
-    <lastmod>2026-10-02T19:26:39.256Z</lastmod>
+    <loc>https://gfulian.github.io/mineral-science-lab-course/reference/phonons-thermodynamics.html</loc>
+    <lastmod>2026-10-03T13:58:27.309Z</lastmod>
   </url>
   <url>
     <loc>https://gfulian.github.io/mineral-science-lab-course/reference/github-codespaces.html</loc>
-    <lastmod>2026-10-02T19:26:39.256Z</lastmod>
+    <lastmod>2026-10-03T13:58:27.309Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gfulian.github.io/mineral-science-lab-course/labs/lab02-energy-geometry.html</loc>
+    <lastmod>2026-10-03T13:58:27.308Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gfulian.github.io/mineral-science-lab-course/labs/lab01-crystal-structure.html</loc>
+    <lastmod>2026-10-03T13:58:27.308Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gfulian.github.io/mineral-science-lab-course/labs/lab03-equation-of-state.html</loc>
+    <lastmod>2026-10-03T13:58:27.308Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gfulian.github.io/mineral-science-lab-course/labs/lab04-vibrations-thermodynamics.html</loc>
+    <lastmod>2026-10-03T13:58:27.308Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gfulian.github.io/mineral-science-lab-course/index.html</loc>
+    <lastmod>2026-10-03T13:58:27.308Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gfulian.github.io/mineral-science-lab-course/reference/crystal-geometry-eos.html</loc>
+    <lastmod>2026-10-03T13:58:27.309Z</lastmod>
   </url>
   <url>
     <loc>https://gfulian.github.io/mineral-science-lab-course/reference/linux-essentials.html</loc>
-    <lastmod>2026-10-02T19:26:39.256Z</lastmod>
+    <lastmod>2026-10-03T13:58:27.309Z</lastmod>
   </url>
   <url>
     <loc>https://gfulian.github.io/mineral-science-lab-course/reference/troubleshooting.html</loc>
-    <lastmod>2026-10-02T19:26:39.256Z</lastmod>
+    <lastmod>2026-10-03T13:58:27.309Z</lastmod>
   </url>
   <url>
     <loc>https://gfulian.github.io/mineral-science-lab-course/reference/ssh-file-transfer.html</loc>
-    <lastmod>2026-10-02T19:26:39.256Z</lastmod>
+    <lastmod>2026-10-03T13:58:27.309Z</lastmod>
   </url>
   <url>
     <loc>https://gfulian.github.io/mineral-science-lab-course/getting-started/04-save-sync-stop.html</loc>
-    <lastmod>2026-10-02T19:26:39.255Z</lastmod>
+    <lastmod>2026-10-03T13:58:27.308Z</lastmod>
   </url>
   <url>
     <loc>https://gfulian.github.io/mineral-science-lab-course/getting-started/03-working-in-codespaces.html</loc>
-    <lastmod>2026-10-02T19:26:39.255Z</lastmod>
+    <lastmod>2026-10-03T13:58:27.308Z</lastmod>
   </url>
   <url>
     <loc>https://gfulian.github.io/mineral-science-lab-course/getting-started/01-overview.html</loc>
-    <lastmod>2026-10-02T19:26:39.255Z</lastmod>
+    <lastmod>2026-10-03T13:58:27.308Z</lastmod>
   </url>
   <url>
     <loc>https://gfulian.github.io/mineral-science-lab-course/assignments/02-first-principles.html</loc>
-    <lastmod>2026-10-02T19:26:39.255Z</lastmod>
+    <lastmod>2026-10-03T13:58:27.308Z</lastmod>
   </url>
   <url>
     <loc>https://gfulian.github.io/mineral-science-lab-course/assignments/00-onboarding.html</loc>
-    <lastmod>2026-10-02T19:26:39.254Z</lastmod>
+    <lastmod>2026-10-03T13:58:27.307Z</lastmod>
   </url>
 </urlset>
