@@ -1,10 +1,101 @@
 ---
-title: "Assignment 4 — Vibrations and thermodynamics"
+title: "Assignment 4 — Phonons and harmonic thermodynamics"
 ---
-## Before the next class
 
-TO BE ADDED.
+Laboratory 4 connects two subjects that may initially appear separate:
 
-## Questions to think about
+- vibrational frequencies and spectroscopy;
+- thermodynamic properties of a crystalline solid.
 
-TO BE ADDED.
+The connection is made by **phonons**. A vibrational calculation tells us which
+quantized lattice excitations are available. Statistical thermodynamics tells
+us how those excitations are populated as temperature changes.
+
+The central numerical question of the laboratory is:
+
+> **How much of the first Brillouin zone must be sampled before the harmonic
+> thermodynamic properties of MgO are numerically converged?**
+
+## Before the laboratory
+
+Read:
+
+- **Laboratory 4 — From phonons to thermodynamics**;
+- **Phonons and Quantas — Quick reference**.
+
+Then update your workspace:
+
+```bash
+update-course
+```
+
+and create your working copy:
+
+```bash
+start-lab 04
+```
+
+Open:
+
+```text
+work/lab04/
+```
+
+The activity contains:
+
+```text
+01-gamma-phonons.ipynb
+02-qpoint-convergence.ipynb
+inputs/
+data/
+outputs/
+reference-results/
+```
+
+## What you will calculate
+
+You will calculate two phonon datasets yourself:
+
+1. the primitive-cell frequencies at $\Gamma$;
+2. a $2\times2\times2$ `SCELPHONO` calculation.
+
+Validated $3\times3\times3$ and $4\times4\times4$ datasets will be supplied by
+the instructor. They are deliberately provided because their computational
+cost is not the learning objective of this course.
+
+All calculations use:
+
+- the optimized MgO geometry from Laboratory 3;
+- the SHRINK value that you selected in Laboratory 2;
+- the same DFT functional, basis set and numerical thresholds used previously.
+
+## Cluster resources
+
+Use:
+
+```bash
+cluminer-crystal INPUT.d12 --cores-per-node 2 --threads 2
+```
+
+unless instructed otherwise.
+
+## What you will compare
+
+For each sampling level, Quantas will be used to calculate harmonic
+thermodynamic properties. The main comparison will be the heat capacity:
+
+```text
+Γ only
+2×2×2
+3×3×3
+4×4×4
+experimental data
+```
+
+The objective is to separate two different issues:
+
+1. **q-point convergence** — a numerical sampling problem;
+2. **remaining disagreement with experiment** — a limitation of the physical
+   model and its approximations.
+
+Your answers are written directly in the notebooks.

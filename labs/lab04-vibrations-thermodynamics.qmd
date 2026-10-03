@@ -1,22 +1,458 @@
 ---
-title: "Laboratory 4 — From vibrations to thermodynamics"
+title: "Laboratory 4 — From phonons to thermodynamics"
 ---
-## Scientific question
 
-TO BE DEFINED.
+In the previous laboratories we treated a crystal first as a structure, then as
+an electronic-energy problem, and finally as a mechanically compressible
+solid. Temperature has so far played almost no role.
 
-## Before the laboratory
+This laboratory introduces the missing microscopic ingredient: **lattice
+vibrations**.
 
-TO BE DEFINED.
+The objective is not simply to calculate a list of frequencies. We want to
+follow the complete chain
 
-## Tasks
+```text
+equilibrium structure
+        ↓
+small atomic displacements
+        ↓
+force constants
+        ↓
+normal modes / phonons
+        ↓
+sampling of the first Brillouin zone
+        ↓
+statistical populations
+        ↓
+Fvib(T), S(T), Uvib(T), CV(T)
+```
 
-TO BE DEVELOPED.
+and then compare those predictions with experiment.
 
-## Questions
+That comparison is deliberately expected to be imperfect. By the end of the
+laboratory you should be able to distinguish a discrepancy caused by
+**insufficient q-point sampling** from one caused by the **harmonic
+approximation itself**.
 
-Questions are answered directly in your personal notebook.
+## From the potential-energy surface to normal modes
 
-## What to save
+After Laboratory 3, MgO is at a stationary geometry of the static DFT energy
+surface. Close to that minimum, the energy can be expanded in the atomic
+displacements $\mathbf{u}$:
 
-TO BE DEFINED.
+$$
+E(\mathbf{u})
+\simeq
+E_0
++
+\frac{1}{2}\mathbf{u}^{\mathrm T}
+\mathbf{H}
+\mathbf{u}.
+$$
+
+$\mathbf{H}$ is the Hessian, the matrix of second derivatives of the energy
+with respect to atomic displacements.
+
+Stopping the expansion at second order defines the **harmonic approximation**.
+The potential-energy surface is locally replaced by a multidimensional
+quadratic surface. After mass weighting and diagonalization, the coupled atomic
+motions become independent normal modes with characteristic frequencies.
+
+For an isolated molecule this would already give a finite set of molecular
+vibrations. A crystal contains an additional ingredient: translational
+periodicity.
+
+## A phonon has both a branch and a wave vector
+
+A periodic crystal can sustain collective vibrations in which equivalent cells
+do not all move with the same phase. A phonon mode is therefore labelled not
+only by a branch index $j$, but also by a wave vector $\mathbf{q}$:
+
+$$
+\nu_{\mathbf{q}j}.
+$$
+
+The allowed $\mathbf{q}$ vectors are described in reciprocal space, and the
+non-redundant reciprocal-space domain is the **first Brillouin zone**.
+
+For primitive MgO there are two atoms in the primitive cell, so the phonon
+spectrum contains
+
+$$
+3N = 6
+$$
+
+branches at every $\mathbf{q}$:
+
+- three acoustic branches;
+- three optical branches.
+
+The frequencies of these branches vary across the Brillouin zone. This
+variation is the **phonon dispersion**.
+
+## Why the Γ point is special
+
+The centre of the first Brillouin zone is
+
+$$
+\Gamma:\qquad \mathbf{q}=0.
+$$
+
+At $\Gamma$, equivalent unit cells oscillate in phase.
+
+A $\Gamma$-point phonon calculation is **not useless or merely incomplete
+data**. It answers a very important experimental question. In ordinary
+first-order infrared and Raman spectroscopy, the momentum carried by the
+photon is tiny compared with the dimensions of a crystal Brillouin zone.
+Crystal-momentum conservation therefore selects phonons very close to
+$\mathbf{q}=0$.
+
+This is why calculated $\Gamma$-point optical frequencies can be compared with
+IR and Raman spectra, subject to the appropriate selection rules.
+
+Not every $\Gamma$ mode is automatically Raman or IR active. Activity depends
+on symmetry and on how the vibration couples to the electromagnetic field.
+Nevertheless, the relevant vibrational frequencies for first-order optical
+spectroscopy are $\Gamma$-point frequencies.
+
+This gives $\Gamma$ two very different roles in this laboratory:
+
+- it is physically important for **spectroscopy**;
+- it is generally insufficient for **bulk thermodynamics**.
+
+Understanding why those statements are simultaneously true is one of the main
+objectives of the activity.
+
+## Why Γ alone is not enough for thermodynamics
+
+Thermodynamic properties depend on the population of the vibrational states
+available throughout the crystal.
+
+In the harmonic approximation, a property can be written schematically as a
+weighted sum over all phonon branches and q-points:
+
+$$
+X(T)
+=
+\frac{1}{\sum_{\mathbf q}w_{\mathbf q}}
+\sum_{\mathbf q}
+w_{\mathbf q}
+\sum_j
+X_{\mathbf qj}(T).
+$$
+
+The precise oscillator expressions are implemented by Quantas. You are not
+expected to memorize them. The important information flow is
+
+```text
+frequency ν(q,j)
+      +
+q-point integration weight
+      +
+temperature
+      ↓
+thermodynamic contribution
+```
+
+The failure of a $\Gamma$-only thermodynamic calculation is especially clear
+for the **acoustic branches**.
+
+At exactly $\Gamma$, the three acoustic modes correspond to rigid translations
+and have frequencies that ideally approach zero. Away from $\Gamma$ their
+frequencies increase continuously. Those finite-q acoustic states are a major
+part of the low-frequency phonon spectrum and dominate the low-temperature
+heat capacity.
+
+A calculation that contains only $\Gamma$ therefore misses the dispersion of
+the acoustic branches almost completely.
+
+This is very different from spectroscopy: the same $\Gamma$ calculation can
+contain useful IR/Raman optical frequencies while remaining a very poor
+sampling of the vibrational states needed for thermodynamics.
+
+## Direct-space supercells and reciprocal-space sampling
+
+CRYSTAL uses a direct-space approach to phonon dispersion calculations.
+
+With `SCELPHONO`, an integer supercell is constructed from the primitive cell.
+For the isotropic supercells used here,
+
+```text
+1×1×1
+2×2×2
+3×3×3
+4×4×4
+```
+
+the corresponding commensurate reciprocal-space meshes contain
+
+| direct-space sampling | full q-point mesh |
+|---|---:|
+| $1\times1\times1$ | 1 |
+| $2\times2\times2$ | 8 |
+| $3\times3\times3$ | 27 |
+| $4\times4\times4$ | 64 |
+
+The relation is reciprocal: increasing the range represented in direct space
+allows a denser set of exactly commensurate q-points in reciprocal space.
+
+The CRYSTAL phonon-dispersion workflow uses `SCELPHONO` in the geometry section
+and `DISPERSI` inside `FREQCALC`. The official CRYSTAL tutorial uses exactly
+this construction for convergence of thermodynamic properties:
+
+<https://tutorials.crystalsolutions.eu/tutorial.html?td=dispersion&tf=dispersion-ht>
+
+## Why CRYSTAL prints 8, 27 or 64 frequency sets
+
+For the calculations used in this laboratory, CRYSTAL explicitly prints a
+frequency spectrum for **every point of the full commensurate q mesh**.
+
+Thus a $4\times4\times4$ calculation contains 64 q-point spectra.
+
+At first sight this looks wasteful because many q-points are related by crystal
+symmetry. For thermodynamic integration there are two mathematically equivalent
+ways to represent the sampling.
+
+A full uniform mesh can be written as
+
+$$
+\frac{1}{N_q}
+\sum_{\mathbf q}^{N_q}
+X(\mathbf q).
+$$
+
+Alternatively, symmetry-equivalent q-points can be grouped into irreducible
+representatives:
+
+$$
+\frac{1}{\sum_i w_i}
+\sum_i
+w_i X(\mathbf q_i),
+$$
+
+where $w_i$ is the multiplicity of representative $\mathbf q_i$.
+
+The second form is what you may have encountered in codes such as Phonopy.
+
+### What we do in this course
+
+Quantas can use the full CRYSTAL mesh directly. Equal weights are correct for a
+complete uniform mesh, and Quantas normalizes all supplied q-point weights by
+their sum.
+
+For inspection, the course tools can also use **spglib** to group the full
+mesh into symmetry-equivalent sets and report an irreducible q-point table with
+multiplicity weights.
+
+The weights are derived from crystal symmetry, **not guessed from similar
+frequencies**. Similar spectra are then used only as a consistency check that
+symmetry-related q-points really do carry equivalent vibrational information.
+
+This distinction is important. An incorrect q-point weight changes every
+integrated vibrational property even if the YAML file itself remains perfectly
+valid.
+
+Quantas deliberately does not invent missing multiplicities from q-point
+coordinates during an HA/QHA calculation. Weight provenance is part of the
+scientific input:
+
+<https://quantas.readthedocs.io/en/2.0.0-beta/formats/phonon_yaml.html>
+
+## From phonons to statistical thermodynamics
+
+In statistical thermodynamics, each harmonic phonon behaves as a quantum
+harmonic oscillator. Once the frequency spectrum is known, temperature
+determines how strongly each oscillator is populated.
+
+Quantas uses the q-resolved phonon spectrum to calculate quantities including:
+
+- zero-point vibrational energy;
+- vibrational internal energy;
+- vibrational Helmholtz free energy;
+- vibrational entropy;
+- isochoric heat capacity $C_V$.
+
+This is the computational version of the connection developed in the
+statistical-thermodynamics part of the course: the phonon spectrum defines the
+available vibrational states, while thermal populations determine macroscopic
+entropy and heat capacity.
+
+The Quantas harmonic workflow is documented here:
+
+<https://quantas.readthedocs.io/en/2.0.0-beta/api/ha.html>
+
+## Heat capacity and q-point convergence
+
+Heat capacity is particularly useful for this laboratory because its physical
+limits are easy to interpret.
+
+At low temperature, only low-frequency states are populated. The acoustic
+phonons close to $\Gamma$ are therefore especially important. A poor q mesh
+has very few points in this region, and the low-temperature heat capacity is
+highly sensitive to sampling.
+
+For a three-dimensional crystal with ordinary acoustic dispersion, the
+low-temperature behaviour approaches the Debye form
+
+$$
+C_V \propto T^3.
+$$
+
+At high temperature, every harmonic vibrational degree of freedom approaches
+its classical limit. For a crystal with $n$ atoms per chemical formula unit,
+
+$$
+C_V \longrightarrow 3nR.
+$$
+
+MgO has two atoms per formula unit, so
+
+$$
+C_V
+\longrightarrow
+6R
+\approx
+49.9\ \mathrm{J\,mol^{-1}\,K^{-1}}.
+$$
+
+This is the Dulong–Petit limit for the harmonic heat capacity of MgO.
+
+The progression
+
+```text
+Γ → 2×2×2 → 3×3×3 → 4×4×4
+```
+
+should therefore be interpreted as a **numerical convergence experiment** on
+the Brillouin-zone integral.
+
+The question is not whether 64 q-points are intrinsically "correct". The
+question is whether further refinement changes the observable by an amount that
+matters for the scientific interpretation.
+
+## Comparison with experimental heat capacity
+
+The workspace contains a small experimental reference dataset for MgO.
+
+Low-temperature values come from the measurements of Barron, Berg and Morrison
+compiled in the NIST Structural Ceramics Database. Higher-temperature values
+come from an evaluated calorimetric MgO dataset in the same NIST database.
+
+The comparison is intentionally not between identical thermodynamic
+quantities.
+
+The harmonic calculation provides
+
+$$
+C_V,
+$$
+
+the heat capacity at constant volume.
+
+Experimental calorimetry on a solid under approximately ambient pressure is
+normally interpreted as a constant-pressure heat capacity,
+
+$$
+C_P.
+$$
+
+At sufficiently low temperature the difference is small. At higher
+temperature, thermal expansion makes the distinction increasingly important.
+
+This is not an inconvenience to hide. It is part of the laboratory.
+
+## The central limitation of the harmonic approximation
+
+In the harmonic approximation used here, the frequencies are calculated at
+one fixed equilibrium structure. They do not change when temperature changes.
+
+Consequently the harmonic model has no mechanism for thermal expansion:
+
+$$
+\alpha_V=0.
+$$
+
+Within that fixed-volume harmonic description,
+
+$$
+C_P=C_V.
+$$
+
+A real crystal expands with temperature, and its phonon spectrum changes as the
+volume changes. The real constant-pressure heat capacity therefore contains a
+contribution that our present HA calculation cannot reproduce.
+
+Even after the $3\times3\times3$ and $4\times4\times4$ results become
+numerically indistinguishable, a discrepancy with experiment may remain.
+
+That residual difference can contain several contributions:
+
+- the fixed-volume harmonic approximation;
+- the experimental $C_P$ versus calculated $C_V$ distinction;
+- the volume dependence of phonon frequencies;
+- explicit anharmonic interactions between phonons;
+- residual DFT/basis-set model error;
+- experimental uncertainty and sample differences.
+
+The first two are particularly important for interpreting this laboratory.
+
+## Numerical convergence is not physical exactness
+
+This returns us to a distinction already encountered in Laboratory 2.
+
+A $4\times4\times4$ phonon calculation may be **numerically converged with
+respect to q-point sampling**.
+
+That does not mean the underlying physical model has become exact.
+
+The logic is:
+
+```text
+Γ
+↓
+large q-sampling error
+
+2×2×2
+↓
+smaller q-sampling error
+
+3×3×3
+↓
+small q-sampling error
+
+4×4×4
+↓
+q-point convergence
+
+still different from experiment?
+↓
+look at the physical approximations
+```
+
+This is the scientific conclusion of the laboratory, not a failure of the
+calculation.
+
+## Looking ahead: beyond the harmonic approximation
+
+If time permits, a later activity can extend the calculation to the
+**quasi-harmonic approximation (QHA)**.
+
+The QHA repeats harmonic phonon calculations at different volumes. Frequencies
+then become functions of volume,
+
+$$
+\nu_{\mathbf qj}=\nu_{\mathbf qj}(V),
+$$
+
+allowing the free-energy minimum to move with temperature. Thermal expansion
+and the distinction between $C_P$ and $C_V$ then emerge naturally.
+
+Quantas describes this extension explicitly:
+
+<https://quantas.readthedocs.io/en/2.0.0-beta/theory/qha.html>
+
+That possible extension is **not required for Laboratory 4**. Here the goal is
+first to understand what the harmonic model can predict, how its reciprocal-
+space sampling converges, and where its physical limits appear in comparison
+with experiment.

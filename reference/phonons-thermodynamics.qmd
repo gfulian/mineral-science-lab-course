@@ -1,0 +1,121 @@
+---
+title: "Phonons and Quantas — Quick reference"
+---
+
+This page collects the commands and concepts used during Laboratory 4. Read the
+Laboratory 4 page first for the scientific explanation.
+
+## Γ-point frequencies in CRYSTAL
+
+A harmonic frequency calculation is requested with:
+
+```text
+FREQCALC
+NOOPTGEOM
+NOINTENS
+ENDFREQ
+```
+
+The geometry must already be optimized.
+
+`NOINTENS` keeps the calculation focused on frequencies. IR/Raman intensities
+are not required for the thermodynamic exercise.
+
+## Phonon dispersion with an isotropic supercell
+
+For a $2\times2\times2$ direct-space sampling:
+
+```text
+SCELPHONO
+2 0 0
+0 2 0
+0 0 2
+FREQCALC
+DISPERSI
+NOOPTGEOM
+NOINTENS
+ENDFREQ
+```
+
+`SCELPHONO` is specifically designed for phonon-dispersion calculations. Do
+not replace it with an ordinary `SUPERCELL`.
+
+CRYSTAL documentation:
+
+<https://www.crystal.unito.it/documentation.html>
+
+CRYSTAL phonon-dispersion tutorial:
+
+<https://tutorials.crystalsolutions.eu/tutorial.html?td=dispersion&tf=dispersion-ht>
+
+## Convert a CRYSTAL phonon output for Quantas
+
+Python API:
+
+```python
+from quantas.api import ha
+
+ha.create_input(
+    "mgo_gamma.out",
+    "mgo_gamma.yaml",
+    interface="crystal",
+    jobname="MgO Gamma phonons",
+    formula_units=1,
+)
+```
+
+Command-line equivalent:
+
+```bash
+quantas ha inpgen mgo_gamma.out \
+    --interface crystal \
+    --output mgo_gamma.yaml \
+    --jobname "MgO Gamma phonons"
+```
+
+## q-point weights
+
+A full uniform mesh may use equal weights.
+
+A symmetry-reduced mesh must use the correct multiplicities of the irreducible
+q-points.
+
+Quantas normalizes weights by their sum and deliberately does not infer
+multiplicities from q-point coordinates during the HA calculation.
+
+The laboratory helper:
+
+```python
+irreducible_qpoint_table("mgo_2x2x2.yaml")
+```
+
+uses spglib and the structural information stored in the normalized Quantas
+input to summarize symmetry-equivalent points.
+
+## Run harmonic thermodynamics
+
+The course helper uses the public Quantas HA API and returns heat-capacity
+curves in molar units:
+
+```python
+from mineral_science_tools.phonons import ha_cv_curve
+
+cv = ha_cv_curve(
+    "mgo_2x2x2.yaml",
+    temperature_max=1200.0,
+    temperature_step=10.0,
+)
+```
+
+Quantas HA API:
+
+<https://quantas.readthedocs.io/en/2.0.0-beta/api/ha.html>
+
+## Remember the thermodynamic comparison
+
+The harmonic calculation produces $C_V$.
+
+The experimental reference plotted in Laboratory 4 is approximately $C_P$.
+
+The difference between them is part of the scientific interpretation, not a
+plotting error.
