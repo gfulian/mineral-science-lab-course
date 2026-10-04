@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Working in Codespaces – Mineral Science Laboratory</title>
+<title>Vim — Quick reference – Mineral Science Laboratory</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../getting-started/01-overview.html">Getting started</a></li><li class="breadcrumb-item"><a href="../getting-started/03-working-in-codespaces.html">Working in Codespaces</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/linux-essentials.html">Reference</a></li><li class="breadcrumb-item"><a href="../reference/vim-quick-reference.html">Vim — Quick reference</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -175,7 +175,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../getting-started/03-working-in-codespaces.html" class="sidebar-item-text sidebar-link active">
+  <a href="../getting-started/03-working-in-codespaces.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Working in Codespaces</span></a>
   </div>
 </li>
@@ -310,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../reference/vim-quick-reference.html" class="sidebar-item-text sidebar-link">
+  <a href="../reference/vim-quick-reference.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Vim — Quick reference</span></a>
   </div>
 </li>
@@ -350,21 +350,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-four-areas-you-will-use" id="toc-the-four-areas-you-will-use" class="nav-link active" data-scroll-target="#the-four-areas-you-will-use">The four areas you will use</a></li>
-  <li><a href="#reopening-your-existing-codespace" id="toc-reopening-your-existing-codespace" class="nav-link" data-scroll-target="#reopening-your-existing-codespace">Reopening your existing Codespace</a></li>
-  <li><a href="#where-to-work" id="toc-where-to-work" class="nav-link" data-scroll-target="#where-to-work">Where to work</a></li>
-  <li><a href="#uploading-a-local-file" id="toc-uploading-a-local-file" class="nav-link" data-scroll-target="#uploading-a-local-file">Uploading a local file</a></li>
-  <li><a href="#downloading-a-file" id="toc-downloading-a-file" class="nav-link" data-scroll-target="#downloading-a-file">Downloading a file</a></li>
-  <li><a href="#a-few-useful-terminal-commands" id="toc-a-few-useful-terminal-commands" class="nav-link" data-scroll-target="#a-few-useful-terminal-commands">A few useful terminal commands</a></li>
+  <li><a href="#the-essential-idea-vim-has-modes" id="toc-the-essential-idea-vim-has-modes" class="nav-link active" data-scroll-target="#the-essential-idea-vim-has-modes">The essential idea: Vim has modes</a></li>
+  <li><a href="#open-a-file" id="toc-open-a-file" class="nav-link" data-scroll-target="#open-a-file">Open a file</a></li>
+  <li><a href="#moving-around" id="toc-moving-around" class="nav-link" data-scroll-target="#moving-around">Moving around</a></li>
+  <li><a href="#insert-text" id="toc-insert-text" class="nav-link" data-scroll-target="#insert-text">Insert text</a></li>
+  <li><a href="#replace-text" id="toc-replace-text" class="nav-link" data-scroll-target="#replace-text">Replace text</a>
+  <ul class="collapse">
+  <li><a href="#replace-one-character" id="toc-replace-one-character" class="nav-link" data-scroll-target="#replace-one-character">Replace one character</a></li>
+  <li><a href="#replace-several-characters" id="toc-replace-several-characters" class="nav-link" data-scroll-target="#replace-several-characters">Replace several characters</a></li>
+  </ul></li>
+  <li><a href="#delete-copy-and-paste" id="toc-delete-copy-and-paste" class="nav-link" data-scroll-target="#delete-copy-and-paste">Delete, copy and paste</a></li>
+  <li><a href="#undo-and-redo" id="toc-undo-and-redo" class="nav-link" data-scroll-target="#undo-and-redo">Undo and redo</a></li>
+  <li><a href="#search-for-a-keyword" id="toc-search-for-a-keyword" class="nav-link" data-scroll-target="#search-for-a-keyword">Search for a keyword</a></li>
+  <li><a href="#replace-a-word-or-value" id="toc-replace-a-word-or-value" class="nav-link" data-scroll-target="#replace-a-word-or-value">Replace a word or value</a></li>
+  <li><a href="#save-and-quit" id="toc-save-and-quit" class="nav-link" data-scroll-target="#save-and-quit">Save and quit</a></li>
+  <li><a href="#a-typical-course-workflow" id="toc-a-typical-course-workflow" class="nav-link" data-scroll-target="#a-typical-course-workflow">A typical course workflow</a></li>
+  <li><a href="#check-windowslinux-line-endings" id="toc-check-windowslinux-line-endings" class="nav-link" data-scroll-target="#check-windowslinux-line-endings">Check Windows/Linux line endings</a></li>
+  <li><a href="#show-invisible-characters" id="toc-show-invisible-characters" class="nav-link" data-scroll-target="#show-invisible-characters">Show invisible characters</a></li>
+  <li><a href="#jump-to-a-line-number" id="toc-jump-to-a-line-number" class="nav-link" data-scroll-target="#jump-to-a-line-number">Jump to a line number</a></li>
+  <li><a href="#built-in-help" id="toc-built-in-help" class="nav-link" data-scroll-target="#built-in-help">Built-in help</a></li>
+  <li><a href="#interactive-tutorial" id="toc-interactive-tutorial" class="nav-link" data-scroll-target="#interactive-tutorial">Interactive tutorial</a></li>
+  <li><a href="#minimal-command-set-to-remember" id="toc-minimal-command-set-to-remember" class="nav-link" data-scroll-target="#minimal-command-set-to-remember">Minimal command set to remember</a></li>
+  <li><a href="#further-reference" id="toc-further-reference" class="nav-link" data-scroll-target="#further-reference">Further reference</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../getting-started/01-overview.html">Getting started</a></li><li class="breadcrumb-item"><a href="../getting-started/03-working-in-codespaces.html">Working in Codespaces</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/linux-essentials.html">Reference</a></li><li class="breadcrumb-item"><a href="../reference/vim-quick-reference.html">Vim — Quick reference</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Working in Codespaces</h1>
+<h1 class="title">Vim — Quick reference</h1>
 </div>
 
 
@@ -381,60 +397,376 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>A GitHub Codespace is a remote Linux computer that you control through a browser-based Visual Studio Code interface. The interface contains many tools, but only a small subset is needed for this course.</p>
-<section id="the-four-areas-you-will-use" class="level2">
-<h2 class="anchored" data-anchor-id="the-four-areas-you-will-use">The four areas you will use</h2>
-<p><strong>Explorer</strong><br>
-The file icon in the left activity bar. Use it to open notebooks and files and to navigate between <code>course/</code> and <code>work/</code>.</p>
-<p><strong>Notebook editor</strong><br>
-Opening an <code>.ipynb</code> file displays a Jupyter notebook. Run cells with the triangular <strong>Run</strong> button or with <code>Shift+Enter</code>. If you are asked to select a kernel, choose the Python environment provided by the Codespace.</p>
-<p><strong>Terminal</strong><br>
-Open it with <strong>Terminal → New Terminal</strong>. Course commands such as <code>update-course</code> and <code>start-lab</code> are run here.</p>
-<p><strong>Source Control</strong><br>
-The branch-shaped icon in the left activity bar. Use it to commit your work and synchronize it with GitHub.</p>
+<p>During the computational laboratories you may occasionally need to make a small change directly on CluMiner: for example, changing a <code>SHRINK</code> value, a lattice parameter, or another CRYSTAL input keyword before submitting a calculation.</p>
+<p>For these small edits we use <strong>Vim</strong>, a terminal text editor available on the cluster. The commands reported on this page are those that will be used the most for the work required in Mineral Science.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Why edit small files directly on CluMiner?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For minor changes, editing the input directly on the Linux cluster avoids an unnecessary download–edit–upload cycle and reduces possible problems with Windows line endings.</p>
+</div>
+</div>
+<section id="the-essential-idea-vim-has-modes" class="level2">
+<h2 class="anchored" data-anchor-id="the-essential-idea-vim-has-modes">The essential idea: Vim has modes</h2>
+<p>When Vim starts, you are normally in <strong>Normal mode</strong>. In Normal mode, keys are commands.</p>
+<p>To type text, enter <strong>Insert mode</strong>.</p>
+<p>To return to Normal mode, press:</p>
+<pre class="text"><code>Esc</code></pre>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>If you are unsure what Vim is doing
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Press <code>Esc</code>.</p>
+<p>If necessary, press it twice.</p>
+</div>
+</div>
 </section>
-<section id="reopening-your-existing-codespace" class="level2">
-<h2 class="anchored" data-anchor-id="reopening-your-existing-codespace">Reopening your existing Codespace</h2>
-<p>After the first session, do <strong>not</strong> create a new Codespace every time.</p>
-<p>You can reopen the existing one from either:</p>
-<ul>
-<li>your personal workspace repository → <strong>Code → Codespaces</strong>; or</li>
-<li><a href="https://github.com/codespaces" class="uri">https://github.com/codespaces</a>.</li>
-</ul>
-<p>Starting an existing stopped Codespace is normally much faster than creating a new one.</p>
+<section id="open-a-file" class="level2">
+<h2 class="anchored" data-anchor-id="open-a-file">Open a file</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> mgo_shrink3.d12</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="where-to-work" class="level2">
-<h2 class="anchored" data-anchor-id="where-to-work">Where to work</h2>
-<p>The workspace follows a simple rule:</p>
-<pre class="text"><code>course/   instructor-controlled material
-work/     your personal work</code></pre>
-<p>Your notebooks and answers belong under directories such as:</p>
-<pre class="text"><code>work/lab01/
-work/lab02/</code></pre>
-<p>Do not use <code>course/</code> as a working directory. New or corrected course material may replace files there.</p>
+<section id="moving-around" class="level2">
+<h2 class="anchored" data-anchor-id="moving-around">Moving around</h2>
+<p>The arrow keys work and are perfectly acceptable for this course.</p>
+<p>Traditional Vim movement keys are:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Key</th>
+<th>Movement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>h</code></td>
+<td>left</td>
+</tr>
+<tr class="even">
+<td><code>j</code></td>
+<td>down</td>
+</tr>
+<tr class="odd">
+<td><code>k</code></td>
+<td>up</td>
+</tr>
+<tr class="even">
+<td><code>l</code></td>
+<td>right</td>
+</tr>
+<tr class="odd">
+<td><code>0</code></td>
+<td>beginning of line</td>
+</tr>
+<tr class="even">
+<td><code>$</code></td>
+<td>end of line</td>
+</tr>
+<tr class="odd">
+<td><code>gg</code></td>
+<td>beginning of file</td>
+</tr>
+<tr class="even">
+<td><code>G</code></td>
+<td>end of file</td>
+</tr>
+</tbody>
+</table>
+<p>Display line numbers:</p>
+<pre class="vim"><code>:set number</code></pre>
+<p>Hide them again:</p>
+<pre class="vim"><code>:set nonumber</code></pre>
 </section>
-<section id="uploading-a-local-file" class="level2">
-<h2 class="anchored" data-anchor-id="uploading-a-local-file">Uploading a local file</h2>
-<p>Some laboratories may ask you to upload a CIF file or a CRYSTAL output from your own computer.</p>
-<p>Navigate to the appropriate directory under <code>work/</code> in the Explorer and drag the local file into the Explorer. Check that the file appears in the intended directory before continuing.</p>
+<section id="insert-text" class="level2">
+<h2 class="anchored" data-anchor-id="insert-text">Insert text</h2>
+<p>Starting from Normal mode:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>i</code></td>
+<td>insert before the cursor</td>
+</tr>
+<tr class="even">
+<td><code>a</code></td>
+<td>insert after the cursor</td>
+</tr>
+<tr class="odd">
+<td><code>I</code></td>
+<td>insert at the beginning of the line</td>
+</tr>
+<tr class="even">
+<td><code>A</code></td>
+<td>insert at the end of the line</td>
+</tr>
+<tr class="odd">
+<td><code>o</code></td>
+<td>open a new line below</td>
+</tr>
+<tr class="even">
+<td><code>O</code></td>
+<td>open a new line above</td>
+</tr>
+</tbody>
+</table>
+<p>After editing, press <code>Esc</code>.</p>
 </section>
-<section id="downloading-a-file" class="level2">
-<h2 class="anchored" data-anchor-id="downloading-a-file">Downloading a file</h2>
-<p>To copy a result from the Codespace to your computer, right-click the file in the Explorer and select <strong>Download</strong>.</p>
+<section id="replace-text" class="level2">
+<h2 class="anchored" data-anchor-id="replace-text">Replace text</h2>
+<section id="replace-one-character" class="level3">
+<h3 class="anchored" data-anchor-id="replace-one-character">Replace one character</h3>
+<p>Move the cursor onto the character and press:</p>
+<pre class="text"><code>r</code></pre>
+<p>followed by the replacement character.</p>
+<p>For example, to change:</p>
+<pre class="text"><code>SHRINK
+2 2</code></pre>
+<p>move to the first <code>2</code>, press:</p>
+<pre class="text"><code>r3</code></pre>
+<p>and repeat for the second value.</p>
 </section>
-<section id="a-few-useful-terminal-commands" class="level2">
-<h2 class="anchored" data-anchor-id="a-few-useful-terminal-commands">A few useful terminal commands</h2>
-<p>You only need a very small amount of Linux for the notebook part of the course:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>shows the current directory.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>lists files and directories.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> work/lab01</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>moves into a directory.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>moves one level upward.</p>
-<p>These are simply tools used to inspect and analyse mineral-science data.</p>
-<p>Continue with <strong><a href="../getting-started/04-save-sync-stop.html">Save, sync and stop</a></strong>.</p>
+<section id="replace-several-characters" class="level3">
+<h3 class="anchored" data-anchor-id="replace-several-characters">Replace several characters</h3>
+<p>Press:</p>
+<pre class="text"><code>R</code></pre>
+<p>to enter <strong>Replace mode</strong>.</p>
+<p>Type over the existing text, then press <code>Esc</code>.</p>
+</section>
+</section>
+<section id="delete-copy-and-paste" class="level2">
+<h2 class="anchored" data-anchor-id="delete-copy-and-paste">Delete, copy and paste</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>x</code></td>
+<td>delete character under cursor</td>
+</tr>
+<tr class="even">
+<td><code>dd</code></td>
+<td>delete current line</td>
+</tr>
+<tr class="odd">
+<td><code>D</code></td>
+<td>delete from cursor to end of line</td>
+</tr>
+<tr class="even">
+<td><code>yy</code></td>
+<td>copy current line</td>
+</tr>
+<tr class="odd">
+<td><code>p</code></td>
+<td>paste after current position/line</td>
+</tr>
+<tr class="even">
+<td><code>P</code></td>
+<td>paste before current position/line</td>
+</tr>
+</tbody>
+</table>
+<p>Duplicate a line with:</p>
+<pre class="text"><code>yy
+p</code></pre>
+</section>
+<section id="undo-and-redo" class="level2">
+<h2 class="anchored" data-anchor-id="undo-and-redo">Undo and redo</h2>
+<p>Undo:</p>
+<pre class="text"><code>u</code></pre>
+<p>Redo:</p>
+<pre class="text"><code>Ctrl+r</code></pre>
+</section>
+<section id="search-for-a-keyword" class="level2">
+<h2 class="anchored" data-anchor-id="search-for-a-keyword">Search for a keyword</h2>
+<p>In Normal mode:</p>
+<pre class="vim"><code>/SHRINK</code></pre>
+<p>then press <code>Enter</code>.</p>
+<p>Use:</p>
+<pre class="text"><code>n</code></pre>
+<p>for the next match and:</p>
+<pre class="text"><code>N</code></pre>
+<p>for the previous match.</p>
+<p>Other useful searches are:</p>
+<pre class="vim"><code>/OPTGEOM
+/CVOLOPT
+/FREQCALC</code></pre>
+</section>
+<section id="replace-a-word-or-value" class="level2">
+<h2 class="anchored" data-anchor-id="replace-a-word-or-value">Replace a word or value</h2>
+<p>Replace the first occurrence on the current line:</p>
+<pre class="vim"><code>:s/old/new/</code></pre>
+<p>Replace every occurrence on the current line:</p>
+<pre class="vim"><code>:s/old/new/g</code></pre>
+<p>Replace every occurrence in the file:</p>
+<pre class="vim"><code>:%s/old/new/g</code></pre>
+<p>Ask before every replacement:</p>
+<pre class="vim"><code>:%s/old/new/gc</code></pre>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Do not use global replacement blindly
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A number or keyword may occur in more places than expected. For changing a single lattice parameter or <code>SHRINK</code> value, direct editing is usually safer.</p>
+</div>
+</div>
+</section>
+<section id="save-and-quit" class="level2">
+<h2 class="anchored" data-anchor-id="save-and-quit">Save and quit</h2>
+<p>Save:</p>
+<pre class="vim"><code>:w</code></pre>
+<p>Quit:</p>
+<pre class="vim"><code>:q</code></pre>
+<p>Save and quit:</p>
+<pre class="vim"><code>:wq</code></pre>
+<p>Quit and discard unsaved changes:</p>
+<pre class="vim"><code>:q!</code></pre>
+<p>The two commands worth remembering above all others are:</p>
+<pre class="text"><code>:wq    save and quit
+:q!    abandon changes and quit</code></pre>
+</section>
+<section id="a-typical-course-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="a-typical-course-workflow">A typical course workflow</h2>
+<p>Create a new input from an existing one:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> mgo_shrink2.d12 mgo_shrink3.d12</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Open it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> mgo_shrink3.d12</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Inside Vim:</p>
+<pre class="vim"><code>/SHRINK</code></pre>
+<p>Change:</p>
+<pre class="text"><code>2 2</code></pre>
+<p>to:</p>
+<pre class="text"><code>3 3</code></pre>
+<p>then:</p>
+<pre class="vim"><code>:wq</code></pre>
+<p>Inspect the result:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> mgo_shrink3.d12</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The same approach can be used to replace placeholders such as:</p>
+<pre class="text"><code>&lt;X&gt;
+&lt;A0&gt;</code></pre>
+<p>when instructed.</p>
+</section>
+<section id="check-windowslinux-line-endings" class="level2">
+<h2 class="anchored" data-anchor-id="check-windowslinux-line-endings">Check Windows/Linux line endings</h2>
+<p>Inside Vim:</p>
+<pre class="vim"><code>:set fileformat?</code></pre>
+<p>A normal Linux file should report:</p>
+<pre class="text"><code>fileformat=unix</code></pre>
+<p>If it reports:</p>
+<pre class="text"><code>fileformat=dos</code></pre>
+<p>convert it with:</p>
+<pre class="vim"><code>:set fileformat=unix
+:w</code></pre>
+</section>
+<section id="show-invisible-characters" class="level2">
+<h2 class="anchored" data-anchor-id="show-invisible-characters">Show invisible characters</h2>
+<pre class="vim"><code>:set list</code></pre>
+<p>Return to the normal view with:</p>
+<pre class="vim"><code>:set nolist</code></pre>
+</section>
+<section id="jump-to-a-line-number" class="level2">
+<h2 class="anchored" data-anchor-id="jump-to-a-line-number">Jump to a line number</h2>
+<p>For example:</p>
+<pre class="vim"><code>:40</code></pre>
+<p>moves to line 40.</p>
+</section>
+<section id="built-in-help" class="level2">
+<h2 class="anchored" data-anchor-id="built-in-help">Built-in help</h2>
+<pre class="vim"><code>:help</code></pre>
+<p>Useful examples:</p>
+<pre class="vim"><code>:help substitute
+:help :write</code></pre>
+<p>Exit help with:</p>
+<pre class="vim"><code>:q</code></pre>
+</section>
+<section id="interactive-tutorial" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-tutorial">Interactive tutorial</h2>
+<p>From the Linux shell:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vimtutor</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minimal-command-set-to-remember" class="level2">
+<h2 class="anchored" data-anchor-id="minimal-command-set-to-remember">Minimal command set to remember</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Esc</code></td>
+<td>return to Normal mode</td>
+</tr>
+<tr class="even">
+<td><code>i</code></td>
+<td>insert text</td>
+</tr>
+<tr class="odd">
+<td><code>r</code></td>
+<td>replace one character</td>
+</tr>
+<tr class="even">
+<td><code>R</code></td>
+<td>Replace mode</td>
+</tr>
+<tr class="odd">
+<td><code>/text</code></td>
+<td>search</td>
+</tr>
+<tr class="even">
+<td><code>n</code></td>
+<td>next search result</td>
+</tr>
+<tr class="odd">
+<td><code>u</code></td>
+<td>undo</td>
+</tr>
+<tr class="even">
+<td><code>:w</code></td>
+<td>save</td>
+</tr>
+<tr class="odd">
+<td><code>:wq</code></td>
+<td>save and quit</td>
+</tr>
+<tr class="even">
+<td><code>:q!</code></td>
+<td>quit without saving</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="further-reference" class="level2">
+<h2 class="anchored" data-anchor-id="further-reference">Further reference</h2>
+<p>Official Vim help:</p>
+<p><a href="https://vimhelp.org/" class="uri">https://vimhelp.org/</a></p>
+<p>Vim Quick Reference:</p>
+<p><a href="https://vimhelp.org/quickref.txt.html" class="uri">https://vimhelp.org/quickref.txt.html</a></p>
 
 
 </section>

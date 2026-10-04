@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -275,8 +310,26 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../reference/vim-quick-reference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vim — Quick reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../reference/crystal-input-output.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CRYSTAL input and output field guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/crystal-geometry-eos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CRYSTAL geometry and EOS keywords</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/phonons-thermodynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phonons and Quantas — Quick reference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -292,8 +345,28 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-shell-and-the-current-directory" id="toc-the-shell-and-the-current-directory" class="nav-link active" data-scroll-target="#the-shell-and-the-current-directory">The shell and the current directory</a></li>
+  <li><a href="#list-files" id="toc-list-files" class="nav-link" data-scroll-target="#list-files">List files</a></li>
+  <li><a href="#move-between-directories" id="toc-move-between-directories" class="nav-link" data-scroll-target="#move-between-directories">Move between directories</a></li>
+  <li><a href="#create-directories" id="toc-create-directories" class="nav-link" data-scroll-target="#create-directories">Create directories</a></li>
+  <li><a href="#copy-files" id="toc-copy-files" class="nav-link" data-scroll-target="#copy-files">Copy files</a></li>
+  <li><a href="#rename-or-move-files" id="toc-rename-or-move-files" class="nav-link" data-scroll-target="#rename-or-move-files">Rename or move files</a></li>
+  <li><a href="#remove-files-use-with-care" id="toc-remove-files-use-with-care" class="nav-link" data-scroll-target="#remove-files-use-with-care">Remove files: use with care</a></li>
+  <li><a href="#read-a-text-file" id="toc-read-a-text-file" class="nav-link" data-scroll-target="#read-a-text-file">Read a text file</a></li>
+  <li><a href="#search-for-text" id="toc-search-for-text" class="nav-link" data-scroll-target="#search-for-text">Search for text</a></li>
+  <li><a href="#wildcards" id="toc-wildcards" class="nav-link" data-scroll-target="#wildcards">Wildcards</a></li>
+  <li><a href="#command-history" id="toc-command-history" class="nav-link" data-scroll-target="#command-history">Command history</a></li>
+  <li><a href="#interrupt-a-foreground-command" id="toc-interrupt-a-foreground-command" class="nav-link" data-scroll-target="#interrupt-a-foreground-command">Interrupt a foreground command</a></li>
+  <li><a href="#check-a-file-type-and-line-endings" id="toc-check-a-file-type-and-line-endings" class="nav-link" data-scroll-target="#check-a-file-type-and-line-endings">Check a file type and line endings</a></li>
+  <li><a href="#a-typical-mineral-science-shell-workflow" id="toc-a-typical-mineral-science-shell-workflow" class="nav-link" data-scroll-target="#a-typical-mineral-science-shell-workflow">A typical Mineral Science shell workflow</a></li>
+  <li><a href="#built-in-documentation" id="toc-built-in-documentation" class="nav-link" data-scroll-target="#built-in-documentation">Built-in documentation</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -317,9 +390,231 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>TO BE DEVELOPED.</p>
+<p>The computational laboratories use Linux in two places:</p>
+<ul>
+<li>the terminal inside your GitHub Codespace;</li>
+<li>the CluMiner cluster.</li>
+</ul>
+<p>There are many commands and utilities in a Linux distribution; however, for this course, a small set of shell commands is enough to move between directories, inspect files, prepare calculations and check results.</p>
+<p>The examples below use generic filenames. Replace them with the files used in the current laboratory.</p>
+<section id="the-shell-and-the-current-directory" class="level2">
+<h2 class="anchored" data-anchor-id="the-shell-and-the-current-directory">The shell and the current directory</h2>
+<p>A terminal prompt represents a shell waiting for a command.</p>
+<p>The first useful question is often:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>pwd</code> means <strong>print working directory</strong>. It shows where you currently are.</p>
+<p>For example:</p>
+<pre class="text"><code>/home/yourname/mineral-science/lab02</code></pre>
+<p>Linux paths use <code>/</code> as the directory separator.</p>
+</section>
+<section id="list-files" class="level2">
+<h2 class="anchored" data-anchor-id="list-files">List files</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>lists the contents of the current directory.</p>
+<p>Useful variants are:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>for a detailed listing, and:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>for a detailed listing with human-readable file sizes.</p>
+<p>To include hidden files:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-la</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Hidden filenames begin with a dot, for example:</p>
+<pre class="text"><code>.git</code></pre>
+</section>
+<section id="move-between-directories" class="level2">
+<h2 class="anchored" data-anchor-id="move-between-directories">Move between directories</h2>
+<p>Enter a directory:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> lab02</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Move one level upward:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return to your home directory:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>or:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A path beginning with <code>/</code> is an <strong>absolute path</strong>:</p>
+<pre class="text"><code>/home/yourname/mineral-science/lab02</code></pre>
+<p>A path such as:</p>
+<pre class="text"><code>outputs/mgo_shrink4.out</code></pre>
+<p>is <strong>relative</strong> to the current directory.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>When a file cannot be found
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Check both:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>before changing anything. Many “missing file” problems are simply “wrong directory” problems.</p>
+</div>
+</div>
+</section>
+<section id="create-directories" class="level2">
+<h2 class="anchored" data-anchor-id="create-directories">Create directories</h2>
+<p>Create one directory:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> lab03</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Create a hierarchy if necessary:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/mineral-science/lab03</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For the course, a simple structure such as</p>
+<pre class="text"><code>~/mineral-science/
+├── lab02/
+├── lab03/
+└── lab04/</code></pre>
+<p>is sufficient on CluMiner.</p>
+</section>
+<section id="copy-files" class="level2">
+<h2 class="anchored" data-anchor-id="copy-files">Copy files</h2>
+<p>Copy a file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> mgo_shrink2.d12 mgo_shrink3.d12</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is useful when preparing a convergence series.</p>
+<p>Copy a file into another directory:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> mgo_shrink3.d12 inputs/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Always inspect the copied file before submitting it.</p>
+</section>
+<section id="rename-or-move-files" class="level2">
+<h2 class="anchored" data-anchor-id="rename-or-move-files">Rename or move files</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> oldname.d12 newname.d12</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>or:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> mgo_shrink3.d12 inputs/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>mv</code> both renames and moves files.</p>
+</section>
+<section id="remove-files-use-with-care" class="level2">
+<h2 class="anchored" data-anchor-id="remove-files-use-with-care">Remove files: use with care</h2>
+<p>Remove one file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> unwanted.out</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Linux normally does <strong>not</strong> move files to a recycle bin.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span><code>rm</code> is destructive
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Do not use commands such as:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> <span class="pp">*</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>in course directories.</p>
+<p>If you are unsure, stop and inspect the directory with <code>pwd</code> and <code>ls</code> first.</p>
+</div>
+</div>
+</section>
+<section id="read-a-text-file" class="level2">
+<h2 class="anchored" data-anchor-id="read-a-text-file">Read a text file</h2>
+<p>For short files:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> mgo_shrink3.d12</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For longer files:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> mgo_shrink3.out</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Inside <code>less</code>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Space</code></td>
+<td>next page</td>
+</tr>
+<tr class="even">
+<td><code>b</code></td>
+<td>previous page</td>
+</tr>
+<tr class="odd">
+<td><code>/text</code></td>
+<td>search forward</td>
+</tr>
+<tr class="even">
+<td><code>n</code></td>
+<td>next match</td>
+</tr>
+<tr class="odd">
+<td><code>q</code></td>
+<td>quit</td>
+</tr>
+</tbody>
+</table>
+<p>For the beginning or end of a file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> mgo_shrink3.out</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> mgo_shrink3.out</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To follow the last lines of a file that is still growing:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-f</span> filename</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Exit <code>tail -f</code> with <code>Ctrl+C</code>.</p>
+</section>
+<section id="search-for-text" class="level2">
+<h2 class="anchored" data-anchor-id="search-for-text">Search for text</h2>
+<p><code>grep</code> searches lines containing a pattern:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"SCF ENDED"</span> mgo_shrink4.out</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>or:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"SHRINK"</span> mgo_shrink4.d12</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Case-insensitive search:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-i</span> <span class="st">"termination"</span> mgo_shrink4.out</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The laboratories normally use Python/Quantas to extract scientific results. <code>grep</code> is mainly a quick way to inspect an output manually.</p>
+</section>
+<section id="wildcards" class="level2">
+<h2 class="anchored" data-anchor-id="wildcards">Wildcards</h2>
+<p>The shell can match groups of filenames.</p>
+<p>For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>.out</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>lists all <code>.out</code> files in the current directory.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> mgo_shrink<span class="pp">*</span>.out</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>lists all outputs whose name begins with <code>mgo_shrink</code>.</p>
+<p>Wildcards are useful, but be particularly careful when combining them with destructive commands such as <code>rm</code>.</p>
+</section>
+<section id="command-history" class="level2">
+<h2 class="anchored" data-anchor-id="command-history">Command history</h2>
+<p>Press the <strong>up arrow</strong> to recover previous commands.</p>
+<p>You can also display recent commands with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">history</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is useful when the same <code>cluminer-crystal</code> command must be repeated with a different input filename.</p>
+</section>
+<section id="interrupt-a-foreground-command" class="level2">
+<h2 class="anchored" data-anchor-id="interrupt-a-foreground-command">Interrupt a foreground command</h2>
+<p>If a terminal command is running interactively and you need to interrupt it:</p>
+<pre class="text"><code>Ctrl+C</code></pre>
+<p>This is different from cancelling a submitted Slurm job. A CRYSTAL job submitted through <code>cluminer-crystal</code> runs under the cluster scheduler, not as a normal foreground terminal process.</p>
+</section>
+<section id="check-a-file-type-and-line-endings" class="level2">
+<h2 class="anchored" data-anchor-id="check-a-file-type-and-line-endings">Check a file type and line endings</h2>
+<p>The command:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file</span> mgo_shrink3.d12</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>can reveal whether a transferred text file contains Windows-style CRLF line endings.</p>
+<p>For small edits on CluMiner, the course recommends Vim. See <strong>Vim — Quick reference</strong> for editing and converting files to Unix line endings.</p>
+</section>
+<section id="a-typical-mineral-science-shell-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="a-typical-mineral-science-shell-workflow">A typical Mineral Science shell workflow</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/your-surname/mineral-science/lab02</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/your-surname/mineral-science/lab02</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> mgo_shrink2.d12 mgo_shrink3.d12</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> mgo_shrink3.d12</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> mgo_shrink3.d12</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="ex">cluminer-crystal</span> mgo_shrink3.d12 <span class="at">--cores-per-node</span> 2 <span class="at">--threads</span> 2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The important part is not memorizing the commands. It is maintaining a clear relationship between:</p>
+<pre class="text"><code>where you are
+what file you are editing
+what calculation you are submitting
+where the resulting output will appear</code></pre>
+</section>
+<section id="built-in-documentation" class="level2">
+<h2 class="anchored" data-anchor-id="built-in-documentation">Built-in documentation</h2>
+<p>Many Linux commands provide a manual page:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">man</span> cp</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">man</span> grep</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">man</span> less</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Exit a manual page with <code>q</code>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

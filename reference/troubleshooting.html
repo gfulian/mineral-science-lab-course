@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -275,8 +310,26 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../reference/vim-quick-reference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vim — Quick reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../reference/crystal-input-output.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CRYSTAL input and output field guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/crystal-geometry-eos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CRYSTAL geometry and EOS keywords</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/phonons-thermodynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phonons and Quantas — Quick reference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -292,8 +345,39 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#codespace-does-not-start" id="toc-codespace-does-not-start" class="nav-link active" data-scroll-target="#codespace-does-not-start">Codespace does not start</a></li>
+  <li><a href="#the-first-codespace-initialization-is-slow" id="toc-the-first-codespace-initialization-is-slow" class="nav-link" data-scroll-target="#the-first-codespace-initialization-is-slow">The first Codespace initialization is slow</a></li>
+  <li><a href="#update-course-says-permission-denied" id="toc-update-course-says-permission-denied" class="nav-link" data-scroll-target="#update-course-says-permission-denied"><code>update-course</code> says <code>Permission denied</code></a></li>
+  <li><a href="#update-course-reports-another-error" id="toc-update-course-reports-another-error" class="nav-link" data-scroll-target="#update-course-reports-another-error"><code>update-course</code> reports another error</a></li>
+  <li><a href="#start-lab-did-not-replace-an-old-notebook" id="toc-start-lab-did-not-replace-an-old-notebook" class="nav-link" data-scroll-target="#start-lab-did-not-replace-an-old-notebook"><code>start-lab</code> did not replace an old notebook</a></li>
+  <li><a href="#python-says-modulenotfounderror" id="toc-python-says-modulenotfounderror" class="nav-link" data-scroll-target="#python-says-modulenotfounderror">Python says <code>ModuleNotFoundError</code></a></li>
+  <li><a href="#a-notebook-says-nameerror" id="toc-a-notebook-says-nameerror" class="nav-link" data-scroll-target="#a-notebook-says-nameerror">A notebook says <code>NameError</code></a></li>
+  <li><a href="#a-notebook-says-filenotfounderror" id="toc-a-notebook-says-filenotfounderror" class="nav-link" data-scroll-target="#a-notebook-says-filenotfounderror">A notebook says <code>FileNotFoundError</code></a></li>
+  <li><a href="#py3dmol-does-not-display-the-expected-crystal" id="toc-py3dmol-does-not-display-the-expected-crystal" class="nav-link" data-scroll-target="#py3dmol-does-not-display-the-expected-crystal">py3Dmol does not display the expected crystal</a></li>
+  <li><a href="#the-notebook-still-uses-old-helper-code-after-update-course" id="toc-the-notebook-still-uses-old-helper-code-after-update-course" class="nav-link" data-scroll-target="#the-notebook-still-uses-old-helper-code-after-update-course">The notebook still uses old helper code after <code>update-course</code></a></li>
+  <li><a href="#github-source-control-shows-publish-branch" id="toc-github-source-control-shows-publish-branch" class="nav-link" data-scroll-target="#github-source-control-shows-publish-branch">GitHub Source Control shows <code>Publish Branch</code></a></li>
+  <li><a href="#sync-changes-fails" id="toc-sync-changes-fails" class="nav-link" data-scroll-target="#sync-changes-fails"><code>Sync Changes</code> fails</a></li>
+  <li><a href="#i-closed-the-browser-but-the-codespace-is-still-running" id="toc-i-closed-the-browser-but-the-codespace-is-still-running" class="nav-link" data-scroll-target="#i-closed-the-browser-but-the-codespace-is-still-running">I closed the browser, but the Codespace is still running</a></li>
+  <li><a href="#i-cannot-connect-to-cluminer" id="toc-i-cannot-connect-to-cluminer" class="nav-link" data-scroll-target="#i-cannot-connect-to-cluminer">I cannot connect to CluMiner</a></li>
+  <li><a href="#my-file-is-on-the-wrong-machine" id="toc-my-file-is-on-the-wrong-machine" class="nav-link" data-scroll-target="#my-file-is-on-the-wrong-machine">My file is on the wrong machine</a></li>
+  <li><a href="#crystal-input-contains-strange-m-characters" id="toc-crystal-input-contains-strange-m-characters" class="nav-link" data-scroll-target="#crystal-input-contains-strange-m-characters">CRYSTAL input contains strange <code>^M</code> characters</a></li>
+  <li><a href="#cluminer-crystal-accepts-the-job-but-nothing-happens-immediately" id="toc-cluminer-crystal-accepts-the-job-but-nothing-happens-immediately" class="nav-link" data-scroll-target="#cluminer-crystal-accepts-the-job-but-nothing-happens-immediately"><code>cluminer-crystal</code> accepts the job, but nothing happens immediately</a></li>
+  <li><a href="#crystal-produced-an-output-file-so-is-the-result-valid" id="toc-crystal-produced-an-output-file-so-is-the-result-valid" class="nav-link" data-scroll-target="#crystal-produced-an-output-file-so-is-the-result-valid">CRYSTAL produced an output file, so is the result valid?</a></li>
+  <li><a href="#the-scf-does-not-converge" id="toc-the-scf-does-not-converge" class="nav-link" data-scroll-target="#the-scf-does-not-converge">The SCF does not converge</a></li>
+  <li><a href="#a-job-was-interrupted" id="toc-a-job-was-interrupted" class="nav-link" data-scroll-target="#a-job-was-interrupted">A job was interrupted</a></li>
+  <li><a href="#the-cluster-is-unavailable-during-a-laboratory" id="toc-the-cluster-is-unavailable-during-a-laboratory" class="nav-link" data-scroll-target="#the-cluster-is-unavailable-during-a-laboratory">The cluster is unavailable during a laboratory</a></li>
+  <li><a href="#quantas-command-not-found" id="toc-quantas-command-not-found" class="nav-link" data-scroll-target="#quantas-command-not-found">Quantas command not found</a></li>
+  <li><a href="#quantas-rejects-an-output" id="toc-quantas-rejects-an-output" class="nav-link" data-scroll-target="#quantas-rejects-an-output">Quantas rejects an output</a></li>
+  <li><a href="#the-q-point-symmetry-reducer-fails-in-laboratory-4" id="toc-the-q-point-symmetry-reducer-fails-in-laboratory-4" class="nav-link" data-scroll-target="#the-q-point-symmetry-reducer-fails-in-laboratory-4">The q-point symmetry reducer fails in Laboratory 4</a></li>
+  <li><a href="#the-calculated-curve-disagrees-with-experiment" id="toc-the-calculated-curve-disagrees-with-experiment" class="nav-link" data-scroll-target="#the-calculated-curve-disagrees-with-experiment">The calculated curve disagrees with experiment</a></li>
+  <li><a href="#what-information-should-i-report-when-asking-for-help" id="toc-what-information-should-i-report-when-asking-for-help" class="nav-link" data-scroll-target="#what-information-should-i-report-when-asking-for-help">What information should I report when asking for help?</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -317,9 +401,308 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>TO BE DEVELOPED.</p>
+<p>Computational work occasionally fails. The useful skill is not avoiding every error; it is learning to identify <strong>which layer failed</strong> before changing anything.</p>
+<p>For this course, most problems belong to one of four layers:</p>
+<pre class="text"><code>GitHub / Codespaces
+        ↓
+notebook / Python analysis
+        ↓
+file transfer / cluster
+        ↓
+CRYSTAL calculation</code></pre>
+<p>Diagnose the layer first.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Protect your work before troubleshooting
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If your own files under <code>work/</code> contain useful progress:</p>
+<ol type="1">
+<li>save them;</li>
+<li>commit if possible;</li>
+<li>sync to GitHub if possible.</li>
+</ol>
+<p>Do not delete <code>work/</code> as a first troubleshooting step.</p>
+</div>
+</div>
+<section id="codespace-does-not-start" class="level2">
+<h2 class="anchored" data-anchor-id="codespace-does-not-start">Codespace does not start</h2>
+<p>First try reopening the existing Codespace from:</p>
+<p><a href="https://github.com/codespaces" class="uri">https://github.com/codespaces</a></p>
+<p>Do not create a new Codespace automatically every time something looks slow.</p>
+<p>If the existing Codespace reports a build/setup error, keep the error message. The initial setup can take several minutes because packages are installed when the development container is first created.</p>
+<p>If instructed to rebuild:</p>
+<p><strong>Command Palette → Codespaces: Rebuild Container</strong></p>
+<p>Rebuilding is more disruptive than restarting, so use it only when the environment itself is damaged or has changed.</p>
+</section>
+<section id="the-first-codespace-initialization-is-slow" class="level2">
+<h2 class="anchored" data-anchor-id="the-first-codespace-initialization-is-slow">The first Codespace initialization is slow</h2>
+<p>This is expected.</p>
+<p>A new Codespace must create the Linux environment and install the course Python packages.</p>
+<p>Wait for:</p>
+<pre class="text"><code>Environment ready.</code></pre>
+<p>Reopening the same stopped Codespace is normally much faster.</p>
+</section>
+<section id="update-course-says-permission-denied" class="level2">
+<h2 class="anchored" data-anchor-id="update-course-says-permission-denied"><code>update-course</code> says <code>Permission denied</code></h2>
+<p>The command scripts must be executable.</p>
+<p>The course workspace template now fixes permissions during environment setup. If an old test Codespace still contains the earlier version, update or rebuild the environment rather than repeatedly changing random permissions.</p>
+<p>For diagnosis:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> scripts/update-course scripts/start-lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Executable files should show <code>x</code> permissions.</p>
+</section>
+<section id="update-course-reports-another-error" class="level2">
+<h2 class="anchored" data-anchor-id="update-course-reports-another-error"><code>update-course</code> reports another error</h2>
+<p>Do not manually remove <code>.git</code>, <code>course/</code> or <code>work/</code>.</p>
+<p>Save your work and keep the exact terminal message.</p>
+<p>Remember:</p>
+<pre class="text"><code>course/ = instructor material
+work/   = your material</code></pre>
+<p>An update problem should not be repaired by deleting student work.</p>
+</section>
+<section id="start-lab-did-not-replace-an-old-notebook" class="level2">
+<h2 class="anchored" data-anchor-id="start-lab-did-not-replace-an-old-notebook"><code>start-lab</code> did not replace an old notebook</h2>
+<p>This is intentional.</p>
+<p><code>start-lab NN</code> is designed <strong>not to overwrite existing files under <code>work/</code></strong>.</p>
+<p>If you are deliberately testing a newly released laboratory version, use a new test repository/Codespace or remove only the old test laboratory directory after confirming that it contains nothing you need.</p>
+<p>Students should not normally delete an existing laboratory directory.</p>
+</section>
+<section id="python-says-modulenotfounderror" class="level2">
+<h2 class="anchored" data-anchor-id="python-says-modulenotfounderror">Python says <code>ModuleNotFoundError</code></h2>
+<p>For a course package, first check that the Codespace setup completed.</p>
+<p>Then:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import numpy, scipy, pandas, gemmi, spglib"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Do not solve the problem by installing arbitrary package versions with <code>pip</code>.</p>
+<p>If the environment changed after your Codespace was created, update/rebuild it as instructed.</p>
+</section>
+<section id="a-notebook-says-nameerror" class="level2">
+<h2 class="anchored" data-anchor-id="a-notebook-says-nameerror">A notebook says <code>NameError</code></h2>
+<p>A required earlier cell was probably not executed.</p>
+<p>Try:</p>
+<ol type="1">
+<li>save;</li>
+<li>restart kernel;</li>
+<li>run cells from the top.</li>
+</ol>
+<p>Do not define variables manually only to bypass the error.</p>
+</section>
+<section id="a-notebook-says-filenotfounderror" class="level2">
+<h2 class="anchored" data-anchor-id="a-notebook-says-filenotfounderror">A notebook says <code>FileNotFoundError</code></h2>
+<p>Check:</p>
+<ul>
+<li>exact filename;</li>
+<li>exact capitalization;</li>
+<li>directory;</li>
+<li>relative path.</li>
+</ul>
+<p>For example, if the notebook expects:</p>
+<pre class="text"><code>outputs/mgo_shrink4.out</code></pre>
+<p>verify in the Explorer that the file is really there.</p>
+<p>In the terminal:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="at">-maxdepth</span> 2 <span class="at">-type</span> f</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>can help locate files.</p>
+</section>
+<section id="py3dmol-does-not-display-the-expected-crystal" class="level2">
+<h2 class="anchored" data-anchor-id="py3dmol-does-not-display-the-expected-crystal">py3Dmol does not display the expected crystal</h2>
+<p>The course viewer uses Gemmi to expand crystallographic symmetry and py3Dmol only for rendering.</p>
+<p>If the structure appears incomplete:</p>
+<ol type="1">
+<li>confirm that you are using the current <code>mineral_science_tools</code>;</li>
+<li>restart the notebook kernel after <code>update-course</code>;</li>
+<li>rerun the notebook from the import cell.</li>
+</ol>
+<p>Do not infer that the CIF itself is wrong from a rendering problem alone.</p>
+</section>
+<section id="the-notebook-still-uses-old-helper-code-after-update-course" class="level2">
+<h2 class="anchored" data-anchor-id="the-notebook-still-uses-old-helper-code-after-update-course">The notebook still uses old helper code after <code>update-course</code></h2>
+<p>Python imports remain in memory until the kernel is restarted.</p>
+<p>Use:</p>
+<pre class="text"><code>Restart kernel
+→ Run All</code></pre>
+<p>after a helper update.</p>
+</section>
+<section id="github-source-control-shows-publish-branch" class="level2">
+<h2 class="anchored" data-anchor-id="github-source-control-shows-publish-branch">GitHub Source Control shows <code>Publish Branch</code></h2>
+<p>Your course workspace should already belong to your personal GitHub repository.</p>
+<p>Seeing <strong>Publish Branch</strong> may mean that the Codespace was opened directly from the template instead of from a repository created with <strong>Use this template</strong>.</p>
+<p>Do not continue building important work in that state. Ask for help before proceeding.</p>
+</section>
+<section id="sync-changes-fails" class="level2">
+<h2 class="anchored" data-anchor-id="sync-changes-fails"><code>Sync Changes</code> fails</h2>
+<p>First confirm that the Codespace has internet access and that you are signed into the correct GitHub account.</p>
+<p>Then inspect the Source Control panel.</p>
+<p>If another version exists on GitHub, do not force-push or discard changes without understanding what will be lost.</p>
+<p>For course notebooks, ask for assistance if Git reports a merge conflict.</p>
+</section>
+<section id="i-closed-the-browser-but-the-codespace-is-still-running" class="level2">
+<h2 class="anchored" data-anchor-id="i-closed-the-browser-but-the-codespace-is-still-running">I closed the browser, but the Codespace is still running</h2>
+<p>Closing a browser tab does not necessarily stop the remote machine.</p>
+<p>Open:</p>
+<p><a href="https://github.com/codespaces" class="uri">https://github.com/codespaces</a></p>
+<p>then:</p>
+<pre class="text"><code>... → Stop codespace</code></pre>
+<p>At the end of every session:</p>
+<pre class="text"><code>Save
+→ Commit
+→ Sync
+→ Verify on GitHub
+→ Stop Codespace</code></pre>
+</section>
+<section id="i-cannot-connect-to-cluminer" class="level2">
+<h2 class="anchored" data-anchor-id="i-cannot-connect-to-cluminer">I cannot connect to CluMiner</h2>
+<p>Check:</p>
+<ol type="1">
+<li>network/VPN requirements communicated for the course;</li>
+<li>hostname;</li>
+<li>username;</li>
+<li>whether the cluster is reachable.</li>
+</ol>
+<p>Do not repeatedly guess passwords.</p>
+<p>If SSH reports a host-resolution or network error, that is different from an authentication error.</p>
+<p>Keep the exact message.</p>
+</section>
+<section id="my-file-is-on-the-wrong-machine" class="level2">
+<h2 class="anchored" data-anchor-id="my-file-is-on-the-wrong-machine">My file is on the wrong machine</h2>
+<p>This is extremely common.</p>
+<p>The same project may involve:</p>
+<ul>
+<li>your own computer;</li>
+<li>Codespaces;</li>
+<li>CluMiner.</li>
+</ul>
+<p>Use <code>hostname</code>, <code>pwd</code>, <code>ls</code>, and the VS Code Explorer to establish where the file currently exists.</p>
+<p>Do not submit a calculation until you have inspected the actual input on CluMiner.</p>
+</section>
+<section id="crystal-input-contains-strange-m-characters" class="level2">
+<h2 class="anchored" data-anchor-id="crystal-input-contains-strange-m-characters">CRYSTAL input contains strange <code>^M</code> characters</h2>
+<p>This normally indicates Windows CRLF line endings.</p>
+<p>On CluMiner:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file</span> input.d12</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> input.d12</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Inside Vim:</p>
+<pre class="vim"><code>:set fileformat=unix
+:w</code></pre>
+<p>See <strong>Vim — Quick reference</strong>.</p>
+</section>
+<section id="cluminer-crystal-accepts-the-job-but-nothing-happens-immediately" class="level2">
+<h2 class="anchored" data-anchor-id="cluminer-crystal-accepts-the-job-but-nothing-happens-immediately"><code>cluminer-crystal</code> accepts the job, but nothing happens immediately</h2>
+<p>The job may be waiting in the Slurm queue.</p>
+<p>A queued calculation is not necessarily an error.</p>
+<p>Use the cluster-status commands demonstrated during the laboratory, or ask the instructor if the queue state is unclear.</p>
+<p>Do not submit the same job repeatedly simply because it has not started yet.</p>
+</section>
+<section id="crystal-produced-an-output-file-so-is-the-result-valid" class="level2">
+<h2 class="anchored" data-anchor-id="crystal-produced-an-output-file-so-is-the-result-valid">CRYSTAL produced an output file, so is the result valid?</h2>
+<p>Not necessarily.</p>
+<p>An output can exist even if:</p>
+<ul>
+<li>SCF convergence failed;</li>
+<li>geometry optimization failed;</li>
+<li>the job was interrupted;</li>
+<li>CRYSTAL terminated abnormally.</li>
+</ul>
+<p>For Laboratory 2, the parser deliberately rejects outputs without the explicit SCF convergence and normal-termination markers.</p>
+<p>For later laboratories, always inspect the relevant convergence section before interpreting a numerical result.</p>
+</section>
+<section id="the-scf-does-not-converge" class="level2">
+<h2 class="anchored" data-anchor-id="the-scf-does-not-converge">The SCF does not converge</h2>
+<p>Do not immediately loosen thresholds until the number “works”.</p>
+<p>A convergence failure is a scientific/numerical event that needs diagnosis.</p>
+<p>Keep:</p>
+<ul>
+<li>input;</li>
+<li>full output;</li>
+<li>restart files if the launcher returns them.</li>
+</ul>
+<p>Report which calculation failed and at what stage.</p>
+</section>
+<section id="a-job-was-interrupted" class="level2">
+<h2 class="anchored" data-anchor-id="a-job-was-interrupted">A job was interrupted</h2>
+<p>Do not delete the output or scratch/restart material.</p>
+<p>The cluster workflow may permit a restart or recovery of useful files.</p>
+<p>Ask the instructor before submitting a completely new calculation.</p>
+</section>
+<section id="the-cluster-is-unavailable-during-a-laboratory" class="level2">
+<h2 class="anchored" data-anchor-id="the-cluster-is-unavailable-during-a-laboratory">The cluster is unavailable during a laboratory</h2>
+<p>The course provides instructor-validated <strong>reference results</strong> for calculations that are needed to continue the scientific analysis.</p>
+<p>The intended fallback is:</p>
+<pre class="text"><code>calculation unavailable
+        ↓
+use validated reference output
+        ↓
+continue analysis and interpretation</code></pre>
+<p>The laboratory should not become a waiting exercise.</p>
+<p>Use reference results only when instructed; normally you should analyse your own calculation.</p>
+</section>
+<section id="quantas-command-not-found" class="level2">
+<h2 class="anchored" data-anchor-id="quantas-command-not-found">Quantas command not found</h2>
+<p>In Codespaces:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quantas</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If the command is missing, the course environment may not have initialized correctly.</p>
+<p>Do not install a different Quantas release manually.</p>
+<p>Check the environment setup/rebuild procedure.</p>
+</section>
+<section id="quantas-rejects-an-output" class="level2">
+<h2 class="anchored" data-anchor-id="quantas-rejects-an-output">Quantas rejects an output</h2>
+<p>Read the message carefully.</p>
+<p>Typical reasons include:</p>
+<ul>
+<li>incomplete CRYSTAL calculation;</li>
+<li>unsupported calculation type;</li>
+<li>missing data required by the workflow;</li>
+<li>inconsistent phonon/q-point metadata.</li>
+</ul>
+<p>Do not edit scientific output files merely to make a parser accept them.</p>
+</section>
+<section id="the-q-point-symmetry-reducer-fails-in-laboratory-4" class="level2">
+<h2 class="anchored" data-anchor-id="the-q-point-symmetry-reducer-fails-in-laboratory-4">The q-point symmetry reducer fails in Laboratory 4</h2>
+<p>This optional tool is for interpreting a full CRYSTAL q mesh in terms of irreducible q-points and weights.</p>
+<p>The <strong>core Quantas thermodynamic workflow uses the full uniform mesh and does not depend on this reduction</strong>.</p>
+<p>If the reducer fails:</p>
+<ol type="1">
+<li>keep the original CRYSTAL output;</li>
+<li>keep the full Quantas YAML;</li>
+<li>continue with the full-mesh HA workflow;</li>
+<li>report the reducer error separately.</li>
+</ol>
+<p>Do not invent q-point weights manually.</p>
+</section>
+<section id="the-calculated-curve-disagrees-with-experiment" class="level2">
+<h2 class="anchored" data-anchor-id="the-calculated-curve-disagrees-with-experiment">The calculated curve disagrees with experiment</h2>
+<p>This is not automatically a software problem.</p>
+<p>Ask first:</p>
+<ol type="1">
+<li>Is the calculation numerically converged?</li>
+<li>Are calculation and experiment reporting the same physical quantity?</li>
+<li>What approximations are present in the model?</li>
+</ol>
+<p>For example, in Laboratory 4:</p>
+<pre class="text"><code>calculation = harmonic Cv at fixed volume
+experiment  ≈ Cp at ambient pressure</code></pre>
+<p>Even a well-converged q mesh can therefore retain a meaningful physical discrepancy.</p>
+</section>
+<section id="what-information-should-i-report-when-asking-for-help" class="level2">
+<h2 class="anchored" data-anchor-id="what-information-should-i-report-when-asking-for-help">What information should I report when asking for help?</h2>
+<p>Provide:</p>
+<ul>
+<li>laboratory number;</li>
+<li>exact command used;</li>
+<li>filename;</li>
+<li>exact error message;</li>
+<li>relevant input/output file;</li>
+<li>what you expected to happen;</li>
+<li>what actually happened.</li>
+</ul>
+<p>Screenshots can help with interface problems, but terminal errors and scientific outputs are usually more useful as text.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

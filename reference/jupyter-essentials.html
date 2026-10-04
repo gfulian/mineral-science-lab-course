@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -275,8 +310,26 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../reference/vim-quick-reference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vim — Quick reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../reference/crystal-input-output.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CRYSTAL input and output field guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/crystal-geometry-eos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CRYSTAL geometry and EOS keywords</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/phonons-thermodynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phonons and Quantas — Quick reference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -292,8 +345,31 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#two-kinds-of-cells" id="toc-two-kinds-of-cells" class="nav-link active" data-scroll-target="#two-kinds-of-cells">Two kinds of cells</a>
+  <ul class="collapse">
+  <li><a href="#markdown-cells" id="toc-markdown-cells" class="nav-link" data-scroll-target="#markdown-cells">Markdown cells</a></li>
+  <li><a href="#code-cells" id="toc-code-cells" class="nav-link" data-scroll-target="#code-cells">Code cells</a></li>
+  </ul></li>
+  <li><a href="#run-a-cell" id="toc-run-a-cell" class="nav-link" data-scroll-target="#run-a-cell">Run a cell</a></li>
+  <li><a href="#the-kernel" id="toc-the-kernel" class="nav-link" data-scroll-target="#the-kernel">The kernel</a></li>
+  <li><a href="#run-notebooks-in-order" id="toc-run-notebooks-in-order" class="nav-link" data-scroll-target="#run-notebooks-in-order">Run notebooks in order</a></li>
+  <li><a href="#selecting-the-python-environment" id="toc-selecting-the-python-environment" class="nav-link" data-scroll-target="#selecting-the-python-environment">Selecting the Python environment</a></li>
+  <li><a href="#edit-only-the-requested-values" id="toc-edit-only-the-requested-values" class="nav-link" data-scroll-target="#edit-only-the-requested-values">Edit only the requested values</a></li>
+  <li><a href="#file-paths-are-relative-to-the-notebook" id="toc-file-paths-are-relative-to-the-notebook" class="nav-link" data-scroll-target="#file-paths-are-relative-to-the-notebook">File paths are relative to the notebook</a></li>
+  <li><a href="#displaying-tables" id="toc-displaying-tables" class="nav-link" data-scroll-target="#displaying-tables">Displaying tables</a></li>
+  <li><a href="#plots" id="toc-plots" class="nav-link" data-scroll-target="#plots">Plots</a></li>
+  <li><a href="#error-messages" id="toc-error-messages" class="nav-link" data-scroll-target="#error-messages">Error messages</a></li>
+  <li><a href="#restarting-after-a-helper-update" id="toc-restarting-after-a-helper-update" class="nav-link" data-scroll-target="#restarting-after-a-helper-update">Restarting after a helper update</a></li>
+  <li><a href="#save-versus-synchronize" id="toc-save-versus-synchronize" class="nav-link" data-scroll-target="#save-versus-synchronize">Save versus synchronize</a></li>
+  <li><a href="#useful-keyboard-shortcuts" id="toc-useful-keyboard-shortcuts" class="nav-link" data-scroll-target="#useful-keyboard-shortcuts">Useful keyboard shortcuts</a></li>
+  <li><a href="#official-reference" id="toc-official-reference" class="nav-link" data-scroll-target="#official-reference">Official reference</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -317,9 +393,209 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>TO BE DEVELOPED.</p>
+<p>The laboratory notebooks are opened inside GitHub Codespaces using the Jupyter support built into Visual Studio Code.</p>
+<p>You do not need to write software from scratch. Most code cells are already prepared. Your normal tasks are:</p>
+<ul>
+<li>run a cell;</li>
+<li>inspect its result;</li>
+<li>change a filename or simple numerical value when instructed;</li>
+<li>create a plot from prepared code;</li>
+<li>write short scientific answers in Markdown cells.</li>
+</ul>
+<section id="two-kinds-of-cells" class="level2">
+<h2 class="anchored" data-anchor-id="two-kinds-of-cells">Two kinds of cells</h2>
+<p>A notebook mainly contains two kinds of cells.</p>
+<section id="markdown-cells" class="level3">
+<h3 class="anchored" data-anchor-id="markdown-cells">Markdown cells</h3>
+<p>Markdown cells contain explanations, equations and your written answers.</p>
+<p>For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">### Question</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Why does the unit-cell volume change during geometry optimization?</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>**Your answer:**</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>The experimental geometry is not necessarily the minimum of the static</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>DFT model because ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can edit a Markdown cell by clicking (or double-clicking) inside it.</p>
+<p>Run the cell to render the formatted text.</p>
+</section>
+<section id="code-cells" class="level3">
+<h3 class="anchored" data-anchor-id="code-cells">Code cells</h3>
+<p>Code cells in this laboratory contain Python:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> analyse_crystal_outputs(OUTPUTS)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Running the cell executes the code in the active Python kernel.</p>
+</section>
+</section>
+<section id="run-a-cell" class="level2">
+<h2 class="anchored" data-anchor-id="run-a-cell">Run a cell</h2>
+<p>Use the triangular <strong>Run</strong> button beside the cell (generally on the left), or press:</p>
+<pre class="text"><code>Shift+Enter</code></pre>
+<p><code>Shift+Enter</code> runs the current cell and moves to the next one.</p>
+<p>The number shown beside a code cell records its execution order:</p>
+<pre class="text"><code>[1]
+[2]
+[3]</code></pre>
+<p>If cells are run out of order, those numbers may no longer increase from top to bottom.</p>
+</section>
+<section id="the-kernel" class="level2">
+<h2 class="anchored" data-anchor-id="the-kernel">The kernel</h2>
+<p>The <strong>kernel</strong> is the Python process that executes notebook code and stores variables in memory.</p>
+<p>For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>A0_ANGSTROM <span class="op">=</span> <span class="fl">4.20</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>creates a variable in the current kernel session.</p>
+<p>A later cell can use it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>A0_ANGSTROM<span class="op">**</span><span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If the kernel is restarted, variables stored only in memory disappear until the earlier cells are executed again.</p>
+</section>
+<section id="run-notebooks-in-order" class="level2">
+<h2 class="anchored" data-anchor-id="run-notebooks-in-order">Run notebooks in order</h2>
+<p>During normal use, execute cells from top to bottom.</p>
+<p>If a later cell reports:</p>
+<pre class="text"><code>NameError: name 'something' is not defined</code></pre>
+<p>the most common reason is that the cell defining <code>something</code> was not run.</p>
+<p>The cleanest test of a completed notebook is:</p>
+<ol type="1">
+<li>save it;</li>
+<li>restart the kernel;</li>
+<li>run all cells from the beginning.</li>
+</ol>
+<p>In VS Code this can be done with <strong>Restart</strong> followed by <strong>Run All</strong>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>A notebook that works only because of old kernel state is not reproducible
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before considering a laboratory complete, the notebook should run correctly from a fresh kernel in the intended order.</p>
+</div>
+</div>
+</section>
+<section id="selecting-the-python-environment" class="level2">
+<h2 class="anchored" data-anchor-id="selecting-the-python-environment">Selecting the Python environment</h2>
+<p>Codespaces normally selects the course Python environment automatically.</p>
+<p>If a notebook asks for a kernel, choose the Python environment provided by the Codespace rather than creating or installing a new environment yourself.</p>
+<p>Do not install alternate versions of NumPy, SciPy, Gemmi, spglib, Quantas or other course packages unless instructed.</p>
+</section>
+<section id="edit-only-the-requested-values" class="level2">
+<h2 class="anchored" data-anchor-id="edit-only-the-requested-values">Edit only the requested values</h2>
+<p>Many cells are designed so that students modify only a short section such as:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>CIF_FILE <span class="op">=</span> Path(<span class="st">"my_structure.cif"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>or:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>OUTPUTS <span class="op">=</span> [</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    Path(<span class="st">"outputs/run1.out"</span>),</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    Path(<span class="st">"outputs/run2.out"</span>),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>or:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>A0_ANGSTROM <span class="op">=</span> <span class="fl">4.20</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Avoid changing helper code simply to make an unexpected result disappear. An error message often contains scientifically useful information.</p>
+</section>
+<section id="file-paths-are-relative-to-the-notebook" class="level2">
+<h2 class="anchored" data-anchor-id="file-paths-are-relative-to-the-notebook">File paths are relative to the notebook</h2>
+<p>If a notebook in:</p>
+<pre class="text"><code>work/lab03/</code></pre>
+<p>contains:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Path(<span class="st">"outputs/mgo_fullopt.out"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>it expects:</p>
+<pre class="text"><code>work/lab03/outputs/mgo_fullopt.out</code></pre>
+<p>If Python reports:</p>
+<pre class="text"><code>FileNotFoundError</code></pre>
+<p>first check the Explorer and the exact filename.</p>
+<p>Remember that Linux filenames are case-sensitive:</p>
+<pre class="text"><code>MgO.out</code></pre>
+<p>and:</p>
+<pre class="text"><code>mgo.out</code></pre>
+<p>are different filenames.</p>
+</section>
+<section id="displaying-tables" class="level2">
+<h2 class="anchored" data-anchor-id="displaying-tables">Displaying tables</h2>
+<p>A pandas DataFrame may appear simply by making it the last expression in a cell:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For large tables, scroll inside the output rather than copying values manually.</p>
+<p>The purpose of these tables is to support scientific interpretation, not to practice spreadsheet transcription.</p>
+</section>
+<section id="plots" class="level2">
+<h2 class="anchored" data-anchor-id="plots">Plots</h2>
+<p>A prepared plotting cell may look like:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plot_energy_convergence(results)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The semicolon suppresses an unnecessary textual representation of the plotting object.</p>
+<p>You may interact with or inspect the plot, but do not change axis units or labels unless the laboratory specifically asks you to.</p>
+</section>
+<section id="error-messages" class="level2">
+<h2 class="anchored" data-anchor-id="error-messages">Error messages</h2>
+<p>Do not be intimidated by a long Python traceback.</p>
+<p>Read the <strong>last few lines first</strong>. They usually contain the useful message, for example:</p>
+<pre class="text"><code>FileNotFoundError: CRYSTAL output not found: outputs/mgo_shrink4.out</code></pre>
+<p>or:</p>
+<pre class="text"><code>ValueError: no explicit SCF convergence marker was found</code></pre>
+<p>These messages are deliberately used in the course tools to tell you what is scientifically wrong with the input data.</p>
+</section>
+<section id="restarting-after-a-helper-update" class="level2">
+<h2 class="anchored" data-anchor-id="restarting-after-a-helper-update">Restarting after a helper update</h2>
+<p>If a course helper such as:</p>
+<pre class="text"><code>mineral_science_tools</code></pre>
+<p>has been updated while your notebook kernel is already running, Python may still hold the old imported code in memory.</p>
+<p>After <code>update-course</code>, if instructed:</p>
+<ol type="1">
+<li>save the notebook;</li>
+<li>restart the kernel;</li>
+<li>run the notebook again from the beginning.</li>
+</ol>
+</section>
+<section id="save-versus-synchronize" class="level2">
+<h2 class="anchored" data-anchor-id="save-versus-synchronize">Save versus synchronize</h2>
+<p>Saving the notebook writes it to the Codespace filesystem.</p>
+<p>It does <strong>not</strong> automatically copy the notebook to GitHub.</p>
+<p>At the end of a session use:</p>
+<pre class="text"><code>Save
+→ Commit
+→ Sync Changes
+→ Verify on GitHub
+→ Stop Codespace</code></pre>
+<p>See <strong>Save, sync and stop</strong> in Getting Started.</p>
+</section>
+<section id="useful-keyboard-shortcuts" class="level2">
+<h2 class="anchored" data-anchor-id="useful-keyboard-shortcuts">Useful keyboard shortcuts</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Shift+Enter</code></td>
+<td>run cell and move to next</td>
+</tr>
+<tr class="even">
+<td><code>Ctrl+S</code> / <code>Cmd+S</code></td>
+<td>save notebook</td>
+</tr>
+<tr class="odd">
+<td><code>Esc</code></td>
+<td>leave text editing in some notebook contexts</td>
+</tr>
+<tr class="even">
+<td><code>Ctrl+Shift+P</code> / <code>Cmd+Shift+P</code></td>
+<td>VS Code command palette</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="official-reference" class="level2">
+<h2 class="anchored" data-anchor-id="official-reference">Official reference</h2>
+<p>The complete VS Code documentation for Jupyter notebooks is available at:</p>
+<p><a href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks" class="uri">https://code.visualstudio.com/docs/datascience/jupyter-notebooks</a></p>
+<p>You need only the subset described on this page for Mineral Science.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
