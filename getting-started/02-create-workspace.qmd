@@ -4,17 +4,72 @@ title: "Create your personal workspace"
 
 You only need to perform the complete procedure on this page once.
 
-## 1. Sign in to GitHub
+## 1. Create or sign in to your GitHub account
 
-Open [GitHub](https://github.com/) and sign in with your personal account. If
-you do not already have an account, create one before continuing.
+[GitHub](https://github.com/) is a collaborative platform built around
+**repositories**: project spaces in which files can be stored, their changes can
+be tracked, and work can be shared with other people. It is widely used for
+software development, but also by researchers and students who write scripts or
+notebooks for data analysis, numerical modelling, reproducible research, and
+thesis projects. You may therefore encounter GitHub again well beyond this
+laboratory.
+
+For Mineral Science, GitHub has two practical roles:
+
+1. it stores the permanent private repository containing your laboratory work;
+2. it provides access to **GitHub Codespaces**, the remote Linux environment in
+   which you will run the notebooks.
+
+::: {.callout-note}
+## Four terms that will appear repeatedly
+
+| Term | Meaning in this course |
+|---|---|
+| **GitHub account** | Your personal identity on GitHub |
+| **Repository** | The online project containing files and their version history |
+| **Template repository** | The instructor-provided starting point from which you create your own repository |
+| **Codespace** | A remote Linux computer, opened in the browser, connected to your repository |
+:::
+
+You do not need previous experience with Git or software development. During the
+course you will use only a small and well-defined subset of GitHub features.
+
+### If you already have a GitHub account
+
+Open [GitHub](https://github.com/) and sign in with your personal account, then
+continue with the Codespaces setting below.
+
+### If you do not yet have a GitHub account
+
+1. Open <https://github.com/signup>.
+2. Create a **personal account** by following the instructions on the page. You
+   may also be offered supported social sign-in options. A free GitHub account
+   is sufficient for the course.
+3. Choose a username that you will recognize later. Your username is your
+   identity on GitHub, so choose something that you would also be comfortable
+   using for future academic or research work.
+4. Use an email address that you can access and complete the account-creation
+   prompts.
+5. **Verify your email address** using the message sent by GitHub. Do not skip
+   this step: an unverified email prevents some basic GitHub operations,
+   including creating a repository.
+6. Return to <https://github.com/> and sign in. You should see your profile icon
+   in the upper-right corner of the page.
+
+GitHub also recommends enabling two-factor authentication (2FA) to protect your
+account. This is good practice, although it is not required to complete the
+first laboratory setup.
 
 ### Recommended Codespaces setting
 
-Before creating your first Codespace, open your GitHub account settings and
-select **Codespaces**.
+Before creating your first Codespace:
 
-Set the **Default idle timeout** to **15 minutes**.
+1. select your profile picture in the upper-right corner of GitHub;
+2. select **Settings**;
+3. in the sidebar, under **Code, planning, and automation**, select
+   **Codespaces**;
+4. find **Default idle timeout**;
+5. set it to **15 minutes** and save the setting.
 
 This is a course recommendation. It limits unnecessary use of your Codespaces
 allowance if you forget to stop a session manually. You should still stop the
@@ -50,6 +105,10 @@ On the workspace template page:
 7. Select **Create repository from template**.
 
 You now have your own independent copy of the laboratory workspace.
+
+Before continuing, check the top of the GitHub page. The repository should be
+shown under **your own username**, and it should be marked **Private**. You
+should no longer be looking at the instructor's template repository.
 
 Keep this repository private unless the instructor explicitly asks you to
 change its visibility.
@@ -87,7 +146,7 @@ before starting to work.
 Open a terminal inside the Codespace using **Terminal → New Terminal** and run:
 
 ```bash
-python -c "import gemmi, spglib, numpy, scipy, pandas, matplotlib; print('Environment OK')"
+python -c "import gemmi, spglib, py3Dmol, quantas, numpy, scipy, pandas, matplotlib; print('Environment OK')"
 ```
 
 The final line should be:
@@ -101,9 +160,10 @@ Then check that the two course commands are available:
 ```bash
 command -v update-course
 command -v start-lab
+command -v quantas
 ```
 
-Both commands should return a path.
+All three commands should return a path.
 
 You can also inspect the top-level directories:
 

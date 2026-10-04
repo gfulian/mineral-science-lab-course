@@ -61,11 +61,11 @@ operations are introduced in the following pages.
 You need:
 
 - a modern web browser;
-- a <a href="https://github.com/" target=_blakc>GitHub</a> account;
+- a <a href="https://github.com/" target="_blank">GitHub</a> account;
 - an internet connection;
 - later in the course, an SSH/SFTP client for access to CluMiner.
 
-Everything, from Python environment, Jupyter notebooks, and other tools are provided inside
-the Codespace.
+The Python environment, Jupyter notebooks, and the other scientific tools are
+provided inside the Codespace.
 
 Continue with **[Create your personal workspace](02-create-workspace.qmd)**.

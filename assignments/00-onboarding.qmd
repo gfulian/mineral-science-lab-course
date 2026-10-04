@@ -11,6 +11,7 @@ Read the five pages under **Getting Started** in order.
 
 Then complete the following checks in your own private workspace repository.
 
+- Your GitHub account is active and its email address has been verified.
 - Your repository was created with **Use this template → Create a new repository**.
 - Your repository visibility is **Private**.
 - Your Codespace opens successfully.
@@ -18,10 +19,10 @@ Then complete the following checks in your own private workspace repository.
 - The Python environment passes:
 
   ```bash
-  python -c "import gemmi, spglib, numpy, scipy, pandas, matplotlib; print('Environment OK')"
+  python -c "import gemmi, spglib, py3Dmol, quantas, numpy, scipy, pandas, matplotlib; print('Environment OK')"
   ```
 
-- Both `update-course` and `start-lab` are available.
+- `update-course`, `start-lab`, and the `quantas` command are available.
 - You can edit and save `work/SMOKE_TEST.md`.
 - You can commit and synchronize that change with GitHub.
 - You can see the updated file in your repository on github.com.

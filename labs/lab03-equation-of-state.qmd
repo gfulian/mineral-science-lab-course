@@ -121,8 +121,8 @@ displacement and energy change are satisfied.
 For the course calculation we use:
 
 ```text
-TOLDEG = 0.0004
-TOLDEX = 0.0001
+TOLDEG = 0.00001
+TOLDEX = 0.00004
 TOLDEE = 10^-8
 ```
 

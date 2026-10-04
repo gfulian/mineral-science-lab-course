@@ -29,7 +29,8 @@ Open **Source Control** using the branch-shaped icon in the left activity bar.
 
 You will see the files that have changed.
 
-1. Stage the relevant files using the **+** button.
+1. Stage the relevant files using the **+** button. Staging simply means
+   selecting which changed files will be included in the next Git snapshot.
 2. Enter a short but meaningful commit message, for example:
 
    ```text

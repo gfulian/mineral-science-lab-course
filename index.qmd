@@ -20,8 +20,9 @@ computer. The notebook work is carried out in a personal GitHub Codespace.
 ## New to the laboratory?
 
 Start with **[How the laboratory works](getting-started/01-overview.qmd)** and
-complete the Getting Started pages in order **before the first laboratory
-session**.
+complete the Getting Started pages in order. Then complete
+**[Assignment 0 — Before the first laboratory](assignments/00-onboarding.qmd)**
+**before the first laboratory session**.
 :::
 
 ## Laboratory path

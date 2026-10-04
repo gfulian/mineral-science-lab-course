@@ -60,8 +60,9 @@ reference-results/
 The geometry and EOS calculations should use the SHRINK value justified by your
 Laboratory 2 convergence test.
 
-The distributed inputs contain a placeholder working value. Replace it if your
-chosen value is different, but keep that value fixed throughout Laboratory 3.
+The distributed inputs do not select a SHRINK value for you. They contain the
+placeholder `<X> <X>`, which you must replace with the value that you selected
+and justified in Laboratory 2. Keep that value fixed throughout Laboratory 3.
 
 ## Cluster resources
 
