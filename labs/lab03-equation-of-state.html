@@ -437,8 +437,8 @@ END</code></pre>
 <p><code>FULLOPTG</code> allows optimization of both the cell and the internal coordinates that are permitted by symmetry.</p>
 <p>The optimization is stopped when numerical criteria on the gradient, displacement and energy change are satisfied.</p>
 <p>For the course calculation we use:</p>
-<pre class="text"><code>TOLDEG = 0.0004
-TOLDEX = 0.0001
+<pre class="text"><code>TOLDEG = 0.00001
+TOLDEX = 0.00004
 TOLDEE = 10^-8</code></pre>
 <p>The first two are criteria on the RMS gradient and RMS displacement, respectively; <code>TOLDEE</code> controls the energy difference between optimization steps.</p>
 <p>These are numerical stopping conditions. They do not define the physical model and they do not make the DFT approximation itself more accurate.</p>

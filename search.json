@@ -59,7 +59,7 @@
     "href": "assignments/03-equation-of-state.html#use-the-k-point-sampling-you-selected-in-laboratory-2",
     "title": "Assignment 3 — Geometry optimization and equation of state",
     "section": "Use the k-point sampling you selected in Laboratory 2",
-    "text": "Use the k-point sampling you selected in Laboratory 2\nThe geometry and EOS calculations should use the SHRINK value justified by your Laboratory 2 convergence test.\nThe distributed inputs contain a placeholder working value. Replace it if your chosen value is different, but keep that value fixed throughout Laboratory 3.",
+    "text": "Use the k-point sampling you selected in Laboratory 2\nThe geometry and EOS calculations should use the SHRINK value justified by your Laboratory 2 convergence test.\nThe distributed inputs do not select a SHRINK value for you. They contain the placeholder &lt;X&gt; &lt;X&gt;, which you must replace with the value that you selected and justified in Laboratory 2. Keep that value fixed throughout Laboratory 3.",
     "crumbs": [
       "Assignments",
       "Assignment 3 — Geometry optimization and equation of state"
@@ -209,11 +209,11 @@
     ]
   },
   {
-    "objectID": "getting-started/02-create-workspace.html#sign-in-to-github",
-    "href": "getting-started/02-create-workspace.html#sign-in-to-github",
+    "objectID": "getting-started/02-create-workspace.html#create-or-sign-in-to-your-github-account",
+    "href": "getting-started/02-create-workspace.html#create-or-sign-in-to-your-github-account",
     "title": "Create your personal workspace",
-    "section": "1. Sign in to GitHub",
-    "text": "1. Sign in to GitHub\nOpen GitHub and sign in with your personal account. If you do not already have an account, create one before continuing.\n\nRecommended Codespaces setting\nBefore creating your first Codespace, open your GitHub account settings and select Codespaces.\nSet the Default idle timeout to 15 minutes.\nThis is a course recommendation. It limits unnecessary use of your Codespaces allowance if you forget to stop a session manually. You should still stop the Codespace explicitly whenever you finish working.",
+    "section": "1. Create or sign in to your GitHub account",
+    "text": "1. Create or sign in to your GitHub account\nGitHub is a collaborative platform built around repositories: project spaces in which files can be stored, their changes can be tracked, and work can be shared with other people. It is widely used for software development, but also by researchers and students who write scripts or notebooks for data analysis, numerical modelling, reproducible research, and thesis projects. You may therefore encounter GitHub again well beyond this laboratory.\nFor Mineral Science, GitHub has two practical roles:\n\nit stores the permanent private repository containing your laboratory work;\nit provides access to GitHub Codespaces, the remote Linux environment in which you will run the notebooks.\n\n\n\n\n\n\n\nNoteFour terms that will appear repeatedly\n\n\n\n\n\n\n\n\n\n\nTerm\nMeaning in this course\n\n\n\n\nGitHub account\nYour personal identity on GitHub\n\n\nRepository\nThe online project containing files and their version history\n\n\nTemplate repository\nThe instructor-provided starting point from which you create your own repository\n\n\nCodespace\nA remote Linux computer, opened in the browser, connected to your repository\n\n\n\n\n\nYou do not need previous experience with Git or software development. During the course you will use only a small and well-defined subset of GitHub features.\n\nIf you already have a GitHub account\nOpen GitHub and sign in with your personal account, then continue with the Codespaces setting below.\n\n\nIf you do not yet have a GitHub account\n\nOpen https://github.com/signup.\nCreate a personal account by following the instructions on the page. You may also be offered supported social sign-in options. A free GitHub account is sufficient for the course.\nChoose a username that you will recognize later. Your username is your identity on GitHub, so choose something that you would also be comfortable using for future academic or research work.\nUse an email address that you can access and complete the account-creation prompts.\nVerify your email address using the message sent by GitHub. Do not skip this step: an unverified email prevents some basic GitHub operations, including creating a repository.\nReturn to https://github.com/ and sign in. You should see your profile icon in the upper-right corner of the page.\n\nGitHub also recommends enabling two-factor authentication (2FA) to protect your account. This is good practice, although it is not required to complete the first laboratory setup.\n\n\nRecommended Codespaces setting\nBefore creating your first Codespace:\n\nselect your profile picture in the upper-right corner of GitHub;\nselect Settings;\nin the sidebar, under Code, planning, and automation, select Codespaces;\nfind Default idle timeout;\nset it to 15 minutes and save the setting.\n\nThis is a course recommendation. It limits unnecessary use of your Codespaces allowance if you forget to stop a session manually. You should still stop the Codespace explicitly whenever you finish working.",
     "crumbs": [
       "Getting started",
       "Create your personal workspace"
@@ -235,7 +235,7 @@
     "href": "getting-started/02-create-workspace.html#create-your-private-repository",
     "title": "Create your personal workspace",
     "section": "3. Create your private repository",
-    "text": "3. Create your private repository\nOn the workspace template page:\n\nSelect Use this template.\nSelect Create a new repository.\nSet Owner to your personal GitHub account.\nGive the repository a recognizable name, for example mineral-science-lab-yourname.\nSelect Private visibility.\nLeave Include all branches disabled.\nSelect Create repository from template.\n\nYou now have your own independent copy of the laboratory workspace.\nKeep this repository private unless the instructor explicitly asks you to change its visibility.",
+    "text": "3. Create your private repository\nOn the workspace template page:\n\nSelect Use this template.\nSelect Create a new repository.\nSet Owner to your personal GitHub account.\nGive the repository a recognizable name, for example mineral-science-lab-yourname.\nSelect Private visibility.\nLeave Include all branches disabled.\nSelect Create repository from template.\n\nYou now have your own independent copy of the laboratory workspace.\nBefore continuing, check the top of the GitHub page. The repository should be shown under your own username, and it should be marked Private. You should no longer be looking at the instructor’s template repository.\nKeep this repository private unless the instructor explicitly asks you to change its visibility.",
     "crumbs": [
       "Getting started",
       "Create your personal workspace"
@@ -257,7 +257,7 @@
     "href": "getting-started/02-create-workspace.html#check-the-environment",
     "title": "Create your personal workspace",
     "section": "5. Check the environment",
-    "text": "5. Check the environment\nOpen a terminal inside the Codespace using Terminal → New Terminal and run:\npython -c \"import gemmi, spglib, numpy, scipy, pandas, matplotlib; print('Environment OK')\"\nThe final line should be:\nEnvironment OK\nThen check that the two course commands are available:\ncommand -v update-course\ncommand -v start-lab\nBoth commands should return a path.\nYou can also inspect the top-level directories:\nls\nYou should see, among other files:\ncourse\nwork\nIf these checks succeed, your laboratory environment is ready.\nContinue with Working in Codespaces.",
+    "text": "5. Check the environment\nOpen a terminal inside the Codespace using Terminal → New Terminal and run:\npython -c \"import gemmi, spglib, py3Dmol, quantas, numpy, scipy, pandas, matplotlib; print('Environment OK')\"\nThe final line should be:\nEnvironment OK\nThen check that the two course commands are available:\ncommand -v update-course\ncommand -v start-lab\ncommand -v quantas\nAll three commands should return a path.\nYou can also inspect the top-level directories:\nls\nYou should see, among other files:\ncourse\nwork\nIf these checks succeed, your laboratory environment is ready.\nContinue with Working in Codespaces.",
     "crumbs": [
       "Getting started",
       "Create your personal workspace"
@@ -477,7 +477,7 @@
     "href": "reference/cluminer.html#what-cluminer-crystal-does",
     "title": "CluMiner — Laboratory quick reference",
     "section": "What cluminer-crystal does",
-    "text": "What cluminer-crystal does\nThis command prepares a &lt;a href=“https://slurm.schedmd.com/overview.html target=”_blank”&gt;Slurm job, stages the calculation to computing node-local scratch, runs CRYSTAL and returns the persistent results to your working directory.\nFor an input called:\nmgo_shrink2.d12\nthe scientific text output is:\nmgo_shrink2.out\nThe calculation itself therefore does not run in your home directory.\nKeep the reference number of the Slurm job you submitted (e.g., 231), as you can follow it via:\ncluminer jobs\nwhich prints the list of submitted jobs (by you and your colleagues), and\ncluminer checkjob JOB_ID\nwhich shows you some details on the node allocation, etc.\nTo follow what actually is happening during the run, it is possible to use:\ncluminer tail JOB_ID\nwhich will open the output file associated with the provided JOB_ID. The output of the command updates continuously until the job is finished. You can exit any time by using Ctrl+C.",
+    "text": "What cluminer-crystal does\nThis command prepares a Slurm job, stages the calculation to computing node-local scratch, runs CRYSTAL and returns the persistent results to your working directory.\nFor an input called:\nmgo_shrink2.d12\nthe scientific text output is:\nmgo_shrink2.out\nThe calculation itself therefore does not run in your home directory.\nKeep the reference number of the Slurm job you submitted (e.g., 231), as you can follow it via:\ncluminer jobs\nwhich prints the list of submitted jobs (by you and your colleagues), and\ncluminer checkjob JOB_ID\nwhich shows you some details on the node allocation, etc.\nTo follow what actually is happening during the run, it is possible to use:\ncluminer tail JOB_ID\nwhich will open the output file associated with the provided JOB_ID. The output of the command updates continuously until the job is finished. You can exit any time by using Ctrl+C.",
     "crumbs": [
       "Reference",
       "CluMiner — Laboratory quick reference"
@@ -664,7 +664,7 @@
     "href": "reference/crystal-geometry-eos.html#full-geometry-optimization",
     "title": "CRYSTAL geometry and EOS keywords",
     "section": "Full geometry optimization",
-    "text": "Full geometry optimization\nOPTGEOM\nFULLOPTG\nTOLDEG\n0.0004\nTOLDEX\n0.0001\nTOLDEE\n8\nPRINTFORCES\nEND\nFULLOPTG allows optimization of both cell and symmetry-allowed internal coordinates.\nTOLDEG controls the RMS gradient criterion.\nTOLDEX controls the RMS displacement criterion.\nTOLDEE 8 corresponds to an optimization energy-change threshold of \\(10^{-8}\\) hartree.\nPRINTFORCES requests additional atomic-gradient information.",
+    "text": "Full geometry optimization\nOPTGEOM\nFULLOPTG\nTOLDEG\n0.00001\nTOLDEX\n0.00004\nTOLDEE\n8\nPRINTFORCES\nEND\nFULLOPTG allows optimization of both cell and symmetry-allowed internal coordinates.\nTOLDEG controls the RMS gradient criterion.\nTOLDEX controls the RMS displacement criterion.\nTOLDEE 8 corresponds to an optimization energy-change threshold of \\(10^{-8}\\) hartree.\nPRINTFORCES requests additional atomic-gradient information.",
     "crumbs": [
       "Reference",
       "CRYSTAL geometry and EOS keywords"
@@ -675,7 +675,7 @@
     "href": "reference/crystal-geometry-eos.html#constant-volume-optimization",
     "title": "CRYSTAL geometry and EOS keywords",
     "section": "Constant-volume optimization",
-    "text": "Constant-volume optimization\nFor an EOS point:\nOPTGEOM\nCVOLOPT\nTOLDEG\n0.0004\nTOLDEX\n0.0001\nTOLDEE\n8\nEND\nCVOLOPT keeps the volume fixed while relaxing any other structural degrees of freedom allowed by symmetry.",
+    "text": "Constant-volume optimization\nFor an EOS point:\nOPTGEOM\nCVOLOPT\nTOLDEG\n0.00001\nTOLDEX\n0.00004\nTOLDEE\n8\nEND\nCVOLOPT keeps the volume fixed while relaxing any other structural degrees of freedom allowed by symmetry.",
     "crumbs": [
       "Reference",
       "CRYSTAL geometry and EOS keywords"
@@ -915,7 +915,7 @@
     "href": "labs/lab03-equation-of-state.html#full-geometry-optimization-in-crystal",
     "title": "Laboratory 3 — From equilibrium structure to an equation of state",
     "section": "Full geometry optimization in CRYSTAL",
-    "text": "Full geometry optimization in CRYSTAL\nCRYSTAL performs geometry optimization through the OPTGEOM block. In this laboratory we use:\nOPTGEOM\nFULLOPTG\n...\nEND\nFULLOPTG allows optimization of both the cell and the internal coordinates that are permitted by symmetry.\nThe optimization is stopped when numerical criteria on the gradient, displacement and energy change are satisfied.\nFor the course calculation we use:\nTOLDEG = 0.0004\nTOLDEX = 0.0001\nTOLDEE = 10^-8\nThe first two are criteria on the RMS gradient and RMS displacement, respectively; TOLDEE controls the energy difference between optimization steps.\nThese are numerical stopping conditions. They do not define the physical model and they do not make the DFT approximation itself more accurate.\nThe CRYSTAL23 manual documents FULLOPTG, CVOLOPT, TOLDEG, TOLDEX and TOLDEE in the OPTGEOM input block:\nhttps://www.crystal.unito.it/documentation.html",
+    "text": "Full geometry optimization in CRYSTAL\nCRYSTAL performs geometry optimization through the OPTGEOM block. In this laboratory we use:\nOPTGEOM\nFULLOPTG\n...\nEND\nFULLOPTG allows optimization of both the cell and the internal coordinates that are permitted by symmetry.\nThe optimization is stopped when numerical criteria on the gradient, displacement and energy change are satisfied.\nFor the course calculation we use:\nTOLDEG = 0.00001\nTOLDEX = 0.00004\nTOLDEE = 10^-8\nThe first two are criteria on the RMS gradient and RMS displacement, respectively; TOLDEE controls the energy difference between optimization steps.\nThese are numerical stopping conditions. They do not define the physical model and they do not make the DFT approximation itself more accurate.\nThe CRYSTAL23 manual documents FULLOPTG, CVOLOPT, TOLDEG, TOLDEX and TOLDEE in the OPTGEOM input block:\nhttps://www.crystal.unito.it/documentation.html",
     "crumbs": [
       "Laboratories",
       "Laboratory 3 — From equilibrium structure to an equation of state"
@@ -2246,7 +2246,7 @@
     "href": "getting-started/04-save-sync-stop.html#commit-your-work",
     "title": "Save, sync and stop",
     "section": "Commit your work",
-    "text": "Commit your work\nOpen Source Control using the branch-shaped icon in the left activity bar.\nYou will see the files that have changed.\n\nStage the relevant files using the + button.\nEnter a short but meaningful commit message, for example:\nComplete Lab 1 symmetry analysis\nSelect Commit.\n\nFor routine laboratory work it is acceptable to stage all files that belong to the current activity.\n\n\n\n\n\n\nWarningIf you see “Publish Branch”\n\n\n\nYour personal workspace should already be connected to a GitHub repository.\nIf Source Control asks you to Publish Branch instead of allowing you to synchronize normally, you may have opened a Codespace directly from the template rather than from your personal repository. Stop and ask the instructor before continuing.",
+    "text": "Commit your work\nOpen Source Control using the branch-shaped icon in the left activity bar.\nYou will see the files that have changed.\n\nStage the relevant files using the + button. Staging simply means selecting which changed files will be included in the next Git snapshot.\nEnter a short but meaningful commit message, for example:\nComplete Lab 1 symmetry analysis\nSelect Commit.\n\nFor routine laboratory work it is acceptable to stage all files that belong to the current activity.\n\n\n\n\n\n\nWarningIf you see “Publish Branch”\n\n\n\nYour personal workspace should already be connected to a GitHub repository.\nIf Source Control asks you to Publish Branch instead of allowing you to synchronize normally, you may have opened a Codespace directly from the template rather than from your personal repository. Stop and ask the instructor before continuing.",
     "crumbs": [
       "Getting started",
       "Save, sync and stop"
@@ -2389,7 +2389,7 @@
     "href": "getting-started/01-overview.html#what-you-need-on-your-own-computer",
     "title": "How the laboratory works",
     "section": "What you need on your own computer",
-    "text": "What you need on your own computer\nYou need:\n\na modern web browser;\na GitHub account;\nan internet connection;\nlater in the course, an SSH/SFTP client for access to CluMiner.\n\nEverything, from Python environment, Jupyter notebooks, and other tools are provided inside the Codespace.\nContinue with Create your personal workspace.",
+    "text": "What you need on your own computer\nYou need:\n\na modern web browser;\na GitHub account;\nan internet connection;\nlater in the course, an SSH/SFTP client for access to CluMiner.\n\nThe Python environment, Jupyter notebooks, and the other scientific tools are provided inside the Codespace.\nContinue with Create your personal workspace.",
     "crumbs": [
       "Getting started",
       "How the laboratory works"
@@ -2455,7 +2455,7 @@
     "href": "assignments/00-onboarding.html#preparation",
     "title": "Assignment 0 — Before the first laboratory",
     "section": "Preparation",
-    "text": "Preparation\nRead the five pages under Getting Started in order.\nThen complete the following checks in your own private workspace repository.\n\nYour repository was created with Use this template → Create a new repository.\nYour repository visibility is Private.\nYour Codespace opens successfully.\nThe first environment initialization reaches Environment ready..\nThe Python environment passes:\npython -c \"import gemmi, spglib, numpy, scipy, pandas, matplotlib; print('Environment OK')\"\nBoth update-course and start-lab are available.\nYou can edit and save work/SMOKE_TEST.md.\nYou can commit and synchronize that change with GitHub.\nYou can see the updated file in your repository on github.com.\nYou can stop the Codespace and reopen the same Codespace successfully.\n\n\n\n\n\n\n\nNoteNo scientific work is required yet\n\n\n\nThis onboarding task only checks the working environment. The first mineral-science notebook will be introduced during Laboratory 1.\n\n\nIf any step fails, keep the exact error message and report it before the laboratory session.",
+    "text": "Preparation\nRead the five pages under Getting Started in order.\nThen complete the following checks in your own private workspace repository.\n\nYour GitHub account is active and its email address has been verified.\nYour repository was created with Use this template → Create a new repository.\nYour repository visibility is Private.\nYour Codespace opens successfully.\nThe first environment initialization reaches Environment ready..\nThe Python environment passes:\npython -c \"import gemmi, spglib, py3Dmol, quantas, numpy, scipy, pandas, matplotlib; print('Environment OK')\"\nupdate-course, start-lab, and the quantas command are available.\nYou can edit and save work/SMOKE_TEST.md.\nYou can commit and synchronize that change with GitHub.\nYou can see the updated file in your repository on github.com.\nYou can stop the Codespace and reopen the same Codespace successfully.\n\n\n\n\n\n\n\nNoteNo scientific work is required yet\n\n\n\nThis onboarding task only checks the working environment. The first mineral-science notebook will be introduced during Laboratory 1.\n\n\nIf any step fails, keep the exact error message and report it before the laboratory session.",
     "crumbs": [
       "Assignments",
       "Assignment 0 — Before the first laboratory"

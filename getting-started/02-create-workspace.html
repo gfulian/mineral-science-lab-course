@@ -350,8 +350,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sign-in-to-github" id="toc-sign-in-to-github" class="nav-link active" data-scroll-target="#sign-in-to-github">1. Sign in to GitHub</a>
+  <li><a href="#create-or-sign-in-to-your-github-account" id="toc-create-or-sign-in-to-your-github-account" class="nav-link active" data-scroll-target="#create-or-sign-in-to-your-github-account">1. Create or sign in to your GitHub account</a>
   <ul class="collapse">
+  <li><a href="#if-you-already-have-a-github-account" id="toc-if-you-already-have-a-github-account" class="nav-link" data-scroll-target="#if-you-already-have-a-github-account">If you already have a GitHub account</a></li>
+  <li><a href="#if-you-do-not-yet-have-a-github-account" id="toc-if-you-do-not-yet-have-a-github-account" class="nav-link" data-scroll-target="#if-you-do-not-yet-have-a-github-account">If you do not yet have a GitHub account</a></li>
   <li><a href="#recommended-codespaces-setting" id="toc-recommended-codespaces-setting" class="nav-link" data-scroll-target="#recommended-codespaces-setting">Recommended Codespaces setting</a></li>
   </ul></li>
   <li><a href="#open-the-workspace-template" id="toc-open-the-workspace-template" class="nav-link" data-scroll-target="#open-the-workspace-template">2. Open the workspace template</a></li>
@@ -384,13 +386,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>You only need to perform the complete procedure on this page once.</p>
-<section id="sign-in-to-github" class="level2">
-<h2 class="anchored" data-anchor-id="sign-in-to-github">1. Sign in to GitHub</h2>
-<p>Open <a href="https://github.com/">GitHub</a> and sign in with your personal account. If you do not already have an account, create one before continuing.</p>
+<section id="create-or-sign-in-to-your-github-account" class="level2">
+<h2 class="anchored" data-anchor-id="create-or-sign-in-to-your-github-account">1. Create or sign in to your GitHub account</h2>
+<p><a href="https://github.com/">GitHub</a> is a collaborative platform built around <strong>repositories</strong>: project spaces in which files can be stored, their changes can be tracked, and work can be shared with other people. It is widely used for software development, but also by researchers and students who write scripts or notebooks for data analysis, numerical modelling, reproducible research, and thesis projects. You may therefore encounter GitHub again well beyond this laboratory.</p>
+<p>For Mineral Science, GitHub has two practical roles:</p>
+<ol type="1">
+<li>it stores the permanent private repository containing your laboratory work;</li>
+<li>it provides access to <strong>GitHub Codespaces</strong>, the remote Linux environment in which you will run the notebooks.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Four terms that will appear repeatedly
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Meaning in this course</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>GitHub account</strong></td>
+<td>Your personal identity on GitHub</td>
+</tr>
+<tr class="even">
+<td><strong>Repository</strong></td>
+<td>The online project containing files and their version history</td>
+</tr>
+<tr class="odd">
+<td><strong>Template repository</strong></td>
+<td>The instructor-provided starting point from which you create your own repository</td>
+</tr>
+<tr class="even">
+<td><strong>Codespace</strong></td>
+<td>A remote Linux computer, opened in the browser, connected to your repository</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>You do not need previous experience with Git or software development. During the course you will use only a small and well-defined subset of GitHub features.</p>
+<section id="if-you-already-have-a-github-account" class="level3">
+<h3 class="anchored" data-anchor-id="if-you-already-have-a-github-account">If you already have a GitHub account</h3>
+<p>Open <a href="https://github.com/">GitHub</a> and sign in with your personal account, then continue with the Codespaces setting below.</p>
+</section>
+<section id="if-you-do-not-yet-have-a-github-account" class="level3">
+<h3 class="anchored" data-anchor-id="if-you-do-not-yet-have-a-github-account">If you do not yet have a GitHub account</h3>
+<ol type="1">
+<li>Open <a href="https://github.com/signup" class="uri">https://github.com/signup</a>.</li>
+<li>Create a <strong>personal account</strong> by following the instructions on the page. You may also be offered supported social sign-in options. A free GitHub account is sufficient for the course.</li>
+<li>Choose a username that you will recognize later. Your username is your identity on GitHub, so choose something that you would also be comfortable using for future academic or research work.</li>
+<li>Use an email address that you can access and complete the account-creation prompts.</li>
+<li><strong>Verify your email address</strong> using the message sent by GitHub. Do not skip this step: an unverified email prevents some basic GitHub operations, including creating a repository.</li>
+<li>Return to <a href="https://github.com/" class="uri">https://github.com/</a> and sign in. You should see your profile icon in the upper-right corner of the page.</li>
+</ol>
+<p>GitHub also recommends enabling two-factor authentication (2FA) to protect your account. This is good practice, although it is not required to complete the first laboratory setup.</p>
+</section>
 <section id="recommended-codespaces-setting" class="level3">
 <h3 class="anchored" data-anchor-id="recommended-codespaces-setting">Recommended Codespaces setting</h3>
-<p>Before creating your first Codespace, open your GitHub account settings and select <strong>Codespaces</strong>.</p>
-<p>Set the <strong>Default idle timeout</strong> to <strong>15 minutes</strong>.</p>
+<p>Before creating your first Codespace:</p>
+<ol type="1">
+<li>select your profile picture in the upper-right corner of GitHub;</li>
+<li>select <strong>Settings</strong>;</li>
+<li>in the sidebar, under <strong>Code, planning, and automation</strong>, select <strong>Codespaces</strong>;</li>
+<li>find <strong>Default idle timeout</strong>;</li>
+<li>set it to <strong>15 minutes</strong> and save the setting.</li>
+</ol>
 <p>This is a course recommendation. It limits unnecessary use of your Codespaces allowance if you forget to stop a session manually. You should still stop the Codespace explicitly whenever you finish working.</p>
 </section>
 </section>
@@ -426,6 +498,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Select <strong>Create repository from template</strong>.</li>
 </ol>
 <p>You now have your own independent copy of the laboratory workspace.</p>
+<p>Before continuing, check the top of the GitHub page. The repository should be shown under <strong>your own username</strong>, and it should be marked <strong>Private</strong>. You should no longer be looking at the instructor’s template repository.</p>
 <p>Keep this repository private unless the instructor explicitly asks you to change its visibility.</p>
 </section>
 <section id="create-the-codespace" class="level2">
@@ -457,13 +530,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="check-the-environment" class="level2">
 <h2 class="anchored" data-anchor-id="check-the-environment">5. Check the environment</h2>
 <p>Open a terminal inside the Codespace using <strong>Terminal → New Terminal</strong> and run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import gemmi, spglib, numpy, scipy, pandas, matplotlib; print('Environment OK')"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import gemmi, spglib, py3Dmol, quantas, numpy, scipy, pandas, matplotlib; print('Environment OK')"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The final line should be:</p>
 <pre class="text"><code>Environment OK</code></pre>
 <p>Then check that the two course commands are available:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="at">-v</span> update-course</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="at">-v</span> start-lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Both commands should return a path.</p>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="at">-v</span> start-lab</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="at">-v</span> quantas</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>All three commands should return a path.</p>
 <p>You can also inspect the top-level directories:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You should see, among other files:</p>
