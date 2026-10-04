@@ -17,8 +17,8 @@ working directory for the activity and keep each laboratory organised.
 Example:
 
 ```bash
-mkdir -p ~/mineral-science/lab02
-cd ~/mineral-science/lab02
+mkdir -p ~/your-surname/mineral-science/lab02
+cd ~/your-surname/mineral-science/lab02
 ```
 
 ## Transfer an input
@@ -58,10 +58,11 @@ The resource choice corresponds to:
 
 Do not request more cores for course calculations unless instructed.
 
-## What the launcher does
+## What `cluminer-crystal` does
 
-The launcher prepares a Slurm job, stages the calculation to node-local scratch,
-runs CRYSTAL and returns the persistent results to your working directory.
+This command prepares a <a href="https://slurm.schedmd.com/overview.html target="_blank">Slurm</a>
+job, stages the calculation to computing node-local scratch, runs CRYSTAL and returns 
+the persistent results to your working directory.
 
 For an input called:
 
@@ -76,6 +77,29 @@ mgo_shrink2.out
 ```
 
 The calculation itself therefore does not run in your home directory.
+
+Keep the reference number of the Slurm job you submitted (e.g., 231), as you can follow it via:
+
+```bash
+cluminer jobs
+```
+
+which prints the list of submitted jobs (by you and your colleagues), and
+
+```bash
+cluminer checkjob JOB_ID
+```
+
+which shows you some details on the node allocation, etc.
+
+To follow what actually is happening during the run, it is possible to use:
+
+```bash
+cluminer tail JOB_ID
+```
+
+which will open the output file associated with the provided JOB_ID. The output of the command updates
+continuously until the job is finished. You can exit any time by using `Ctrl+C`.  
 
 ## Check the result
 

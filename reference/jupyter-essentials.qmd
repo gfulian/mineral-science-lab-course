@@ -35,13 +35,13 @@ The experimental geometry is not necessarily the minimum of the static
 DFT model because ...
 ```
 
-You can edit a Markdown cell by clicking inside it.
+You can edit a Markdown cell by clicking (or double-clicking) inside it.
 
 Run the cell to render the formatted text.
 
 ### Code cells
 
-Code cells contain Python:
+Code cells in this laboratory contain Python:
 
 ```python
 results = analyse_crystal_outputs(OUTPUTS)
@@ -52,7 +52,7 @@ Running the cell executes the code in the active Python kernel.
 
 ## Run a cell
 
-Use the triangular **Run** button beside the cell, or press:
+Use the triangular **Run** button beside the cell (generally on the left), or press:
 
 ```text
 Shift+Enter

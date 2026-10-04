@@ -1,0 +1,413 @@
+---
+title: "Vim — Quick reference"
+---
+
+During the computational laboratories you may occasionally need to make a small
+change directly on CluMiner: for example, changing a `SHRINK` value, a lattice
+parameter, or another CRYSTAL input keyword before submitting a calculation.
+
+For these small edits we use **Vim**, a terminal text editor available on the
+cluster. The commands reported on this page are those that will be used the most
+for the work required in Mineral Science.
+
+::: {.callout-tip}
+## Why edit small files directly on CluMiner?
+
+For minor changes, editing the input directly on the Linux cluster avoids an
+unnecessary download–edit–upload cycle and reduces possible problems with
+Windows line endings.
+:::
+
+## The essential idea: Vim has modes
+
+When Vim starts, you are normally in **Normal mode**. In Normal mode, keys are
+commands.
+
+To type text, enter **Insert mode**.
+
+To return to Normal mode, press:
+
+```text
+Esc
+```
+
+::: {.callout-important}
+## If you are unsure what Vim is doing
+
+Press `Esc`.
+
+If necessary, press it twice.
+:::
+
+## Open a file
+
+```bash
+vim mgo_shrink3.d12
+```
+
+## Moving around
+
+The arrow keys work and are perfectly acceptable for this course.
+
+Traditional Vim movement keys are:
+
+| Key | Movement |
+|---|---|
+| `h` | left |
+| `j` | down |
+| `k` | up |
+| `l` | right |
+| `0` | beginning of line |
+| `$` | end of line |
+| `gg` | beginning of file |
+| `G` | end of file |
+
+Display line numbers:
+
+```vim
+:set number
+```
+
+Hide them again:
+
+```vim
+:set nonumber
+```
+
+## Insert text
+
+Starting from Normal mode:
+
+| Command | Action |
+|---|---|
+| `i` | insert before the cursor |
+| `a` | insert after the cursor |
+| `I` | insert at the beginning of the line |
+| `A` | insert at the end of the line |
+| `o` | open a new line below |
+| `O` | open a new line above |
+
+After editing, press `Esc`.
+
+## Replace text
+
+### Replace one character
+
+Move the cursor onto the character and press:
+
+```text
+r
+```
+
+followed by the replacement character.
+
+For example, to change:
+
+```text
+SHRINK
+2 2
+```
+
+move to the first `2`, press:
+
+```text
+r3
+```
+
+and repeat for the second value.
+
+### Replace several characters
+
+Press:
+
+```text
+R
+```
+
+to enter **Replace mode**.
+
+Type over the existing text, then press `Esc`.
+
+## Delete, copy and paste
+
+| Command | Action |
+|---|---|
+| `x` | delete character under cursor |
+| `dd` | delete current line |
+| `D` | delete from cursor to end of line |
+| `yy` | copy current line |
+| `p` | paste after current position/line |
+| `P` | paste before current position/line |
+
+Duplicate a line with:
+
+```text
+yy
+p
+```
+
+## Undo and redo
+
+Undo:
+
+```text
+u
+```
+
+Redo:
+
+```text
+Ctrl+r
+```
+
+## Search for a keyword
+
+In Normal mode:
+
+```vim
+/SHRINK
+```
+
+then press `Enter`.
+
+Use:
+
+```text
+n
+```
+
+for the next match and:
+
+```text
+N
+```
+
+for the previous match.
+
+Other useful searches are:
+
+```vim
+/OPTGEOM
+/CVOLOPT
+/FREQCALC
+```
+
+## Replace a word or value
+
+Replace the first occurrence on the current line:
+
+```vim
+:s/old/new/
+```
+
+Replace every occurrence on the current line:
+
+```vim
+:s/old/new/g
+```
+
+Replace every occurrence in the file:
+
+```vim
+:%s/old/new/g
+```
+
+Ask before every replacement:
+
+```vim
+:%s/old/new/gc
+```
+
+::: {.callout-warning}
+## Do not use global replacement blindly
+
+A number or keyword may occur in more places than expected. For changing a
+single lattice parameter or `SHRINK` value, direct editing is usually safer.
+:::
+
+## Save and quit
+
+Save:
+
+```vim
+:w
+```
+
+Quit:
+
+```vim
+:q
+```
+
+Save and quit:
+
+```vim
+:wq
+```
+
+Quit and discard unsaved changes:
+
+```vim
+:q!
+```
+
+The two commands worth remembering above all others are:
+
+```text
+:wq    save and quit
+:q!    abandon changes and quit
+```
+
+## A typical course workflow
+
+Create a new input from an existing one:
+
+```bash
+cp mgo_shrink2.d12 mgo_shrink3.d12
+```
+
+Open it:
+
+```bash
+vim mgo_shrink3.d12
+```
+
+Inside Vim:
+
+```vim
+/SHRINK
+```
+
+Change:
+
+```text
+2 2
+```
+
+to:
+
+```text
+3 3
+```
+
+then:
+
+```vim
+:wq
+```
+
+Inspect the result:
+
+```bash
+cat mgo_shrink3.d12
+```
+
+The same approach can be used to replace placeholders such as:
+
+```text
+<X>
+<A0>
+```
+
+when instructed.
+
+## Check Windows/Linux line endings
+
+Inside Vim:
+
+```vim
+:set fileformat?
+```
+
+A normal Linux file should report:
+
+```text
+fileformat=unix
+```
+
+If it reports:
+
+```text
+fileformat=dos
+```
+
+convert it with:
+
+```vim
+:set fileformat=unix
+:w
+```
+
+## Show invisible characters
+
+```vim
+:set list
+```
+
+Return to the normal view with:
+
+```vim
+:set nolist
+```
+
+## Jump to a line number
+
+For example:
+
+```vim
+:40
+```
+
+moves to line 40.
+
+## Built-in help
+
+```vim
+:help
+```
+
+Useful examples:
+
+```vim
+:help substitute
+:help :write
+```
+
+Exit help with:
+
+```vim
+:q
+```
+
+## Interactive tutorial
+
+From the Linux shell:
+
+```bash
+vimtutor
+```
+
+## Minimal command set to remember
+
+| Command | Meaning |
+|---|---|
+| `Esc` | return to Normal mode |
+| `i` | insert text |
+| `r` | replace one character |
+| `R` | Replace mode |
+| `/text` | search |
+| `n` | next search result |
+| `u` | undo |
+| `:w` | save |
+| `:wq` | save and quit |
+| `:q!` | quit without saving |
+
+## Further reference
+
+Official Vim help:
+
+<https://vimhelp.org/>
+
+Vim Quick Reference:
+
+<https://vimhelp.org/quickref.txt.html>

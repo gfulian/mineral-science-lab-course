@@ -16,12 +16,10 @@ Do not publish passwords, SSH keys or credentials in your GitHub repository.
 
 ## SSH: a remote terminal
 
-SSH opens a terminal session on another computer.
-
-The generic form is:
+SSH (Secure SHell) opens a terminal session on another computer. The generic form is:
 
 ```bash
-ssh USERNAME@CLUSTER-HOST
+ssh USERNAME@HOSTNAME
 ```
 
 For example:
@@ -30,7 +28,7 @@ For example:
 ssh yourusername@cluster.example.edu
 ```
 
-Use the actual hostname supplied for the course.
+Use the actual hostname that will be provided during the laboratory.
 
 The first time you connect from a new computer, SSH may ask whether you trust
 the server host key. Check that the hostname is correct before accepting it.
@@ -61,10 +59,15 @@ The same filename may exist in all three places but contain different versions.
 
 ## Windows: graphical transfer with MobaXterm
 
-On Windows, the course may use **MobaXterm** because it provides both:
+On Windows, the course may use
+<a href="https://mobaxterm.mobatek.net/" target="_blank">**MobaXterm**</a>
+because it provides both:
 
 - an SSH terminal;
 - an SFTP file browser.
+
+The company (Mobatek) offers a "Home Edition" that is free and completely suitable
+for our laboratory.
 
 After opening an SSH session, the SFTP panel can be used to drag files between
 your Windows computer and your CluMiner home directory.
@@ -79,13 +82,13 @@ Linux and macOS normally provide OpenSSH tools directly.
 Copy a local input **to** the cluster:
 
 ```bash
-scp mgo_shrink3.d12 USERNAME@CLUSTER-HOST:~/mineral-science/lab02/
+scp mgo_shrink3.d12 USERNAME@HOSTNAME:~/your-surname/mineral-science/lab02/
 ```
 
 Copy an output **from** the cluster to the current local directory:
 
 ```bash
-scp USERNAME@CLUSTER-HOST:~/mineral-science/lab02/mgo_shrink3.out .
+scp USERNAME@HOSTNAME:~/your-surname/mineral-science/lab02/mgo_shrink3.out .
 ```
 
 The final dot means:
@@ -112,16 +115,14 @@ very broad wildcards.
 After connecting:
 
 ```bash
-mkdir -p ~/mineral-science/lab02
-cd ~/mineral-science/lab02
+mkdir -p ~/your-surname/mineral-science/lab02
+cd ~/your-surname/mineral-science/lab02
 ```
 
-Keep files from different laboratories separate.
-
-For example:
+Keep files from different laboratories separate. For example:
 
 ```text
-~/mineral-science/
+~/your-surname/mineral-science/
 ├── lab02/
 │   ├── mgo_shrink2.d12
 │   └── mgo_shrink2.out

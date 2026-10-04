@@ -7,8 +7,8 @@ The computational laboratories use Linux in two places:
 - the terminal inside your GitHub Codespace;
 - the CluMiner cluster.
 
-You are **not** expected to become a Linux system administrator. For this
-course, a small set of shell commands is enough to move between directories,
+There are many commands and utilities in a Linux distribution; however,
+for this course, a small set of shell commands is enough to move between directories,
 inspect files, prepare calculations and check results.
 
 The examples below use generic filenames. Replace them with the files used in
@@ -328,8 +328,8 @@ For small edits on CluMiner, the course recommends Vim. See
 ## A typical Mineral Science shell workflow
 
 ```bash
-mkdir -p ~/mineral-science/lab02
-cd ~/mineral-science/lab02
+mkdir -p ~/your-surname/mineral-science/lab02
+cd ~/your-surname/mineral-science/lab02
 
 ls
 cp mgo_shrink2.d12 mgo_shrink3.d12
