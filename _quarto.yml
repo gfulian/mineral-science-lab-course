@@ -45,6 +45,7 @@ website:
 
 format:
   html:
+    theme: litera
     toc: true
     number-sections: false
     code-copy: true
