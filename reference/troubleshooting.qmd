@@ -1,4 +1,437 @@
 ---
 title: "Troubleshooting"
 ---
-TO BE DEVELOPED.
+
+Computational work occasionally fails. The useful skill is not avoiding every
+error; it is learning to identify **which layer failed** before changing
+anything.
+
+For this course, most problems belong to one of four layers:
+
+```text
+GitHub / Codespaces
+        ↓
+notebook / Python analysis
+        ↓
+file transfer / cluster
+        ↓
+CRYSTAL calculation
+```
+
+Diagnose the layer first.
+
+::: {.callout-important}
+## Protect your work before troubleshooting
+
+If your own files under `work/` contain useful progress:
+
+1. save them;
+2. commit if possible;
+3. sync to GitHub if possible.
+
+Do not delete `work/` as a first troubleshooting step.
+:::
+
+## Codespace does not start
+
+First try reopening the existing Codespace from:
+
+<https://github.com/codespaces>
+
+Do not create a new Codespace automatically every time something looks slow.
+
+If the existing Codespace reports a build/setup error, keep the error message.
+The initial setup can take several minutes because packages are installed when
+the development container is first created.
+
+If instructed to rebuild:
+
+**Command Palette → Codespaces: Rebuild Container**
+
+Rebuilding is more disruptive than restarting, so use it only when the
+environment itself is damaged or has changed.
+
+## The first Codespace initialization is slow
+
+This is expected.
+
+A new Codespace must create the Linux environment and install the course Python
+packages.
+
+Wait for:
+
+```text
+Environment ready.
+```
+
+Reopening the same stopped Codespace is normally much faster.
+
+## `update-course` says `Permission denied`
+
+The command scripts must be executable.
+
+The course workspace template now fixes permissions during environment setup.
+If an old test Codespace still contains the earlier version, update or rebuild
+the environment rather than repeatedly changing random permissions.
+
+For diagnosis:
+
+```bash
+ls -l scripts/update-course scripts/start-lab
+```
+
+Executable files should show `x` permissions.
+
+## `update-course` reports another error
+
+Do not manually remove `.git`, `course/` or `work/`.
+
+Save your work and keep the exact terminal message.
+
+Remember:
+
+```text
+course/ = instructor material
+work/   = your material
+```
+
+An update problem should not be repaired by deleting student work.
+
+## `start-lab` did not replace an old notebook
+
+This is intentional.
+
+`start-lab NN` is designed **not to overwrite existing files under `work/`**.
+
+If you are deliberately testing a newly released laboratory version, use a new
+test repository/Codespace or remove only the old test laboratory directory
+after confirming that it contains nothing you need.
+
+Students should not normally delete an existing laboratory directory.
+
+## Python says `ModuleNotFoundError`
+
+For a course package, first check that the Codespace setup completed.
+
+Then:
+
+```bash
+python -c "import numpy, scipy, pandas, gemmi, spglib"
+```
+
+Do not solve the problem by installing arbitrary package versions with `pip`.
+
+If the environment changed after your Codespace was created, update/rebuild it
+as instructed.
+
+## A notebook says `NameError`
+
+A required earlier cell was probably not executed.
+
+Try:
+
+1. save;
+2. restart kernel;
+3. run cells from the top.
+
+Do not define variables manually only to bypass the error.
+
+## A notebook says `FileNotFoundError`
+
+Check:
+
+- exact filename;
+- exact capitalization;
+- directory;
+- relative path.
+
+For example, if the notebook expects:
+
+```text
+outputs/mgo_shrink4.out
+```
+
+verify in the Explorer that the file is really there.
+
+In the terminal:
+
+```bash
+pwd
+find . -maxdepth 2 -type f
+```
+
+can help locate files.
+
+## py3Dmol does not display the expected crystal
+
+The course viewer uses Gemmi to expand crystallographic symmetry and py3Dmol
+only for rendering.
+
+If the structure appears incomplete:
+
+1. confirm that you are using the current `mineral_science_tools`;
+2. restart the notebook kernel after `update-course`;
+3. rerun the notebook from the import cell.
+
+Do not infer that the CIF itself is wrong from a rendering problem alone.
+
+## The notebook still uses old helper code after `update-course`
+
+Python imports remain in memory until the kernel is restarted.
+
+Use:
+
+```text
+Restart kernel
+→ Run All
+```
+
+after a helper update.
+
+## GitHub Source Control shows `Publish Branch`
+
+Your course workspace should already belong to your personal GitHub repository.
+
+Seeing **Publish Branch** may mean that the Codespace was opened directly from
+the template instead of from a repository created with **Use this template**.
+
+Do not continue building important work in that state. Ask for help before
+proceeding.
+
+## `Sync Changes` fails
+
+First confirm that the Codespace has internet access and that you are signed
+into the correct GitHub account.
+
+Then inspect the Source Control panel.
+
+If another version exists on GitHub, do not force-push or discard changes
+without understanding what will be lost.
+
+For course notebooks, ask for assistance if Git reports a merge conflict.
+
+## I closed the browser, but the Codespace is still running
+
+Closing a browser tab does not necessarily stop the remote machine.
+
+Open:
+
+<https://github.com/codespaces>
+
+then:
+
+```text
+... → Stop codespace
+```
+
+At the end of every session:
+
+```text
+Save
+→ Commit
+→ Sync
+→ Verify on GitHub
+→ Stop Codespace
+```
+
+## I cannot connect to CluMiner
+
+Check:
+
+1. network/VPN requirements communicated for the course;
+2. hostname;
+3. username;
+4. whether the cluster is reachable.
+
+Do not repeatedly guess passwords.
+
+If SSH reports a host-resolution or network error, that is different from an
+authentication error.
+
+Keep the exact message.
+
+## My file is on the wrong machine
+
+This is extremely common.
+
+The same project may involve:
+
+- your own computer;
+- Codespaces;
+- CluMiner.
+
+Use `hostname`, `pwd`, `ls`, and the VS Code Explorer to establish where the
+file currently exists.
+
+Do not submit a calculation until you have inspected the actual input on
+CluMiner.
+
+## CRYSTAL input contains strange `^M` characters
+
+This normally indicates Windows CRLF line endings.
+
+On CluMiner:
+
+```bash
+file input.d12
+vim input.d12
+```
+
+Inside Vim:
+
+```vim
+:set fileformat=unix
+:w
+```
+
+See **Vim — Quick reference**.
+
+## `cluminer-crystal` accepts the job, but nothing happens immediately
+
+The job may be waiting in the Slurm queue.
+
+A queued calculation is not necessarily an error.
+
+Use the cluster-status commands demonstrated during the laboratory, or ask the
+instructor if the queue state is unclear.
+
+Do not submit the same job repeatedly simply because it has not started yet.
+
+## CRYSTAL produced an output file, so is the result valid?
+
+Not necessarily.
+
+An output can exist even if:
+
+- SCF convergence failed;
+- geometry optimization failed;
+- the job was interrupted;
+- CRYSTAL terminated abnormally.
+
+For Laboratory 2, the parser deliberately rejects outputs without the explicit
+SCF convergence and normal-termination markers.
+
+For later laboratories, always inspect the relevant convergence section before
+interpreting a numerical result.
+
+## The SCF does not converge
+
+Do not immediately loosen thresholds until the number "works".
+
+A convergence failure is a scientific/numerical event that needs diagnosis.
+
+Keep:
+
+- input;
+- full output;
+- restart files if the launcher returns them.
+
+Report which calculation failed and at what stage.
+
+## A job was interrupted
+
+Do not delete the output or scratch/restart material.
+
+The cluster workflow may permit a restart or recovery of useful files.
+
+Ask the instructor before submitting a completely new calculation.
+
+## The cluster is unavailable during a laboratory
+
+The course provides instructor-validated **reference results** for calculations
+that are needed to continue the scientific analysis.
+
+The intended fallback is:
+
+```text
+calculation unavailable
+        ↓
+use validated reference output
+        ↓
+continue analysis and interpretation
+```
+
+The laboratory should not become a waiting exercise.
+
+Use reference results only when instructed; normally you should analyse your own
+calculation.
+
+## Quantas command not found
+
+In Codespaces:
+
+```bash
+quantas --version
+```
+
+If the command is missing, the course environment may not have initialized
+correctly.
+
+Do not install a different Quantas release manually.
+
+Check the environment setup/rebuild procedure.
+
+## Quantas rejects an output
+
+Read the message carefully.
+
+Typical reasons include:
+
+- incomplete CRYSTAL calculation;
+- unsupported calculation type;
+- missing data required by the workflow;
+- inconsistent phonon/q-point metadata.
+
+Do not edit scientific output files merely to make a parser accept them.
+
+## The q-point symmetry reducer fails in Laboratory 4
+
+This optional tool is for interpreting a full CRYSTAL q mesh in terms of
+irreducible q-points and weights.
+
+The **core Quantas thermodynamic workflow uses the full uniform mesh and does not
+depend on this reduction**.
+
+If the reducer fails:
+
+1. keep the original CRYSTAL output;
+2. keep the full Quantas YAML;
+3. continue with the full-mesh HA workflow;
+4. report the reducer error separately.
+
+Do not invent q-point weights manually.
+
+## The calculated curve disagrees with experiment
+
+This is not automatically a software problem.
+
+Ask first:
+
+1. Is the calculation numerically converged?
+2. Are calculation and experiment reporting the same physical quantity?
+3. What approximations are present in the model?
+
+For example, in Laboratory 4:
+
+```text
+calculation = harmonic Cv at fixed volume
+experiment  ≈ Cp at ambient pressure
+```
+
+Even a well-converged q mesh can therefore retain a meaningful physical
+discrepancy.
+
+## What information should I report when asking for help?
+
+Provide:
+
+- laboratory number;
+- exact command used;
+- filename;
+- exact error message;
+- relevant input/output file;
+- what you expected to happen;
+- what actually happened.
+
+Screenshots can help with interface problems, but terminal errors and scientific
+outputs are usually more useful as text.

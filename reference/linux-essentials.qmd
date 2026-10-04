@@ -1,4 +1,362 @@
 ---
 title: "Linux essentials"
 ---
-TO BE DEVELOPED.
+
+The computational laboratories use Linux in two places:
+
+- the terminal inside your GitHub Codespace;
+- the CluMiner cluster.
+
+You are **not** expected to become a Linux system administrator. For this
+course, a small set of shell commands is enough to move between directories,
+inspect files, prepare calculations and check results.
+
+The examples below use generic filenames. Replace them with the files used in
+the current laboratory.
+
+## The shell and the current directory
+
+A terminal prompt represents a shell waiting for a command.
+
+The first useful question is often:
+
+```bash
+pwd
+```
+
+`pwd` means **print working directory**. It shows where you currently are.
+
+For example:
+
+```text
+/home/yourname/mineral-science/lab02
+```
+
+Linux paths use `/` as the directory separator.
+
+## List files
+
+```bash
+ls
+```
+
+lists the contents of the current directory.
+
+Useful variants are:
+
+```bash
+ls -l
+```
+
+for a detailed listing, and:
+
+```bash
+ls -lh
+```
+
+for a detailed listing with human-readable file sizes.
+
+To include hidden files:
+
+```bash
+ls -la
+```
+
+Hidden filenames begin with a dot, for example:
+
+```text
+.git
+```
+
+## Move between directories
+
+Enter a directory:
+
+```bash
+cd lab02
+```
+
+Move one level upward:
+
+```bash
+cd ..
+```
+
+Return to your home directory:
+
+```bash
+cd
+```
+
+or:
+
+```bash
+cd ~
+```
+
+A path beginning with `/` is an **absolute path**:
+
+```text
+/home/yourname/mineral-science/lab02
+```
+
+A path such as:
+
+```text
+outputs/mgo_shrink4.out
+```
+
+is **relative** to the current directory.
+
+::: {.callout-tip}
+## When a file cannot be found
+
+Check both:
+
+```bash
+pwd
+ls
+```
+
+before changing anything. Many "missing file" problems are simply "wrong
+directory" problems.
+:::
+
+## Create directories
+
+Create one directory:
+
+```bash
+mkdir lab03
+```
+
+Create a hierarchy if necessary:
+
+```bash
+mkdir -p ~/mineral-science/lab03
+```
+
+For the course, a simple structure such as
+
+```text
+~/mineral-science/
+├── lab02/
+├── lab03/
+└── lab04/
+```
+
+is sufficient on CluMiner.
+
+## Copy files
+
+Copy a file:
+
+```bash
+cp mgo_shrink2.d12 mgo_shrink3.d12
+```
+
+This is useful when preparing a convergence series.
+
+Copy a file into another directory:
+
+```bash
+cp mgo_shrink3.d12 inputs/
+```
+
+Always inspect the copied file before submitting it.
+
+## Rename or move files
+
+```bash
+mv oldname.d12 newname.d12
+```
+
+or:
+
+```bash
+mv mgo_shrink3.d12 inputs/
+```
+
+`mv` both renames and moves files.
+
+## Remove files: use with care
+
+Remove one file:
+
+```bash
+rm unwanted.out
+```
+
+Linux normally does **not** move files to a recycle bin.
+
+::: {.callout-warning}
+## `rm` is destructive
+
+Do not use commands such as:
+
+```bash
+rm -rf *
+```
+
+in course directories.
+
+If you are unsure, stop and inspect the directory with `pwd` and `ls` first.
+:::
+
+## Read a text file
+
+For short files:
+
+```bash
+cat mgo_shrink3.d12
+```
+
+For longer files:
+
+```bash
+less mgo_shrink3.out
+```
+
+Inside `less`:
+
+| Key | Action |
+|---|---|
+| `Space` | next page |
+| `b` | previous page |
+| `/text` | search forward |
+| `n` | next match |
+| `q` | quit |
+
+For the beginning or end of a file:
+
+```bash
+head mgo_shrink3.out
+tail mgo_shrink3.out
+```
+
+To follow the last lines of a file that is still growing:
+
+```bash
+tail -f filename
+```
+
+Exit `tail -f` with `Ctrl+C`.
+
+## Search for text
+
+`grep` searches lines containing a pattern:
+
+```bash
+grep "SCF ENDED" mgo_shrink4.out
+```
+
+or:
+
+```bash
+grep "SHRINK" mgo_shrink4.d12
+```
+
+Case-insensitive search:
+
+```bash
+grep -i "termination" mgo_shrink4.out
+```
+
+The laboratories normally use Python/Quantas to extract scientific results.
+`grep` is mainly a quick way to inspect an output manually.
+
+## Wildcards
+
+The shell can match groups of filenames.
+
+For example:
+
+```bash
+ls *.out
+```
+
+lists all `.out` files in the current directory.
+
+```bash
+ls mgo_shrink*.out
+```
+
+lists all outputs whose name begins with `mgo_shrink`.
+
+Wildcards are useful, but be particularly careful when combining them with
+destructive commands such as `rm`.
+
+## Command history
+
+Press the **up arrow** to recover previous commands.
+
+You can also display recent commands with:
+
+```bash
+history
+```
+
+This is useful when the same `cluminer-crystal` command must be repeated with a
+different input filename.
+
+## Interrupt a foreground command
+
+If a terminal command is running interactively and you need to interrupt it:
+
+```text
+Ctrl+C
+```
+
+This is different from cancelling a submitted Slurm job. A CRYSTAL job submitted
+through `cluminer-crystal` runs under the cluster scheduler, not as a normal
+foreground terminal process.
+
+## Check a file type and line endings
+
+The command:
+
+```bash
+file mgo_shrink3.d12
+```
+
+can reveal whether a transferred text file contains Windows-style CRLF line
+endings.
+
+For small edits on CluMiner, the course recommends Vim. See
+**Vim — Quick reference** for editing and converting files to Unix line endings.
+
+## A typical Mineral Science shell workflow
+
+```bash
+mkdir -p ~/mineral-science/lab02
+cd ~/mineral-science/lab02
+
+ls
+cp mgo_shrink2.d12 mgo_shrink3.d12
+vim mgo_shrink3.d12
+cat mgo_shrink3.d12
+
+cluminer-crystal mgo_shrink3.d12 --cores-per-node 2 --threads 2
+```
+
+The important part is not memorizing the commands. It is maintaining a clear
+relationship between:
+
+```text
+where you are
+what file you are editing
+what calculation you are submitting
+where the resulting output will appear
+```
+
+## Built-in documentation
+
+Many Linux commands provide a manual page:
+
+```bash
+man cp
+man grep
+man less
+```
+
+Exit a manual page with `q`.

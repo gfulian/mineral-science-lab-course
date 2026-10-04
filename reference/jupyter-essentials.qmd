@@ -1,4 +1,299 @@
 ---
 title: "Jupyter essentials"
 ---
-TO BE DEVELOPED.
+
+The laboratory notebooks are opened inside GitHub Codespaces using the Jupyter
+support built into Visual Studio Code.
+
+You do not need to write software from scratch. Most code cells are already
+prepared. Your normal tasks are:
+
+- run a cell;
+- inspect its result;
+- change a filename or simple numerical value when instructed;
+- create a plot from prepared code;
+- write short scientific answers in Markdown cells.
+
+## Two kinds of cells
+
+A notebook mainly contains two kinds of cells.
+
+### Markdown cells
+
+Markdown cells contain explanations, equations and your written answers.
+
+For example:
+
+```markdown
+### Question
+
+Why does the unit-cell volume change during geometry optimization?
+
+**Your answer:**
+
+The experimental geometry is not necessarily the minimum of the static
+DFT model because ...
+```
+
+You can edit a Markdown cell by clicking inside it.
+
+Run the cell to render the formatted text.
+
+### Code cells
+
+Code cells contain Python:
+
+```python
+results = analyse_crystal_outputs(OUTPUTS)
+results
+```
+
+Running the cell executes the code in the active Python kernel.
+
+## Run a cell
+
+Use the triangular **Run** button beside the cell, or press:
+
+```text
+Shift+Enter
+```
+
+`Shift+Enter` runs the current cell and moves to the next one.
+
+The number shown beside a code cell records its execution order:
+
+```text
+[1]
+[2]
+[3]
+```
+
+If cells are run out of order, those numbers may no longer increase from top to
+bottom.
+
+## The kernel
+
+The **kernel** is the Python process that executes notebook code and stores
+variables in memory.
+
+For example:
+
+```python
+A0_ANGSTROM = 4.20
+```
+
+creates a variable in the current kernel session.
+
+A later cell can use it:
+
+```python
+A0_ANGSTROM**3
+```
+
+If the kernel is restarted, variables stored only in memory disappear until the
+earlier cells are executed again.
+
+## Run notebooks in order
+
+During normal use, execute cells from top to bottom.
+
+If a later cell reports:
+
+```text
+NameError: name 'something' is not defined
+```
+
+the most common reason is that the cell defining `something` was not run.
+
+The cleanest test of a completed notebook is:
+
+1. save it;
+2. restart the kernel;
+3. run all cells from the beginning.
+
+In VS Code this can be done with **Restart** followed by **Run All**.
+
+::: {.callout-important}
+## A notebook that works only because of old kernel state is not reproducible
+
+Before considering a laboratory complete, the notebook should run correctly
+from a fresh kernel in the intended order.
+:::
+
+## Selecting the Python environment
+
+Codespaces normally selects the course Python environment automatically.
+
+If a notebook asks for a kernel, choose the Python environment provided by the
+Codespace rather than creating or installing a new environment yourself.
+
+Do not install alternate versions of NumPy, SciPy, Gemmi, spglib, Quantas or
+other course packages unless instructed.
+
+## Edit only the requested values
+
+Many cells are designed so that students modify only a short section such as:
+
+```python
+CIF_FILE = Path("my_structure.cif")
+```
+
+or:
+
+```python
+OUTPUTS = [
+    Path("outputs/run1.out"),
+    Path("outputs/run2.out"),
+]
+```
+
+or:
+
+```python
+A0_ANGSTROM = 4.20
+```
+
+Avoid changing helper code simply to make an unexpected result disappear.
+An error message often contains scientifically useful information.
+
+## File paths are relative to the notebook
+
+If a notebook in:
+
+```text
+work/lab03/
+```
+
+contains:
+
+```python
+Path("outputs/mgo_fullopt.out")
+```
+
+it expects:
+
+```text
+work/lab03/outputs/mgo_fullopt.out
+```
+
+If Python reports:
+
+```text
+FileNotFoundError
+```
+
+first check the Explorer and the exact filename.
+
+Remember that Linux filenames are case-sensitive:
+
+```text
+MgO.out
+```
+
+and:
+
+```text
+mgo.out
+```
+
+are different filenames.
+
+## Displaying tables
+
+A pandas DataFrame may appear simply by making it the last expression in a
+cell:
+
+```python
+results
+```
+
+For large tables, scroll inside the output rather than copying values manually.
+
+The purpose of these tables is to support scientific interpretation, not to
+practice spreadsheet transcription.
+
+## Plots
+
+A prepared plotting cell may look like:
+
+```python
+plot_energy_convergence(results);
+```
+
+The semicolon suppresses an unnecessary textual representation of the plotting
+object.
+
+You may interact with or inspect the plot, but do not change axis units or
+labels unless the laboratory specifically asks you to.
+
+## Error messages
+
+Do not be intimidated by a long Python traceback.
+
+Read the **last few lines first**. They usually contain the useful message, for
+example:
+
+```text
+FileNotFoundError: CRYSTAL output not found: outputs/mgo_shrink4.out
+```
+
+or:
+
+```text
+ValueError: no explicit SCF convergence marker was found
+```
+
+These messages are deliberately used in the course tools to tell you what is
+scientifically wrong with the input data.
+
+## Restarting after a helper update
+
+If a course helper such as:
+
+```text
+mineral_science_tools
+```
+
+has been updated while your notebook kernel is already running, Python may
+still hold the old imported code in memory.
+
+After `update-course`, if instructed:
+
+1. save the notebook;
+2. restart the kernel;
+3. run the notebook again from the beginning.
+
+## Save versus synchronize
+
+Saving the notebook writes it to the Codespace filesystem.
+
+It does **not** automatically copy the notebook to GitHub.
+
+At the end of a session use:
+
+```text
+Save
+→ Commit
+→ Sync Changes
+→ Verify on GitHub
+→ Stop Codespace
+```
+
+See **Save, sync and stop** in Getting Started.
+
+## Useful keyboard shortcuts
+
+| Shortcut | Action |
+|---|---|
+| `Shift+Enter` | run cell and move to next |
+| `Ctrl+S` / `Cmd+S` | save notebook |
+| `Esc` | leave text editing in some notebook contexts |
+| `Ctrl+Shift+P` / `Cmd+Shift+P` | VS Code command palette |
+
+## Official reference
+
+The complete VS Code documentation for Jupyter notebooks is available at:
+
+<https://code.visualstudio.com/docs/datascience/jupyter-notebooks>
+
+You need only the subset described on this page for Mineral Science.

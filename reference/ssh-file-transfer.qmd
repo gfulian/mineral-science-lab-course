@@ -1,4 +1,258 @@
 ---
 title: "SSH and file transfer"
 ---
-TO BE DEVELOPED.
+
+CRYSTAL calculations run on **CluMiner**, while notebooks and analysis run in
+your GitHub Codespace.
+
+You therefore need two basic operations:
+
+1. connect to the cluster;
+2. move input and output files between your computer/Codespace workflow and the
+   cluster.
+
+The exact CluMiner hostname and account details are provided during the course.
+Do not publish passwords, SSH keys or credentials in your GitHub repository.
+
+## SSH: a remote terminal
+
+SSH opens a terminal session on another computer.
+
+The generic form is:
+
+```bash
+ssh USERNAME@CLUSTER-HOST
+```
+
+For example:
+
+```text
+ssh yourusername@cluster.example.edu
+```
+
+Use the actual hostname supplied for the course.
+
+The first time you connect from a new computer, SSH may ask whether you trust
+the server host key. Check that the hostname is correct before accepting it.
+
+After authentication, your prompt changes: commands now run on CluMiner, not on
+your local computer.
+
+Confirm your location with:
+
+```bash
+hostname
+pwd
+```
+
+## Keep local and remote terminals conceptually separate
+
+A common source of confusion is forgetting which machine a terminal belongs to.
+
+Before copying, editing or submitting a file, ask:
+
+```text
+Am I in Codespaces?
+Am I on my own computer?
+Am I on CluMiner?
+```
+
+The same filename may exist in all three places but contain different versions.
+
+## Windows: graphical transfer with MobaXterm
+
+On Windows, the course may use **MobaXterm** because it provides both:
+
+- an SSH terminal;
+- an SFTP file browser.
+
+After opening an SSH session, the SFTP panel can be used to drag files between
+your Windows computer and your CluMiner home directory.
+
+This is often the easiest method when you do not normally work from a command
+line.
+
+## Linux and macOS: `scp`
+
+Linux and macOS normally provide OpenSSH tools directly.
+
+Copy a local input **to** the cluster:
+
+```bash
+scp mgo_shrink3.d12 USERNAME@CLUSTER-HOST:~/mineral-science/lab02/
+```
+
+Copy an output **from** the cluster to the current local directory:
+
+```bash
+scp USERNAME@CLUSTER-HOST:~/mineral-science/lab02/mgo_shrink3.out .
+```
+
+The final dot means:
+
+```text
+the current local directory
+```
+
+## Copying several files
+
+Shell wildcards can be useful:
+
+```bash
+scp USERNAME@CLUSTER-HOST:~/mineral-science/lab02/*.out .
+```
+
+Quote or escape remote wildcards if your local shell expands them unexpectedly.
+
+For the course, transferring a few explicit files is often safer than using
+very broad wildcards.
+
+## A recommended cluster directory structure
+
+After connecting:
+
+```bash
+mkdir -p ~/mineral-science/lab02
+cd ~/mineral-science/lab02
+```
+
+Keep files from different laboratories separate.
+
+For example:
+
+```text
+~/mineral-science/
+├── lab02/
+│   ├── mgo_shrink2.d12
+│   └── mgo_shrink2.out
+├── lab03/
+└── lab04/
+```
+
+## Typical workflow: Codespace → cluster → Codespace
+
+A laboratory calculation normally follows:
+
+```text
+prepare input in Codespace
+        ↓
+download/copy input to your computer if necessary
+        ↓
+transfer input to CluMiner
+        ↓
+run CRYSTAL on CluMiner
+        ↓
+retrieve .out file
+        ↓
+upload/copy output into work/labNN/outputs/
+        ↓
+analyse in notebook
+```
+
+Depending on your operating system, one or more transfer steps may be performed
+with an SFTP client rather than `scp`.
+
+## Check the file before submitting
+
+On CluMiner:
+
+```bash
+ls -lh
+cat input.d12
+```
+
+or:
+
+```bash
+vim input.d12
+```
+
+Check particularly:
+
+- the filename;
+- the lattice parameter;
+- `SHRINK`;
+- the calculation keyword (`OPTGEOM`, `FREQCALC`, `SCELPHONO`, etc.);
+- whether placeholder values such as `<X>` or `<A0>` remain.
+
+Do not submit an input containing unresolved placeholders.
+
+## Windows line endings
+
+Files edited on Windows may sometimes contain CRLF line endings.
+
+Check on the cluster with:
+
+```bash
+file input.d12
+```
+
+If necessary, open the file with Vim:
+
+```bash
+vim input.d12
+```
+
+and use:
+
+```vim
+:set fileformat?
+```
+
+If it reports `dos`, convert it with:
+
+```vim
+:set fileformat=unix
+:w
+```
+
+For this reason, small final edits to CRYSTAL inputs are often most convenient
+directly on CluMiner.
+
+## Do not transfer large scratch directories
+
+The course workflow is designed so that large temporary calculation data remain
+on node-local scratch or on the cluster.
+
+Transfer the scientifically useful persistent files:
+
+- CRYSTAL inputs;
+- CRYSTAL text outputs;
+- small processed data;
+- figures when needed.
+
+Do not copy complete scratch directories into GitHub.
+
+## If a transfer fails
+
+Check, in order:
+
+1. internet/VPN/university-network access if required;
+2. hostname;
+3. username;
+4. remote path;
+5. filename capitalization;
+6. whether the source file actually exists.
+
+On the cluster:
+
+```bash
+pwd
+ls -lh
+```
+
+On your local system, perform the equivalent check before repeating the
+transfer.
+
+## Built-in help
+
+```bash
+man ssh
+man scp
+```
+
+Official OpenSSH manual pages:
+
+<https://man.openbsd.org/ssh>
+
+<https://man.openbsd.org/scp>

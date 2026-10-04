@@ -30,16 +30,18 @@ website:
           - labs/lab02-energy-geometry.qmd
           - labs/lab03-equation-of-state.qmd
           - labs/lab04-vibrations-thermodynamics.qmd
-      - section: "Reference"
-        contents:
-          - reference/linux-essentials.qmd
-          - reference/jupyter-essentials.qmd
-          - reference/github-codespaces.qmd
-          - reference/ssh-file-transfer.qmd
-          - reference/cluminer.qmd
-          - reference/crystal-input-output.qmd
-          - reference/troubleshooting.qmd
-
+	- section: "Reference"
+	  contents:
+	    - reference/linux-essentials.qmd
+	    - reference/jupyter-essentials.qmd
+	    - reference/github-codespaces.qmd
+	    - reference/ssh-file-transfer.qmd
+	    - reference/cluminer.qmd
+	    - reference/vim-quick-reference.qmd
+	    - reference/crystal-input-output.qmd
+	    - reference/crystal-geometry-eos.qmd
+	    - reference/phonons-thermodynamics.qmd
+	    - reference/troubleshooting.qmd
 format:
   html:
     toc: true
