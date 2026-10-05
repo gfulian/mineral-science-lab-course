@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Laboratory 5 — From harmonic phonons to finite-temperature properties – Mineral Science Laboratory</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-dbd88313225e4ac5cf25920212690e44.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/lab01-crystal-structure.html">Laboratories</a></li><li class="breadcrumb-item"><a href="../labs/lab05-quasi-harmonic.html">Laboratory 5 — From harmonic phonons to finite-temperature properties</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Mineral Science Laboratory</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Getting started</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../getting-started/01-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How the laboratory works</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../getting-started/02-create-workspace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Create your personal workspace</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../getting-started/03-working-in-codespaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Working in Codespaces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../getting-started/04-save-sync-stop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Save, sync and stop</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../getting-started/05-update-course-material.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Update course material</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Assignments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/00-onboarding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 0 — Before the first laboratory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/01-crystal-structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 1 — Crystal structures and CIF files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/02-first-principles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 2 — From structure to energy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/03-equation-of-state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 3 — Geometry optimization and equation of state</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/04-vibrations-thermodynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 4 — Phonons and harmonic thermodynamics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Laboratories</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/lab01-crystal-structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Laboratory 1 — From CIF to crystal structure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/lab02-energy-geometry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Laboratory 2 — From structure to energy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/lab03-equation-of-state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Laboratory 3 — From equilibrium structure to an equation of state</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/lab04-vibrations-thermodynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Laboratory 4 — From phonons to thermodynamics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/lab05-quasi-harmonic.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Laboratory 5 — From harmonic phonons to finite-temperature properties</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Reference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/linux-essentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linux essentials</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/jupyter-essentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Jupyter essentials</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/github-codespaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub Codespaces — Quick reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/ssh-file-transfer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SSH and file transfer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/cluminer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CluMiner — Laboratory quick reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/vim-quick-reference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vim — Quick reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/crystal-input-output.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CRYSTAL input and output field guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/crystal-geometry-eos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CRYSTAL geometry and EOS keywords</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/phonons-thermodynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phonons and Quantas — Quick reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Troubleshooting</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-was-missing-from-the-harmonic-calculation" id="toc-what-was-missing-from-the-harmonic-calculation" class="nav-link active" data-scroll-target="#what-was-missing-from-the-harmonic-calculation">What was missing from the harmonic calculation?</a></li>
+  <li><a href="#the-central-idea-of-the-quasi-harmonic-approximation" id="toc-the-central-idea-of-the-quasi-harmonic-approximation" class="nav-link" data-scroll-target="#the-central-idea-of-the-quasi-harmonic-approximation">The central idea of the quasi-harmonic approximation</a></li>
+  <li><a href="#qha-contains-anharmonic-physics-but-not-explicit-anharmonicity" id="toc-qha-contains-anharmonic-physics-but-not-explicit-anharmonicity" class="nav-link" data-scroll-target="#qha-contains-anharmonic-physics-but-not-explicit-anharmonicity">QHA contains anharmonic physics — but not explicit anharmonicity</a></li>
+  <li><a href="#what-data-are-required" id="toc-what-data-are-required" class="nav-link" data-scroll-target="#what-data-are-required">What data are required?</a></li>
+  <li><a href="#from-frequencies-to-vibrational-free-energy" id="toc-from-frequencies-to-vibrational-free-energy" class="nav-link" data-scroll-target="#from-frequencies-to-vibrational-free-energy">From frequencies to vibrational free energy</a></li>
+  <li><a href="#zero-point-motion-already-changes-the-equilibrium" id="toc-zero-point-motion-already-changes-the-equilibrium" class="nav-link" data-scroll-target="#zero-point-motion-already-changes-the-equilibrium">Zero-point motion already changes the equilibrium</a></li>
+  <li><a href="#equilibrium-at-a-fixed-temperature" id="toc-equilibrium-at-a-fixed-temperature" class="nav-link" data-scroll-target="#equilibrium-at-a-fixed-temperature">Equilibrium at a fixed temperature</a></li>
+  <li><a href="#equilibrium-at-finite-pressure" id="toc-equilibrium-at-finite-pressure" class="nav-link" data-scroll-target="#equilibrium-at-finite-pressure">Equilibrium at finite pressure</a></li>
+  <li><a href="#a-useful-geometrical-picture" id="toc-a-useful-geometrical-picture" class="nav-link" data-scroll-target="#a-useful-geometrical-picture">A useful geometrical picture</a></li>
+  <li><a href="#thermal-expansion" id="toc-thermal-expansion" class="nav-link" data-scroll-target="#thermal-expansion">Thermal expansion</a></li>
+  <li><a href="#linear-and-axial-thermal-expansion" id="toc-linear-and-axial-thermal-expansion" class="nav-link" data-scroll-target="#linear-and-axial-thermal-expansion">Linear and axial thermal expansion</a></li>
+  <li><a href="#the-isothermal-bulk-modulus-at-finite-temperature" id="toc-the-isothermal-bulk-modulus-at-finite-temperature" class="nav-link" data-scroll-target="#the-isothermal-bulk-modulus-at-finite-temperature">The isothermal bulk modulus at finite temperature</a></li>
+  <li><a href="#two-ways-to-represent-the-free-energy-curve" id="toc-two-ways-to-represent-the-free-energy-curve" class="nav-link" data-scroll-target="#two-ways-to-represent-the-free-energy-curve">Two ways to represent the free-energy curve</a>
+  <ul class="collapse">
+  <li><a href="#polynomial-representation" id="toc-polynomial-representation" class="nav-link" data-scroll-target="#polynomial-representation">Polynomial representation</a></li>
+  <li><a href="#equation-of-state-representation" id="toc-equation-of-state-representation" class="nav-link" data-scroll-target="#equation-of-state-representation">Equation-of-state representation</a></li>
+  <li><a href="#which-one-is-correct" id="toc-which-one-is-correct" class="nav-link" data-scroll-target="#which-one-is-correct">Which one is correct?</a></li>
+  </ul></li>
+  <li><a href="#why-the-sampled-volume-range-matters" id="toc-why-the-sampled-volume-range-matters" class="nav-link" data-scroll-target="#why-the-sampled-volume-range-matters">Why the sampled volume range matters</a></li>
+  <li><a href="#grüneisen-parameters-how-strongly-does-a-phonon-respond-to-volume" id="toc-grüneisen-parameters-how-strongly-does-a-phonon-respond-to-volume" class="nav-link" data-scroll-target="#grüneisen-parameters-how-strongly-does-a-phonon-respond-to-volume">Grüneisen parameters: how strongly does a phonon respond to volume?</a></li>
+  <li><a href="#from-constant-volume-to-constant-pressure-heat-capacity" id="toc-from-constant-volume-to-constant-pressure-heat-capacity" class="nav-link" data-scroll-target="#from-constant-volume-to-constant-pressure-heat-capacity">From constant-volume to constant-pressure heat capacity</a></li>
+  <li><a href="#isothermal-and-adiabatic-bulk-moduli" id="toc-isothermal-and-adiabatic-bulk-moduli" class="nav-link" data-scroll-target="#isothermal-and-adiabatic-bulk-moduli">Isothermal and adiabatic bulk moduli</a></li>
+  <li><a href="#entropy-and-gibbs-free-energy" id="toc-entropy-and-gibbs-free-energy" class="nav-link" data-scroll-target="#entropy-and-gibbs-free-energy">Entropy and Gibbs free energy</a></li>
+  <li><a href="#what-can-be-obtained-from-one-qha-model" id="toc-what-can-be-obtained-from-one-qha-model" class="nav-link" data-scroll-target="#what-can-be-obtained-from-one-qha-model">What can be obtained from one QHA model?</a></li>
+  <li><a href="#one-dimensional-sections-and-two-dimensional-maps" id="toc-one-dimensional-sections-and-two-dimensional-maps" class="nav-link" data-scroll-target="#one-dimensional-sections-and-two-dimensional-maps">One-dimensional sections and two-dimensional maps</a>
+  <ul class="collapse">
+  <li><a href="#a-section-at-constant-pressure" id="toc-a-section-at-constant-pressure" class="nav-link" data-scroll-target="#a-section-at-constant-pressure">A section at constant pressure</a></li>
+  <li><a href="#a-section-at-constant-temperature" id="toc-a-section-at-constant-temperature" class="nav-link" data-scroll-target="#a-section-at-constant-temperature">A section at constant temperature</a></li>
+  <li><a href="#a-two-dimensional-pt-map" id="toc-a-two-dimensional-pt-map" class="nav-link" data-scroll-target="#a-two-dimensional-pt-map">A two-dimensional <span class="math inline">\(P\)</span>–<span class="math inline">\(T\)</span> map</a></li>
+  </ul></li>
+  <li><a href="#what-should-be-compared-with-experiment" id="toc-what-should-be-compared-with-experiment" class="nav-link" data-scroll-target="#what-should-be-compared-with-experiment">What should be compared with experiment?</a></li>
+  <li><a href="#a-hierarchy-of-approximations" id="toc-a-hierarchy-of-approximations" class="nav-link" data-scroll-target="#a-hierarchy-of-approximations">A hierarchy of approximations</a>
+  <ul class="collapse">
+  <li><a href="#static-electronic-structure" id="toc-static-electronic-structure" class="nav-link" data-scroll-target="#static-electronic-structure">Static electronic structure</a></li>
+  <li><a href="#harmonic-approximation" id="toc-harmonic-approximation" class="nav-link" data-scroll-target="#harmonic-approximation">Harmonic approximation</a></li>
+  <li><a href="#quasi-harmonic-approximation" id="toc-quasi-harmonic-approximation" class="nav-link" data-scroll-target="#quasi-harmonic-approximation">Quasi-harmonic approximation</a></li>
+  <li><a href="#explicit-anharmonic-methods" id="toc-explicit-anharmonic-methods" class="nav-link" data-scroll-target="#explicit-anharmonic-methods">Explicit anharmonic methods</a></li>
+  </ul></li>
+  <li><a href="#when-should-qha-work-well" id="toc-when-should-qha-work-well" class="nav-link" data-scroll-target="#when-should-qha-work-well">When should QHA work well?</a></li>
+  <li><a href="#a-note-on-mode-continuity" id="toc-a-note-on-mode-continuity" class="nav-link" data-scroll-target="#a-note-on-mode-continuity">A note on mode continuity</a></li>
+  <li><a href="#what-quantas-does" id="toc-what-quantas-does" class="nav-link" data-scroll-target="#what-quantas-does">What Quantas does</a></li>
+  <li><a href="#the-scientific-workflow-for-laboratory-5" id="toc-the-scientific-workflow-for-laboratory-5" class="nav-link" data-scroll-target="#the-scientific-workflow-for-laboratory-5">The scientific workflow for Laboratory 5</a></li>
+  <li><a href="#the-connection-across-the-complete-laboratory-sequence" id="toc-the-connection-across-the-complete-laboratory-sequence" class="nav-link" data-scroll-target="#the-connection-across-the-complete-laboratory-sequence">The connection across the complete laboratory sequence</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/lab01-crystal-structure.html">Laboratories</a></li><li class="breadcrumb-item"><a href="../labs/lab05-quasi-harmonic.html">Laboratory 5 — From harmonic phonons to finite-temperature properties</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Laboratory 5 — From harmonic phonons to finite-temperature properties</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Laboratory 4 showed that a harmonic phonon calculation can describe important features of a crystal very well. Once the first Brillouin zone is sampled adequately, the vibrational entropy and the constant-volume heat capacity become numerically converged, and the high-temperature harmonic heat capacity approaches the Dulong–Petit limit.</p>
+<p>However, it also exposed a limitation that cannot be removed by adding more <strong>q</strong>-points.</p>
+<p>Indeed, in the harmonic approximation used so far, the crystal is represented at <strong>one fixed volume</strong>. Its phonon frequencies are calculated for that structure and are then used at every temperature. The vibrational populations change with temperature, but the equilibrium structure itself does not.</p>
+<p>A real crystal does not behave this way because it normally expands when heated, the phonon frequencies change as interatomic distances change, and thermodynamic properties measured at constant pressure are no longer identical to the corresponding fixed-volume quantities.</p>
+<p>The <strong>quasi-harmonic approximation (QHA)</strong> is one of the simplest and most useful ways to introduce this coupling between vibrations and crystal volume. This approach does not abandon harmonic lattice dynamics; instead, it asks a new question:</p>
+<blockquote class="blockquote">
+<p><strong>How does the harmonic phonon spectrum change when the crystal volume changes?</strong></p>
+</blockquote>
+<p>That additional information is enough to recover thermal expansion and a large set of temperature- and pressure-dependent thermodynamic and thermoelastic properties.</p>
+<p>For a mechanically stable and only weakly explicitly anharmonic material such as MgO, this approach is particularly effective.</p>
+<section id="what-was-missing-from-the-harmonic-calculation" class="level2">
+<h2 class="anchored" data-anchor-id="what-was-missing-from-the-harmonic-calculation">What was missing from the harmonic calculation?</h2>
+<p>In the harmonic approximation, the potential-energy surface is replaced locally by a quadratic form around one equilibrium geometry. Each normal mode is then an independent harmonic oscillator with a fixed frequency.</p>
+<p>For the calculation performed in Laboratory 4, we may write schematically</p>
+<p><span class="math display">\[
+\nu_{\mathbf q j} =
+\nu_{\mathbf q j}(V_0),
+\]</span></p>
+<p>where <span class="math inline">\(V_0\)</span> is the selected equilibrium volume.</p>
+<p>Temperature changes the occupation of these vibrational states, but it does not change the frequencies themselves. Consequently, the thermodynamic calculation is carried out at one fixed volume. Within this model,</p>
+<p><span class="math display">\[
+\alpha_V = 0,
+\]</span></p>
+<p>and therefore</p>
+<p><span class="math display">\[
+C_P = C_V.
+\]</span></p>
+<p>This is why the harmonic <span class="math inline">\(C_V\)</span> can converge perfectly with respect to <strong>q</strong>-point sampling and still fail to reproduce the high-temperature experimental constant-pressure heat capacity (<span class="math inline">\(C_P\)</span>).</p>
+<p>The numerical problem may be solved while the physical approximation remains.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Numerical convergence and physical completeness are different questions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Increasing the phonon supercell from <span class="math inline">\(2\times2\times2\)</span> to <span class="math inline">\(3\times3\times3\)</span> or <span class="math inline">\(4\times4\times4\)</span> improves the Brillouin-zone integration.</p>
+<p>It does <strong>not</strong> allow a fixed-volume harmonic crystal to expand with temperature.</p>
+<p>Laboratory 5 changes the physical model, not merely the numerical sampling.</p>
+</div>
+</div>
+</section>
+<section id="the-central-idea-of-the-quasi-harmonic-approximation" class="level2">
+<h2 class="anchored" data-anchor-id="the-central-idea-of-the-quasi-harmonic-approximation">The central idea of the quasi-harmonic approximation</h2>
+<p>The QHA replaces one harmonic calculation by a <strong>series of harmonic calculations at different volumes</strong>. At each volume the lattice dynamics are still harmonic:</p>
+<p><span class="math display">\[
+E(\mathbf u;V)
+\simeq
+E_0(V)
++
+\frac{1}{2}
+\mathbf u^{\mathrm T}
+\mathbf H(V)
+\mathbf u.
+\]</span></p>
+<p>However, the Hessian now changes from one volume to another., thus the phonon frequencies become <strong>functions of volume</strong>:</p>
+<p><span class="math display">\[
+\nu_{\mathbf qj} = \nu_{\mathbf qj}(V).
+\]</span></p>
+<p>This is the essential quasi-harmonic step.</p>
+<p>The frequencies do <strong>not</strong> acquire an explicit temperature dependence at fixed volume. Instead, temperature changes the equilibrium volume, and the changing volume changes the frequencies.</p>
+<p>The sequence is therefore</p>
+<pre class="text"><code>temperature
+    ↓
+equilibrium volume changes
+    ↓
+phonon frequencies change because ν = ν(V)
+    ↓
+vibrational free energy changes
+    ↓
+new equilibrium volume</code></pre>
+<p>The equilibrium is obtained self-consistently from the free-energy surface.</p>
+</section>
+<section id="qha-contains-anharmonic-physics-but-not-explicit-anharmonicity" class="level2">
+<h2 class="anchored" data-anchor-id="qha-contains-anharmonic-physics-but-not-explicit-anharmonicity">QHA contains anharmonic physics — but not explicit anharmonicity</h2>
+<p>The name <em>quasi-harmonic</em> is important. At every individual volume, the phonons are treated as harmonic oscillators. No cubic or quartic force constants are required for the standard QHA.</p>
+<p>Nevertheless, a collection of harmonic calculations at different volumes contains part of the effect that an anharmonic crystal potential has on thermodynamics. The volume dependence of the frequencies allows the crystal to expand and produces a thermal pressure.</p>
+<p>This contribution is often called <strong>implicit</strong> or <strong>quasi-harmonic anharmonicity</strong>.</p>
+<p>The QHA does <strong>not</strong> include explicit interactions between phonons at a fixed volume. It therefore does not directly describe phenomena such as:</p>
+<ul>
+<li>phonon lifetimes and linewidths;</li>
+<li>intrinsic temperature-induced frequency shifts at fixed volume;</li>
+<li>strong phonon–phonon scattering;</li>
+<li>strongly anharmonic soft modes;</li>
+<li>many displacive phase transitions;</li>
+<li>behaviour close to melting.</li>
+</ul>
+<p>For MgO over a moderate pressure–temperature range, explicit anharmonicity is small enough that the QHA provides a very useful description. That is one reason why MgO is an excellent teaching system for this laboratory.</p>
+</section>
+<section id="what-data-are-required" class="level2">
+<h2 class="anchored" data-anchor-id="what-data-are-required">What data are required?</h2>
+<p>A quasi-harmonic calculation combines two types of information that have already appeared separately in the course.</p>
+<p>For a set of volumes <span class="math inline">\(V_i\)</span>, we need the static electronic energy</p>
+<p><span class="math display">\[
+U_0(V_i)
+\]</span></p>
+<p>and the harmonic phonon spectrum</p>
+<p><span class="math display">\[
+\nu_{\mathbf qj}(V_i).
+\]</span></p>
+<p>The workflow therefore looks like:</p>
+<pre class="text"><code>choose a set of volumes around equilibrium
+            ↓
+relax the structure at each fixed volume
+            ↓
+calculate static energy U0(V)
+            ↓
+calculate a converged phonon spectrum at each V
+            ↓
+obtain ν(q,j,V)
+            ↓
+build F(V,T)
+            ↓
+minimize at each P,T
+            ↓
+derive finite-temperature properties</code></pre>
+<p>The same electronic-structure model and numerical settings must be used at all volumes, and the phonon sampling must also be consistent.</p>
+<p>Laboratory 4 established why the <strong>q</strong>-point mesh matters. The QHA does not remove that requirement: every volume must contain a phonon description of comparable quality.</p>
+<p>In the practical activity, the expensive dense-supercell phonon calculations will be supplied as a precomputed, internally consistent dataset. The purpose of the laboratory is to understand and analyse the quasi-harmonic model rather than to spend the session waiting for multiple large phonon calculations.</p>
+</section>
+<section id="from-frequencies-to-vibrational-free-energy" class="level2">
+<h2 class="anchored" data-anchor-id="from-frequencies-to-vibrational-free-energy">From frequencies to vibrational free energy</h2>
+<p>For a phonon of frequency <span class="math inline">\(\nu\)</span>, the harmonic Helmholtz contribution contains both zero-point and thermal terms. Summed over the Brillouin zone,</p>
+<p><span class="math display">\[
+F_{\mathrm{vib}}(V,T)
+=
+\frac{1}{\sum_{\mathbf q} w_{\mathbf q}}
+\sum_{\mathbf q,j}
+w_{\mathbf q}
+\left[
+\frac{1}{2}h\nu_{\mathbf qj}(V)
++
+k_BT
+\ln
+\left(
+1-
+e^{-h\nu_{\mathbf qj}(V)/(k_BT)}
+\right)
+\right].
+\]</span></p>
+<p>The total Helmholtz free energy is</p>
+<p><span class="math display">\[
+F(V,T)
+=
+U_0(V)
++
+F_{\mathrm{vib}}(V,T).
+\]</span></p>
+<p>This equation is the heart of the QHA.</p>
+<p>The first term describes the static electronic energy surface already studied through the equation of state in Laboratory 3.</p>
+<p>The second term describes the vibrational free energy studied in Laboratory 4, but now the vibrational spectrum is allowed to change with volume.</p>
+<p>The two earlier laboratories therefore meet in a single quantity:</p>
+<pre class="text"><code>Laboratory 3                         Laboratory 4
+static E(V)                          phonons and Fvib(T)
+      \                                  /
+       \                                /
+        └────── F(V,T) = U0(V)+Fvib(V,T)
+                          ↓
+                         QHA</code></pre>
+</section>
+<section id="zero-point-motion-already-changes-the-equilibrium" class="level2">
+<h2 class="anchored" data-anchor-id="zero-point-motion-already-changes-the-equilibrium">Zero-point motion already changes the equilibrium</h2>
+<p>At <span class="math inline">\(T=0\)</span>, the thermal population of excited phonons vanishes, but the zero-point term</p>
+<p><span class="math display">\[
+\frac{1}{2}h\nu_{\mathbf qj}(V)
+\]</span></p>
+<p>remains.</p>
+<p>Therefore the minimum of</p>
+<p><span class="math display">\[
+F(V,0)
+=
+U_0(V)+E_{\mathrm{ZP}}(V)
+\]</span></p>
+<p>need not occur at exactly the same volume as the minimum of the static electronic energy <span class="math inline">\(U_0(V)\)</span>.</p>
+<p>This distinction is small for many solids, but conceptually important:</p>
+<blockquote class="blockquote">
+<p><strong>The static DFT equilibrium structure and the zero-temperature quasi-harmonic equilibrium structure are not necessarily identical.</strong></p>
+</blockquote>
+<p>Zero-point vibrations can exert a small <strong>zero-point pressure</strong>.</p>
+</section>
+<section id="equilibrium-at-a-fixed-temperature" class="level2">
+<h2 class="anchored" data-anchor-id="equilibrium-at-a-fixed-temperature">Equilibrium at a fixed temperature</h2>
+<p>At zero external pressure, the equilibrium volume at temperature <span class="math inline">\(T\)</span> is the minimum of the Helmholtz free-energy curve:</p>
+<p><span class="math display">\[
+\left(
+\frac{\partial F}{\partial V}
+\right)_T
+=0.
+\]</span></p>
+<p>Imagine calculating <span class="math inline">\(F(V,T)\)</span> at several temperatures.</p>
+<p>At low temperature the minimum lies close to the static equilibrium volume. As temperature rises, the vibrational contribution changes the shape and position of the free-energy minimum.</p>
+<p>For an ordinary material with positive thermal expansion, the minimum shifts towards larger volume:</p>
+<pre class="text"><code>low T       → minimum near V0
+higher T    → minimum at larger V</code></pre>
+<p>The thermal expansion of the crystal is therefore obtained from a sequence of free-energy minima.</p>
+</section>
+<section id="equilibrium-at-finite-pressure" class="level2">
+<h2 class="anchored" data-anchor-id="equilibrium-at-finite-pressure">Equilibrium at finite pressure</h2>
+<p>Pressure enters through the <span class="math inline">\(PV\)</span> work term.</p>
+<p>At external hydrostatic pressure <span class="math inline">\(P\)</span>, the quantity to minimize is</p>
+<p><span class="math display">\[
+G^*(V;P,T)
+=
+F(V,T)+PV.
+\]</span></p>
+<p>The equilibrium condition is</p>
+<p><span class="math display">\[
+\left(
+\frac{\partial G^*}{\partial V}
+\right)_{P,T}
+=0,
+\]</span></p>
+<p>which gives</p>
+<p><span class="math display">\[
+P
+=
+-
+\left(
+\frac{\partial F}{\partial V}
+\right)_T.
+\]</span></p>
+<p>This is the finite-temperature extension of the relation encountered in the static equation-of-state laboratory.</p>
+<p>The QHA therefore turns the static relation</p>
+<p><span class="math display">\[
+E(V)
+\]</span></p>
+<p>into a temperature-dependent family</p>
+<p><span class="math display">\[
+F(V,T).
+\]</span></p>
+<p>From this surface we can determine</p>
+<p><span class="math display">\[
+V(P,T).
+\]</span></p>
+<p>That one function is the structural backbone of most of the properties studied below.</p>
+</section>
+<section id="a-useful-geometrical-picture" class="level2">
+<h2 class="anchored" data-anchor-id="a-useful-geometrical-picture">A useful geometrical picture</h2>
+<p>It is helpful to imagine <span class="math inline">\(F(V,T)\)</span> as a surface.</p>
+<p>One axis is volume, one is temperature, and the vertical direction is free energy.</p>
+<p>A constant-temperature slice through this surface is an <span class="math inline">\(F(V)\)</span> curve.</p>
+<p>At zero pressure, its minimum gives the equilibrium volume.</p>
+<p>At non-zero pressure, adding <span class="math inline">\(PV\)</span> tilts the curve before the minimum is found.</p>
+<p>The complete QHA result can therefore be thought of as a map:</p>
+<pre class="text"><code>(P,T)
+  ↓
+equilibrium point on F(V,T)+PV
+  ↓
+V(P,T)
+  ↓
+thermodynamic and thermoelastic properties</code></pre>
+<p>This is why one calculation can later be displayed either as:</p>
+<ul>
+<li>a property versus temperature at fixed pressure;</li>
+<li>a property versus pressure at fixed temperature;</li>
+<li>a two-dimensional pressure–temperature map.</li>
+</ul>
+<p>These are different views of the same thermodynamic model.</p>
+</section>
+<section id="thermal-expansion" class="level2">
+<h2 class="anchored" data-anchor-id="thermal-expansion">Thermal expansion</h2>
+<p>Once <span class="math inline">\(V(P,T)\)</span> is known, the volumetric thermal-expansion coefficient is</p>
+<p><span class="math display">\[
+\alpha_V
+=
+\frac{1}{V}
+\left(
+\frac{\partial V}{\partial T}
+\right)_P.
+\]</span></p>
+<p>Its unit is normally</p>
+<p><span class="math display">\[
+\mathrm{K^{-1}}.
+\]</span></p>
+<p>A positive <span class="math inline">\(\alpha_V\)</span> means that the equilibrium volume increases as temperature increases at constant pressure.</p>
+<p>The QHA also provides a more revealing thermodynamic relation.</p>
+<p>Since</p>
+<p><span class="math display">\[
+P(V,T)
+=
+-
+\left(
+\frac{\partial F}{\partial V}
+\right)_T,
+\]</span></p>
+<p>one obtains</p>
+<p><span class="math display">\[
+\alpha_V
+=
+-
+\frac{1}{K_T}
+\frac{\partial^2F}
+{\partial V\,\partial T}.
+\]</span></p>
+<p>Using</p>
+<p><span class="math display">\[
+S
+=
+-
+\left(
+\frac{\partial F}{\partial T}
+\right)_V,
+\]</span></p>
+<p>the same relation becomes</p>
+<p><span class="math display">\[
+\alpha_V
+=
+\frac{1}{K_T}
+\left(
+\frac{\partial S}{\partial V}
+\right)_T.
+\]</span></p>
+<p>This equation gives a useful physical interpretation:</p>
+<blockquote class="blockquote">
+<p><strong>Thermal expansion occurs because vibrational entropy depends on volume.</strong></p>
+</blockquote>
+<p>The entropy calculated in Laboratory 4 is therefore not an isolated thermodynamic quantity. Its volume dependence is directly connected to the thermal expansion of the crystal.</p>
+</section>
+<section id="linear-and-axial-thermal-expansion" class="level2">
+<h2 class="anchored" data-anchor-id="linear-and-axial-thermal-expansion">Linear and axial thermal expansion</h2>
+<p>Experimental crystallography often reports the variation of lattice parameters rather than only the total cell volume.</p>
+<p>For a lattice parameter <span class="math inline">\(a\)</span>,</p>
+<p><span class="math display">\[
+\alpha_a
+=
+\frac{1}{a}
+\left(
+\frac{\partial a}{\partial T}
+\right)_P.
+\]</span></p>
+<p>For a cubic crystal such as MgO,</p>
+<p><span class="math display">\[
+V=a^3,
+\]</span></p>
+<p>so</p>
+<p><span class="math display">\[
+\alpha_V=3\alpha_a
+\]</span></p>
+<p>and therefore</p>
+<p><span class="math display">\[
+\alpha_a=\frac{\alpha_V}{3}.
+\]</span></p>
+<p>This makes MgO particularly simple.</p>
+<p>For anisotropic crystals the situation contains more information.</p>
+<p>For an orthorhombic crystal,</p>
+<p><span class="math display">\[
+\alpha_V
+=
+\alpha_a+\alpha_b+\alpha_c.
+\]</span></p>
+<p>For a hexagonal or trigonal crystal with the conventional hexagonal setting,</p>
+<p><span class="math display">\[
+\alpha_V
+=
+2\alpha_a+\alpha_c.
+\]</span></p>
+<p>There is no requirement that <span class="math inline">\(\alpha_a\)</span> and <span class="math inline">\(\alpha_c\)</span> be equal. One direction may expand much more strongly than another, and in some materials one direction may even contract while the total volume still expands.</p>
+<p>For monoclinic and triclinic crystals, changes in the cell angles also matter. A full description is therefore more naturally expressed through the <strong>thermal-expansion tensor</strong> rather than through three independent scalar coefficients.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What a volume-based QHA structural path actually means
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If the crystal structure is relaxed at several constrained volumes, each calculation provides the lowest-energy cell shape and internal coordinates compatible with that volume and symmetry.</p>
+<p>A QHA code can interpolate this structural path and evaluate the cell at the equilibrium volume <span class="math inline">\(V(P,T)\)</span>.</p>
+<p>For an anisotropic crystal this is extremely useful, but it is still a one-dimensional path through strain space. It is not identical to independently minimizing every strain component at every pressure and temperature.</p>
+</div>
+</div>
+</section>
+<section id="the-isothermal-bulk-modulus-at-finite-temperature" class="level2">
+<h2 class="anchored" data-anchor-id="the-isothermal-bulk-modulus-at-finite-temperature">The isothermal bulk modulus at finite temperature</h2>
+<p>Laboratory 3 obtained the bulk modulus from the curvature of the static energy–volume relation.</p>
+<p>The same idea applies to the free energy.</p>
+<p>The isothermal bulk modulus is</p>
+<p><span class="math display">\[
+K_T(V,T)
+=
+V
+\left(
+\frac{\partial^2F}{\partial V^2}
+\right)_T.
+\]</span></p>
+<p>At the equilibrium volume,</p>
+<p><span class="math display">\[
+K_T=K_T(P,T).
+\]</span></p>
+<p>The crystal can therefore become more or less compressible as both pressure and temperature change.</p>
+<p>For many minerals, increasing pressure increases the bulk modulus, while increasing temperature at constant pressure tends to reduce it. The detailed response is material dependent and must be obtained from the free-energy surface rather than assumed.</p>
+<p>The pressure derivative is</p>
+<p><span class="math display">\[
+K'_T
+=
+\left(
+\frac{\partial K_T}{\partial P}
+\right)_T.
+\]</span></p>
+<p>This is the finite-temperature analogue of the <span class="math inline">\(K'_0\)</span> parameter encountered in the static equation-of-state analysis.</p>
+</section>
+<section id="two-ways-to-represent-the-free-energy-curve" class="level2">
+<h2 class="anchored" data-anchor-id="two-ways-to-represent-the-free-energy-curve">Two ways to represent the free-energy curve</h2>
+<p>To find equilibrium properties, the calculated values of <span class="math inline">\(F(V,T)\)</span> must be represented by a smooth function of volume.</p>
+<p>There is no unique numerical representation.</p>
+<p>Two useful strategies are a <strong>polynomial representation</strong> and an <strong>equation-of-state representation</strong>.</p>
+<section id="polynomial-representation" class="level3">
+<h3 class="anchored" data-anchor-id="polynomial-representation">Polynomial representation</h3>
+<p>At each temperature, the free-energy points can be fitted locally by a polynomial in volume.</p>
+<p>The equilibrium condition is then obtained from</p>
+<p><span class="math display">\[
+\frac{\partial F}{\partial V}+P=0.
+\]</span></p>
+<p>Once the polynomial is known, its derivatives provide:</p>
+<p><span class="math display">\[
+P,
+\qquad
+K_T,
+\qquad
+K'_T.
+\]</span></p>
+<p>The principal advantage is flexibility. A low-order polynomial can represent a smooth local free-energy basin without assuming a specific finite-strain EOS.</p>
+<p>The main caution is that derivatives amplify imperfections in a fit. This is especially important for higher derivatives such as <span class="math inline">\(K'_T\)</span>. Increasing polynomial degree can reduce residuals while simultaneously making the extrapolation or derivatives less stable.</p>
+<p>A polynomial should therefore be treated as a <strong>local numerical model</strong>, not as a law of nature.</p>
+</section>
+<section id="equation-of-state-representation" class="level3">
+<h3 class="anchored" data-anchor-id="equation-of-state-representation">Equation-of-state representation</h3>
+<p>Alternatively, the free-energy points can be fitted with an integrated equation-of-state form, such as a Birch–Murnaghan model.</p>
+<p>The fitted free energy and pressure are constrained by</p>
+<p><span class="math display">\[
+P(V,T)
+=
+-
+\left(
+\frac{\partial F}{\partial V}
+\right)_T.
+\]</span></p>
+<p>The EOS provides a physically motivated finite-strain description of the curvature and compression response.</p>
+<p>The bulk modulus then emerges naturally from the EOS parameters and derivatives.</p>
+<p>The advantage is a stronger physical structure. The disadvantage is that the chosen EOS family may be too restrictive for a particular interval or material.</p>
+</section>
+<section id="which-one-is-correct" class="level3">
+<h3 class="anchored" data-anchor-id="which-one-is-correct">Which one is correct?</h3>
+<p>Neither representation is automatically superior in every calculation. The appropriate question is:</p>
+<blockquote class="blockquote">
+<p><strong>Do reasonable representations of the same free-energy data give stable physical conclusions?</strong></p>
+</blockquote>
+<p>A useful QHA analysis therefore compares polynomial and EOS-based minimization.</p>
+<p>If both give similar equilibrium volumes, heat capacities, expansion coefficients and bulk moduli within the well-sampled region, confidence in the result increases.</p>
+<p>If they disagree substantially, the problem may lie in:</p>
+<ul>
+<li>insufficient volume sampling;</li>
+<li>an unsuitable fitting interval;</li>
+<li>an inappropriate polynomial degree;</li>
+<li>an EOS form that is too restrictive;</li>
+<li>extrapolation outside the sampled volume range;</li>
+<li>noisy or inconsistent input calculations.</li>
+</ul>
+<p>The smallest fit residual is not, by itself, enough to decide which physical result is most trustworthy.</p>
+</section>
+</section>
+<section id="why-the-sampled-volume-range-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-the-sampled-volume-range-matters">Why the sampled volume range matters</h2>
+<p>A fit can look numerically excellent and still produce an unreliable QHA result if the equilibrium minimum moves outside the range of calculated volumes.</p>
+<p>For every requested <span class="math inline">\((P,T)\)</span> state, the predicted equilibrium volume should be checked against the sampled interval.</p>
+<p>Ideally,</p>
+<pre class="text"><code>smallest calculated V
+        &lt;
+equilibrium V(P,T)
+        &lt;
+largest calculated V</code></pre>
+<p>with reasonable margin on both sides.</p>
+<p>The farther the result relies on extrapolation, the less the QHA is constrained by actual first-principles data.</p>
+<p>This is particularly important at:</p>
+<ul>
+<li>high temperature and low pressure, where thermal expansion moves the minimum towards larger volumes;</li>
+<li>high pressure, where compression moves the minimum towards smaller volumes.</li>
+</ul>
+<p>A pressure–temperature map is scientifically meaningful only over the region for which the underlying volume data provide adequate coverage.</p>
+</section>
+<section id="grüneisen-parameters-how-strongly-does-a-phonon-respond-to-volume" class="level2">
+<h2 class="anchored" data-anchor-id="grüneisen-parameters-how-strongly-does-a-phonon-respond-to-volume">Grüneisen parameters: how strongly does a phonon respond to volume?</h2>
+<p>The QHA can also be viewed mode by mode.</p>
+<p>For a phonon branch <span class="math inline">\(j\)</span> at q-point <span class="math inline">\(\mathbf q\)</span>, the mode Grüneisen parameter is</p>
+<p><span class="math display">\[
+\gamma_{\mathbf qj}
+=
+-
+\frac{\partial\ln\nu_{\mathbf qj}}
+{\partial\ln V}.
+\]</span></p>
+<p>If</p>
+<p><span class="math display">\[
+\gamma_{\mathbf qj}&gt;0,
+\]</span></p>
+<p>the mode normally softens when the crystal expands.</p>
+<p>If</p>
+<p><span class="math display">\[
+\gamma_{\mathbf qj}&lt;0,
+\]</span></p>
+<p>the mode stiffens on expansion.</p>
+<p>A heat-capacity-weighted average Grüneisen parameter connects microscopic phonons with macroscopic thermal expansion.</p>
+<p>In a thermodynamically consistent QHA,</p>
+<p><span class="math display">\[
+\alpha_V
+=
+\frac{\bar{\gamma}C_V}{K_TV}.
+\]</span></p>
+<p>This compact relation is worth interpreting qualitatively.</p>
+<p>Thermal expansion is favoured by:</p>
+<ul>
+<li>phonons that respond strongly to volume;</li>
+<li>a large vibrational heat capacity;</li>
+<li>a relatively compressible crystal.</li>
+</ul>
+<p>It is opposed by a large bulk modulus.</p>
+<p>The same relation explains why a very stiff material can have modest thermal expansion even when its phonons have appreciable volume dependence.</p>
+</section>
+<section id="from-constant-volume-to-constant-pressure-heat-capacity" class="level2">
+<h2 class="anchored" data-anchor-id="from-constant-volume-to-constant-pressure-heat-capacity">From constant-volume to constant-pressure heat capacity</h2>
+<p>This is the connection to the discrepancy observed in Laboratory 4.</p>
+<p>Within QHA,</p>
+<p><span class="math display">\[
+C_P-C_V
+=
+\alpha_V^2K_TVT.
+\]</span></p>
+<p>Therefore</p>
+<p><span class="math display">\[
+C_P
+=
+C_V
++
+\alpha_V^2K_TVT.
+\]</span></p>
+<p>The correction vanishes in the strictly harmonic fixed-volume model because</p>
+<p><span class="math display">\[
+\alpha_V=0.
+\]</span></p>
+<p>Once thermal expansion is allowed, the two heat capacities separate.</p>
+<p>This is why QHA can reproduce the experimentally observed increase of constant-pressure heat capacity beyond the harmonic Dulong–Petit value even though the underlying phonons are still harmonic at each fixed volume.</p>
+<p>The extra contribution does not represent additional harmonic degrees of freedom. It comes from the coupling between heating and expansion.</p>
+</section>
+<section id="isothermal-and-adiabatic-bulk-moduli" class="level2">
+<h2 class="anchored" data-anchor-id="isothermal-and-adiabatic-bulk-moduli">Isothermal and adiabatic bulk moduli</h2>
+<p>Experiments do not always probe the same thermodynamic constraint.</p>
+<p>Slow compression with sufficient thermal equilibration is associated with an isothermal bulk modulus <span class="math inline">\(K_T\)</span>.</p>
+<p>A sufficiently rapid elastic disturbance is closer to adiabatic conditions and is described by <span class="math inline">\(K_S\)</span>.</p>
+<p>Thermodynamics connects them through</p>
+<p><span class="math display">\[
+K_S
+=
+K_T
+\frac{C_P}{C_V}.
+\]</span></p>
+<p>Because</p>
+<p><span class="math display">\[
+C_P\geq C_V,
+\]</span></p>
+<p>one normally has</p>
+<p><span class="math display">\[
+K_S\geq K_T.
+\]</span></p>
+<p>At very low temperature, or whenever the thermal correction is negligible, the two become nearly identical.</p>
+<p>This distinction later becomes important when comparing static or thermodynamic calculations with ultrasonic and seismic measurements.</p>
+</section>
+<section id="entropy-and-gibbs-free-energy" class="level2">
+<h2 class="anchored" data-anchor-id="entropy-and-gibbs-free-energy">Entropy and Gibbs free energy</h2>
+<p>At the equilibrium volume, QHA also provides entropy and free energies as functions of pressure and temperature.</p>
+<p>The entropy follows from</p>
+<p><span class="math display">\[
+S
+=
+-
+\left(
+\frac{\partial F}{\partial T}
+\right)_V,
+\]</span></p>
+<p>with the final value evaluated consistently at the equilibrium state.</p>
+<p>At finite pressure,</p>
+<p><span class="math display">\[
+G(P,T)
+=
+F(P,T)+PV.
+\]</span></p>
+<p>The Gibbs free energy is especially important because it is the thermodynamic potential used to compare phase stability at fixed pressure and temperature.</p>
+<p>For Laboratory 5 we will focus on one stable MgO phase, so phase boundaries are not the objective. Nevertheless, the same framework is the basis for comparing different polymorphs when their free energies are calculated consistently.</p>
+</section>
+<section id="what-can-be-obtained-from-one-qha-model" class="level2">
+<h2 class="anchored" data-anchor-id="what-can-be-obtained-from-one-qha-model">What can be obtained from one QHA model?</h2>
+<p>Once the free-energy surface is available and the equilibrium state has been found, the same calculation can provide a remarkably broad set of properties:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(V(P,T)\)</span></td>
+<td>equilibrium volume</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(a,b,c,\alpha,\beta,\gamma\)</span></td>
+<td>equilibrium cell parameters, when a structural path is available</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\alpha_V\)</span></td>
+<td>volumetric thermal expansion</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\alpha_a,\alpha_b,\alpha_c\)</span></td>
+<td>axial expansion coefficients where meaningful</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\boldsymbol{\alpha}\)</span></td>
+<td>thermal-expansion tensor</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(S(P,T)\)</span></td>
+<td>entropy</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(C_V(P,T)\)</span></td>
+<td>isochoric heat capacity</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(C_P(P,T)\)</span></td>
+<td>isobaric heat capacity</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(K_T(P,T)\)</span></td>
+<td>isothermal bulk modulus</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(K'_T(P,T)\)</span></td>
+<td>pressure derivative of <span class="math inline">\(K_T\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(K_S(P,T)\)</span></td>
+<td>adiabatic bulk modulus</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\gamma(P,T)\)</span></td>
+<td>macroscopic Grüneisen parameter</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\gamma_{\mathbf qj}\)</span></td>
+<td>mode Grüneisen parameters when mode continuity is available</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(F,H,G\)</span></td>
+<td>thermodynamic potentials</td>
+</tr>
+</tbody>
+</table>
+<p>The important lesson is not the length of this list.</p>
+<p>It is that these properties are <strong>not independent calculations</strong>. They are different derivatives or evaluations of the same underlying quasi-harmonic free-energy model.</p>
+</section>
+<section id="one-dimensional-sections-and-two-dimensional-maps" class="level2">
+<h2 class="anchored" data-anchor-id="one-dimensional-sections-and-two-dimensional-maps">One-dimensional sections and two-dimensional maps</h2>
+<p>A pressure–temperature calculation naturally produces a grid.</p>
+<p>For example,</p>
+<p><span class="math display">\[
+X=X(P,T)
+\]</span></p>
+<p>may represent volume, thermal expansion, bulk modulus or heat capacity.</p>
+<p>There are two complementary ways to inspect such a result.</p>
+<section id="a-section-at-constant-pressure" class="level3">
+<h3 class="anchored" data-anchor-id="a-section-at-constant-pressure">A section at constant pressure</h3>
+<p>At ambient pressure,</p>
+<p><span class="math display">\[
+X(T)\big|_{P=0}
+\]</span></p>
+<p>can be compared directly with many ordinary experimental datasets.</p>
+<p>This is particularly useful for:</p>
+<ul>
+<li>lattice parameters;</li>
+<li>volume;</li>
+<li>thermal expansion;</li>
+<li>entropy;</li>
+<li><span class="math inline">\(C_P\)</span>;</li>
+<li>bulk modulus.</li>
+</ul>
+<p>This representation is usually the easiest one to interpret first.</p>
+</section>
+<section id="a-section-at-constant-temperature" class="level3">
+<h3 class="anchored" data-anchor-id="a-section-at-constant-temperature">A section at constant temperature</h3>
+<p>A pressure section,</p>
+<p><span class="math display">\[
+X(P)\big|_{T=\mathrm{const}},
+\]</span></p>
+<p>shows how compression changes the property at a chosen temperature.</p>
+<p>This provides a natural bridge to high-pressure experiments.</p>
+</section>
+<section id="a-two-dimensional-pt-map" class="level3">
+<h3 class="anchored" data-anchor-id="a-two-dimensional-pt-map">A two-dimensional <span class="math inline">\(P\)</span>–<span class="math inline">\(T\)</span> map</h3>
+<p>The complete grid can be displayed as a contour or colour map.</p>
+<p>For example,</p>
+<p><span class="math display">\[
+\alpha_V(P,T)
+\]</span></p>
+<p>may show simultaneously that thermal expansion increases with temperature and is suppressed by pressure.</p>
+<p>A two-dimensional map contains more information, but it should normally be interpreted <strong>after</strong> examining simpler one-dimensional sections.</p>
+<p>Otherwise, a visually impressive plot can hide the physical relationships that generated it.</p>
+</section>
+</section>
+<section id="what-should-be-compared-with-experiment" class="level2">
+<h2 class="anchored" data-anchor-id="what-should-be-compared-with-experiment">What should be compared with experiment?</h2>
+<p>The QHA becomes scientifically useful when its predictions are confronted with independent observations.</p>
+<p>For MgO, useful experimental comparisons include:</p>
+<ul>
+<li>lattice parameter or molar/cell volume as a function of temperature;</li>
+<li>volumetric or linear thermal expansion;</li>
+<li>entropy;</li>
+<li>constant-pressure heat capacity;</li>
+<li>isothermal or adiabatic bulk modulus;</li>
+<li>pressure–volume data at different temperatures.</li>
+</ul>
+<p>Different experimental techniques probe different thermodynamic conditions. The comparison must therefore use the quantity that corresponds to the measurement.</p>
+<p>In particular:</p>
+<pre class="text"><code>harmonic laboratory     → Cv at fixed V
+quasi-harmonic model    → Cv and Cp
+ordinary calorimetry    → approximately Cp</code></pre>
+<p>Similarly, a bulk modulus inferred from a static equation of state is not automatically the same quantity as an adiabatic modulus measured from sound velocities.</p>
+<p>Labels and thermodynamic conditions matter.</p>
+</section>
+<section id="a-hierarchy-of-approximations" class="level2">
+<h2 class="anchored" data-anchor-id="a-hierarchy-of-approximations">A hierarchy of approximations</h2>
+<p>It is useful to place the methods used in the course in a hierarchy.</p>
+<section id="static-electronic-structure" class="level3">
+<h3 class="anchored" data-anchor-id="static-electronic-structure">Static electronic structure</h3>
+<pre class="text"><code>electrons
++
+fixed nuclei</code></pre>
+<p>gives the static energy surface <span class="math inline">\(U_0(V)\)</span>.</p>
+</section>
+<section id="harmonic-approximation" class="level3">
+<h3 class="anchored" data-anchor-id="harmonic-approximation">Harmonic approximation</h3>
+<pre class="text"><code>one equilibrium structure
++
+quadratic lattice vibrations</code></pre>
+<p>adds zero-point and thermal vibrational properties at fixed volume.</p>
+</section>
+<section id="quasi-harmonic-approximation" class="level3">
+<h3 class="anchored" data-anchor-id="quasi-harmonic-approximation">Quasi-harmonic approximation</h3>
+<pre class="text"><code>harmonic phonons
+at several volumes</code></pre>
+<p>adds the leading coupling between vibrations and volume.</p>
+</section>
+<section id="explicit-anharmonic-methods" class="level3">
+<h3 class="anchored" data-anchor-id="explicit-anharmonic-methods">Explicit anharmonic methods</h3>
+<p>These describe temperature-dependent interactions between phonons even at fixed volume and require more advanced approaches, for example higher-order force constants, molecular dynamics, self-consistent phonons or related methods.</p>
+<p>The QHA is therefore not the end of lattice thermodynamics. It is the next physically meaningful level after HA, and for many stable minerals it is an extremely useful one.</p>
+</section>
+</section>
+<section id="when-should-qha-work-well" class="level2">
+<h2 class="anchored" data-anchor-id="when-should-qha-work-well">When should QHA work well?</h2>
+<p>QHA is most reliable when:</p>
+<ul>
+<li>the crystal remains mechanically and dynamically stable;</li>
+<li>the phonon spectrum changes smoothly with volume;</li>
+<li>explicit anharmonicity is moderate;</li>
+<li>the temperature remains sufficiently below strongly anharmonic or melting regimes;</li>
+<li>no soft-mode structural transition is crossed;</li>
+<li>the sampled volume interval contains the relevant equilibrium states.</li>
+</ul>
+<p>It can become unreliable when:</p>
+<ul>
+<li>imaginary phonons appear in the physically relevant volume range;</li>
+<li>phonon branches become difficult to track;</li>
+<li>a phase transition changes the crystal structure;</li>
+<li>explicit phonon–phonon interactions dominate;</li>
+<li>equilibrium volumes require substantial extrapolation;</li>
+<li>electronic, magnetic, configurational or defect contributions become thermodynamically important.</li>
+</ul>
+<p>The correct question is therefore not simply:</p>
+<blockquote class="blockquote">
+<p>“Did the QHA calculation finish?”</p>
+</blockquote>
+<p>but:</p>
+<blockquote class="blockquote">
+<p><strong>“Is the QHA physically appropriate and numerically supported over the pressure–temperature region that I want to interpret?”</strong></p>
+</blockquote>
+</section>
+<section id="a-note-on-mode-continuity" class="level2">
+<h2 class="anchored" data-anchor-id="a-note-on-mode-continuity">A note on mode continuity</h2>
+<p>If individual phonon frequencies are fitted as functions of volume, a mode at one volume must be matched with the corresponding physical mode at the other volumes.</p>
+<p>This is called <strong>mode continuity</strong>.</p>
+<p>A naive sorting of frequencies from low to high is not always sufficient, because branches can cross or become degenerate.</p>
+<p>For simple, well-behaved systems the correspondence may be straightforward. For more complicated crystals, eigenvector information or a dedicated tracking procedure is preferable.</p>
+<p>An alternative QHA strategy is to interpolate already integrated harmonic thermodynamic functions rather than individual phonon branches. This avoids mode-by-mode correspondence, although it no longer provides the same mode-resolved information.</p>
+<p>Both approaches are scientifically legitimate when their assumptions are satisfied.</p>
+</section>
+<section id="what-quantas-does" class="level2">
+<h2 class="anchored" data-anchor-id="what-quantas-does">What Quantas does</h2>
+<p>Quantas implements the QHA as a multi-volume thermodynamic workflow.</p>
+<p>It can represent the volume dependence either through mode-resolved frequencies or through integrated harmonic thermodynamic functions. It can minimize the free-energy curves using either polynomial representations or integrated equations of state.</p>
+<p>The workflow can then evaluate equilibrium properties on a pressure–temperature grid, including:</p>
+<ul>
+<li><span class="math inline">\(V(P,T)\)</span>;</li>
+<li><span class="math inline">\(K_T\)</span> and <span class="math inline">\(K_S\)</span>;</li>
+<li><span class="math inline">\(K'_T\)</span>;</li>
+<li><span class="math inline">\(\alpha_V\)</span>;</li>
+<li>axial expansion where structural information is available;</li>
+<li><span class="math inline">\(C_V\)</span> and <span class="math inline">\(C_P\)</span>;</li>
+<li>entropy;</li>
+<li>Grüneisen parameters;</li>
+<li>equilibrium lattice parameters.</li>
+</ul>
+<p>For this course, Quantas is the numerical tool. The objective is not to learn its command-line syntax by memory. The objective is to understand the thermodynamic model that the software is evaluating.</p>
+<p>Detailed Quantas theory:</p>
+<p><a href="https://quantas.readthedocs.io/en/2.0.0-beta/theory/qha.html" class="uri">https://quantas.readthedocs.io/en/2.0.0-beta/theory/qha.html</a></p>
+<p>QHA implementation and workflow:</p>
+<p><a href="https://quantas.readthedocs.io/en/2.0.0-beta/workflows/qha.html" class="uri">https://quantas.readthedocs.io/en/2.0.0-beta/workflows/qha.html</a></p>
+<p>QHA tutorial:</p>
+<p><a href="https://quantas.readthedocs.io/en/2.0.0-beta/tutorials/qha.html" class="uri">https://quantas.readthedocs.io/en/2.0.0-beta/tutorials/qha.html</a></p>
+</section>
+<section id="the-scientific-workflow-for-laboratory-5" class="level2">
+<h2 class="anchored" data-anchor-id="the-scientific-workflow-for-laboratory-5">The scientific workflow for Laboratory 5</h2>
+<p>The practical workflow will be developed from a q-point-converged, multi-volume MgO phonon dataset.</p>
+<p>Conceptually, it will follow:</p>
+<pre class="text"><code>validated static structures at several volumes
+                    +
+q-converged phonons at the same volumes
+                    ↓
+              Quantas QHA input
+                    ↓
+              inspect ν(q,j,V)
+                    ↓
+               build F(V,T)
+                    ↓
+     polynomial / EOS representations
+                    ↓
+          minimize F(V,T)+PV
+                    ↓
+                V(P,T)
+                    ↓
+     thermodynamic + thermoelastic properties
+                    ↓
+  compare 1D sections with experimental data
+                    ↓
+        inspect full 2D P–T maps
+                    ↓
+      assess model and fit limitations</code></pre>
+<p>The practical notebook will not ask you to reproduce the expensive <span class="math inline">\(4\times4\times4\)</span> phonon calculations at every volume during class. Those calculations will be supplied as validated reference data.</p>
+<p>Your task will be to understand how those calculations become a finite- temperature description of a real crystal.</p>
+</section>
+<section id="the-connection-across-the-complete-laboratory-sequence" class="level2">
+<h2 class="anchored" data-anchor-id="the-connection-across-the-complete-laboratory-sequence">The connection across the complete laboratory sequence</h2>
+<p>Laboratory 5 is not a separate topic added at the end of the course. It combines the earlier laboratories.</p>
+<pre class="text"><code>LAB 1
+crystal structure and symmetry
+        ↓
+LAB 2
+electronic structure and numerical convergence
+        ↓
+LAB 3
+equilibrium geometry and E(V)
+        ↓
+LAB 4
+phonons, q sampling and harmonic thermodynamics
+        ↓
+LAB 5
+F(V,T), thermal expansion and finite-P,T properties</code></pre>
+<p>The complete chain is now</p>
+<p><span class="math display">\[
+\boxed{
+\text{structure}
+\rightarrow
+\text{energy}
+\rightarrow
+\text{vibrations}
+\rightarrow
+\text{free energy}
+\rightarrow
+\text{equilibrium}
+\rightarrow
+\text{thermodynamic properties}
+}
+\]</span></p>
+<p>This is the central modelling logic of the course.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/gfulian\.github\.io\/mineral-science-lab-course\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -724,146 +724,234 @@
     ]
   },
   {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html",
-    "href": "labs/lab04-vibrations-thermodynamics.html",
-    "title": "Laboratory 4 — From phonons to thermodynamics",
+    "objectID": "labs/lab02-energy-geometry.html",
+    "href": "labs/lab02-energy-geometry.html",
+    "title": "Laboratory 2 — From structure to energy",
     "section": "",
-    "text": "In the previous laboratories we treated a crystal first as a structure, then as an electronic-energy problem, and finally as a mechanically compressible solid. Temperature has so far played almost no role.\nThis laboratory introduces the missing microscopic ingredient: lattice vibrations.\nThe objective is not simply to calculate a list of frequencies. We want to follow the complete chain\nand then compare those predictions with experiment.\nThat comparison is deliberately expected to be imperfect. By the end of the laboratory you should be able to distinguish a discrepancy caused by insufficient q-point sampling from one caused by the harmonic approximation itself.",
+    "text": "In the first laboratory a CIF was enough to describe where the atoms are and how symmetry generates a periodic crystal. We now ask a different question:\nThis sounds like a request for a single number. It is not. A first-principles calculation contains both a physical model and a set of numerical approximations. Understanding the difference between them is one of the most important habits in computational mineralogy.\nWe will again use MgO. This is deliberate. Periclase is structurally simple, small enough that calculations are fast, and still a genuine periodic ionic solid. We can therefore concentrate on the logic of the calculation rather than on the complexity of the mineral.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 4 — From phonons to thermodynamics"
+      "Laboratory 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html#from-the-potential-energy-surface-to-normal-modes",
-    "href": "labs/lab04-vibrations-thermodynamics.html#from-the-potential-energy-surface-to-normal-modes",
-    "title": "Laboratory 4 — From phonons to thermodynamics",
-    "section": "From the potential-energy surface to normal modes",
-    "text": "From the potential-energy surface to normal modes\nAfter Laboratory 3, MgO is at a stationary geometry of the static DFT energy surface. Close to that minimum, the energy can be expanded in the atomic displacements \\(\\mathbf{u}\\):\n\\[\nE(\\mathbf{u})\n\\simeq\nE_0\n+\n\\frac{1}{2}\\mathbf{u}^{\\mathrm T}\n\\mathbf{H}\n\\mathbf{u}.\n\\]\n\\(\\mathbf{H}\\) is the Hessian, the matrix of second derivatives of the energy with respect to atomic displacements.\nStopping the expansion at second order defines the harmonic approximation. The potential-energy surface is locally replaced by a multidimensional quadratic surface. After mass weighting and diagonalization, the coupled atomic motions become independent normal modes with characteristic frequencies.\nFor an isolated molecule this would already give a finite set of molecular vibrations. A crystal contains an additional ingredient: translational periodicity.",
+    "objectID": "labs/lab02-energy-geometry.html#a-map-of-the-calculation",
+    "href": "labs/lab02-energy-geometry.html#a-map-of-the-calculation",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "A map of the calculation",
+    "text": "A map of the calculation\nThe calculation can be viewed as a sequence:\ncrystal structure\n      ↓\nelectronic-structure model\n      ├── basis set\n      └── exchange-correlation functional\n      ↓\nnumerical choices\n      ├── reciprocal-space sampling\n      ├── integral thresholds\n      └── SCF convergence threshold\n      ↓\nself-consistent solution\n      ↓\ntotal energy\n      ↓\nnumerical convergence test\nThe distinction between the two middle levels is essential.\nModel accuracy asks whether the chosen physical approximation is suitable for the scientific problem. A different exchange-correlation functional, for example, defines a different approximation to the electronic problem.\nNumerical convergence asks whether the chosen model has been solved accurately enough. Increasing the number of k-points does not change PBE into a better density functional; it reduces one numerical error within a PBE calculation.\nA calculation can therefore be tightly converged and still disagree with experiment because the physical model is incomplete. Conversely, a sophisticated physical model can give poor results if its numerical parameters are not converged.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 4 — From phonons to thermodynamics"
+      "Laboratory 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html#a-phonon-has-both-a-branch-and-a-wave-vector",
-    "href": "labs/lab04-vibrations-thermodynamics.html#a-phonon-has-both-a-branch-and-a-wave-vector",
-    "title": "Laboratory 4 — From phonons to thermodynamics",
-    "section": "A phonon has both a branch and a wave vector",
-    "text": "A phonon has both a branch and a wave vector\nA periodic crystal can sustain collective vibrations in which equivalent cells do not all move with the same phase. A phonon mode is therefore labelled not only by a branch index \\(j\\), but also by a wave vector \\(\\mathbf{q}\\):\n\\[\n\\nu_{\\mathbf{q}j}.\n\\]\nThe allowed \\(\\mathbf{q}\\) vectors are described in reciprocal space, and the non-redundant reciprocal-space domain is the first Brillouin zone.\nFor primitive MgO there are two atoms in the primitive cell, so the phonon spectrum contains\n\\[\n3N = 6\n\\]\nbranches at every \\(\\mathbf{q}\\):\n\nthree acoustic branches;\nthree optical branches.\n\nThe frequencies of these branches vary across the Brillouin zone. This variation is the phonon dispersion.",
+    "objectID": "labs/lab02-energy-geometry.html#density-functional-theory-without-the-machinery",
+    "href": "labs/lab02-energy-geometry.html#density-functional-theory-without-the-machinery",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Density functional theory, without the machinery",
+    "text": "Density functional theory, without the machinery\nThe electrons in a mineral require a quantum-mechanical description. Solving the full interacting many-electron problem directly is impractical for the systems of interest here. Density functional theory (DFT) reformulates the problem around the electron density and leads to a practical set of Kohn–Sham equations that are solved iteratively.\nThe part of the energy associated with exchange and correlation is not known exactly for general systems and must be approximated by an exchange-correlation functional.\nA useful qualitative organization is often called Jacob’s ladder:\n\n\n\nLevel\nTypical family\nGeneral idea\n\n\n\n\n1\nLDA\ndepends on the local density\n\n\n2\nGGA\nadds information on density gradients\n\n\n3\nmeta-GGA\nincludes additional semilocal information\n\n\n4\nhybrid\nmixes part of exact Hartree–Fock exchange\n\n\n\nGoing upward generally changes both the mathematical model and the computational cost. It does not mean that a higher rung is automatically better for every material and every property.\nIn this laboratory the functional is PBE, a GGA functional. The functional is fixed: it is not part of today’s convergence experiment.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 4 — From phonons to thermodynamics"
+      "Laboratory 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html#why-the-γ-point-is-special",
-    "href": "labs/lab04-vibrations-thermodynamics.html#why-the-γ-point-is-special",
-    "title": "Laboratory 4 — From phonons to thermodynamics",
-    "section": "Why the Γ point is special",
-    "text": "Why the Γ point is special\nThe centre of the first Brillouin zone is\n\\[\n\\Gamma:\\qquad \\mathbf{q}=0.\n\\]\nAt \\(\\Gamma\\), equivalent unit cells oscillate in phase.\nA \\(\\Gamma\\)-point phonon calculation is not useless or merely incomplete data. It answers a very important experimental question. In ordinary first-order infrared and Raman spectroscopy, the momentum carried by the photon is tiny compared with the dimensions of a crystal Brillouin zone. Crystal-momentum conservation therefore selects phonons very close to \\(\\mathbf{q}=0\\).\nThis is why calculated \\(\\Gamma\\)-point optical frequencies can be compared with IR and Raman spectra, subject to the appropriate selection rules.\nNot every \\(\\Gamma\\) mode is automatically Raman or IR active. Activity depends on symmetry and on how the vibration couples to the electromagnetic field. Nevertheless, the relevant vibrational frequencies for first-order optical spectroscopy are \\(\\Gamma\\)-point frequencies.\nThis gives \\(\\Gamma\\) two very different roles in this laboratory:\n\nit is physically important for spectroscopy;\nit is generally insufficient for bulk thermodynamics.\n\nUnderstanding why those statements are simultaneously true is one of the main objectives of the activity.",
+    "objectID": "labs/lab02-energy-geometry.html#the-basis-set-the-language-used-for-the-orbitals",
+    "href": "labs/lab02-energy-geometry.html#the-basis-set-the-language-used-for-the-orbitals",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "The basis set: the language used for the orbitals",
+    "text": "The basis set: the language used for the orbitals\nCRYSTAL represents crystalline orbitals using localized Gaussian basis functions centred on atoms. A basis set is therefore the numerical language used to represent the electronic wavefunctions.\nA larger and more flexible basis can represent the electronic structure more accurately, but generally increases computational cost and may introduce its own numerical difficulties.\nFor this laboratory we use the internally available POB-TZVP-REV2 basis set. It is already selected for you. You should be able to recognize the basis-set section of the input, but you are not being asked to optimize the basis set.\n\n\n\n\n\n\nNoteFixed does not mean universally optimal\n\n\n\nPBE and POB-TZVP-REV2 are kept fixed so that we can isolate one numerical question. Their use here does not establish that this combination is the best possible model for every MgO property.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 4 — From phonons to thermodynamics"
+      "Laboratory 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html#why-γ-alone-is-not-enough-for-thermodynamics",
-    "href": "labs/lab04-vibrations-thermodynamics.html#why-γ-alone-is-not-enough-for-thermodynamics",
-    "title": "Laboratory 4 — From phonons to thermodynamics",
-    "section": "Why Γ alone is not enough for thermodynamics",
-    "text": "Why Γ alone is not enough for thermodynamics\nThermodynamic properties depend on the population of the vibrational states available throughout the crystal.\nIn the harmonic approximation, a property can be written schematically as a weighted sum over all phonon branches and q-points:\n\\[\nX(T)\n=\n\\frac{1}{\\sum_{\\mathbf q}w_{\\mathbf q}}\n\\sum_{\\mathbf q}\nw_{\\mathbf q}\n\\sum_j\nX_{\\mathbf qj}(T).\n\\]\nThe precise oscillator expressions are implemented by Quantas. You are not expected to memorize them. The important information flow is\nfrequency ν(q,j)\n      +\nq-point integration weight\n      +\ntemperature\n      ↓\nthermodynamic contribution\nThe failure of a \\(\\Gamma\\)-only thermodynamic calculation is especially clear for the acoustic branches.\nAt exactly \\(\\Gamma\\), the three acoustic modes correspond to rigid translations and have frequencies that ideally approach zero. Away from \\(\\Gamma\\) their frequencies increase continuously. Those finite-q acoustic states are a major part of the low-frequency phonon spectrum and dominate the low-temperature heat capacity.\nA calculation that contains only \\(\\Gamma\\) therefore misses the dispersion of the acoustic branches almost completely.\nThis is very different from spectroscopy: the same \\(\\Gamma\\) calculation can contain useful IR/Raman optical frequencies while remaining a very poor sampling of the vibrational states needed for thermodynamics.",
+    "objectID": "labs/lab02-energy-geometry.html#the-self-consistent-field-cycle",
+    "href": "labs/lab02-energy-geometry.html#the-self-consistent-field-cycle",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "The self-consistent field cycle",
+    "text": "The self-consistent field cycle\nThe Kohn–Sham equations depend on the electron density, but the density is also obtained from their solution. CRYSTAL therefore solves the problem self-consistently:\n\nstart from an initial electron density;\nconstruct the Kohn–Sham matrix;\nsolve for the electronic states;\nbuild a new density;\ncompare the new solution with the previous one;\nrepeat until the chosen convergence criterion is satisfied.\n\nThis is the SCF cycle.\nCRYSTAL prints the total energy during the iterations. A successful calculation eventually contains a line of the form:\nSCF ENDED - CONVERGENCE ON ENERGY\nThe analysis tools used in this laboratory deliberately require this convergence marker. The last printed energy of an interrupted or unconverged calculation is not accepted as a valid result.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 4 — From phonons to thermodynamics"
+      "Laboratory 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html#direct-space-supercells-and-reciprocal-space-sampling",
-    "href": "labs/lab04-vibrations-thermodynamics.html#direct-space-supercells-and-reciprocal-space-sampling",
-    "title": "Laboratory 4 — From phonons to thermodynamics",
-    "section": "Direct-space supercells and reciprocal-space sampling",
-    "text": "Direct-space supercells and reciprocal-space sampling\nCRYSTAL uses a direct-space approach to phonon dispersion calculations.\nWith SCELPHONO, an integer supercell is constructed from the primitive cell. For the isotropic supercells used here,\n1×1×1\n2×2×2\n3×3×3\n4×4×4\nthe corresponding commensurate reciprocal-space meshes contain\n\n\n\ndirect-space sampling\nfull q-point mesh\n\n\n\n\n\\(1\\times1\\times1\\)\n1\n\n\n\\(2\\times2\\times2\\)\n8\n\n\n\\(3\\times3\\times3\\)\n27\n\n\n\\(4\\times4\\times4\\)\n64\n\n\n\nThe relation is reciprocal: increasing the range represented in direct space allows a denser set of exactly commensurate q-points in reciprocal space.\nThe CRYSTAL phonon-dispersion workflow uses SCELPHONO in the geometry section and DISPERSI inside FREQCALC. The official CRYSTAL tutorial uses exactly this construction for convergence of thermodynamic properties:\nhttps://tutorials.crystalsolutions.eu/tutorial.html?td=dispersion&tf=dispersion-ht",
+    "objectID": "labs/lab02-energy-geometry.html#why-a-periodic-solid-needs-k-points",
+    "href": "labs/lab02-energy-geometry.html#why-a-periodic-solid-needs-k-points",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Why a periodic solid needs k-points",
+    "text": "Why a periodic solid needs k-points\nThe electronic states of a periodic crystal are described in reciprocal space. In principle, quantities involving the electronic structure require integration over the Brillouin zone. Numerically, this integral is replaced by a finite set of k-points.\nCRYSTAL uses the SHRINK keyword to construct a commensurate Monkhorst–Pack-type grid. For the cubic MgO calculation used here, a value \\(IS\\) corresponds to a nominal sampling based on reciprocal-lattice increments\n\\[\n\\frac{\\mathbf{b}_1}{IS},\\qquad\n\\frac{\\mathbf{b}_2}{IS},\\qquad\n\\frac{\\mathbf{b}_3}{IS}.\n\\]\nIt is therefore convenient to think of the sequence as increasingly dense nominal \\(IS\\times IS\\times IS\\) grids.\nThis does not mean that CRYSTAL diagonalizes the Kohn–Sham matrix at \\(IS^3\\) independent points. Crystal symmetry reduces the sampling to the irreducible Brillouin zone (IBZ), and the output reports the actual number of irreducible k-points used.\nIncreasing SHRINK therefore changes two things that we can observe directly:\n\nthe numerical approximation to Brillouin-zone integration;\nthe computational work required by the calculation.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 4 — From phonons to thermodynamics"
+      "Laboratory 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html#why-crystal-prints-8-27-or-64-frequency-sets",
-    "href": "labs/lab04-vibrations-thermodynamics.html#why-crystal-prints-8-27-or-64-frequency-sets",
-    "title": "Laboratory 4 — From phonons to thermodynamics",
-    "section": "Why CRYSTAL prints 8, 27 or 64 frequency sets",
-    "text": "Why CRYSTAL prints 8, 27 or 64 frequency sets\nFor the calculations used in this laboratory, CRYSTAL explicitly prints a frequency spectrum for every point of the full commensurate q mesh.\nThus a \\(4\\times4\\times4\\) calculation contains 64 q-point spectra.\nAt first sight this looks wasteful because many q-points are related by crystal symmetry. For thermodynamic integration there are two mathematically equivalent ways to represent the sampling.\nA full uniform mesh can be written as\n\\[\n\\frac{1}{N_q}\n\\sum_{\\mathbf q}^{N_q}\nX(\\mathbf q).\n\\]\nAlternatively, symmetry-equivalent q-points can be grouped into irreducible representatives:\n\\[\n\\frac{1}{\\sum_i w_i}\n\\sum_i\nw_i X(\\mathbf q_i),\n\\]\nwhere \\(w_i\\) is the multiplicity of representative \\(\\mathbf q_i\\).\nThe second form is what you may have encountered in codes such as Phonopy.\n\nWhat we do in this course\nQuantas can use the full CRYSTAL mesh directly. Equal weights are correct for a complete uniform mesh, and Quantas normalizes all supplied q-point weights by their sum.\nFor inspection, the course tools can also use spglib to group the full mesh into symmetry-equivalent sets and report an irreducible q-point table with multiplicity weights.\nThe weights are derived from crystal symmetry, not guessed from similar frequencies. Similar spectra are then used only as a consistency check that symmetry-related q-points really do carry equivalent vibrational information.\nThis distinction is important. An incorrect q-point weight changes every integrated vibrational property even if the YAML file itself remains perfectly valid.\nQuantas deliberately does not invent missing multiplicities from q-point coordinates during an HA/QHA calculation. Weight provenance is part of the scientific input:\nhttps://quantas.readthedocs.io/en/2.0.0-beta/formats/phonon_yaml.html",
+    "objectID": "labs/lab02-energy-geometry.html#our-computational-experiment",
+    "href": "labs/lab02-energy-geometry.html#our-computational-experiment",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Our computational experiment",
+    "text": "Our computational experiment\nA good convergence test behaves like a controlled experiment. We keep everything fixed except the parameter being investigated.\nFor this laboratory:\n\n\n\nQuantity\nChoice\n\n\n\n\nCrystal\nMgO, fixed geometry\n\n\nSpace group\n\\(Fm\\bar{3}m\\)\n\n\nDFT functional\nPBE\n\n\nBasis set\nPOB-TZVP-REV2\n\n\nIntegral thresholds\nfixed\n\n\nSCF energy threshold\nfixed\n\n\nHardware request\n2 physical cores\n\n\nMPI/OpenMP layout\n1 MPI rank × 2 threads\n\n\nVariable\nSHRINK = 2,3,\\ldots,9\n\n\n\nThe first calculation, SHRINK = 2, is performed together. You then copy the input, change only the shrinking factor and submit the remaining calculations.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 4 — From phonons to thermodynamics"
+      "Laboratory 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html#from-phonons-to-statistical-thermodynamics",
-    "href": "labs/lab04-vibrations-thermodynamics.html#from-phonons-to-statistical-thermodynamics",
-    "title": "Laboratory 4 — From phonons to thermodynamics",
-    "section": "From phonons to statistical thermodynamics",
-    "text": "From phonons to statistical thermodynamics\nIn statistical thermodynamics, each harmonic phonon behaves as a quantum harmonic oscillator. Once the frequency spectrum is known, temperature determines how strongly each oscillator is populated.\nQuantas uses the q-resolved phonon spectrum to calculate quantities including:\n\nzero-point vibrational energy;\nvibrational internal energy;\nvibrational Helmholtz free energy;\nvibrational entropy;\nisochoric heat capacity \\(C_V\\).\n\nThis is the computational version of the connection developed in the statistical-thermodynamics part of the course: the phonon spectrum defines the available vibrational states, while thermal populations determine macroscopic entropy and heat capacity.\nThe Quantas harmonic workflow is documented here:\nhttps://quantas.readthedocs.io/en/2.0.0-beta/api/ha.html",
+    "objectID": "labs/lab02-energy-geometry.html#from-an-input-file-to-a-calculation",
+    "href": "labs/lab02-energy-geometry.html#from-an-input-file-to-a-calculation",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "From an input file to a calculation",
+    "text": "From an input file to a calculation\nA simplified CRYSTAL input can be mentally divided into four parts:\nSTRUCTURE\n    lattice / space group / atomic positions\n\nBASIS SET\n    numerical representation of atomic orbitals\n\nHAMILTONIAN\n    DFT and exchange-correlation functional\n\nNUMERICAL CONTROL\n    integral thresholds\n    SCF threshold\n    SHRINK\nYou do not need to memorize CRYSTAL keywords. The important skill is to recognize which scientific or numerical choice each block controls.\nThe official CRYSTAL documentation is available at:\nhttps://www.crystal.unito.it/documentation.html\nThe manual is the authoritative reference when you later need a keyword that is not explained in this course.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 4 — From phonons to thermodynamics"
+      "Laboratory 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html#heat-capacity-and-q-point-convergence",
-    "href": "labs/lab04-vibrations-thermodynamics.html#heat-capacity-and-q-point-convergence",
-    "title": "Laboratory 4 — From phonons to thermodynamics",
-    "section": "Heat capacity and q-point convergence",
-    "text": "Heat capacity and q-point convergence\nHeat capacity is particularly useful for this laboratory because its physical limits are easy to interpret.\nAt low temperature, only low-frequency states are populated. The acoustic phonons close to \\(\\Gamma\\) are therefore especially important. A poor q mesh has very few points in this region, and the low-temperature heat capacity is highly sensitive to sampling.\nFor a three-dimensional crystal with ordinary acoustic dispersion, the low-temperature behaviour approaches the Debye form\n\\[\nC_V \\propto T^3.\n\\]\nAt high temperature, every harmonic vibrational degree of freedom approaches its classical limit. For a crystal with \\(n\\) atoms per chemical formula unit,\n\\[\nC_V \\longrightarrow 3nR.\n\\]\nMgO has two atoms per formula unit, so\n\\[\nC_V\n\\longrightarrow\n6R\n\\approx\n49.9\\ \\mathrm{J\\,mol^{-1}\\,K^{-1}}.\n\\]\nThis is the Dulong–Petit limit for the harmonic heat capacity of MgO.\nThe progression\nΓ → 2×2×2 → 3×3×3 → 4×4×4\nshould therefore be interpreted as a numerical convergence experiment on the Brillouin-zone integral.\nThe question is not whether 64 q-points are intrinsically “correct”. The question is whether further refinement changes the observable by an amount that matters for the scientific interpretation.",
+    "objectID": "labs/lab02-energy-geometry.html#running-the-calculation-on-cluminer",
+    "href": "labs/lab02-energy-geometry.html#running-the-calculation-on-cluminer",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Running the calculation on CluMiner",
+    "text": "Running the calculation on CluMiner\nCRYSTAL is licensed software and is run on the university cluster, not inside Codespaces.\nFor this laboratory the standard submission command is:\ncluminer-crystal mgo_shrink2.d12 --cores-per-node 2 --threads 2\nThe same resource request must be used for every calculation in the convergence series. With these settings the launcher uses one MPI rank with two OpenMP threads.\nKeeping the hardware request fixed is important: if the computational resources changed from one calculation to another, timing comparisons would be much less informative.\nThe scientific output is returned with the input basename, for example:\nmgo_shrink2.d12  →  mgo_shrink2.out\nCopy the resulting .out files back into:\nwork/lab02/outputs/",
     "crumbs": [
       "Laboratories",
-      "Laboratory 4 — From phonons to thermodynamics"
+      "Laboratory 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html#comparison-with-experimental-heat-capacity",
-    "href": "labs/lab04-vibrations-thermodynamics.html#comparison-with-experimental-heat-capacity",
-    "title": "Laboratory 4 — From phonons to thermodynamics",
-    "section": "Comparison with experimental heat capacity",
-    "text": "Comparison with experimental heat capacity\nThe workspace contains a small experimental reference dataset for MgO.\nLow-temperature values come from the measurements of Barron, Berg and Morrison compiled in the NIST Structural Ceramics Database. Higher-temperature values come from an evaluated calorimetric MgO dataset in the same NIST database.\nThe comparison is intentionally not between identical thermodynamic quantities.\nThe harmonic calculation provides\n\\[\nC_V,\n\\]\nthe heat capacity at constant volume.\nExperimental calorimetry on a solid under approximately ambient pressure is normally interpreted as a constant-pressure heat capacity,\n\\[\nC_P.\n\\]\nAt sufficiently low temperature the difference is small. At higher temperature, thermal expansion makes the distinction increasingly important.\nThis is not an inconvenience to hide. It is part of the laboratory.",
+    "objectID": "labs/lab02-energy-geometry.html#reading-the-result",
+    "href": "labs/lab02-energy-geometry.html#reading-the-result",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Reading the result",
+    "text": "Reading the result\nWe will inspect one output manually before using the parser.\nThe output reports:\n\nthe Monkhorst shrinking factors;\nthe number of k-points in the irreducible Brillouin zone;\nthe sequence of SCF cycles;\nthe final converged total energy;\nelapsed and CPU time;\nthe normal termination of the calculation.\n\nThis manual inspection matters. Automated parsing should save us from repetitive transcription, not hide the origin of the data.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 4 — From phonons to thermodynamics"
+      "Laboratory 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html#the-central-limitation-of-the-harmonic-approximation",
-    "href": "labs/lab04-vibrations-thermodynamics.html#the-central-limitation-of-the-harmonic-approximation",
-    "title": "Laboratory 4 — From phonons to thermodynamics",
-    "section": "The central limitation of the harmonic approximation",
-    "text": "The central limitation of the harmonic approximation\nIn the harmonic approximation used here, the frequencies are calculated at one fixed equilibrium structure. They do not change when temperature changes.\nConsequently the harmonic model has no mechanism for thermal expansion:\n\\[\n\\alpha_V=0.\n\\]\nWithin that fixed-volume harmonic description,\n\\[\nC_P=C_V.\n\\]\nA real crystal expands with temperature, and its phonon spectrum changes as the volume changes. The real constant-pressure heat capacity therefore contains a contribution that our present HA calculation cannot reproduce.\nEven after the \\(3\\times3\\times3\\) and \\(4\\times4\\times4\\) results become numerically indistinguishable, a discrepancy with experiment may remain.\nThat residual difference can contain several contributions:\n\nthe fixed-volume harmonic approximation;\nthe experimental \\(C_P\\) versus calculated \\(C_V\\) distinction;\nthe volume dependence of phonon frequencies;\nexplicit anharmonic interactions between phonons;\nresidual DFT/basis-set model error;\nexperimental uncertainty and sample differences.\n\nThe first two are particularly important for interpreting this laboratory.",
+    "objectID": "labs/lab02-energy-geometry.html#energy-convergence",
+    "href": "labs/lab02-energy-geometry.html#energy-convergence",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Energy convergence",
+    "text": "Energy convergence\nFor a sequence ordered by increasing SHRINK, the notebook calculates the change relative to the preceding sampling:\n\\[\n\\Delta E_i = E_i-E_{i-1}.\n\\]\nBecause the sign is not important for the convergence criterion, we will normally inspect\n\\[\n|\\Delta E_i|.\n\\]\nThe same value is expressed in hartree and in kJ mol\\(^{-1}\\) of MgO.\nFor this CRYSTAL model the primitive computational cell contains one MgO formula unit, so the conversion can be interpreted directly per mole of MgO:\n\\[\n1\\ E_\\mathrm{h} \\approx 2625.5\\ \\mathrm{kJ\\,mol^{-1}}.\n\\]\nThe notebook calculates the conversion from physical constants rather than asking you to perform it manually.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 4 — From phonons to thermodynamics"
+      "Laboratory 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html#numerical-convergence-is-not-physical-exactness",
-    "href": "labs/lab04-vibrations-thermodynamics.html#numerical-convergence-is-not-physical-exactness",
-    "title": "Laboratory 4 — From phonons to thermodynamics",
-    "section": "Numerical convergence is not physical exactness",
-    "text": "Numerical convergence is not physical exactness\nThis returns us to a distinction already encountered in Laboratory 2.\nA \\(4\\times4\\times4\\) phonon calculation may be numerically converged with respect to q-point sampling.\nThat does not mean the underlying physical model has become exact.\nThe logic is:\nΓ\n↓\nlarge q-sampling error\n\n2×2×2\n↓\nsmaller q-sampling error\n\n3×3×3\n↓\nsmall q-sampling error\n\n4×4×4\n↓\nq-point convergence\n\nstill different from experiment?\n↓\nlook at the physical approximations\nThis is the scientific conclusion of the laboratory, not a failure of the calculation.",
+    "objectID": "labs/lab02-energy-geometry.html#convergence-is-a-decision-not-a-magic-number",
+    "href": "labs/lab02-energy-geometry.html#convergence-is-a-decision-not-a-magic-number",
+    "title": "Laboratory 2 — From structure to energy",
+    "section": "Convergence is a decision, not a magic number",
+    "text": "Convergence is a decision, not a magic number\nThe densest calculation is not automatically the best practical choice.\nAs SHRINK increases, the energy should become progressively less sensitive to further refinement, while computational cost generally increases. Your task is to choose a sampling that is sufficiently converged for the purpose of the subsequent calculations without paying for unnecessary numerical precision.\nValues such as \\(0.1\\) or \\(0.01\\) kJ mol\\(^{-1}\\) can be useful scales when looking at the table, but they are not universal laws. The necessary precision depends on the scientific question. Resolving a very small phase-energy difference may require a tighter criterion than obtaining a preliminary equilibrium structure.\nThe final question of the laboratory is therefore not:\n\nWhat is the largest SHRINK value?\n\nbut:\n\nWhich SHRINK value would you carry forward, and why is its balance between numerical stability and computational cost adequate?\n\nThat decision will matter in the next activity, when the geometry of MgO is allowed to change.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 4 — From phonons to thermodynamics"
+      "Laboratory 2 — From structure to energy"
     ]
   },
   {
-    "objectID": "labs/lab04-vibrations-thermodynamics.html#looking-ahead-beyond-the-harmonic-approximation",
-    "href": "labs/lab04-vibrations-thermodynamics.html#looking-ahead-beyond-the-harmonic-approximation",
-    "title": "Laboratory 4 — From phonons to thermodynamics",
-    "section": "Looking ahead: beyond the harmonic approximation",
-    "text": "Looking ahead: beyond the harmonic approximation\nIf time permits, a later activity can extend the calculation to the quasi-harmonic approximation (QHA).\nThe QHA repeats harmonic phonon calculations at different volumes. Frequencies then become functions of volume,\n\\[\n\\nu_{\\mathbf qj}=\\nu_{\\mathbf qj}(V),\n\\]\nallowing the free-energy minimum to move with temperature. Thermal expansion and the distinction between \\(C_P\\) and \\(C_V\\) then emerge naturally.\nQuantas describes this extension explicitly:\nhttps://quantas.readthedocs.io/en/2.0.0-beta/theory/qha.html\nThat possible extension is not required for Laboratory 4. Here the goal is first to understand what the harmonic model can predict, how its reciprocal- space sampling converges, and where its physical limits appear in comparison with experiment.",
+    "objectID": "labs/lab01-crystal-structure.html",
+    "href": "labs/lab01-crystal-structure.html",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "",
+    "text": "A crystal structure is often first encountered as a picture: coloured spheres, polyhedra, chains, layers or frameworks. The picture is useful, but it is not the structure itself. A crystallographic model is a compact mathematical description of a periodic arrangement. In this laboratory we will start from that description and reconstruct the structure step by step.\nThe practical question is simple:\nThis is the first computational activity because it establishes a workflow that will return throughout the course: a structural model is read from data, analysed, visualized, checked against symmetry, and eventually used as the starting point for calculations of energy and physical properties.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 4 — From phonons to thermodynamics"
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#the-cif-as-a-crystallographic-description",
+    "href": "labs/lab01-crystal-structure.html#the-cif-as-a-crystallographic-description",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "The CIF as a crystallographic description",
+    "text": "The CIF as a crystallographic description\nThe Crystallographic Information File (CIF) is a structured text format. For the present exercise, the most important information is the unit cell, the space group, the atomic sites, their fractional coordinates and their occupancies.\nThe fractional coordinate \\((x,y,z)\\) does not give a distance in ångström. Instead, it gives a position relative to the three direct-lattice vectors \\(\\mathbf{a}\\), \\(\\mathbf{b}\\), and \\(\\mathbf{c}\\):\n\\[\n\\mathbf{r} = x\\mathbf{a} + y\\mathbf{b} + z\\mathbf{c}.\n\\]\nThis is why the same fractional coordinates can describe geometrically different Cartesian positions when the cell parameters change.\nA CIF normally does not need to list every atom that appears in a conventional unit cell. It can store only the crystallographically independent sites. The remaining sites follow from the symmetry of the space group.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#asymmetric-unit-and-unit-cell",
+    "href": "labs/lab01-crystal-structure.html#asymmetric-unit-and-unit-cell",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Asymmetric unit and unit cell",
+    "text": "Asymmetric unit and unit cell\nThe asymmetric unit is the smallest part of the structure from which the contents of the unit cell can be generated by applying the appropriate space-group operations. The unit cell, in turn, generates the infinite periodic crystal by translation.\nThis distinction is easy to lose when looking only at a structure drawing. MgO provides a particularly clean example. Only one Mg site and one O site are needed in its crystallographic description, but applying the symmetry and centring operations generates the complete contents of the conventional cubic cell.\nIn the notebook we therefore inspect the structure twice: first as the list of sites written in the CIF, and then as the symmetry-expanded unit cell. The difference between these lists is itself part of the crystallographic information.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#two-complementary-symmetry-tools",
+    "href": "labs/lab01-crystal-structure.html#two-complementary-symmetry-tools",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Two complementary symmetry tools",
+    "text": "Two complementary symmetry tools\nWe use Gemmi and spglib for different reasons.\nGemmi is used to read the CIF as a crystallographic document. It understands the unit cell, space-group symbols, symmetry operations and atomic sites. In other words, it can tell us what crystallographic information the file claims to contain.\nspglib approaches the problem from another direction. We give it lattice vectors, atomic coordinates and atomic species. It then searches numerically for operations that map the structure onto itself. This requires a tolerance, because coordinates in real structure files are finite-precision numbers and experimental structures are never mathematical abstractions with infinitely exact coordinates.\nThe comparison is useful:\n\\[\n\\text{symmetry stated in the CIF}\n\\quad\\longleftrightarrow\\quad\n\\text{symmetry implied by the numerical structure}.\n\\]\nAgreement is a consistency check. Disagreement is not something to hide by changing parameters until the desired answer appears. It is a result that must be understood: the structure may be distorted, the tolerance may be inappropriate, the CIF may use a non-standard setting, or the structural model may contain disorder or partial occupancies.\nFor this first exercise we use ordered structures with full occupancies so that the symmetry analysis remains unambiguous.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#symmetry-operations-in-coordinate-form",
+    "href": "labs/lab01-crystal-structure.html#symmetry-operations-in-coordinate-form",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Symmetry operations in coordinate form",
+    "text": "Symmetry operations in coordinate form\nA space-group operation can be written as a transformation of fractional coordinates. The identity is\n\\[\n(x,y,z)\\rightarrow(x,y,z),\n\\]\nwhereas an operation written, for example, as\n-y,x,z\nmaps\n\\[\n(x,y,z)\\rightarrow(-y,x,z).\n\\]\nTranslations may appear as fractional additions such as \\(1/2\\). Rather than printing every operation of a high-symmetry space group without context, the notebook first shows a compact set of Hall-derived operations and the lattice centring translations, and then lets you inspect part of the full operation list.\nThe software can describe the matrix and translational parts of an operation, but interpreting an operation geometrically remains a crystallographic task. In particular, the presence of a translational component is what distinguishes operations such as screw axes and glide planes from their purely point-symmetry counterparts.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#wyckoff-positions",
+    "href": "labs/lab01-crystal-structure.html#wyckoff-positions",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Wyckoff positions",
+    "text": "Wyckoff positions\nThe atoms of a crystal can also be organized into Wyckoff positions. A Wyckoff position identifies an orbit of symmetrically equivalent points in a given space group.\nThree pieces of information are especially useful:\n\nthe multiplicity, which gives the number of equivalent sites in the conventional unit cell;\nthe Wyckoff letter, which distinguishes inequivalent orbits;\nthe site symmetry, which describes the subgroup of operations that leaves a particular site invariant.\n\nA multiplicity is therefore not the number of independent atoms that had to be entered in the CIF. Quite the opposite: several atoms in the conventional cell may all be generated from one crystallographically independent site.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#visualization-is-inspection-not-proof",
+    "href": "labs/lab01-crystal-structure.html#visualization-is-inspection-not-proof",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Visualization is inspection, not proof",
+    "text": "Visualization is inspection, not proof\nThe notebooks use py3Dmol to display the CIF interactively. You can rotate the structure, zoom, draw the unit-cell box and replicate the cell to make periodicity easier to see.\nThe default representation uses spheres without automatically inferred bonds. This choice is deliberate. A line drawn between two atoms by a visualization program is based on a graphical or distance criterion; it is not itself a crystallographic observable and should not silently determine how we interpret bonding in a mineral.\nThe viewer is therefore an aid to scientific inspection. The quantitative description still comes from the crystallographic data and symmetry analysis.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#laboratory-workflow",
+    "href": "labs/lab01-crystal-structure.html#laboratory-workflow",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "Laboratory workflow",
+    "text": "Laboratory workflow\nThe activity has two parts.\nFirst, we work together on MgO (periclase):\n01-guided-mgo.ipynb\nMgO is useful because the rocksalt structure is simple enough that the relationship between asymmetric unit, face-centred cell, symmetry and Wyckoff multiplicity remains visible.\nYou will then receive a second CIF and repeat the same reasoning independently in:\n02-assigned-structure.ipynb\nPlace the assigned CIF directly inside:\nwork/lab01/\nand change only the filename requested in the notebook.\nThe questions are intentionally short. They ask you to interpret the structure, not to reproduce Python code.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
+    ]
+  },
+  {
+    "objectID": "labs/lab01-crystal-structure.html#what-to-save",
+    "href": "labs/lab01-crystal-structure.html#what-to-save",
+    "title": "Laboratory 1 — From CIF to crystal structure",
+    "section": "What to save",
+    "text": "What to save\nAt the end of the laboratory your private repository should contain:\n\nthe completed guided MgO notebook;\nthe completed assigned-structure notebook;\nthe CIF supplied for your individual activity.\n\nUse the usual end-of-session sequence:\nsave → commit → Sync Changes → verify on GitHub → stop Codespace",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 1 — From CIF to crystal structure"
     ]
   },
   {
@@ -1010,234 +1098,454 @@
     ]
   },
   {
-    "objectID": "labs/lab01-crystal-structure.html",
-    "href": "labs/lab01-crystal-structure.html",
-    "title": "Laboratory 1 — From CIF to crystal structure",
+    "objectID": "labs/lab04-vibrations-thermodynamics.html",
+    "href": "labs/lab04-vibrations-thermodynamics.html",
+    "title": "Laboratory 4 — From phonons to thermodynamics",
     "section": "",
-    "text": "A crystal structure is often first encountered as a picture: coloured spheres, polyhedra, chains, layers or frameworks. The picture is useful, but it is not the structure itself. A crystallographic model is a compact mathematical description of a periodic arrangement. In this laboratory we will start from that description and reconstruct the structure step by step.\nThe practical question is simple:\nThis is the first computational activity because it establishes a workflow that will return throughout the course: a structural model is read from data, analysed, visualized, checked against symmetry, and eventually used as the starting point for calculations of energy and physical properties.",
+    "text": "In the previous laboratories we treated a crystal first as a structure, then as an electronic-energy problem, and finally as a mechanically compressible solid. Temperature has so far played almost no role.\nThis laboratory introduces the missing microscopic ingredient: lattice vibrations.\nThe objective is not simply to calculate a list of frequencies. We want to follow the complete chain\nand then compare those predictions with experiment.\nThat comparison is deliberately expected to be imperfect. By the end of the laboratory you should be able to distinguish a discrepancy caused by insufficient q-point sampling from one caused by the harmonic approximation itself.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
+      "Laboratory 4 — From phonons to thermodynamics"
     ]
   },
   {
-    "objectID": "labs/lab01-crystal-structure.html#the-cif-as-a-crystallographic-description",
-    "href": "labs/lab01-crystal-structure.html#the-cif-as-a-crystallographic-description",
-    "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "The CIF as a crystallographic description",
-    "text": "The CIF as a crystallographic description\nThe Crystallographic Information File (CIF) is a structured text format. For the present exercise, the most important information is the unit cell, the space group, the atomic sites, their fractional coordinates and their occupancies.\nThe fractional coordinate \\((x,y,z)\\) does not give a distance in ångström. Instead, it gives a position relative to the three direct-lattice vectors \\(\\mathbf{a}\\), \\(\\mathbf{b}\\), and \\(\\mathbf{c}\\):\n\\[\n\\mathbf{r} = x\\mathbf{a} + y\\mathbf{b} + z\\mathbf{c}.\n\\]\nThis is why the same fractional coordinates can describe geometrically different Cartesian positions when the cell parameters change.\nA CIF normally does not need to list every atom that appears in a conventional unit cell. It can store only the crystallographically independent sites. The remaining sites follow from the symmetry of the space group.",
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#from-the-potential-energy-surface-to-normal-modes",
+    "href": "labs/lab04-vibrations-thermodynamics.html#from-the-potential-energy-surface-to-normal-modes",
+    "title": "Laboratory 4 — From phonons to thermodynamics",
+    "section": "From the potential-energy surface to normal modes",
+    "text": "From the potential-energy surface to normal modes\nAfter Laboratory 3, MgO is at a stationary geometry of the static DFT energy surface. Close to that minimum, the energy can be expanded in the atomic displacements \\(\\mathbf{u}\\):\n\\[\nE(\\mathbf{u})\n\\simeq\nE_0\n+\n\\frac{1}{2}\\mathbf{u}^{\\mathrm T}\n\\mathbf{H}\n\\mathbf{u}.\n\\]\n\\(\\mathbf{H}\\) is the Hessian, the matrix of second derivatives of the energy with respect to atomic displacements.\nStopping the expansion at second order defines the harmonic approximation. The potential-energy surface is locally replaced by a multidimensional quadratic surface. After mass weighting and diagonalization, the coupled atomic motions become independent normal modes with characteristic frequencies.\nFor an isolated molecule this would already give a finite set of molecular vibrations. A crystal contains an additional ingredient: translational periodicity.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
+      "Laboratory 4 — From phonons to thermodynamics"
     ]
   },
   {
-    "objectID": "labs/lab01-crystal-structure.html#asymmetric-unit-and-unit-cell",
-    "href": "labs/lab01-crystal-structure.html#asymmetric-unit-and-unit-cell",
-    "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "Asymmetric unit and unit cell",
-    "text": "Asymmetric unit and unit cell\nThe asymmetric unit is the smallest part of the structure from which the contents of the unit cell can be generated by applying the appropriate space-group operations. The unit cell, in turn, generates the infinite periodic crystal by translation.\nThis distinction is easy to lose when looking only at a structure drawing. MgO provides a particularly clean example. Only one Mg site and one O site are needed in its crystallographic description, but applying the symmetry and centring operations generates the complete contents of the conventional cubic cell.\nIn the notebook we therefore inspect the structure twice: first as the list of sites written in the CIF, and then as the symmetry-expanded unit cell. The difference between these lists is itself part of the crystallographic information.",
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#a-phonon-has-both-a-branch-and-a-wave-vector",
+    "href": "labs/lab04-vibrations-thermodynamics.html#a-phonon-has-both-a-branch-and-a-wave-vector",
+    "title": "Laboratory 4 — From phonons to thermodynamics",
+    "section": "A phonon has both a branch and a wave vector",
+    "text": "A phonon has both a branch and a wave vector\nA periodic crystal can sustain collective vibrations in which equivalent cells do not all move with the same phase. A phonon mode is therefore labelled not only by a branch index \\(j\\), but also by a wave vector \\(\\mathbf{q}\\):\n\\[\n\\nu_{\\mathbf{q}j}.\n\\]\nThe allowed \\(\\mathbf{q}\\) vectors are described in reciprocal space, and the non-redundant reciprocal-space domain is the first Brillouin zone.\nFor primitive MgO there are two atoms in the primitive cell, so the phonon spectrum contains\n\\[\n3N = 6\n\\]\nbranches at every \\(\\mathbf{q}\\):\n\nthree acoustic branches;\nthree optical branches.\n\nThe frequencies of these branches vary across the Brillouin zone. This variation is the phonon dispersion.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
+      "Laboratory 4 — From phonons to thermodynamics"
     ]
   },
   {
-    "objectID": "labs/lab01-crystal-structure.html#two-complementary-symmetry-tools",
-    "href": "labs/lab01-crystal-structure.html#two-complementary-symmetry-tools",
-    "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "Two complementary symmetry tools",
-    "text": "Two complementary symmetry tools\nWe use Gemmi and spglib for different reasons.\nGemmi is used to read the CIF as a crystallographic document. It understands the unit cell, space-group symbols, symmetry operations and atomic sites. In other words, it can tell us what crystallographic information the file claims to contain.\nspglib approaches the problem from another direction. We give it lattice vectors, atomic coordinates and atomic species. It then searches numerically for operations that map the structure onto itself. This requires a tolerance, because coordinates in real structure files are finite-precision numbers and experimental structures are never mathematical abstractions with infinitely exact coordinates.\nThe comparison is useful:\n\\[\n\\text{symmetry stated in the CIF}\n\\quad\\longleftrightarrow\\quad\n\\text{symmetry implied by the numerical structure}.\n\\]\nAgreement is a consistency check. Disagreement is not something to hide by changing parameters until the desired answer appears. It is a result that must be understood: the structure may be distorted, the tolerance may be inappropriate, the CIF may use a non-standard setting, or the structural model may contain disorder or partial occupancies.\nFor this first exercise we use ordered structures with full occupancies so that the symmetry analysis remains unambiguous.",
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#why-the-γ-point-is-special",
+    "href": "labs/lab04-vibrations-thermodynamics.html#why-the-γ-point-is-special",
+    "title": "Laboratory 4 — From phonons to thermodynamics",
+    "section": "Why the Γ point is special",
+    "text": "Why the Γ point is special\nThe centre of the first Brillouin zone is\n\\[\n\\Gamma:\\qquad \\mathbf{q}=0.\n\\]\nAt \\(\\Gamma\\), equivalent unit cells oscillate in phase.\nA \\(\\Gamma\\)-point phonon calculation is not useless or merely incomplete data. It answers a very important experimental question. In ordinary first-order infrared and Raman spectroscopy, the momentum carried by the photon is tiny compared with the dimensions of a crystal Brillouin zone. Crystal-momentum conservation therefore selects phonons very close to \\(\\mathbf{q}=0\\).\nThis is why calculated \\(\\Gamma\\)-point optical frequencies can be compared with IR and Raman spectra, subject to the appropriate selection rules.\nNot every \\(\\Gamma\\) mode is automatically Raman or IR active. Activity depends on symmetry and on how the vibration couples to the electromagnetic field. Nevertheless, the relevant vibrational frequencies for first-order optical spectroscopy are \\(\\Gamma\\)-point frequencies.\nThis gives \\(\\Gamma\\) two very different roles in this laboratory:\n\nit is physically important for spectroscopy;\nit is generally insufficient for bulk thermodynamics.\n\nUnderstanding why those statements are simultaneously true is one of the main objectives of the activity.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
+      "Laboratory 4 — From phonons to thermodynamics"
     ]
   },
   {
-    "objectID": "labs/lab01-crystal-structure.html#symmetry-operations-in-coordinate-form",
-    "href": "labs/lab01-crystal-structure.html#symmetry-operations-in-coordinate-form",
-    "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "Symmetry operations in coordinate form",
-    "text": "Symmetry operations in coordinate form\nA space-group operation can be written as a transformation of fractional coordinates. The identity is\n\\[\n(x,y,z)\\rightarrow(x,y,z),\n\\]\nwhereas an operation written, for example, as\n-y,x,z\nmaps\n\\[\n(x,y,z)\\rightarrow(-y,x,z).\n\\]\nTranslations may appear as fractional additions such as \\(1/2\\). Rather than printing every operation of a high-symmetry space group without context, the notebook first shows a compact set of Hall-derived operations and the lattice centring translations, and then lets you inspect part of the full operation list.\nThe software can describe the matrix and translational parts of an operation, but interpreting an operation geometrically remains a crystallographic task. In particular, the presence of a translational component is what distinguishes operations such as screw axes and glide planes from their purely point-symmetry counterparts.",
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#why-γ-alone-is-not-enough-for-thermodynamics",
+    "href": "labs/lab04-vibrations-thermodynamics.html#why-γ-alone-is-not-enough-for-thermodynamics",
+    "title": "Laboratory 4 — From phonons to thermodynamics",
+    "section": "Why Γ alone is not enough for thermodynamics",
+    "text": "Why Γ alone is not enough for thermodynamics\nThermodynamic properties depend on the population of the vibrational states available throughout the crystal.\nIn the harmonic approximation, a property can be written schematically as a weighted sum over all phonon branches and q-points:\n\\[\nX(T)\n=\n\\frac{1}{\\sum_{\\mathbf q}w_{\\mathbf q}}\n\\sum_{\\mathbf q}\nw_{\\mathbf q}\n\\sum_j\nX_{\\mathbf qj}(T).\n\\]\nThe precise oscillator expressions are implemented by Quantas. You are not expected to memorize them. The important information flow is\nfrequency ν(q,j)\n      +\nq-point integration weight\n      +\ntemperature\n      ↓\nthermodynamic contribution\nThe failure of a \\(\\Gamma\\)-only thermodynamic calculation is especially clear for the acoustic branches.\nAt exactly \\(\\Gamma\\), the three acoustic modes correspond to rigid translations and have frequencies that ideally approach zero. Away from \\(\\Gamma\\) their frequencies increase continuously. Those finite-q acoustic states are a major part of the low-frequency phonon spectrum and dominate the low-temperature heat capacity.\nA calculation that contains only \\(\\Gamma\\) therefore misses the dispersion of the acoustic branches almost completely.\nThis is very different from spectroscopy: the same \\(\\Gamma\\) calculation can contain useful IR/Raman optical frequencies while remaining a very poor sampling of the vibrational states needed for thermodynamics.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
+      "Laboratory 4 — From phonons to thermodynamics"
     ]
   },
   {
-    "objectID": "labs/lab01-crystal-structure.html#wyckoff-positions",
-    "href": "labs/lab01-crystal-structure.html#wyckoff-positions",
-    "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "Wyckoff positions",
-    "text": "Wyckoff positions\nThe atoms of a crystal can also be organized into Wyckoff positions. A Wyckoff position identifies an orbit of symmetrically equivalent points in a given space group.\nThree pieces of information are especially useful:\n\nthe multiplicity, which gives the number of equivalent sites in the conventional unit cell;\nthe Wyckoff letter, which distinguishes inequivalent orbits;\nthe site symmetry, which describes the subgroup of operations that leaves a particular site invariant.\n\nA multiplicity is therefore not the number of independent atoms that had to be entered in the CIF. Quite the opposite: several atoms in the conventional cell may all be generated from one crystallographically independent site.",
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#direct-space-supercells-and-reciprocal-space-sampling",
+    "href": "labs/lab04-vibrations-thermodynamics.html#direct-space-supercells-and-reciprocal-space-sampling",
+    "title": "Laboratory 4 — From phonons to thermodynamics",
+    "section": "Direct-space supercells and reciprocal-space sampling",
+    "text": "Direct-space supercells and reciprocal-space sampling\nCRYSTAL uses a direct-space approach to phonon dispersion calculations.\nWith SCELPHONO, an integer supercell is constructed from the primitive cell. For the isotropic supercells used here,\n1×1×1\n2×2×2\n3×3×3\n4×4×4\nthe corresponding commensurate reciprocal-space meshes contain\n\n\n\ndirect-space sampling\nfull q-point mesh\n\n\n\n\n\\(1\\times1\\times1\\)\n1\n\n\n\\(2\\times2\\times2\\)\n8\n\n\n\\(3\\times3\\times3\\)\n27\n\n\n\\(4\\times4\\times4\\)\n64\n\n\n\nThe relation is reciprocal: increasing the range represented in direct space allows a denser set of exactly commensurate q-points in reciprocal space.\nThe CRYSTAL phonon-dispersion workflow uses SCELPHONO in the geometry section and DISPERSI inside FREQCALC. The official CRYSTAL tutorial uses exactly this construction for convergence of thermodynamic properties:\nhttps://tutorials.crystalsolutions.eu/tutorial.html?td=dispersion&tf=dispersion-ht",
     "crumbs": [
       "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
+      "Laboratory 4 — From phonons to thermodynamics"
     ]
   },
   {
-    "objectID": "labs/lab01-crystal-structure.html#visualization-is-inspection-not-proof",
-    "href": "labs/lab01-crystal-structure.html#visualization-is-inspection-not-proof",
-    "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "Visualization is inspection, not proof",
-    "text": "Visualization is inspection, not proof\nThe notebooks use py3Dmol to display the CIF interactively. You can rotate the structure, zoom, draw the unit-cell box and replicate the cell to make periodicity easier to see.\nThe default representation uses spheres without automatically inferred bonds. This choice is deliberate. A line drawn between two atoms by a visualization program is based on a graphical or distance criterion; it is not itself a crystallographic observable and should not silently determine how we interpret bonding in a mineral.\nThe viewer is therefore an aid to scientific inspection. The quantitative description still comes from the crystallographic data and symmetry analysis.",
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#why-crystal-prints-8-27-or-64-frequency-sets",
+    "href": "labs/lab04-vibrations-thermodynamics.html#why-crystal-prints-8-27-or-64-frequency-sets",
+    "title": "Laboratory 4 — From phonons to thermodynamics",
+    "section": "Why CRYSTAL prints 8, 27 or 64 frequency sets",
+    "text": "Why CRYSTAL prints 8, 27 or 64 frequency sets\nFor the calculations used in this laboratory, CRYSTAL explicitly prints a frequency spectrum for every point of the full commensurate q mesh.\nThus a \\(4\\times4\\times4\\) calculation contains 64 q-point spectra.\nAt first sight this looks wasteful because many q-points are related by crystal symmetry. For thermodynamic integration there are two mathematically equivalent ways to represent the sampling.\nA full uniform mesh can be written as\n\\[\n\\frac{1}{N_q}\n\\sum_{\\mathbf q}^{N_q}\nX(\\mathbf q).\n\\]\nAlternatively, symmetry-equivalent q-points can be grouped into irreducible representatives:\n\\[\n\\frac{1}{\\sum_i w_i}\n\\sum_i\nw_i X(\\mathbf q_i),\n\\]\nwhere \\(w_i\\) is the multiplicity of representative \\(\\mathbf q_i\\).\nThe second form is what you may have encountered in codes such as Phonopy.\n\nWhat we do in this course\nQuantas can use the full CRYSTAL mesh directly. Equal weights are correct for a complete uniform mesh, and Quantas normalizes all supplied q-point weights by their sum.\nFor inspection, the course tools can also use spglib to group the full mesh into symmetry-equivalent sets and report an irreducible q-point table with multiplicity weights.\nThe weights are derived from crystal symmetry, not guessed from similar frequencies. Similar spectra are then used only as a consistency check that symmetry-related q-points really do carry equivalent vibrational information.\nThis distinction is important. An incorrect q-point weight changes every integrated vibrational property even if the YAML file itself remains perfectly valid.\nQuantas deliberately does not invent missing multiplicities from q-point coordinates during an HA/QHA calculation. Weight provenance is part of the scientific input:\nhttps://quantas.readthedocs.io/en/2.0.0-beta/formats/phonon_yaml.html",
     "crumbs": [
       "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
+      "Laboratory 4 — From phonons to thermodynamics"
     ]
   },
   {
-    "objectID": "labs/lab01-crystal-structure.html#laboratory-workflow",
-    "href": "labs/lab01-crystal-structure.html#laboratory-workflow",
-    "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "Laboratory workflow",
-    "text": "Laboratory workflow\nThe activity has two parts.\nFirst, we work together on MgO (periclase):\n01-guided-mgo.ipynb\nMgO is useful because the rocksalt structure is simple enough that the relationship between asymmetric unit, face-centred cell, symmetry and Wyckoff multiplicity remains visible.\nYou will then receive a second CIF and repeat the same reasoning independently in:\n02-assigned-structure.ipynb\nPlace the assigned CIF directly inside:\nwork/lab01/\nand change only the filename requested in the notebook.\nThe questions are intentionally short. They ask you to interpret the structure, not to reproduce Python code.",
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#from-phonons-to-statistical-thermodynamics",
+    "href": "labs/lab04-vibrations-thermodynamics.html#from-phonons-to-statistical-thermodynamics",
+    "title": "Laboratory 4 — From phonons to thermodynamics",
+    "section": "From phonons to statistical thermodynamics",
+    "text": "From phonons to statistical thermodynamics\nIn statistical thermodynamics, each harmonic phonon behaves as a quantum harmonic oscillator. Once the frequency spectrum is known, temperature determines how strongly each oscillator is populated.\nQuantas uses the q-resolved phonon spectrum to calculate quantities including:\n\nzero-point vibrational energy;\nvibrational internal energy;\nvibrational Helmholtz free energy;\nvibrational entropy;\nisochoric heat capacity \\(C_V\\).\n\nThis is the computational version of the connection developed in the statistical-thermodynamics part of the course: the phonon spectrum defines the available vibrational states, while thermal populations determine macroscopic entropy and heat capacity.\nThe Quantas harmonic workflow is documented here:\nhttps://quantas.readthedocs.io/en/2.0.0-beta/api/ha.html",
     "crumbs": [
       "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
+      "Laboratory 4 — From phonons to thermodynamics"
     ]
   },
   {
-    "objectID": "labs/lab01-crystal-structure.html#what-to-save",
-    "href": "labs/lab01-crystal-structure.html#what-to-save",
-    "title": "Laboratory 1 — From CIF to crystal structure",
-    "section": "What to save",
-    "text": "What to save\nAt the end of the laboratory your private repository should contain:\n\nthe completed guided MgO notebook;\nthe completed assigned-structure notebook;\nthe CIF supplied for your individual activity.\n\nUse the usual end-of-session sequence:\nsave → commit → Sync Changes → verify on GitHub → stop Codespace",
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#heat-capacity-and-q-point-convergence",
+    "href": "labs/lab04-vibrations-thermodynamics.html#heat-capacity-and-q-point-convergence",
+    "title": "Laboratory 4 — From phonons to thermodynamics",
+    "section": "Heat capacity and q-point convergence",
+    "text": "Heat capacity and q-point convergence\nHeat capacity is particularly useful for this laboratory because its physical limits are easy to interpret.\nAt low temperature, only low-frequency states are populated. The acoustic phonons close to \\(\\Gamma\\) are therefore especially important. A poor q mesh has very few points in this region, and the low-temperature heat capacity is highly sensitive to sampling.\nFor a three-dimensional crystal with ordinary acoustic dispersion, the low-temperature behaviour approaches the Debye form\n\\[\nC_V \\propto T^3.\n\\]\nAt high temperature, every harmonic vibrational degree of freedom approaches its classical limit. For a crystal with \\(n\\) atoms per chemical formula unit,\n\\[\nC_V \\longrightarrow 3nR.\n\\]\nMgO has two atoms per formula unit, so\n\\[\nC_V\n\\longrightarrow\n6R\n\\approx\n49.9\\ \\mathrm{J\\,mol^{-1}\\,K^{-1}}.\n\\]\nThis is the Dulong–Petit limit for the harmonic heat capacity of MgO.\nThe progression\nΓ → 2×2×2 → 3×3×3 → 4×4×4\nshould therefore be interpreted as a numerical convergence experiment on the Brillouin-zone integral.\nThe question is not whether 64 q-points are intrinsically “correct”. The question is whether further refinement changes the observable by an amount that matters for the scientific interpretation.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 1 — From CIF to crystal structure"
+      "Laboratory 4 — From phonons to thermodynamics"
     ]
   },
   {
-    "objectID": "labs/lab02-energy-geometry.html",
-    "href": "labs/lab02-energy-geometry.html",
-    "title": "Laboratory 2 — From structure to energy",
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#comparison-with-experimental-heat-capacity",
+    "href": "labs/lab04-vibrations-thermodynamics.html#comparison-with-experimental-heat-capacity",
+    "title": "Laboratory 4 — From phonons to thermodynamics",
+    "section": "Comparison with experimental heat capacity",
+    "text": "Comparison with experimental heat capacity\nThe workspace contains a small experimental reference dataset for MgO.\nLow-temperature values come from the measurements of Barron, Berg and Morrison compiled in the NIST Structural Ceramics Database. Higher-temperature values come from an evaluated calorimetric MgO dataset in the same NIST database.\nThe comparison is intentionally not between identical thermodynamic quantities.\nThe harmonic calculation provides\n\\[\nC_V,\n\\]\nthe heat capacity at constant volume.\nExperimental calorimetry on a solid under approximately ambient pressure is normally interpreted as a constant-pressure heat capacity,\n\\[\nC_P.\n\\]\nAt sufficiently low temperature the difference is small. At higher temperature, thermal expansion makes the distinction increasingly important.\nThis is not an inconvenience to hide. It is part of the laboratory.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 4 — From phonons to thermodynamics"
+    ]
+  },
+  {
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#the-central-limitation-of-the-harmonic-approximation",
+    "href": "labs/lab04-vibrations-thermodynamics.html#the-central-limitation-of-the-harmonic-approximation",
+    "title": "Laboratory 4 — From phonons to thermodynamics",
+    "section": "The central limitation of the harmonic approximation",
+    "text": "The central limitation of the harmonic approximation\nIn the harmonic approximation used here, the frequencies are calculated at one fixed equilibrium structure. They do not change when temperature changes.\nConsequently the harmonic model has no mechanism for thermal expansion:\n\\[\n\\alpha_V=0.\n\\]\nWithin that fixed-volume harmonic description,\n\\[\nC_P=C_V.\n\\]\nA real crystal expands with temperature, and its phonon spectrum changes as the volume changes. The real constant-pressure heat capacity therefore contains a contribution that our present HA calculation cannot reproduce.\nEven after the \\(3\\times3\\times3\\) and \\(4\\times4\\times4\\) results become numerically indistinguishable, a discrepancy with experiment may remain.\nThat residual difference can contain several contributions:\n\nthe fixed-volume harmonic approximation;\nthe experimental \\(C_P\\) versus calculated \\(C_V\\) distinction;\nthe volume dependence of phonon frequencies;\nexplicit anharmonic interactions between phonons;\nresidual DFT/basis-set model error;\nexperimental uncertainty and sample differences.\n\nThe first two are particularly important for interpreting this laboratory.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 4 — From phonons to thermodynamics"
+    ]
+  },
+  {
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#numerical-convergence-is-not-physical-exactness",
+    "href": "labs/lab04-vibrations-thermodynamics.html#numerical-convergence-is-not-physical-exactness",
+    "title": "Laboratory 4 — From phonons to thermodynamics",
+    "section": "Numerical convergence is not physical exactness",
+    "text": "Numerical convergence is not physical exactness\nThis returns us to a distinction already encountered in Laboratory 2.\nA \\(4\\times4\\times4\\) phonon calculation may be numerically converged with respect to q-point sampling.\nThat does not mean the underlying physical model has become exact.\nThe logic is:\nΓ\n↓\nlarge q-sampling error\n\n2×2×2\n↓\nsmaller q-sampling error\n\n3×3×3\n↓\nsmall q-sampling error\n\n4×4×4\n↓\nq-point convergence\n\nstill different from experiment?\n↓\nlook at the physical approximations\nThis is the scientific conclusion of the laboratory, not a failure of the calculation.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 4 — From phonons to thermodynamics"
+    ]
+  },
+  {
+    "objectID": "labs/lab04-vibrations-thermodynamics.html#looking-ahead-beyond-the-harmonic-approximation",
+    "href": "labs/lab04-vibrations-thermodynamics.html#looking-ahead-beyond-the-harmonic-approximation",
+    "title": "Laboratory 4 — From phonons to thermodynamics",
+    "section": "Looking ahead: beyond the harmonic approximation",
+    "text": "Looking ahead: beyond the harmonic approximation\nIf time permits, a later activity can extend the calculation to the quasi-harmonic approximation (QHA).\nThe QHA repeats harmonic phonon calculations at different volumes. Frequencies then become functions of volume,\n\\[\n\\nu_{\\mathbf qj}=\\nu_{\\mathbf qj}(V),\n\\]\nallowing the free-energy minimum to move with temperature. Thermal expansion and the distinction between \\(C_P\\) and \\(C_V\\) then emerge naturally.\nQuantas describes this extension explicitly:\nhttps://quantas.readthedocs.io/en/2.0.0-beta/theory/qha.html\nThat possible extension is not required for Laboratory 4. Here the goal is first to understand what the harmonic model can predict, how its reciprocal- space sampling converges, and where its physical limits appear in comparison with experiment.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 4 — From phonons to thermodynamics"
+    ]
+  },
+  {
+    "objectID": "labs/lab05-quasi-harmonic.html",
+    "href": "labs/lab05-quasi-harmonic.html",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
     "section": "",
-    "text": "In the first laboratory a CIF was enough to describe where the atoms are and how symmetry generates a periodic crystal. We now ask a different question:\nThis sounds like a request for a single number. It is not. A first-principles calculation contains both a physical model and a set of numerical approximations. Understanding the difference between them is one of the most important habits in computational mineralogy.\nWe will again use MgO. This is deliberate. Periclase is structurally simple, small enough that calculations are fast, and still a genuine periodic ionic solid. We can therefore concentrate on the logic of the calculation rather than on the complexity of the mineral.",
+    "text": "Laboratory 4 showed that a harmonic phonon calculation can describe important features of a crystal very well. Once the first Brillouin zone is sampled adequately, the vibrational entropy and the constant-volume heat capacity become numerically converged, and the high-temperature harmonic heat capacity approaches the Dulong–Petit limit.\nHowever, it also exposed a limitation that cannot be removed by adding more q-points.\nIndeed, in the harmonic approximation used so far, the crystal is represented at one fixed volume. Its phonon frequencies are calculated for that structure and are then used at every temperature. The vibrational populations change with temperature, but the equilibrium structure itself does not.\nA real crystal does not behave this way because it normally expands when heated, the phonon frequencies change as interatomic distances change, and thermodynamic properties measured at constant pressure are no longer identical to the corresponding fixed-volume quantities.\nThe quasi-harmonic approximation (QHA) is one of the simplest and most useful ways to introduce this coupling between vibrations and crystal volume. This approach does not abandon harmonic lattice dynamics; instead, it asks a new question:\nThat additional information is enough to recover thermal expansion and a large set of temperature- and pressure-dependent thermodynamic and thermoelastic properties.\nFor a mechanically stable and only weakly explicitly anharmonic material such as MgO, this approach is particularly effective.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 2 — From structure to energy"
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
     ]
   },
   {
-    "objectID": "labs/lab02-energy-geometry.html#a-map-of-the-calculation",
-    "href": "labs/lab02-energy-geometry.html#a-map-of-the-calculation",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "A map of the calculation",
-    "text": "A map of the calculation\nThe calculation can be viewed as a sequence:\ncrystal structure\n      ↓\nelectronic-structure model\n      ├── basis set\n      └── exchange-correlation functional\n      ↓\nnumerical choices\n      ├── reciprocal-space sampling\n      ├── integral thresholds\n      └── SCF convergence threshold\n      ↓\nself-consistent solution\n      ↓\ntotal energy\n      ↓\nnumerical convergence test\nThe distinction between the two middle levels is essential.\nModel accuracy asks whether the chosen physical approximation is suitable for the scientific problem. A different exchange-correlation functional, for example, defines a different approximation to the electronic problem.\nNumerical convergence asks whether the chosen model has been solved accurately enough. Increasing the number of k-points does not change PBE into a better density functional; it reduces one numerical error within a PBE calculation.\nA calculation can therefore be tightly converged and still disagree with experiment because the physical model is incomplete. Conversely, a sophisticated physical model can give poor results if its numerical parameters are not converged.",
+    "objectID": "labs/lab05-quasi-harmonic.html#what-was-missing-from-the-harmonic-calculation",
+    "href": "labs/lab05-quasi-harmonic.html#what-was-missing-from-the-harmonic-calculation",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "What was missing from the harmonic calculation?",
+    "text": "What was missing from the harmonic calculation?\nIn the harmonic approximation, the potential-energy surface is replaced locally by a quadratic form around one equilibrium geometry. Each normal mode is then an independent harmonic oscillator with a fixed frequency.\nFor the calculation performed in Laboratory 4, we may write schematically\n\\[\n\\nu_{\\mathbf q j} =\n\\nu_{\\mathbf q j}(V_0),\n\\]\nwhere \\(V_0\\) is the selected equilibrium volume.\nTemperature changes the occupation of these vibrational states, but it does not change the frequencies themselves. Consequently, the thermodynamic calculation is carried out at one fixed volume. Within this model,\n\\[\n\\alpha_V = 0,\n\\]\nand therefore\n\\[\nC_P = C_V.\n\\]\nThis is why the harmonic \\(C_V\\) can converge perfectly with respect to q-point sampling and still fail to reproduce the high-temperature experimental constant-pressure heat capacity (\\(C_P\\)).\nThe numerical problem may be solved while the physical approximation remains.\n\n\n\n\n\n\nImportantNumerical convergence and physical completeness are different questions\n\n\n\nIncreasing the phonon supercell from \\(2\\times2\\times2\\) to \\(3\\times3\\times3\\) or \\(4\\times4\\times4\\) improves the Brillouin-zone integration.\nIt does not allow a fixed-volume harmonic crystal to expand with temperature.\nLaboratory 5 changes the physical model, not merely the numerical sampling.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 2 — From structure to energy"
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
     ]
   },
   {
-    "objectID": "labs/lab02-energy-geometry.html#density-functional-theory-without-the-machinery",
-    "href": "labs/lab02-energy-geometry.html#density-functional-theory-without-the-machinery",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "Density functional theory, without the machinery",
-    "text": "Density functional theory, without the machinery\nThe electrons in a mineral require a quantum-mechanical description. Solving the full interacting many-electron problem directly is impractical for the systems of interest here. Density functional theory (DFT) reformulates the problem around the electron density and leads to a practical set of Kohn–Sham equations that are solved iteratively.\nThe part of the energy associated with exchange and correlation is not known exactly for general systems and must be approximated by an exchange-correlation functional.\nA useful qualitative organization is often called Jacob’s ladder:\n\n\n\nLevel\nTypical family\nGeneral idea\n\n\n\n\n1\nLDA\ndepends on the local density\n\n\n2\nGGA\nadds information on density gradients\n\n\n3\nmeta-GGA\nincludes additional semilocal information\n\n\n4\nhybrid\nmixes part of exact Hartree–Fock exchange\n\n\n\nGoing upward generally changes both the mathematical model and the computational cost. It does not mean that a higher rung is automatically better for every material and every property.\nIn this laboratory the functional is PBE, a GGA functional. The functional is fixed: it is not part of today’s convergence experiment.",
+    "objectID": "labs/lab05-quasi-harmonic.html#the-central-idea-of-the-quasi-harmonic-approximation",
+    "href": "labs/lab05-quasi-harmonic.html#the-central-idea-of-the-quasi-harmonic-approximation",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "The central idea of the quasi-harmonic approximation",
+    "text": "The central idea of the quasi-harmonic approximation\nThe QHA replaces one harmonic calculation by a series of harmonic calculations at different volumes. At each volume the lattice dynamics are still harmonic:\n\\[\nE(\\mathbf u;V)\n\\simeq\nE_0(V)\n+\n\\frac{1}{2}\n\\mathbf u^{\\mathrm T}\n\\mathbf H(V)\n\\mathbf u.\n\\]\nHowever, the Hessian now changes from one volume to another., thus the phonon frequencies become functions of volume:\n\\[\n\\nu_{\\mathbf qj} = \\nu_{\\mathbf qj}(V).\n\\]\nThis is the essential quasi-harmonic step.\nThe frequencies do not acquire an explicit temperature dependence at fixed volume. Instead, temperature changes the equilibrium volume, and the changing volume changes the frequencies.\nThe sequence is therefore\ntemperature\n    ↓\nequilibrium volume changes\n    ↓\nphonon frequencies change because ν = ν(V)\n    ↓\nvibrational free energy changes\n    ↓\nnew equilibrium volume\nThe equilibrium is obtained self-consistently from the free-energy surface.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 2 — From structure to energy"
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
     ]
   },
   {
-    "objectID": "labs/lab02-energy-geometry.html#the-basis-set-the-language-used-for-the-orbitals",
-    "href": "labs/lab02-energy-geometry.html#the-basis-set-the-language-used-for-the-orbitals",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "The basis set: the language used for the orbitals",
-    "text": "The basis set: the language used for the orbitals\nCRYSTAL represents crystalline orbitals using localized Gaussian basis functions centred on atoms. A basis set is therefore the numerical language used to represent the electronic wavefunctions.\nA larger and more flexible basis can represent the electronic structure more accurately, but generally increases computational cost and may introduce its own numerical difficulties.\nFor this laboratory we use the internally available POB-TZVP-REV2 basis set. It is already selected for you. You should be able to recognize the basis-set section of the input, but you are not being asked to optimize the basis set.\n\n\n\n\n\n\nNoteFixed does not mean universally optimal\n\n\n\nPBE and POB-TZVP-REV2 are kept fixed so that we can isolate one numerical question. Their use here does not establish that this combination is the best possible model for every MgO property.",
+    "objectID": "labs/lab05-quasi-harmonic.html#qha-contains-anharmonic-physics-but-not-explicit-anharmonicity",
+    "href": "labs/lab05-quasi-harmonic.html#qha-contains-anharmonic-physics-but-not-explicit-anharmonicity",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "QHA contains anharmonic physics — but not explicit anharmonicity",
+    "text": "QHA contains anharmonic physics — but not explicit anharmonicity\nThe name quasi-harmonic is important. At every individual volume, the phonons are treated as harmonic oscillators. No cubic or quartic force constants are required for the standard QHA.\nNevertheless, a collection of harmonic calculations at different volumes contains part of the effect that an anharmonic crystal potential has on thermodynamics. The volume dependence of the frequencies allows the crystal to expand and produces a thermal pressure.\nThis contribution is often called implicit or quasi-harmonic anharmonicity.\nThe QHA does not include explicit interactions between phonons at a fixed volume. It therefore does not directly describe phenomena such as:\n\nphonon lifetimes and linewidths;\nintrinsic temperature-induced frequency shifts at fixed volume;\nstrong phonon–phonon scattering;\nstrongly anharmonic soft modes;\nmany displacive phase transitions;\nbehaviour close to melting.\n\nFor MgO over a moderate pressure–temperature range, explicit anharmonicity is small enough that the QHA provides a very useful description. That is one reason why MgO is an excellent teaching system for this laboratory.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 2 — From structure to energy"
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
     ]
   },
   {
-    "objectID": "labs/lab02-energy-geometry.html#the-self-consistent-field-cycle",
-    "href": "labs/lab02-energy-geometry.html#the-self-consistent-field-cycle",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "The self-consistent field cycle",
-    "text": "The self-consistent field cycle\nThe Kohn–Sham equations depend on the electron density, but the density is also obtained from their solution. CRYSTAL therefore solves the problem self-consistently:\n\nstart from an initial electron density;\nconstruct the Kohn–Sham matrix;\nsolve for the electronic states;\nbuild a new density;\ncompare the new solution with the previous one;\nrepeat until the chosen convergence criterion is satisfied.\n\nThis is the SCF cycle.\nCRYSTAL prints the total energy during the iterations. A successful calculation eventually contains a line of the form:\nSCF ENDED - CONVERGENCE ON ENERGY\nThe analysis tools used in this laboratory deliberately require this convergence marker. The last printed energy of an interrupted or unconverged calculation is not accepted as a valid result.",
+    "objectID": "labs/lab05-quasi-harmonic.html#what-data-are-required",
+    "href": "labs/lab05-quasi-harmonic.html#what-data-are-required",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "What data are required?",
+    "text": "What data are required?\nA quasi-harmonic calculation combines two types of information that have already appeared separately in the course.\nFor a set of volumes \\(V_i\\), we need the static electronic energy\n\\[\nU_0(V_i)\n\\]\nand the harmonic phonon spectrum\n\\[\n\\nu_{\\mathbf qj}(V_i).\n\\]\nThe workflow therefore looks like:\nchoose a set of volumes around equilibrium\n            ↓\nrelax the structure at each fixed volume\n            ↓\ncalculate static energy U0(V)\n            ↓\ncalculate a converged phonon spectrum at each V\n            ↓\nobtain ν(q,j,V)\n            ↓\nbuild F(V,T)\n            ↓\nminimize at each P,T\n            ↓\nderive finite-temperature properties\nThe same electronic-structure model and numerical settings must be used at all volumes, and the phonon sampling must also be consistent.\nLaboratory 4 established why the q-point mesh matters. The QHA does not remove that requirement: every volume must contain a phonon description of comparable quality.\nIn the practical activity, the expensive dense-supercell phonon calculations will be supplied as a precomputed, internally consistent dataset. The purpose of the laboratory is to understand and analyse the quasi-harmonic model rather than to spend the session waiting for multiple large phonon calculations.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 2 — From structure to energy"
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
     ]
   },
   {
-    "objectID": "labs/lab02-energy-geometry.html#why-a-periodic-solid-needs-k-points",
-    "href": "labs/lab02-energy-geometry.html#why-a-periodic-solid-needs-k-points",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "Why a periodic solid needs k-points",
-    "text": "Why a periodic solid needs k-points\nThe electronic states of a periodic crystal are described in reciprocal space. In principle, quantities involving the electronic structure require integration over the Brillouin zone. Numerically, this integral is replaced by a finite set of k-points.\nCRYSTAL uses the SHRINK keyword to construct a commensurate Monkhorst–Pack-type grid. For the cubic MgO calculation used here, a value \\(IS\\) corresponds to a nominal sampling based on reciprocal-lattice increments\n\\[\n\\frac{\\mathbf{b}_1}{IS},\\qquad\n\\frac{\\mathbf{b}_2}{IS},\\qquad\n\\frac{\\mathbf{b}_3}{IS}.\n\\]\nIt is therefore convenient to think of the sequence as increasingly dense nominal \\(IS\\times IS\\times IS\\) grids.\nThis does not mean that CRYSTAL diagonalizes the Kohn–Sham matrix at \\(IS^3\\) independent points. Crystal symmetry reduces the sampling to the irreducible Brillouin zone (IBZ), and the output reports the actual number of irreducible k-points used.\nIncreasing SHRINK therefore changes two things that we can observe directly:\n\nthe numerical approximation to Brillouin-zone integration;\nthe computational work required by the calculation.",
+    "objectID": "labs/lab05-quasi-harmonic.html#from-frequencies-to-vibrational-free-energy",
+    "href": "labs/lab05-quasi-harmonic.html#from-frequencies-to-vibrational-free-energy",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "From frequencies to vibrational free energy",
+    "text": "From frequencies to vibrational free energy\nFor a phonon of frequency \\(\\nu\\), the harmonic Helmholtz contribution contains both zero-point and thermal terms. Summed over the Brillouin zone,\n\\[\nF_{\\mathrm{vib}}(V,T)\n=\n\\frac{1}{\\sum_{\\mathbf q} w_{\\mathbf q}}\n\\sum_{\\mathbf q,j}\nw_{\\mathbf q}\n\\left[\n\\frac{1}{2}h\\nu_{\\mathbf qj}(V)\n+\nk_BT\n\\ln\n\\left(\n1-\ne^{-h\\nu_{\\mathbf qj}(V)/(k_BT)}\n\\right)\n\\right].\n\\]\nThe total Helmholtz free energy is\n\\[\nF(V,T)\n=\nU_0(V)\n+\nF_{\\mathrm{vib}}(V,T).\n\\]\nThis equation is the heart of the QHA.\nThe first term describes the static electronic energy surface already studied through the equation of state in Laboratory 3.\nThe second term describes the vibrational free energy studied in Laboratory 4, but now the vibrational spectrum is allowed to change with volume.\nThe two earlier laboratories therefore meet in a single quantity:\nLaboratory 3                         Laboratory 4\nstatic E(V)                          phonons and Fvib(T)\n      \\                                  /\n       \\                                /\n        └────── F(V,T) = U0(V)+Fvib(V,T)\n                          ↓\n                         QHA",
     "crumbs": [
       "Laboratories",
-      "Laboratory 2 — From structure to energy"
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
     ]
   },
   {
-    "objectID": "labs/lab02-energy-geometry.html#our-computational-experiment",
-    "href": "labs/lab02-energy-geometry.html#our-computational-experiment",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "Our computational experiment",
-    "text": "Our computational experiment\nA good convergence test behaves like a controlled experiment. We keep everything fixed except the parameter being investigated.\nFor this laboratory:\n\n\n\nQuantity\nChoice\n\n\n\n\nCrystal\nMgO, fixed geometry\n\n\nSpace group\n\\(Fm\\bar{3}m\\)\n\n\nDFT functional\nPBE\n\n\nBasis set\nPOB-TZVP-REV2\n\n\nIntegral thresholds\nfixed\n\n\nSCF energy threshold\nfixed\n\n\nHardware request\n2 physical cores\n\n\nMPI/OpenMP layout\n1 MPI rank × 2 threads\n\n\nVariable\nSHRINK = 2,3,\\ldots,9\n\n\n\nThe first calculation, SHRINK = 2, is performed together. You then copy the input, change only the shrinking factor and submit the remaining calculations.",
+    "objectID": "labs/lab05-quasi-harmonic.html#zero-point-motion-already-changes-the-equilibrium",
+    "href": "labs/lab05-quasi-harmonic.html#zero-point-motion-already-changes-the-equilibrium",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "Zero-point motion already changes the equilibrium",
+    "text": "Zero-point motion already changes the equilibrium\nAt \\(T=0\\), the thermal population of excited phonons vanishes, but the zero-point term\n\\[\n\\frac{1}{2}h\\nu_{\\mathbf qj}(V)\n\\]\nremains.\nTherefore the minimum of\n\\[\nF(V,0)\n=\nU_0(V)+E_{\\mathrm{ZP}}(V)\n\\]\nneed not occur at exactly the same volume as the minimum of the static electronic energy \\(U_0(V)\\).\nThis distinction is small for many solids, but conceptually important:\n\nThe static DFT equilibrium structure and the zero-temperature quasi-harmonic equilibrium structure are not necessarily identical.\n\nZero-point vibrations can exert a small zero-point pressure.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 2 — From structure to energy"
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
     ]
   },
   {
-    "objectID": "labs/lab02-energy-geometry.html#from-an-input-file-to-a-calculation",
-    "href": "labs/lab02-energy-geometry.html#from-an-input-file-to-a-calculation",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "From an input file to a calculation",
-    "text": "From an input file to a calculation\nA simplified CRYSTAL input can be mentally divided into four parts:\nSTRUCTURE\n    lattice / space group / atomic positions\n\nBASIS SET\n    numerical representation of atomic orbitals\n\nHAMILTONIAN\n    DFT and exchange-correlation functional\n\nNUMERICAL CONTROL\n    integral thresholds\n    SCF threshold\n    SHRINK\nYou do not need to memorize CRYSTAL keywords. The important skill is to recognize which scientific or numerical choice each block controls.\nThe official CRYSTAL documentation is available at:\nhttps://www.crystal.unito.it/documentation.html\nThe manual is the authoritative reference when you later need a keyword that is not explained in this course.",
+    "objectID": "labs/lab05-quasi-harmonic.html#equilibrium-at-a-fixed-temperature",
+    "href": "labs/lab05-quasi-harmonic.html#equilibrium-at-a-fixed-temperature",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "Equilibrium at a fixed temperature",
+    "text": "Equilibrium at a fixed temperature\nAt zero external pressure, the equilibrium volume at temperature \\(T\\) is the minimum of the Helmholtz free-energy curve:\n\\[\n\\left(\n\\frac{\\partial F}{\\partial V}\n\\right)_T\n=0.\n\\]\nImagine calculating \\(F(V,T)\\) at several temperatures.\nAt low temperature the minimum lies close to the static equilibrium volume. As temperature rises, the vibrational contribution changes the shape and position of the free-energy minimum.\nFor an ordinary material with positive thermal expansion, the minimum shifts towards larger volume:\nlow T       → minimum near V0\nhigher T    → minimum at larger V\nThe thermal expansion of the crystal is therefore obtained from a sequence of free-energy minima.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 2 — From structure to energy"
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
     ]
   },
   {
-    "objectID": "labs/lab02-energy-geometry.html#running-the-calculation-on-cluminer",
-    "href": "labs/lab02-energy-geometry.html#running-the-calculation-on-cluminer",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "Running the calculation on CluMiner",
-    "text": "Running the calculation on CluMiner\nCRYSTAL is licensed software and is run on the university cluster, not inside Codespaces.\nFor this laboratory the standard submission command is:\ncluminer-crystal mgo_shrink2.d12 --cores-per-node 2 --threads 2\nThe same resource request must be used for every calculation in the convergence series. With these settings the launcher uses one MPI rank with two OpenMP threads.\nKeeping the hardware request fixed is important: if the computational resources changed from one calculation to another, timing comparisons would be much less informative.\nThe scientific output is returned with the input basename, for example:\nmgo_shrink2.d12  →  mgo_shrink2.out\nCopy the resulting .out files back into:\nwork/lab02/outputs/",
+    "objectID": "labs/lab05-quasi-harmonic.html#equilibrium-at-finite-pressure",
+    "href": "labs/lab05-quasi-harmonic.html#equilibrium-at-finite-pressure",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "Equilibrium at finite pressure",
+    "text": "Equilibrium at finite pressure\nPressure enters through the \\(PV\\) work term.\nAt external hydrostatic pressure \\(P\\), the quantity to minimize is\n\\[\nG^*(V;P,T)\n=\nF(V,T)+PV.\n\\]\nThe equilibrium condition is\n\\[\n\\left(\n\\frac{\\partial G^*}{\\partial V}\n\\right)_{P,T}\n=0,\n\\]\nwhich gives\n\\[\nP\n=\n-\n\\left(\n\\frac{\\partial F}{\\partial V}\n\\right)_T.\n\\]\nThis is the finite-temperature extension of the relation encountered in the static equation-of-state laboratory.\nThe QHA therefore turns the static relation\n\\[\nE(V)\n\\]\ninto a temperature-dependent family\n\\[\nF(V,T).\n\\]\nFrom this surface we can determine\n\\[\nV(P,T).\n\\]\nThat one function is the structural backbone of most of the properties studied below.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 2 — From structure to energy"
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
     ]
   },
   {
-    "objectID": "labs/lab02-energy-geometry.html#reading-the-result",
-    "href": "labs/lab02-energy-geometry.html#reading-the-result",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "Reading the result",
-    "text": "Reading the result\nWe will inspect one output manually before using the parser.\nThe output reports:\n\nthe Monkhorst shrinking factors;\nthe number of k-points in the irreducible Brillouin zone;\nthe sequence of SCF cycles;\nthe final converged total energy;\nelapsed and CPU time;\nthe normal termination of the calculation.\n\nThis manual inspection matters. Automated parsing should save us from repetitive transcription, not hide the origin of the data.",
+    "objectID": "labs/lab05-quasi-harmonic.html#a-useful-geometrical-picture",
+    "href": "labs/lab05-quasi-harmonic.html#a-useful-geometrical-picture",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "A useful geometrical picture",
+    "text": "A useful geometrical picture\nIt is helpful to imagine \\(F(V,T)\\) as a surface.\nOne axis is volume, one is temperature, and the vertical direction is free energy.\nA constant-temperature slice through this surface is an \\(F(V)\\) curve.\nAt zero pressure, its minimum gives the equilibrium volume.\nAt non-zero pressure, adding \\(PV\\) tilts the curve before the minimum is found.\nThe complete QHA result can therefore be thought of as a map:\n(P,T)\n  ↓\nequilibrium point on F(V,T)+PV\n  ↓\nV(P,T)\n  ↓\nthermodynamic and thermoelastic properties\nThis is why one calculation can later be displayed either as:\n\na property versus temperature at fixed pressure;\na property versus pressure at fixed temperature;\na two-dimensional pressure–temperature map.\n\nThese are different views of the same thermodynamic model.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 2 — From structure to energy"
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
     ]
   },
   {
-    "objectID": "labs/lab02-energy-geometry.html#energy-convergence",
-    "href": "labs/lab02-energy-geometry.html#energy-convergence",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "Energy convergence",
-    "text": "Energy convergence\nFor a sequence ordered by increasing SHRINK, the notebook calculates the change relative to the preceding sampling:\n\\[\n\\Delta E_i = E_i-E_{i-1}.\n\\]\nBecause the sign is not important for the convergence criterion, we will normally inspect\n\\[\n|\\Delta E_i|.\n\\]\nThe same value is expressed in hartree and in kJ mol\\(^{-1}\\) of MgO.\nFor this CRYSTAL model the primitive computational cell contains one MgO formula unit, so the conversion can be interpreted directly per mole of MgO:\n\\[\n1\\ E_\\mathrm{h} \\approx 2625.5\\ \\mathrm{kJ\\,mol^{-1}}.\n\\]\nThe notebook calculates the conversion from physical constants rather than asking you to perform it manually.",
+    "objectID": "labs/lab05-quasi-harmonic.html#thermal-expansion",
+    "href": "labs/lab05-quasi-harmonic.html#thermal-expansion",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "Thermal expansion",
+    "text": "Thermal expansion\nOnce \\(V(P,T)\\) is known, the volumetric thermal-expansion coefficient is\n\\[\n\\alpha_V\n=\n\\frac{1}{V}\n\\left(\n\\frac{\\partial V}{\\partial T}\n\\right)_P.\n\\]\nIts unit is normally\n\\[\n\\mathrm{K^{-1}}.\n\\]\nA positive \\(\\alpha_V\\) means that the equilibrium volume increases as temperature increases at constant pressure.\nThe QHA also provides a more revealing thermodynamic relation.\nSince\n\\[\nP(V,T)\n=\n-\n\\left(\n\\frac{\\partial F}{\\partial V}\n\\right)_T,\n\\]\none obtains\n\\[\n\\alpha_V\n=\n-\n\\frac{1}{K_T}\n\\frac{\\partial^2F}\n{\\partial V\\,\\partial T}.\n\\]\nUsing\n\\[\nS\n=\n-\n\\left(\n\\frac{\\partial F}{\\partial T}\n\\right)_V,\n\\]\nthe same relation becomes\n\\[\n\\alpha_V\n=\n\\frac{1}{K_T}\n\\left(\n\\frac{\\partial S}{\\partial V}\n\\right)_T.\n\\]\nThis equation gives a useful physical interpretation:\n\nThermal expansion occurs because vibrational entropy depends on volume.\n\nThe entropy calculated in Laboratory 4 is therefore not an isolated thermodynamic quantity. Its volume dependence is directly connected to the thermal expansion of the crystal.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 2 — From structure to energy"
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
     ]
   },
   {
-    "objectID": "labs/lab02-energy-geometry.html#convergence-is-a-decision-not-a-magic-number",
-    "href": "labs/lab02-energy-geometry.html#convergence-is-a-decision-not-a-magic-number",
-    "title": "Laboratory 2 — From structure to energy",
-    "section": "Convergence is a decision, not a magic number",
-    "text": "Convergence is a decision, not a magic number\nThe densest calculation is not automatically the best practical choice.\nAs SHRINK increases, the energy should become progressively less sensitive to further refinement, while computational cost generally increases. Your task is to choose a sampling that is sufficiently converged for the purpose of the subsequent calculations without paying for unnecessary numerical precision.\nValues such as \\(0.1\\) or \\(0.01\\) kJ mol\\(^{-1}\\) can be useful scales when looking at the table, but they are not universal laws. The necessary precision depends on the scientific question. Resolving a very small phase-energy difference may require a tighter criterion than obtaining a preliminary equilibrium structure.\nThe final question of the laboratory is therefore not:\n\nWhat is the largest SHRINK value?\n\nbut:\n\nWhich SHRINK value would you carry forward, and why is its balance between numerical stability and computational cost adequate?\n\nThat decision will matter in the next activity, when the geometry of MgO is allowed to change.",
+    "objectID": "labs/lab05-quasi-harmonic.html#linear-and-axial-thermal-expansion",
+    "href": "labs/lab05-quasi-harmonic.html#linear-and-axial-thermal-expansion",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "Linear and axial thermal expansion",
+    "text": "Linear and axial thermal expansion\nExperimental crystallography often reports the variation of lattice parameters rather than only the total cell volume.\nFor a lattice parameter \\(a\\),\n\\[\n\\alpha_a\n=\n\\frac{1}{a}\n\\left(\n\\frac{\\partial a}{\\partial T}\n\\right)_P.\n\\]\nFor a cubic crystal such as MgO,\n\\[\nV=a^3,\n\\]\nso\n\\[\n\\alpha_V=3\\alpha_a\n\\]\nand therefore\n\\[\n\\alpha_a=\\frac{\\alpha_V}{3}.\n\\]\nThis makes MgO particularly simple.\nFor anisotropic crystals the situation contains more information.\nFor an orthorhombic crystal,\n\\[\n\\alpha_V\n=\n\\alpha_a+\\alpha_b+\\alpha_c.\n\\]\nFor a hexagonal or trigonal crystal with the conventional hexagonal setting,\n\\[\n\\alpha_V\n=\n2\\alpha_a+\\alpha_c.\n\\]\nThere is no requirement that \\(\\alpha_a\\) and \\(\\alpha_c\\) be equal. One direction may expand much more strongly than another, and in some materials one direction may even contract while the total volume still expands.\nFor monoclinic and triclinic crystals, changes in the cell angles also matter. A full description is therefore more naturally expressed through the thermal-expansion tensor rather than through three independent scalar coefficients.\n\n\n\n\n\n\nNoteWhat a volume-based QHA structural path actually means\n\n\n\nIf the crystal structure is relaxed at several constrained volumes, each calculation provides the lowest-energy cell shape and internal coordinates compatible with that volume and symmetry.\nA QHA code can interpolate this structural path and evaluate the cell at the equilibrium volume \\(V(P,T)\\).\nFor an anisotropic crystal this is extremely useful, but it is still a one-dimensional path through strain space. It is not identical to independently minimizing every strain component at every pressure and temperature.",
     "crumbs": [
       "Laboratories",
-      "Laboratory 2 — From structure to energy"
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
+    ]
+  },
+  {
+    "objectID": "labs/lab05-quasi-harmonic.html#the-isothermal-bulk-modulus-at-finite-temperature",
+    "href": "labs/lab05-quasi-harmonic.html#the-isothermal-bulk-modulus-at-finite-temperature",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "The isothermal bulk modulus at finite temperature",
+    "text": "The isothermal bulk modulus at finite temperature\nLaboratory 3 obtained the bulk modulus from the curvature of the static energy–volume relation.\nThe same idea applies to the free energy.\nThe isothermal bulk modulus is\n\\[\nK_T(V,T)\n=\nV\n\\left(\n\\frac{\\partial^2F}{\\partial V^2}\n\\right)_T.\n\\]\nAt the equilibrium volume,\n\\[\nK_T=K_T(P,T).\n\\]\nThe crystal can therefore become more or less compressible as both pressure and temperature change.\nFor many minerals, increasing pressure increases the bulk modulus, while increasing temperature at constant pressure tends to reduce it. The detailed response is material dependent and must be obtained from the free-energy surface rather than assumed.\nThe pressure derivative is\n\\[\nK'_T\n=\n\\left(\n\\frac{\\partial K_T}{\\partial P}\n\\right)_T.\n\\]\nThis is the finite-temperature analogue of the \\(K'_0\\) parameter encountered in the static equation-of-state analysis.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
+    ]
+  },
+  {
+    "objectID": "labs/lab05-quasi-harmonic.html#two-ways-to-represent-the-free-energy-curve",
+    "href": "labs/lab05-quasi-harmonic.html#two-ways-to-represent-the-free-energy-curve",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "Two ways to represent the free-energy curve",
+    "text": "Two ways to represent the free-energy curve\nTo find equilibrium properties, the calculated values of \\(F(V,T)\\) must be represented by a smooth function of volume.\nThere is no unique numerical representation.\nTwo useful strategies are a polynomial representation and an equation-of-state representation.\n\nPolynomial representation\nAt each temperature, the free-energy points can be fitted locally by a polynomial in volume.\nThe equilibrium condition is then obtained from\n\\[\n\\frac{\\partial F}{\\partial V}+P=0.\n\\]\nOnce the polynomial is known, its derivatives provide:\n\\[\nP,\n\\qquad\nK_T,\n\\qquad\nK'_T.\n\\]\nThe principal advantage is flexibility. A low-order polynomial can represent a smooth local free-energy basin without assuming a specific finite-strain EOS.\nThe main caution is that derivatives amplify imperfections in a fit. This is especially important for higher derivatives such as \\(K'_T\\). Increasing polynomial degree can reduce residuals while simultaneously making the extrapolation or derivatives less stable.\nA polynomial should therefore be treated as a local numerical model, not as a law of nature.\n\n\nEquation-of-state representation\nAlternatively, the free-energy points can be fitted with an integrated equation-of-state form, such as a Birch–Murnaghan model.\nThe fitted free energy and pressure are constrained by\n\\[\nP(V,T)\n=\n-\n\\left(\n\\frac{\\partial F}{\\partial V}\n\\right)_T.\n\\]\nThe EOS provides a physically motivated finite-strain description of the curvature and compression response.\nThe bulk modulus then emerges naturally from the EOS parameters and derivatives.\nThe advantage is a stronger physical structure. The disadvantage is that the chosen EOS family may be too restrictive for a particular interval or material.\n\n\nWhich one is correct?\nNeither representation is automatically superior in every calculation. The appropriate question is:\n\nDo reasonable representations of the same free-energy data give stable physical conclusions?\n\nA useful QHA analysis therefore compares polynomial and EOS-based minimization.\nIf both give similar equilibrium volumes, heat capacities, expansion coefficients and bulk moduli within the well-sampled region, confidence in the result increases.\nIf they disagree substantially, the problem may lie in:\n\ninsufficient volume sampling;\nan unsuitable fitting interval;\nan inappropriate polynomial degree;\nan EOS form that is too restrictive;\nextrapolation outside the sampled volume range;\nnoisy or inconsistent input calculations.\n\nThe smallest fit residual is not, by itself, enough to decide which physical result is most trustworthy.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
+    ]
+  },
+  {
+    "objectID": "labs/lab05-quasi-harmonic.html#why-the-sampled-volume-range-matters",
+    "href": "labs/lab05-quasi-harmonic.html#why-the-sampled-volume-range-matters",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "Why the sampled volume range matters",
+    "text": "Why the sampled volume range matters\nA fit can look numerically excellent and still produce an unreliable QHA result if the equilibrium minimum moves outside the range of calculated volumes.\nFor every requested \\((P,T)\\) state, the predicted equilibrium volume should be checked against the sampled interval.\nIdeally,\nsmallest calculated V\n        &lt;\nequilibrium V(P,T)\n        &lt;\nlargest calculated V\nwith reasonable margin on both sides.\nThe farther the result relies on extrapolation, the less the QHA is constrained by actual first-principles data.\nThis is particularly important at:\n\nhigh temperature and low pressure, where thermal expansion moves the minimum towards larger volumes;\nhigh pressure, where compression moves the minimum towards smaller volumes.\n\nA pressure–temperature map is scientifically meaningful only over the region for which the underlying volume data provide adequate coverage.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
+    ]
+  },
+  {
+    "objectID": "labs/lab05-quasi-harmonic.html#grüneisen-parameters-how-strongly-does-a-phonon-respond-to-volume",
+    "href": "labs/lab05-quasi-harmonic.html#grüneisen-parameters-how-strongly-does-a-phonon-respond-to-volume",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "Grüneisen parameters: how strongly does a phonon respond to volume?",
+    "text": "Grüneisen parameters: how strongly does a phonon respond to volume?\nThe QHA can also be viewed mode by mode.\nFor a phonon branch \\(j\\) at q-point \\(\\mathbf q\\), the mode Grüneisen parameter is\n\\[\n\\gamma_{\\mathbf qj}\n=\n-\n\\frac{\\partial\\ln\\nu_{\\mathbf qj}}\n{\\partial\\ln V}.\n\\]\nIf\n\\[\n\\gamma_{\\mathbf qj}&gt;0,\n\\]\nthe mode normally softens when the crystal expands.\nIf\n\\[\n\\gamma_{\\mathbf qj}&lt;0,\n\\]\nthe mode stiffens on expansion.\nA heat-capacity-weighted average Grüneisen parameter connects microscopic phonons with macroscopic thermal expansion.\nIn a thermodynamically consistent QHA,\n\\[\n\\alpha_V\n=\n\\frac{\\bar{\\gamma}C_V}{K_TV}.\n\\]\nThis compact relation is worth interpreting qualitatively.\nThermal expansion is favoured by:\n\nphonons that respond strongly to volume;\na large vibrational heat capacity;\na relatively compressible crystal.\n\nIt is opposed by a large bulk modulus.\nThe same relation explains why a very stiff material can have modest thermal expansion even when its phonons have appreciable volume dependence.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
+    ]
+  },
+  {
+    "objectID": "labs/lab05-quasi-harmonic.html#from-constant-volume-to-constant-pressure-heat-capacity",
+    "href": "labs/lab05-quasi-harmonic.html#from-constant-volume-to-constant-pressure-heat-capacity",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "From constant-volume to constant-pressure heat capacity",
+    "text": "From constant-volume to constant-pressure heat capacity\nThis is the connection to the discrepancy observed in Laboratory 4.\nWithin QHA,\n\\[\nC_P-C_V\n=\n\\alpha_V^2K_TVT.\n\\]\nTherefore\n\\[\nC_P\n=\nC_V\n+\n\\alpha_V^2K_TVT.\n\\]\nThe correction vanishes in the strictly harmonic fixed-volume model because\n\\[\n\\alpha_V=0.\n\\]\nOnce thermal expansion is allowed, the two heat capacities separate.\nThis is why QHA can reproduce the experimentally observed increase of constant-pressure heat capacity beyond the harmonic Dulong–Petit value even though the underlying phonons are still harmonic at each fixed volume.\nThe extra contribution does not represent additional harmonic degrees of freedom. It comes from the coupling between heating and expansion.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
+    ]
+  },
+  {
+    "objectID": "labs/lab05-quasi-harmonic.html#isothermal-and-adiabatic-bulk-moduli",
+    "href": "labs/lab05-quasi-harmonic.html#isothermal-and-adiabatic-bulk-moduli",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "Isothermal and adiabatic bulk moduli",
+    "text": "Isothermal and adiabatic bulk moduli\nExperiments do not always probe the same thermodynamic constraint.\nSlow compression with sufficient thermal equilibration is associated with an isothermal bulk modulus \\(K_T\\).\nA sufficiently rapid elastic disturbance is closer to adiabatic conditions and is described by \\(K_S\\).\nThermodynamics connects them through\n\\[\nK_S\n=\nK_T\n\\frac{C_P}{C_V}.\n\\]\nBecause\n\\[\nC_P\\geq C_V,\n\\]\none normally has\n\\[\nK_S\\geq K_T.\n\\]\nAt very low temperature, or whenever the thermal correction is negligible, the two become nearly identical.\nThis distinction later becomes important when comparing static or thermodynamic calculations with ultrasonic and seismic measurements.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
+    ]
+  },
+  {
+    "objectID": "labs/lab05-quasi-harmonic.html#entropy-and-gibbs-free-energy",
+    "href": "labs/lab05-quasi-harmonic.html#entropy-and-gibbs-free-energy",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "Entropy and Gibbs free energy",
+    "text": "Entropy and Gibbs free energy\nAt the equilibrium volume, QHA also provides entropy and free energies as functions of pressure and temperature.\nThe entropy follows from\n\\[\nS\n=\n-\n\\left(\n\\frac{\\partial F}{\\partial T}\n\\right)_V,\n\\]\nwith the final value evaluated consistently at the equilibrium state.\nAt finite pressure,\n\\[\nG(P,T)\n=\nF(P,T)+PV.\n\\]\nThe Gibbs free energy is especially important because it is the thermodynamic potential used to compare phase stability at fixed pressure and temperature.\nFor Laboratory 5 we will focus on one stable MgO phase, so phase boundaries are not the objective. Nevertheless, the same framework is the basis for comparing different polymorphs when their free energies are calculated consistently.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
+    ]
+  },
+  {
+    "objectID": "labs/lab05-quasi-harmonic.html#what-can-be-obtained-from-one-qha-model",
+    "href": "labs/lab05-quasi-harmonic.html#what-can-be-obtained-from-one-qha-model",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "What can be obtained from one QHA model?",
+    "text": "What can be obtained from one QHA model?\nOnce the free-energy surface is available and the equilibrium state has been found, the same calculation can provide a remarkably broad set of properties:\n\n\n\n\n\n\n\nProperty\nMeaning\n\n\n\n\n\\(V(P,T)\\)\nequilibrium volume\n\n\n\\(a,b,c,\\alpha,\\beta,\\gamma\\)\nequilibrium cell parameters, when a structural path is available\n\n\n\\(\\alpha_V\\)\nvolumetric thermal expansion\n\n\n\\(\\alpha_a,\\alpha_b,\\alpha_c\\)\naxial expansion coefficients where meaningful\n\n\n\\(\\boldsymbol{\\alpha}\\)\nthermal-expansion tensor\n\n\n\\(S(P,T)\\)\nentropy\n\n\n\\(C_V(P,T)\\)\nisochoric heat capacity\n\n\n\\(C_P(P,T)\\)\nisobaric heat capacity\n\n\n\\(K_T(P,T)\\)\nisothermal bulk modulus\n\n\n\\(K'_T(P,T)\\)\npressure derivative of \\(K_T\\)\n\n\n\\(K_S(P,T)\\)\nadiabatic bulk modulus\n\n\n\\(\\gamma(P,T)\\)\nmacroscopic Grüneisen parameter\n\n\n\\(\\gamma_{\\mathbf qj}\\)\nmode Grüneisen parameters when mode continuity is available\n\n\n\\(F,H,G\\)\nthermodynamic potentials\n\n\n\nThe important lesson is not the length of this list.\nIt is that these properties are not independent calculations. They are different derivatives or evaluations of the same underlying quasi-harmonic free-energy model.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
+    ]
+  },
+  {
+    "objectID": "labs/lab05-quasi-harmonic.html#one-dimensional-sections-and-two-dimensional-maps",
+    "href": "labs/lab05-quasi-harmonic.html#one-dimensional-sections-and-two-dimensional-maps",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "One-dimensional sections and two-dimensional maps",
+    "text": "One-dimensional sections and two-dimensional maps\nA pressure–temperature calculation naturally produces a grid.\nFor example,\n\\[\nX=X(P,T)\n\\]\nmay represent volume, thermal expansion, bulk modulus or heat capacity.\nThere are two complementary ways to inspect such a result.\n\nA section at constant pressure\nAt ambient pressure,\n\\[\nX(T)\\big|_{P=0}\n\\]\ncan be compared directly with many ordinary experimental datasets.\nThis is particularly useful for:\n\nlattice parameters;\nvolume;\nthermal expansion;\nentropy;\n\\(C_P\\);\nbulk modulus.\n\nThis representation is usually the easiest one to interpret first.\n\n\nA section at constant temperature\nA pressure section,\n\\[\nX(P)\\big|_{T=\\mathrm{const}},\n\\]\nshows how compression changes the property at a chosen temperature.\nThis provides a natural bridge to high-pressure experiments.\n\n\nA two-dimensional \\(P\\)–\\(T\\) map\nThe complete grid can be displayed as a contour or colour map.\nFor example,\n\\[\n\\alpha_V(P,T)\n\\]\nmay show simultaneously that thermal expansion increases with temperature and is suppressed by pressure.\nA two-dimensional map contains more information, but it should normally be interpreted after examining simpler one-dimensional sections.\nOtherwise, a visually impressive plot can hide the physical relationships that generated it.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
+    ]
+  },
+  {
+    "objectID": "labs/lab05-quasi-harmonic.html#what-should-be-compared-with-experiment",
+    "href": "labs/lab05-quasi-harmonic.html#what-should-be-compared-with-experiment",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "What should be compared with experiment?",
+    "text": "What should be compared with experiment?\nThe QHA becomes scientifically useful when its predictions are confronted with independent observations.\nFor MgO, useful experimental comparisons include:\n\nlattice parameter or molar/cell volume as a function of temperature;\nvolumetric or linear thermal expansion;\nentropy;\nconstant-pressure heat capacity;\nisothermal or adiabatic bulk modulus;\npressure–volume data at different temperatures.\n\nDifferent experimental techniques probe different thermodynamic conditions. The comparison must therefore use the quantity that corresponds to the measurement.\nIn particular:\nharmonic laboratory     → Cv at fixed V\nquasi-harmonic model    → Cv and Cp\nordinary calorimetry    → approximately Cp\nSimilarly, a bulk modulus inferred from a static equation of state is not automatically the same quantity as an adiabatic modulus measured from sound velocities.\nLabels and thermodynamic conditions matter.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
+    ]
+  },
+  {
+    "objectID": "labs/lab05-quasi-harmonic.html#a-hierarchy-of-approximations",
+    "href": "labs/lab05-quasi-harmonic.html#a-hierarchy-of-approximations",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "A hierarchy of approximations",
+    "text": "A hierarchy of approximations\nIt is useful to place the methods used in the course in a hierarchy.\n\nStatic electronic structure\nelectrons\n+\nfixed nuclei\ngives the static energy surface \\(U_0(V)\\).\n\n\nHarmonic approximation\none equilibrium structure\n+\nquadratic lattice vibrations\nadds zero-point and thermal vibrational properties at fixed volume.\n\n\nQuasi-harmonic approximation\nharmonic phonons\nat several volumes\nadds the leading coupling between vibrations and volume.\n\n\nExplicit anharmonic methods\nThese describe temperature-dependent interactions between phonons even at fixed volume and require more advanced approaches, for example higher-order force constants, molecular dynamics, self-consistent phonons or related methods.\nThe QHA is therefore not the end of lattice thermodynamics. It is the next physically meaningful level after HA, and for many stable minerals it is an extremely useful one.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
+    ]
+  },
+  {
+    "objectID": "labs/lab05-quasi-harmonic.html#when-should-qha-work-well",
+    "href": "labs/lab05-quasi-harmonic.html#when-should-qha-work-well",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "When should QHA work well?",
+    "text": "When should QHA work well?\nQHA is most reliable when:\n\nthe crystal remains mechanically and dynamically stable;\nthe phonon spectrum changes smoothly with volume;\nexplicit anharmonicity is moderate;\nthe temperature remains sufficiently below strongly anharmonic or melting regimes;\nno soft-mode structural transition is crossed;\nthe sampled volume interval contains the relevant equilibrium states.\n\nIt can become unreliable when:\n\nimaginary phonons appear in the physically relevant volume range;\nphonon branches become difficult to track;\na phase transition changes the crystal structure;\nexplicit phonon–phonon interactions dominate;\nequilibrium volumes require substantial extrapolation;\nelectronic, magnetic, configurational or defect contributions become thermodynamically important.\n\nThe correct question is therefore not simply:\n\n“Did the QHA calculation finish?”\n\nbut:\n\n“Is the QHA physically appropriate and numerically supported over the pressure–temperature region that I want to interpret?”",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
+    ]
+  },
+  {
+    "objectID": "labs/lab05-quasi-harmonic.html#a-note-on-mode-continuity",
+    "href": "labs/lab05-quasi-harmonic.html#a-note-on-mode-continuity",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "A note on mode continuity",
+    "text": "A note on mode continuity\nIf individual phonon frequencies are fitted as functions of volume, a mode at one volume must be matched with the corresponding physical mode at the other volumes.\nThis is called mode continuity.\nA naive sorting of frequencies from low to high is not always sufficient, because branches can cross or become degenerate.\nFor simple, well-behaved systems the correspondence may be straightforward. For more complicated crystals, eigenvector information or a dedicated tracking procedure is preferable.\nAn alternative QHA strategy is to interpolate already integrated harmonic thermodynamic functions rather than individual phonon branches. This avoids mode-by-mode correspondence, although it no longer provides the same mode-resolved information.\nBoth approaches are scientifically legitimate when their assumptions are satisfied.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
+    ]
+  },
+  {
+    "objectID": "labs/lab05-quasi-harmonic.html#what-quantas-does",
+    "href": "labs/lab05-quasi-harmonic.html#what-quantas-does",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "What Quantas does",
+    "text": "What Quantas does\nQuantas implements the QHA as a multi-volume thermodynamic workflow.\nIt can represent the volume dependence either through mode-resolved frequencies or through integrated harmonic thermodynamic functions. It can minimize the free-energy curves using either polynomial representations or integrated equations of state.\nThe workflow can then evaluate equilibrium properties on a pressure–temperature grid, including:\n\n\\(V(P,T)\\);\n\\(K_T\\) and \\(K_S\\);\n\\(K'_T\\);\n\\(\\alpha_V\\);\naxial expansion where structural information is available;\n\\(C_V\\) and \\(C_P\\);\nentropy;\nGrüneisen parameters;\nequilibrium lattice parameters.\n\nFor this course, Quantas is the numerical tool. The objective is not to learn its command-line syntax by memory. The objective is to understand the thermodynamic model that the software is evaluating.\nDetailed Quantas theory:\nhttps://quantas.readthedocs.io/en/2.0.0-beta/theory/qha.html\nQHA implementation and workflow:\nhttps://quantas.readthedocs.io/en/2.0.0-beta/workflows/qha.html\nQHA tutorial:\nhttps://quantas.readthedocs.io/en/2.0.0-beta/tutorials/qha.html",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
+    ]
+  },
+  {
+    "objectID": "labs/lab05-quasi-harmonic.html#the-scientific-workflow-for-laboratory-5",
+    "href": "labs/lab05-quasi-harmonic.html#the-scientific-workflow-for-laboratory-5",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "The scientific workflow for Laboratory 5",
+    "text": "The scientific workflow for Laboratory 5\nThe practical workflow will be developed from a q-point-converged, multi-volume MgO phonon dataset.\nConceptually, it will follow:\nvalidated static structures at several volumes\n                    +\nq-converged phonons at the same volumes\n                    ↓\n              Quantas QHA input\n                    ↓\n              inspect ν(q,j,V)\n                    ↓\n               build F(V,T)\n                    ↓\n     polynomial / EOS representations\n                    ↓\n          minimize F(V,T)+PV\n                    ↓\n                V(P,T)\n                    ↓\n     thermodynamic + thermoelastic properties\n                    ↓\n  compare 1D sections with experimental data\n                    ↓\n        inspect full 2D P–T maps\n                    ↓\n      assess model and fit limitations\nThe practical notebook will not ask you to reproduce the expensive \\(4\\times4\\times4\\) phonon calculations at every volume during class. Those calculations will be supplied as validated reference data.\nYour task will be to understand how those calculations become a finite- temperature description of a real crystal.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
+    ]
+  },
+  {
+    "objectID": "labs/lab05-quasi-harmonic.html#the-connection-across-the-complete-laboratory-sequence",
+    "href": "labs/lab05-quasi-harmonic.html#the-connection-across-the-complete-laboratory-sequence",
+    "title": "Laboratory 5 — From harmonic phonons to finite-temperature properties",
+    "section": "The connection across the complete laboratory sequence",
+    "text": "The connection across the complete laboratory sequence\nLaboratory 5 is not a separate topic added at the end of the course. It combines the earlier laboratories.\nLAB 1\ncrystal structure and symmetry\n        ↓\nLAB 2\nelectronic structure and numerical convergence\n        ↓\nLAB 3\nequilibrium geometry and E(V)\n        ↓\nLAB 4\nphonons, q sampling and harmonic thermodynamics\n        ↓\nLAB 5\nF(V,T), thermal expansion and finite-P,T properties\nThe complete chain is now\n\\[\n\\boxed{\n\\text{structure}\n\\rightarrow\n\\text{energy}\n\\rightarrow\n\\text{vibrations}\n\\rightarrow\n\\text{free energy}\n\\rightarrow\n\\text{equilibrium}\n\\rightarrow\n\\text{thermodynamic properties}\n}\n\\]\nThis is the central modelling logic of the course.",
+    "crumbs": [
+      "Laboratories",
+      "Laboratory 5 — From harmonic phonons to finite-temperature properties"
     ]
   },
   {
