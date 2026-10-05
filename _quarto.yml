@@ -30,6 +30,7 @@ website:
           - labs/lab02-energy-geometry.qmd
           - labs/lab03-equation-of-state.qmd
           - labs/lab04-vibrations-thermodynamics.qmd
+          - labs/lab05-quasi-harmonic.qmd
       - section: "Reference"
         contents:
           - reference/linux-essentials.qmd

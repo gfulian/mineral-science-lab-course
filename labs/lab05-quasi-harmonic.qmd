@@ -1,0 +1,1239 @@
+---
+title: "Laboratory 5 — From harmonic phonons to finite-temperature properties"
+---
+
+Laboratory 4 showed that a harmonic phonon calculation can describe important
+features of a crystal very well. Once the first Brillouin zone is sampled
+adequately, the vibrational entropy and the constant-volume heat capacity
+become numerically converged, and the high-temperature harmonic heat capacity
+approaches the Dulong–Petit limit.
+
+However, it also exposed a limitation that cannot be removed by adding more 
+**q**-points.
+
+Indeed, in the harmonic approximation used so far, the crystal is represented at 
+**one fixed volume**. Its phonon frequencies are calculated for that structure and
+are then used at every temperature. The vibrational populations change with
+temperature, but the equilibrium structure itself does not.
+
+A real crystal does not behave this way because it normally expands when heated, the
+phonon frequencies change as interatomic distances change, and thermodynamic
+properties measured at constant pressure are no longer identical to the
+corresponding fixed-volume quantities.
+
+The **quasi-harmonic approximation (QHA)** is one of the simplest and most
+useful ways to introduce this coupling between vibrations and crystal volume.
+This approach does not abandon harmonic lattice dynamics; instead, it asks a new
+question:
+
+> **How does the harmonic phonon spectrum change when the crystal volume
+> changes?**
+
+That additional information is enough to recover thermal expansion and a large
+set of temperature- and pressure-dependent thermodynamic and thermoelastic
+properties.
+
+For a mechanically stable and only weakly explicitly anharmonic material such
+as MgO, this approach is particularly effective.
+
+## What was missing from the harmonic calculation?
+
+In the harmonic approximation, the potential-energy surface is replaced
+locally by a quadratic form around one equilibrium geometry. Each normal mode
+is then an independent harmonic oscillator with a fixed frequency.
+
+For the calculation performed in Laboratory 4, we may write schematically
+
+$$
+\nu_{\mathbf q j} =
+\nu_{\mathbf q j}(V_0),
+$$
+
+where $V_0$ is the selected equilibrium volume.
+
+Temperature changes the occupation of these vibrational states, but it does
+not change the frequencies themselves. Consequently, the thermodynamic 
+calculation is carried out at one fixed volume. Within this model,
+
+$$
+\alpha_V = 0,
+$$
+
+and therefore
+
+$$
+C_P = C_V.
+$$
+
+This is why the harmonic $C_V$ can converge perfectly with respect to **q**-point
+sampling and still fail to reproduce the high-temperature experimental
+constant-pressure heat capacity ($C_P$).
+
+The numerical problem may be solved while the physical approximation remains.
+
+::: {.callout-important}
+## Numerical convergence and physical completeness are different questions
+
+Increasing the phonon supercell from $2\times2\times2$ to
+$3\times3\times3$ or $4\times4\times4$ improves the Brillouin-zone
+integration.
+
+It does **not** allow a fixed-volume harmonic crystal to expand with
+temperature.
+
+Laboratory 5 changes the physical model, not merely the numerical sampling.
+:::
+
+## The central idea of the quasi-harmonic approximation
+
+The QHA replaces one harmonic calculation by a **series of harmonic
+calculations at different volumes**. At each volume the lattice dynamics 
+are still harmonic:
+
+$$
+E(\mathbf u;V)
+\simeq
+E_0(V)
++
+\frac{1}{2}
+\mathbf u^{\mathrm T}
+\mathbf H(V)
+\mathbf u.
+$$
+
+However, the Hessian now changes from one volume to another., thus the
+phonon frequencies become **functions of volume**:
+
+$$
+\nu_{\mathbf qj} = \nu_{\mathbf qj}(V).
+$$
+
+This is the essential quasi-harmonic step.
+
+The frequencies do **not** acquire an explicit temperature dependence at fixed
+volume. Instead, temperature changes the equilibrium volume, and the changing
+volume changes the frequencies.
+
+The sequence is therefore
+
+```text
+temperature
+    ↓
+equilibrium volume changes
+    ↓
+phonon frequencies change because ν = ν(V)
+    ↓
+vibrational free energy changes
+    ↓
+new equilibrium volume
+```
+
+The equilibrium is obtained self-consistently from the free-energy surface.
+
+## QHA contains anharmonic physics — but not explicit anharmonicity
+
+The name *quasi-harmonic* is important.
+At every individual volume, the phonons are treated as harmonic oscillators.
+No cubic or quartic force constants are required for the standard QHA.
+
+Nevertheless, a collection of harmonic calculations at different volumes
+contains part of the effect that an anharmonic crystal potential has on
+thermodynamics. The volume dependence of the frequencies allows the crystal to
+expand and produces a thermal pressure.
+
+This contribution is often called **implicit** or **quasi-harmonic
+anharmonicity**.
+
+The QHA does **not** include explicit interactions between phonons at a fixed
+volume. It therefore does not directly describe phenomena such as:
+
+- phonon lifetimes and linewidths;
+- intrinsic temperature-induced frequency shifts at fixed volume;
+- strong phonon–phonon scattering;
+- strongly anharmonic soft modes;
+- many displacive phase transitions;
+- behaviour close to melting.
+
+For MgO over a moderate pressure–temperature range, explicit anharmonicity is
+small enough that the QHA provides a very useful description. That is one
+reason why MgO is an excellent teaching system for this laboratory.
+
+## What data are required?
+
+A quasi-harmonic calculation combines two types of information that have
+already appeared separately in the course.
+
+For a set of volumes $V_i$, we need the static electronic energy
+
+$$
+U_0(V_i)
+$$
+
+and the harmonic phonon spectrum
+
+$$
+\nu_{\mathbf qj}(V_i).
+$$
+
+The workflow therefore looks like:
+
+```text
+choose a set of volumes around equilibrium
+            ↓
+relax the structure at each fixed volume
+            ↓
+calculate static energy U0(V)
+            ↓
+calculate a converged phonon spectrum at each V
+            ↓
+obtain ν(q,j,V)
+            ↓
+build F(V,T)
+            ↓
+minimize at each P,T
+            ↓
+derive finite-temperature properties
+```
+
+The same electronic-structure model and numerical settings must be used at all
+volumes, and the phonon sampling must also be consistent.
+
+Laboratory 4 established why the **q**-point mesh matters. The QHA does not remove
+that requirement: every volume must contain a phonon description of comparable
+quality.
+
+In the practical activity, the expensive dense-supercell phonon calculations
+will be supplied as a precomputed, internally consistent dataset. The purpose
+of the laboratory is to understand and analyse the quasi-harmonic model rather
+than to spend the session waiting for multiple large phonon calculations.
+
+## From frequencies to vibrational free energy
+
+For a phonon of frequency $\nu$, the harmonic Helmholtz contribution contains
+both zero-point and thermal terms. Summed over the Brillouin zone,
+
+$$
+F_{\mathrm{vib}}(V,T)
+=
+\frac{1}{\sum_{\mathbf q} w_{\mathbf q}}
+\sum_{\mathbf q,j}
+w_{\mathbf q}
+\left[
+\frac{1}{2}h\nu_{\mathbf qj}(V)
++
+k_BT
+\ln
+\left(
+1-
+e^{-h\nu_{\mathbf qj}(V)/(k_BT)}
+\right)
+\right].
+$$
+
+The total Helmholtz free energy is
+
+$$
+F(V,T)
+=
+U_0(V)
++
+F_{\mathrm{vib}}(V,T).
+$$
+
+This equation is the heart of the QHA.
+
+The first term describes the static electronic energy surface already studied
+through the equation of state in Laboratory 3.
+
+The second term describes the vibrational free energy studied in Laboratory 4,
+but now the vibrational spectrum is allowed to change with volume.
+
+The two earlier laboratories therefore meet in a single quantity:
+
+```text
+Laboratory 3                         Laboratory 4
+static E(V)                          phonons and Fvib(T)
+      \                                  /
+       \                                /
+        └────── F(V,T) = U0(V)+Fvib(V,T)
+                          ↓
+                         QHA
+```
+
+## Zero-point motion already changes the equilibrium
+
+At $T=0$, the thermal population of excited phonons vanishes, but the zero-point
+term
+
+$$
+\frac{1}{2}h\nu_{\mathbf qj}(V)
+$$
+
+remains.
+
+Therefore the minimum of
+
+$$
+F(V,0)
+=
+U_0(V)+E_{\mathrm{ZP}}(V)
+$$
+
+need not occur at exactly the same volume as the minimum of the static
+electronic energy $U_0(V)$.
+
+This distinction is small for many solids, but conceptually important:
+
+> **The static DFT equilibrium structure and the zero-temperature
+> quasi-harmonic equilibrium structure are not necessarily identical.**
+
+Zero-point vibrations can exert a small **zero-point pressure**.
+
+## Equilibrium at a fixed temperature
+
+At zero external pressure, the equilibrium volume at temperature $T$ is the
+minimum of the Helmholtz free-energy curve:
+
+$$
+\left(
+\frac{\partial F}{\partial V}
+\right)_T
+=0.
+$$
+
+Imagine calculating $F(V,T)$ at several temperatures.
+
+At low temperature the minimum lies close to the static equilibrium volume.
+As temperature rises, the vibrational contribution changes the shape and
+position of the free-energy minimum.
+
+For an ordinary material with positive thermal expansion, the minimum shifts
+towards larger volume:
+
+```text
+low T       → minimum near V0
+higher T    → minimum at larger V
+```
+
+The thermal expansion of the crystal is therefore obtained from a sequence of
+free-energy minima.
+
+## Equilibrium at finite pressure
+
+Pressure enters through the $PV$ work term.
+
+At external hydrostatic pressure $P$, the quantity to minimize is
+
+$$
+G^*(V;P,T)
+=
+F(V,T)+PV.
+$$
+
+The equilibrium condition is
+
+$$
+\left(
+\frac{\partial G^*}{\partial V}
+\right)_{P,T}
+=0,
+$$
+
+which gives
+
+$$
+P
+=
+-
+\left(
+\frac{\partial F}{\partial V}
+\right)_T.
+$$
+
+This is the finite-temperature extension of the relation encountered in the
+static equation-of-state laboratory.
+
+The QHA therefore turns the static relation
+
+$$
+E(V)
+$$
+
+into a temperature-dependent family
+
+$$
+F(V,T).
+$$
+
+From this surface we can determine
+
+$$
+V(P,T).
+$$
+
+That one function is the structural backbone of most of the properties studied
+below.
+
+## A useful geometrical picture
+
+It is helpful to imagine $F(V,T)$ as a surface.
+
+One axis is volume, one is temperature, and the vertical direction is free
+energy.
+
+A constant-temperature slice through this surface is an $F(V)$ curve.
+
+At zero pressure, its minimum gives the equilibrium volume.
+
+At non-zero pressure, adding $PV$ tilts the curve before the minimum is found.
+
+The complete QHA result can therefore be thought of as a map:
+
+```text
+(P,T)
+  ↓
+equilibrium point on F(V,T)+PV
+  ↓
+V(P,T)
+  ↓
+thermodynamic and thermoelastic properties
+```
+
+This is why one calculation can later be displayed either as:
+
+- a property versus temperature at fixed pressure;
+- a property versus pressure at fixed temperature;
+- a two-dimensional pressure–temperature map.
+
+These are different views of the same thermodynamic model.
+
+## Thermal expansion
+
+Once $V(P,T)$ is known, the volumetric thermal-expansion coefficient is
+
+$$
+\alpha_V
+=
+\frac{1}{V}
+\left(
+\frac{\partial V}{\partial T}
+\right)_P.
+$$
+
+Its unit is normally
+
+$$
+\mathrm{K^{-1}}.
+$$
+
+A positive $\alpha_V$ means that the equilibrium volume increases as
+temperature increases at constant pressure.
+
+The QHA also provides a more revealing thermodynamic relation.
+
+Since
+
+$$
+P(V,T)
+=
+-
+\left(
+\frac{\partial F}{\partial V}
+\right)_T,
+$$
+
+one obtains
+
+$$
+\alpha_V
+=
+-
+\frac{1}{K_T}
+\frac{\partial^2F}
+{\partial V\,\partial T}.
+$$
+
+Using
+
+$$
+S
+=
+-
+\left(
+\frac{\partial F}{\partial T}
+\right)_V,
+$$
+
+the same relation becomes
+
+$$
+\alpha_V
+=
+\frac{1}{K_T}
+\left(
+\frac{\partial S}{\partial V}
+\right)_T.
+$$
+
+This equation gives a useful physical interpretation:
+
+> **Thermal expansion occurs because vibrational entropy depends on volume.**
+
+The entropy calculated in Laboratory 4 is therefore not an isolated
+thermodynamic quantity. Its volume dependence is directly connected to the
+thermal expansion of the crystal.
+
+## Linear and axial thermal expansion
+
+Experimental crystallography often reports the variation of lattice
+parameters rather than only the total cell volume.
+
+For a lattice parameter $a$,
+
+$$
+\alpha_a
+=
+\frac{1}{a}
+\left(
+\frac{\partial a}{\partial T}
+\right)_P.
+$$
+
+For a cubic crystal such as MgO,
+
+$$
+V=a^3,
+$$
+
+so
+
+$$
+\alpha_V=3\alpha_a
+$$
+
+and therefore
+
+$$
+\alpha_a=\frac{\alpha_V}{3}.
+$$
+
+This makes MgO particularly simple.
+
+For anisotropic crystals the situation contains more information.
+
+For an orthorhombic crystal,
+
+$$
+\alpha_V
+=
+\alpha_a+\alpha_b+\alpha_c.
+$$
+
+For a hexagonal or trigonal crystal with the conventional hexagonal setting,
+
+$$
+\alpha_V
+=
+2\alpha_a+\alpha_c.
+$$
+
+There is no requirement that $\alpha_a$ and $\alpha_c$ be equal. One direction
+may expand much more strongly than another, and in some materials one
+direction may even contract while the total volume still expands.
+
+For monoclinic and triclinic crystals, changes in the cell angles also matter.
+A full description is therefore more naturally expressed through the
+**thermal-expansion tensor** rather than through three independent scalar
+coefficients.
+
+::: {.callout-note}
+## What a volume-based QHA structural path actually means
+
+If the crystal structure is relaxed at several constrained volumes, each
+calculation provides the lowest-energy cell shape and internal coordinates
+compatible with that volume and symmetry.
+
+A QHA code can interpolate this structural path and evaluate the cell at the
+equilibrium volume $V(P,T)$.
+
+For an anisotropic crystal this is extremely useful, but it is still a
+one-dimensional path through strain space. It is not identical to independently
+minimizing every strain component at every pressure and temperature.
+:::
+
+## The isothermal bulk modulus at finite temperature
+
+Laboratory 3 obtained the bulk modulus from the curvature of the static
+energy–volume relation.
+
+The same idea applies to the free energy.
+
+The isothermal bulk modulus is
+
+$$
+K_T(V,T)
+=
+V
+\left(
+\frac{\partial^2F}{\partial V^2}
+\right)_T.
+$$
+
+At the equilibrium volume,
+
+$$
+K_T=K_T(P,T).
+$$
+
+The crystal can therefore become more or less compressible as both pressure and
+temperature change.
+
+For many minerals, increasing pressure increases the bulk modulus, while
+increasing temperature at constant pressure tends to reduce it. The detailed
+response is material dependent and must be obtained from the free-energy
+surface rather than assumed.
+
+The pressure derivative is
+
+$$
+K'_T
+=
+\left(
+\frac{\partial K_T}{\partial P}
+\right)_T.
+$$
+
+This is the finite-temperature analogue of the $K'_0$ parameter encountered in
+the static equation-of-state analysis.
+
+## Two ways to represent the free-energy curve
+
+To find equilibrium properties, the calculated values of $F(V,T)$ must be
+represented by a smooth function of volume.
+
+There is no unique numerical representation.
+
+Two useful strategies are a **polynomial representation** and an
+**equation-of-state representation**.
+
+### Polynomial representation
+
+At each temperature, the free-energy points can be fitted locally by a
+polynomial in volume.
+
+The equilibrium condition is then obtained from
+
+$$
+\frac{\partial F}{\partial V}+P=0.
+$$
+
+Once the polynomial is known, its derivatives provide:
+
+$$
+P,
+\qquad
+K_T,
+\qquad
+K'_T.
+$$
+
+The principal advantage is flexibility. A low-order polynomial can represent a
+smooth local free-energy basin without assuming a specific finite-strain EOS.
+
+The main caution is that derivatives amplify imperfections in a fit.
+This is especially important for higher derivatives such as $K'_T$.
+Increasing polynomial degree can reduce residuals while simultaneously making
+the extrapolation or derivatives less stable.
+
+A polynomial should therefore be treated as a **local numerical model**, not as
+a law of nature.
+
+### Equation-of-state representation
+
+Alternatively, the free-energy points can be fitted with an integrated
+equation-of-state form, such as a Birch–Murnaghan model.
+
+The fitted free energy and pressure are constrained by
+
+$$
+P(V,T)
+=
+-
+\left(
+\frac{\partial F}{\partial V}
+\right)_T.
+$$
+
+The EOS provides a physically motivated finite-strain description of the
+curvature and compression response.
+
+The bulk modulus then emerges naturally from the EOS parameters and
+derivatives.
+
+The advantage is a stronger physical structure. The disadvantage is that the
+chosen EOS family may be too restrictive for a particular interval or
+material.
+
+### Which one is correct?
+
+Neither representation is automatically superior in every calculation.
+The appropriate question is:
+
+> **Do reasonable representations of the same free-energy data give stable
+> physical conclusions?**
+
+A useful QHA analysis therefore compares polynomial and EOS-based
+minimization.
+
+If both give similar equilibrium volumes, heat capacities, expansion
+coefficients and bulk moduli within the well-sampled region, confidence in the
+result increases.
+
+If they disagree substantially, the problem may lie in:
+
+- insufficient volume sampling;
+- an unsuitable fitting interval;
+- an inappropriate polynomial degree;
+- an EOS form that is too restrictive;
+- extrapolation outside the sampled volume range;
+- noisy or inconsistent input calculations.
+
+The smallest fit residual is not, by itself, enough to decide which physical
+result is most trustworthy.
+
+## Why the sampled volume range matters
+
+A fit can look numerically excellent and still produce an unreliable QHA
+result if the equilibrium minimum moves outside the range of calculated
+volumes.
+
+For every requested $(P,T)$ state, the predicted equilibrium volume should be
+checked against the sampled interval.
+
+Ideally,
+
+```text
+smallest calculated V
+        <
+equilibrium V(P,T)
+        <
+largest calculated V
+```
+
+with reasonable margin on both sides.
+
+The farther the result relies on extrapolation, the less the QHA is constrained
+by actual first-principles data.
+
+This is particularly important at:
+
+- high temperature and low pressure, where thermal expansion moves the minimum
+  towards larger volumes;
+- high pressure, where compression moves the minimum towards smaller volumes.
+
+A pressure–temperature map is scientifically meaningful only over the region
+for which the underlying volume data provide adequate coverage.
+
+## Grüneisen parameters: how strongly does a phonon respond to volume?
+
+The QHA can also be viewed mode by mode.
+
+For a phonon branch $j$ at q-point $\mathbf q$, the mode Grüneisen parameter is
+
+$$
+\gamma_{\mathbf qj}
+=
+-
+\frac{\partial\ln\nu_{\mathbf qj}}
+{\partial\ln V}.
+$$
+
+If
+
+$$
+\gamma_{\mathbf qj}>0,
+$$
+
+the mode normally softens when the crystal expands.
+
+If
+
+$$
+\gamma_{\mathbf qj}<0,
+$$
+
+the mode stiffens on expansion.
+
+A heat-capacity-weighted average Grüneisen parameter connects microscopic
+phonons with macroscopic thermal expansion.
+
+In a thermodynamically consistent QHA,
+
+$$
+\alpha_V
+=
+\frac{\bar{\gamma}C_V}{K_TV}.
+$$
+
+This compact relation is worth interpreting qualitatively.
+
+Thermal expansion is favoured by:
+
+- phonons that respond strongly to volume;
+- a large vibrational heat capacity;
+- a relatively compressible crystal.
+
+It is opposed by a large bulk modulus.
+
+The same relation explains why a very stiff material can have modest thermal
+expansion even when its phonons have appreciable volume dependence.
+
+## From constant-volume to constant-pressure heat capacity
+
+This is the connection to the discrepancy observed in Laboratory 4.
+
+Within QHA,
+
+$$
+C_P-C_V
+=
+\alpha_V^2K_TVT.
+$$
+
+Therefore
+
+$$
+C_P
+=
+C_V
++
+\alpha_V^2K_TVT.
+$$
+
+The correction vanishes in the strictly harmonic fixed-volume model because
+
+$$
+\alpha_V=0.
+$$
+
+Once thermal expansion is allowed, the two heat capacities separate.
+
+This is why QHA can reproduce the experimentally observed increase of
+constant-pressure heat capacity beyond the harmonic Dulong–Petit value even
+though the underlying phonons are still harmonic at each fixed volume.
+
+The extra contribution does not represent additional harmonic degrees of
+freedom. It comes from the coupling between heating and expansion.
+
+## Isothermal and adiabatic bulk moduli
+
+Experiments do not always probe the same thermodynamic constraint.
+
+Slow compression with sufficient thermal equilibration is associated with an
+isothermal bulk modulus $K_T$.
+
+A sufficiently rapid elastic disturbance is closer to adiabatic conditions and
+is described by $K_S$.
+
+Thermodynamics connects them through
+
+$$
+K_S
+=
+K_T
+\frac{C_P}{C_V}.
+$$
+
+Because
+
+$$
+C_P\geq C_V,
+$$
+
+one normally has
+
+$$
+K_S\geq K_T.
+$$
+
+At very low temperature, or whenever the thermal correction is negligible, the
+two become nearly identical.
+
+This distinction later becomes important when comparing static or
+thermodynamic calculations with ultrasonic and seismic measurements.
+
+## Entropy and Gibbs free energy
+
+At the equilibrium volume, QHA also provides entropy and free energies as
+functions of pressure and temperature.
+
+The entropy follows from
+
+$$
+S
+=
+-
+\left(
+\frac{\partial F}{\partial T}
+\right)_V,
+$$
+
+with the final value evaluated consistently at the equilibrium state.
+
+At finite pressure,
+
+$$
+G(P,T)
+=
+F(P,T)+PV.
+$$
+
+The Gibbs free energy is especially important because it is the thermodynamic
+potential used to compare phase stability at fixed pressure and temperature.
+
+For Laboratory 5 we will focus on one stable MgO phase, so phase boundaries are
+not the objective. Nevertheless, the same framework is the basis for comparing
+different polymorphs when their free energies are calculated consistently.
+
+## What can be obtained from one QHA model?
+
+Once the free-energy surface is available and the equilibrium state has been
+found, the same calculation can provide a remarkably broad set of properties:
+
+| Property | Meaning |
+|---|---|
+| $V(P,T)$ | equilibrium volume |
+| $a,b,c,\alpha,\beta,\gamma$ | equilibrium cell parameters, when a structural path is available |
+| $\alpha_V$ | volumetric thermal expansion |
+| $\alpha_a,\alpha_b,\alpha_c$ | axial expansion coefficients where meaningful |
+| $\boldsymbol{\alpha}$ | thermal-expansion tensor |
+| $S(P,T)$ | entropy |
+| $C_V(P,T)$ | isochoric heat capacity |
+| $C_P(P,T)$ | isobaric heat capacity |
+| $K_T(P,T)$ | isothermal bulk modulus |
+| $K'_T(P,T)$ | pressure derivative of $K_T$ |
+| $K_S(P,T)$ | adiabatic bulk modulus |
+| $\gamma(P,T)$ | macroscopic Grüneisen parameter |
+| $\gamma_{\mathbf qj}$ | mode Grüneisen parameters when mode continuity is available |
+| $F,H,G$ | thermodynamic potentials |
+
+The important lesson is not the length of this list.
+
+It is that these properties are **not independent calculations**. They are
+different derivatives or evaluations of the same underlying quasi-harmonic
+free-energy model.
+
+## One-dimensional sections and two-dimensional maps
+
+A pressure–temperature calculation naturally produces a grid.
+
+For example,
+
+$$
+X=X(P,T)
+$$
+
+may represent volume, thermal expansion, bulk modulus or heat capacity.
+
+There are two complementary ways to inspect such a result.
+
+### A section at constant pressure
+
+At ambient pressure,
+
+$$
+X(T)\big|_{P=0}
+$$
+
+can be compared directly with many ordinary experimental datasets.
+
+This is particularly useful for:
+
+- lattice parameters;
+- volume;
+- thermal expansion;
+- entropy;
+- $C_P$;
+- bulk modulus.
+
+This representation is usually the easiest one to interpret first.
+
+### A section at constant temperature
+
+A pressure section,
+
+$$
+X(P)\big|_{T=\mathrm{const}},
+$$
+
+shows how compression changes the property at a chosen temperature.
+
+This provides a natural bridge to high-pressure experiments.
+
+### A two-dimensional $P$–$T$ map
+
+The complete grid can be displayed as a contour or colour map.
+
+For example,
+
+$$
+\alpha_V(P,T)
+$$
+
+may show simultaneously that thermal expansion increases with temperature and
+is suppressed by pressure.
+
+A two-dimensional map contains more information, but it should normally be
+interpreted **after** examining simpler one-dimensional sections.
+
+Otherwise, a visually impressive plot can hide the physical relationships that
+generated it.
+
+## What should be compared with experiment?
+
+The QHA becomes scientifically useful when its predictions are confronted with
+independent observations.
+
+For MgO, useful experimental comparisons include:
+
+- lattice parameter or molar/cell volume as a function of temperature;
+- volumetric or linear thermal expansion;
+- entropy;
+- constant-pressure heat capacity;
+- isothermal or adiabatic bulk modulus;
+- pressure–volume data at different temperatures.
+
+Different experimental techniques probe different thermodynamic conditions.
+The comparison must therefore use the quantity that corresponds to the
+measurement.
+
+In particular:
+
+```text
+harmonic laboratory     → Cv at fixed V
+quasi-harmonic model    → Cv and Cp
+ordinary calorimetry    → approximately Cp
+```
+
+Similarly, a bulk modulus inferred from a static equation of state is not
+automatically the same quantity as an adiabatic modulus measured from sound
+velocities.
+
+Labels and thermodynamic conditions matter.
+
+## A hierarchy of approximations
+
+It is useful to place the methods used in the course in a hierarchy.
+
+### Static electronic structure
+
+```text
+electrons
++
+fixed nuclei
+```
+
+gives the static energy surface $U_0(V)$.
+
+### Harmonic approximation
+
+```text
+one equilibrium structure
++
+quadratic lattice vibrations
+```
+
+adds zero-point and thermal vibrational properties at fixed volume.
+
+### Quasi-harmonic approximation
+
+```text
+harmonic phonons
+at several volumes
+```
+
+adds the leading coupling between vibrations and volume.
+
+### Explicit anharmonic methods
+
+These describe temperature-dependent interactions between phonons even at fixed
+volume and require more advanced approaches, for example higher-order force
+constants, molecular dynamics, self-consistent phonons or related methods.
+
+The QHA is therefore not the end of lattice thermodynamics. It is the next
+physically meaningful level after HA, and for many stable minerals it is an
+extremely useful one.
+
+## When should QHA work well?
+
+QHA is most reliable when:
+
+- the crystal remains mechanically and dynamically stable;
+- the phonon spectrum changes smoothly with volume;
+- explicit anharmonicity is moderate;
+- the temperature remains sufficiently below strongly anharmonic or melting
+  regimes;
+- no soft-mode structural transition is crossed;
+- the sampled volume interval contains the relevant equilibrium states.
+
+It can become unreliable when:
+
+- imaginary phonons appear in the physically relevant volume range;
+- phonon branches become difficult to track;
+- a phase transition changes the crystal structure;
+- explicit phonon–phonon interactions dominate;
+- equilibrium volumes require substantial extrapolation;
+- electronic, magnetic, configurational or defect contributions become
+  thermodynamically important.
+
+The correct question is therefore not simply:
+
+> "Did the QHA calculation finish?"
+
+but:
+
+> **"Is the QHA physically appropriate and numerically supported over the
+> pressure–temperature region that I want to interpret?"**
+
+## A note on mode continuity
+
+If individual phonon frequencies are fitted as functions of volume, a mode at
+one volume must be matched with the corresponding physical mode at the other
+volumes.
+
+This is called **mode continuity**.
+
+A naive sorting of frequencies from low to high is not always sufficient,
+because branches can cross or become degenerate.
+
+For simple, well-behaved systems the correspondence may be straightforward.
+For more complicated crystals, eigenvector information or a dedicated tracking
+procedure is preferable.
+
+An alternative QHA strategy is to interpolate already integrated harmonic
+thermodynamic functions rather than individual phonon branches. This avoids
+mode-by-mode correspondence, although it no longer provides the same
+mode-resolved information.
+
+Both approaches are scientifically legitimate when their assumptions are
+satisfied.
+
+## What Quantas does
+
+Quantas implements the QHA as a multi-volume thermodynamic workflow.
+
+It can represent the volume dependence either through mode-resolved
+frequencies or through integrated harmonic thermodynamic functions. It can
+minimize the free-energy curves using either polynomial representations or
+integrated equations of state.
+
+The workflow can then evaluate equilibrium properties on a pressure–temperature
+grid, including:
+
+- $V(P,T)$;
+- $K_T$ and $K_S$;
+- $K'_T$;
+- $\alpha_V$;
+- axial expansion where structural information is available;
+- $C_V$ and $C_P$;
+- entropy;
+- Grüneisen parameters;
+- equilibrium lattice parameters.
+
+For this course, Quantas is the numerical tool. The objective is not to learn
+its command-line syntax by memory. The objective is to understand the
+thermodynamic model that the software is evaluating.
+
+Detailed Quantas theory:
+
+<https://quantas.readthedocs.io/en/2.0.0-beta/theory/qha.html>
+
+QHA implementation and workflow:
+
+<https://quantas.readthedocs.io/en/2.0.0-beta/workflows/qha.html>
+
+QHA tutorial:
+
+<https://quantas.readthedocs.io/en/2.0.0-beta/tutorials/qha.html>
+
+## The scientific workflow for Laboratory 5
+
+The practical workflow will be developed from a q-point-converged,
+multi-volume MgO phonon dataset.
+
+Conceptually, it will follow:
+
+```text
+validated static structures at several volumes
+                    +
+q-converged phonons at the same volumes
+                    ↓
+              Quantas QHA input
+                    ↓
+              inspect ν(q,j,V)
+                    ↓
+               build F(V,T)
+                    ↓
+     polynomial / EOS representations
+                    ↓
+          minimize F(V,T)+PV
+                    ↓
+                V(P,T)
+                    ↓
+     thermodynamic + thermoelastic properties
+                    ↓
+  compare 1D sections with experimental data
+                    ↓
+        inspect full 2D P–T maps
+                    ↓
+      assess model and fit limitations
+```
+
+The practical notebook will not ask you to reproduce the expensive
+$4\times4\times4$ phonon calculations at every volume during class. Those
+calculations will be supplied as validated reference data.
+
+Your task will be to understand how those calculations become a finite-
+temperature description of a real crystal.
+
+## The connection across the complete laboratory sequence
+
+Laboratory 5 is not a separate topic added at the end of the course. It combines
+the earlier laboratories.
+
+```text
+LAB 1
+crystal structure and symmetry
+        ↓
+LAB 2
+electronic structure and numerical convergence
+        ↓
+LAB 3
+equilibrium geometry and E(V)
+        ↓
+LAB 4
+phonons, q sampling and harmonic thermodynamics
+        ↓
+LAB 5
+F(V,T), thermal expansion and finite-P,T properties
+```
+
+The complete chain is now
+
+$$
+\boxed{
+\text{structure}
+\rightarrow
+\text{energy}
+\rightarrow
+\text{vibrations}
+\rightarrow
+\text{free energy}
+\rightarrow
+\text{equilibrium}
+\rightarrow
+\text{thermodynamic properties}
+}
+$$
+
+This is the central modelling logic of the course.
