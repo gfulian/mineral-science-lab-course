@@ -24,6 +24,7 @@ website:
           - assignments/02-first-principles.qmd
           - assignments/03-equation-of-state.qmd
           - assignments/04-vibrations-thermodynamics.qmd
+          - assignments/05-quasi-harmonic.qmd
       - section: "Laboratories"
         contents:
           - labs/lab01-crystal-structure.qmd

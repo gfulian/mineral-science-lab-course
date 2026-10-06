@@ -1,0 +1,142 @@
+---
+title: "Assignment 5 — Quasi-harmonic thermodynamics of MgO"
+---
+
+Laboratory 5 brings together almost everything developed in the previous
+activities. You will not run the underlying CRYSTAL phonon calculations during
+the laboratory: a validated multi-volume dataset is provided because the
+$4\times4\times4$ phonon calculations are too expensive for a teaching
+session.
+
+Your task is instead to understand **what was calculated, why those calculations
+are needed, and how they become finite-temperature and finite-pressure
+properties**.
+
+Before starting, read **Laboratory 5 — From harmonic phonons to
+finite-temperature properties**.
+
+## Scientific questions
+
+The laboratory is organized around four questions:
+
+1. Why does a quasi-harmonic calculation require phonons at several volumes,
+   including **expanded** volumes?
+2. How does the choice of free-energy minimization — polynomial or equation of
+   state — affect the derived properties?
+3. Which calculated quantities can be compared directly with experiment, and
+   under which thermodynamic conditions?
+4. What can we learn when calculated and experimental **absolute values** differ
+   but their **trends** agree?
+
+## Start the laboratory
+
+Update your personal workspace:
+
+```bash
+update-course
+```
+
+then create your Laboratory 5 working copy:
+
+```bash
+start-lab 05
+```
+
+Work only inside:
+
+```text
+work/lab05/
+```
+
+The laboratory contains three notebooks:
+
+```text
+01-understand-qha-dataset.ipynb
+02-qha-minimization.ipynb
+03-qha-properties-experiment.ipynb
+```
+
+They should be completed in this order.
+
+## The supplied calculation series
+
+The instructor provides seven CRYSTAL phonon calculations spanning
+
+$$
+V/V_\mathrm{ref}
+=
+0.91,\;0.94,\;0.97,\;1.00,\;1.03,\;1.06,\;1.09.
+$$
+
+Do not treat these files as a black box. The first notebook asks you to inspect
+the input and output files and identify, among other things:
+
+- the phonon supercell;
+- the number of atoms in that supercell;
+- the number of q-points sampled;
+- the DFT functional and basis set;
+- the sampled volume interval.
+
+A central point of the assignment is to explain why the series must extend to
+$V>V_\mathrm{ref}$. *Hint*: think about what happensby heating a material.
+
+## Quasi-harmonic analysis
+
+You will use Quantas to build a normalized multi-volume phonon input, inspect
+its pressure coverage, and calculate quasi-harmonic properties.
+
+Two representations of the free-energy curve will be compared using exactly
+the same first-principles dataset:
+
+```text
+polynomial minimization
+versus
+BM3 equation-of-state minimization
+```
+
+The objective is not to decide that one method is universally "better". You
+will examine which physical quantities are sensitive to the numerical
+representation and whether both methods lead to the same scientific
+interpretation.
+
+## Comparison with experiment
+
+The workspace includes documented experimental/reference data for MgO. You will
+compare calculations with:
+
+- standard entropy $S(T)$;
+- constant-pressure heat capacity $C_P(T)$;
+- enthalpy increment $H(T)-H(298.15\,\mathrm K)$;
+- cell volume and thermal expansion at ambient pressure;
+- adiabatic bulk modulus $K_S(T)$;
+- room-temperature compression $V(P)$.
+
+Experimental/reference points are plotted in **black** so that they remain
+visually distinct from the different computational models.
+
+Particular attention should be paid to two volume plots:
+
+1. the **absolute** cell volume $V(T)$;
+2. the **normalized** volume $V(T)/V(T_\mathrm{ref})$.
+
+You will look for any systematic offset between theory and experiments, but also
+check if the calculated trends agree with the reference data.
+
+## Final interpretation
+
+At the end of the laboratory you should be able to distinguish:
+
+```text
+numerical representation error
+        from
+first-principles model error
+        from
+limits of the QHA itself
+```
+
+Do not judge the calculation by the number of matching decimal places. The
+scientific objective is to decide which **behaviours, derivatives and trends**
+are reproduced and why.
+
+Your completed notebooks constitute the assignment. Save, commit and sync your
+work using the standard course workflow.
