@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Assignment 2 — From structure to energy – Mineral Science Laboratory</title>
+<title>Assignment 5 — Quasi-harmonic thermodynamics of MgO – Mineral Science Laboratory</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -150,7 +150,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/00-onboarding.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/02-first-principles.html">Assignment 2 — From structure to energy</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/00-onboarding.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/05-quasi-harmonic.html">Assignment 5 — Quasi-harmonic thermodynamics of MgO</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -245,7 +245,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../assignments/02-first-principles.html" class="sidebar-item-text sidebar-link active">
+  <a href="../assignments/02-first-principles.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment 2 — From structure to energy</span></a>
   </div>
 </li>
@@ -263,7 +263,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../assignments/05-quasi-harmonic.html" class="sidebar-item-text sidebar-link">
+  <a href="../assignments/05-quasi-harmonic.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Assignment 5 — Quasi-harmonic thermodynamics of MgO</span></a>
   </div>
 </li>
@@ -391,18 +391,21 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#before-the-laboratory" id="toc-before-the-laboratory" class="nav-link active" data-scroll-target="#before-the-laboratory">Before the laboratory</a></li>
-  <li><a href="#calculation-resources" id="toc-calculation-resources" class="nav-link" data-scroll-target="#calculation-resources">Calculation resources</a></li>
-  <li><a href="#what-you-will-produce" id="toc-what-you-will-produce" class="nav-link" data-scroll-target="#what-you-will-produce">What you will produce</a></li>
+  <li><a href="#scientific-questions" id="toc-scientific-questions" class="nav-link active" data-scroll-target="#scientific-questions">Scientific questions</a></li>
+  <li><a href="#start-the-laboratory" id="toc-start-the-laboratory" class="nav-link" data-scroll-target="#start-the-laboratory">Start the laboratory</a></li>
+  <li><a href="#the-supplied-calculation-series" id="toc-the-supplied-calculation-series" class="nav-link" data-scroll-target="#the-supplied-calculation-series">The supplied calculation series</a></li>
+  <li><a href="#quasi-harmonic-analysis" id="toc-quasi-harmonic-analysis" class="nav-link" data-scroll-target="#quasi-harmonic-analysis">Quasi-harmonic analysis</a></li>
+  <li><a href="#comparison-with-experiment" id="toc-comparison-with-experiment" class="nav-link" data-scroll-target="#comparison-with-experiment">Comparison with experiment</a></li>
+  <li><a href="#final-interpretation" id="toc-final-interpretation" class="nav-link" data-scroll-target="#final-interpretation">Final interpretation</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/00-onboarding.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/02-first-principles.html">Assignment 2 — From structure to energy</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/00-onboarding.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/05-quasi-harmonic.html">Assignment 5 — Quasi-harmonic thermodynamics of MgO</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Assignment 2 — From structure to energy</h1>
+<h1 class="title">Assignment 5 — Quasi-harmonic thermodynamics of MgO</h1>
 </div>
 
 
@@ -419,64 +422,89 @@ window.Quarto = {
 </header>
 
 
-<p>In Laboratory 2 we will perform our first electronic-structure calculations with <strong>CRYSTAL23</strong>. We will continue to use MgO (periclase), so that the structure remains simple while we concentrate on a new question:</p>
-<blockquote class="blockquote">
-<p><strong>When can we trust a calculated energy numerically?</strong></p>
-</blockquote>
-<p>You are not expected to learn electronic-structure theory or the CRYSTAL input language in full. The aim is to understand the logic of a first-principles calculation, recognize the important parts of an input and output file, and perform a controlled convergence test.</p>
-<section id="before-the-laboratory" class="level2">
-<h2 class="anchored" data-anchor-id="before-the-laboratory">Before the laboratory</h2>
-<p>Read:</p>
-<ul>
-<li><strong>Laboratory 2 — From structure to energy</strong>;</li>
-<li>the short <strong>CRYSTAL input and output field guide</strong>;</li>
-<li>the <strong>CluMiner</strong> quick reference.</li>
-</ul>
-<p>Then update your personal workspace:</p>
+<p>Laboratory 5 brings together almost everything developed in the previous activities. You will not run the underlying CRYSTAL phonon calculations during the laboratory: a validated multi-volume dataset is provided because the <span class="math inline">\(4\times4\times4\)</span> phonon calculations are too expensive for a teaching session.</p>
+<p>Your task is instead to understand <strong>what was calculated, why those calculations are needed, and how they become finite-temperature and finite-pressure properties</strong>.</p>
+<p>Before starting, read <strong>Laboratory 5 — From harmonic phonons to finite-temperature properties</strong>.</p>
+<section id="scientific-questions" class="level2">
+<h2 class="anchored" data-anchor-id="scientific-questions">Scientific questions</h2>
+<p>The laboratory is organized around four questions:</p>
+<ol type="1">
+<li>Why does a quasi-harmonic calculation require phonons at several volumes, including <strong>expanded</strong> volumes?</li>
+<li>How does the choice of free-energy minimization — polynomial or equation of state — affect the derived properties?</li>
+<li>Which calculated quantities can be compared directly with experiment, and under which thermodynamic conditions?</li>
+<li>What can we learn when calculated and experimental <strong>absolute values</strong> differ but their <strong>trends</strong> agree?</li>
+</ol>
+</section>
+<section id="start-the-laboratory" class="level2">
+<h2 class="anchored" data-anchor-id="start-the-laboratory">Start the laboratory</h2>
+<p>Update your personal workspace:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">update-course</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>and create the Laboratory 2 working directory:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">start-lab</span> 02</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Open:</p>
-<pre class="text"><code>work/lab02/</code></pre>
-<p>You should find:</p>
-<pre class="text"><code>01-first-scf.ipynb
-02-kpoint-convergence.ipynb
-inputs/
-outputs/
-reference-results/</code></pre>
-<p>The first notebook is guided. The second contains the convergence activity and your answers.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Keep the numerical experiment controlled
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>During the convergence test you will change <strong>only the SHRINK factor</strong>.</p>
-<p>The MgO structure, basis set, exchange-correlation functional, integral thresholds, SCF convergence threshold and computational resources must remain unchanged.</p>
-</div>
-</div>
+<p>then create your Laboratory 5 working copy:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">start-lab</span> 05</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Work only inside:</p>
+<pre class="text"><code>work/lab05/</code></pre>
+<p>The laboratory contains three notebooks:</p>
+<pre class="text"><code>01-understand-qha-dataset.ipynb
+02-qha-minimization.ipynb
+03-qha-properties-experiment.ipynb</code></pre>
+<p>They should be completed in this order.</p>
 </section>
-<section id="calculation-resources" class="level2">
-<h2 class="anchored" data-anchor-id="calculation-resources">Calculation resources</h2>
-<p>For every CRYSTAL calculation in this laboratory use:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cluminer-crystal</span> INPUT.d12 <span class="at">--cores-per-node</span> 2 <span class="at">--threads</span> 2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This corresponds to one MPI rank using two OpenMP threads on two physical CPU cores. Do not request more resources unless instructed.</p>
-</section>
-<section id="what-you-will-produce" class="level2">
-<h2 class="anchored" data-anchor-id="what-you-will-produce">What you will produce</h2>
-<p>By the end of the activity you should have:</p>
+<section id="the-supplied-calculation-series" class="level2">
+<h2 class="anchored" data-anchor-id="the-supplied-calculation-series">The supplied calculation series</h2>
+<p>The instructor provides seven CRYSTAL phonon calculations spanning</p>
+<p><span class="math display">\[
+V/V_\mathrm{ref}
+=
+0.91,\;0.94,\;0.97,\;1.00,\;1.03,\;1.06,\;1.09.
+\]</span></p>
+<p>Do not treat these files as a black box. The first notebook asks you to inspect the input and output files and identify, among other things:</p>
 <ul>
-<li>CRYSTAL outputs for SHRINK values 2–9;</li>
-<li>a table containing the reciprocal-space sampling, total energy and timings;</li>
-<li>energy-difference values in both hartree and kJ mol<span class="math inline">\(^{-1}\)</span>;</li>
-<li>convergence and computational-cost plots;</li>
-<li>a justified choice of the SHRINK value to use in subsequent MgO calculations.</li>
+<li>the phonon supercell;</li>
+<li>the number of atoms in that supercell;</li>
+<li>the number of q-points sampled;</li>
+<li>the DFT functional and basis set;</li>
+<li>the sampled volume interval.</li>
 </ul>
-<p>No separate report is required. Your answers remain in the notebook.</p>
+<p>A central point of the assignment is to explain why the series must extend to <span class="math inline">\(V&gt;V_\mathrm{ref}\)</span>. <em>Hint</em>: think about what happensby heating a material.</p>
+</section>
+<section id="quasi-harmonic-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="quasi-harmonic-analysis">Quasi-harmonic analysis</h2>
+<p>You will use Quantas to build a normalized multi-volume phonon input, inspect its pressure coverage, and calculate quasi-harmonic properties.</p>
+<p>Two representations of the free-energy curve will be compared using exactly the same first-principles dataset:</p>
+<pre class="text"><code>polynomial minimization
+versus
+BM3 equation-of-state minimization</code></pre>
+<p>The objective is not to decide that one method is universally “better”. You will examine which physical quantities are sensitive to the numerical representation and whether both methods lead to the same scientific interpretation.</p>
+</section>
+<section id="comparison-with-experiment" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-with-experiment">Comparison with experiment</h2>
+<p>The workspace includes documented experimental/reference data for MgO. You will compare calculations with:</p>
+<ul>
+<li>standard entropy <span class="math inline">\(S(T)\)</span>;</li>
+<li>constant-pressure heat capacity <span class="math inline">\(C_P(T)\)</span>;</li>
+<li>enthalpy increment <span class="math inline">\(H(T)-H(298.15\,\mathrm K)\)</span>;</li>
+<li>cell volume and thermal expansion at ambient pressure;</li>
+<li>adiabatic bulk modulus <span class="math inline">\(K_S(T)\)</span>;</li>
+<li>room-temperature compression <span class="math inline">\(V(P)\)</span>.</li>
+</ul>
+<p>Experimental/reference points are plotted in <strong>black</strong> so that they remain visually distinct from the different computational models.</p>
+<p>Particular attention should be paid to two volume plots:</p>
+<ol type="1">
+<li>the <strong>absolute</strong> cell volume <span class="math inline">\(V(T)\)</span>;</li>
+<li>the <strong>normalized</strong> volume <span class="math inline">\(V(T)/V(T_\mathrm{ref})\)</span>.</li>
+</ol>
+<p>You will look for any systematic offset between theory and experiments, but also check if the calculated trends agree with the reference data.</p>
+</section>
+<section id="final-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="final-interpretation">Final interpretation</h2>
+<p>At the end of the laboratory you should be able to distinguish:</p>
+<pre class="text"><code>numerical representation error
+        from
+first-principles model error
+        from
+limits of the QHA itself</code></pre>
+<p>Do not judge the calculation by the number of matching decimal places. The scientific objective is to decide which <strong>behaviours, derivatives and trends</strong> are reproduced and why.</p>
+<p>Your completed notebooks constitute the assignment. Save, commit and sync your work using the standard course workflow.</p>
 
 
 </section>
